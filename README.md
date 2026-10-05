@@ -1,42 +1,57 @@
-# Harness de QA
+# Brain of Agent
 
-Roda os quatro fluxos principais do Mo baile sem precisar de aparelho, de Xcode
-nem de Android SDK.
+Conhecimento por segmento combinado com workflows de agentes. O primeiro
+segmento é **QA**. O projeto inclui uma cópia completa dos fontes do
+[gstack](https://github.com/garrytan/gstack), com licenças e créditos preservados.
 
-```bash
-python3 qa/run_all.py
+```text
+brain-of-agent/
+├── SKILL.md                 # entrada para selecionar recursos
+├── brains/qa/               # nossa skill, referências, templates, scripts e testes
+├── vendor/gstack/           # snapshot integral dos arquivos do fornecedor
+├── registry/                # catálogo e origem/hashes do snapshot
+├── tools/                   # catálogo, integridade, importação e exportação
+├── tests/                   # regressões da integração
+└── docs/                    # arquitetura, uso e atualização
 ```
 
-## Como funciona
+**QA** reúne técnica, risco, oráculos e evidência. **gstack** fornece workflows
+de planejamento, revisão, investigação, execução de QA, documentação e entrega.
+Nossa skill se chama `qa`; instale os workflows com prefixo `gstack-*` para
+separar `qa` de `gstack-qa`.
 
-`fakebin/` contém um `adb`, um `xcrun`, um `emulator` e um `open` falsos que
-respondem como os de verdade nos caminhos que a aplicação usa: listagem de
-dispositivos, `screencap` devolvendo PNG real, `uiautomator dump` devolvendo XML
-de hierarquia, `wm size`, `getevent -p`, `reverse` e `settings put global
-http_proxy`. Cada chamada é registrada em `calls.log`, então dá para afirmar não
-só que a aplicação respondeu, mas **o que exatamente ela mandou para o
-aparelho**.
+Ferramentas próprias: Python 3.10+, com biblioteca padrão. Para usar o
+conhecimento em qualquer IA, forneça
+[brains/qa/SKILL.md](brains/qa/SKILL.md) e as referências pertinentes. Não é
+necessário instalar ferramentas para ler a base.
 
-`fake_wda.py` é um WebDriverAgent mínimo, com `/status`, `/session`, `/source` e
-`/session/<id>/wda/tap`.
+```bash
+python3 tools/catalog.py --list
+python3 tools/export_project.py --host claude --target /caminho/do/projeto
+# Alternativa para outro projeto:
+python3 tools/export_project.py --host codex --target /outro/projeto
+```
 
-`engine_client.py` sobe o motor de verdade como subprocesso
-(`python -m mobaile.rpc`) e fala o mesmo JSON-RPC sobre stdio que o front
-SwiftUI fala. É isso que dá valor ao harness: não é mock do motor, é o motor.
+A exportação copia fontes e imprime a próxima etapa. Não executa setup nem
+sobrescreve skills existentes. Veja [a integração](docs/integration.md).
+O pacote gstack importado exige Bun **>= 1.4.0** para seu runtime.
 
-O fluxo 4 sobe um servidor HTTPS real com certificado próprio e atravessa o
-proxy com CONNECT e handshake TLS de verdade.
+```bash
+python3 tools/verify.py
+python3 -m unittest discover -s brains/qa/tests -v
+python3 -m unittest discover -s tests -v
+```
 
-## Cobertura
+As verificações próprias cobrem a integração e os helpers QA. A conferência
+do snapshot não significa execução da suíte inteira ou do runtime gstack.
 
-| Fluxo | Verificações |
-|---|---|
-| 1 · sem dispositivo | 19 |
-| 2 · só iOS | 31 |
-| 3 · só Android | 35 |
-| 4 · HTTPS | 34 |
+Importação em **05/10/2026**: gstack **1.91.27**, commit
+[`c285d88b90d39116ccfa2b901f80ea0fce0b26eb`](https://github.com/garrytan/gstack/commit/c285d88b90d39116ccfa2b901f80ea0fce0b26eb),
+**3.133 arquivos versionados**, incluindo skills, fontes, testes, fixtures,
+documentação e licenças. É um snapshot completo dos arquivos, sem a pasta
+`.git` e o histórico upstream; não depende de submódulo ou novo clone para
+obter os fontes. Novos segmentos entram em `brains/<segmento>/`.
 
-## Requisitos
-
-Python 3.10+, `Pillow`, `requests` e `openssl` no PATH (para gerar o certificado
-do fluxo 4). Nenhum aparelho, nenhum simulador.
+Leia [a arquitetura](docs/architecture.md) e
+[o procedimento de atualização](docs/upstream.md). Licença própria:
+[MIT](LICENSE). Créditos externos: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

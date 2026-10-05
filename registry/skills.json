@@ -1,0 +1,384 @@
+{
+  "schema_version": 1,
+  "upstream_revision": "c285d88b90d39116ccfa2b901f80ea0fce0b26eb",
+  "skills": [
+    {
+      "id": "brain-of-agent",
+      "name": "brain-of-agent",
+      "source": "own",
+      "path": "SKILL.md"
+    },
+    {
+      "id": "brain/qa",
+      "name": "qa",
+      "source": "own",
+      "path": "brains/qa/SKILL.md"
+    },
+    {
+      "id": "gstack/autoplan",
+      "name": "autoplan",
+      "source": "gstack",
+      "path": "vendor/gstack/autoplan/SKILL.md"
+    },
+    {
+      "id": "gstack/benchmark",
+      "name": "benchmark",
+      "source": "gstack",
+      "path": "vendor/gstack/benchmark/SKILL.md"
+    },
+    {
+      "id": "gstack/benchmark-models",
+      "name": "benchmark-models",
+      "source": "gstack",
+      "path": "vendor/gstack/benchmark-models/SKILL.md"
+    },
+    {
+      "id": "gstack/browse",
+      "name": "browse",
+      "source": "gstack",
+      "path": "vendor/gstack/browse/SKILL.md"
+    },
+    {
+      "id": "gstack/browser-skills/hackernews-frontpage",
+      "name": "hackernews-frontpage",
+      "source": "gstack",
+      "path": "vendor/gstack/browser-skills/hackernews-frontpage/SKILL.md"
+    },
+    {
+      "id": "gstack/canary",
+      "name": "canary",
+      "source": "gstack",
+      "path": "vendor/gstack/canary/SKILL.md"
+    },
+    {
+      "id": "gstack/careful",
+      "name": "careful",
+      "source": "gstack",
+      "path": "vendor/gstack/careful/SKILL.md"
+    },
+    {
+      "id": "gstack/codex",
+      "name": "codex",
+      "source": "gstack",
+      "path": "vendor/gstack/codex/SKILL.md"
+    },
+    {
+      "id": "gstack/context-restore",
+      "name": "context-restore",
+      "source": "gstack",
+      "path": "vendor/gstack/context-restore/SKILL.md"
+    },
+    {
+      "id": "gstack/context-save",
+      "name": "context-save",
+      "source": "gstack",
+      "path": "vendor/gstack/context-save/SKILL.md"
+    },
+    {
+      "id": "gstack/cso",
+      "name": "cso",
+      "source": "gstack",
+      "path": "vendor/gstack/cso/SKILL.md"
+    },
+    {
+      "id": "gstack/design-consultation",
+      "name": "design-consultation",
+      "source": "gstack",
+      "path": "vendor/gstack/design-consultation/SKILL.md"
+    },
+    {
+      "id": "gstack/design-html",
+      "name": "design-html",
+      "source": "gstack",
+      "path": "vendor/gstack/design-html/SKILL.md"
+    },
+    {
+      "id": "gstack/design-review",
+      "name": "design-review",
+      "source": "gstack",
+      "path": "vendor/gstack/design-review/SKILL.md"
+    },
+    {
+      "id": "gstack/design-shotgun",
+      "name": "design-shotgun",
+      "source": "gstack",
+      "path": "vendor/gstack/design-shotgun/SKILL.md"
+    },
+    {
+      "id": "gstack/deslop-shared-libs",
+      "name": "deslop-shared-libs",
+      "source": "gstack",
+      "path": "vendor/gstack/deslop-shared-libs/SKILL.md"
+    },
+    {
+      "id": "gstack/devex-review",
+      "name": "devex-review",
+      "source": "gstack",
+      "path": "vendor/gstack/devex-review/SKILL.md"
+    },
+    {
+      "id": "gstack/diagram",
+      "name": "diagram",
+      "source": "gstack",
+      "path": "vendor/gstack/diagram/SKILL.md"
+    },
+    {
+      "id": "gstack/document-generate",
+      "name": "document-generate",
+      "source": "gstack",
+      "path": "vendor/gstack/document-generate/SKILL.md"
+    },
+    {
+      "id": "gstack/document-release",
+      "name": "document-release",
+      "source": "gstack",
+      "path": "vendor/gstack/document-release/SKILL.md"
+    },
+    {
+      "id": "gstack/freeze",
+      "name": "freeze",
+      "source": "gstack",
+      "path": "vendor/gstack/freeze/SKILL.md"
+    },
+    {
+      "id": "gstack/gstack-upgrade",
+      "name": "gstack-upgrade",
+      "source": "gstack",
+      "path": "vendor/gstack/gstack-upgrade/SKILL.md"
+    },
+    {
+      "id": "gstack/guard",
+      "name": "guard",
+      "source": "gstack",
+      "path": "vendor/gstack/guard/SKILL.md"
+    },
+    {
+      "id": "gstack/health",
+      "name": "health",
+      "source": "gstack",
+      "path": "vendor/gstack/health/SKILL.md"
+    },
+    {
+      "id": "gstack/investigate",
+      "name": "investigate",
+      "source": "gstack",
+      "path": "vendor/gstack/investigate/SKILL.md"
+    },
+    {
+      "id": "gstack/ios-clean",
+      "name": "ios-clean",
+      "source": "gstack",
+      "path": "vendor/gstack/ios-clean/SKILL.md"
+    },
+    {
+      "id": "gstack/ios-design-review",
+      "name": "ios-design-review",
+      "source": "gstack",
+      "path": "vendor/gstack/ios-design-review/SKILL.md"
+    },
+    {
+      "id": "gstack/ios-fix",
+      "name": "ios-fix",
+      "source": "gstack",
+      "path": "vendor/gstack/ios-fix/SKILL.md"
+    },
+    {
+      "id": "gstack/ios-qa",
+      "name": "ios-qa",
+      "source": "gstack",
+      "path": "vendor/gstack/ios-qa/SKILL.md"
+    },
+    {
+      "id": "gstack/ios-sync",
+      "name": "ios-sync",
+      "source": "gstack",
+      "path": "vendor/gstack/ios-sync/SKILL.md"
+    },
+    {
+      "id": "gstack/land-and-deploy",
+      "name": "land-and-deploy",
+      "source": "gstack",
+      "path": "vendor/gstack/land-and-deploy/SKILL.md"
+    },
+    {
+      "id": "gstack/landing-report",
+      "name": "landing-report",
+      "source": "gstack",
+      "path": "vendor/gstack/landing-report/SKILL.md"
+    },
+    {
+      "id": "gstack/learn",
+      "name": "learn",
+      "source": "gstack",
+      "path": "vendor/gstack/learn/SKILL.md"
+    },
+    {
+      "id": "gstack/make-pdf",
+      "name": "make-pdf",
+      "source": "gstack",
+      "path": "vendor/gstack/make-pdf/SKILL.md"
+    },
+    {
+      "id": "gstack/office-hours",
+      "name": "office-hours",
+      "source": "gstack",
+      "path": "vendor/gstack/office-hours/SKILL.md"
+    },
+    {
+      "id": "gstack/open-gstack-browser",
+      "name": "open-gstack-browser",
+      "source": "gstack",
+      "path": "vendor/gstack/open-gstack-browser/SKILL.md"
+    },
+    {
+      "id": "gstack/openclaw/skills/gstack-openclaw-ceo-review",
+      "name": "gstack-openclaw-ceo-review",
+      "source": "gstack",
+      "path": "vendor/gstack/openclaw/skills/gstack-openclaw-ceo-review/SKILL.md"
+    },
+    {
+      "id": "gstack/openclaw/skills/gstack-openclaw-investigate",
+      "name": "gstack-openclaw-investigate",
+      "source": "gstack",
+      "path": "vendor/gstack/openclaw/skills/gstack-openclaw-investigate/SKILL.md"
+    },
+    {
+      "id": "gstack/openclaw/skills/gstack-openclaw-office-hours",
+      "name": "gstack-openclaw-office-hours",
+      "source": "gstack",
+      "path": "vendor/gstack/openclaw/skills/gstack-openclaw-office-hours/SKILL.md"
+    },
+    {
+      "id": "gstack/openclaw/skills/gstack-openclaw-retro",
+      "name": "gstack-openclaw-retro",
+      "source": "gstack",
+      "path": "vendor/gstack/openclaw/skills/gstack-openclaw-retro/SKILL.md"
+    },
+    {
+      "id": "gstack/pair-agent",
+      "name": "pair-agent",
+      "source": "gstack",
+      "path": "vendor/gstack/pair-agent/SKILL.md"
+    },
+    {
+      "id": "gstack/plan-ceo-review",
+      "name": "plan-ceo-review",
+      "source": "gstack",
+      "path": "vendor/gstack/plan-ceo-review/SKILL.md"
+    },
+    {
+      "id": "gstack/plan-design-review",
+      "name": "plan-design-review",
+      "source": "gstack",
+      "path": "vendor/gstack/plan-design-review/SKILL.md"
+    },
+    {
+      "id": "gstack/plan-devex-review",
+      "name": "plan-devex-review",
+      "source": "gstack",
+      "path": "vendor/gstack/plan-devex-review/SKILL.md"
+    },
+    {
+      "id": "gstack/plan-eng-review",
+      "name": "plan-eng-review",
+      "source": "gstack",
+      "path": "vendor/gstack/plan-eng-review/SKILL.md"
+    },
+    {
+      "id": "gstack/plan-tune",
+      "name": "plan-tune",
+      "source": "gstack",
+      "path": "vendor/gstack/plan-tune/SKILL.md"
+    },
+    {
+      "id": "gstack/qa",
+      "name": "qa",
+      "source": "gstack",
+      "path": "vendor/gstack/qa/SKILL.md"
+    },
+    {
+      "id": "gstack/qa-only",
+      "name": "qa-only",
+      "source": "gstack",
+      "path": "vendor/gstack/qa-only/SKILL.md"
+    },
+    {
+      "id": "gstack/retro",
+      "name": "retro",
+      "source": "gstack",
+      "path": "vendor/gstack/retro/SKILL.md"
+    },
+    {
+      "id": "gstack/review",
+      "name": "review",
+      "source": "gstack",
+      "path": "vendor/gstack/review/SKILL.md"
+    },
+    {
+      "id": "gstack/router",
+      "name": "gstack",
+      "source": "gstack",
+      "path": "vendor/gstack/SKILL.md"
+    },
+    {
+      "id": "gstack/scrape",
+      "name": "scrape",
+      "source": "gstack",
+      "path": "vendor/gstack/scrape/SKILL.md"
+    },
+    {
+      "id": "gstack/setup-browser-cookies",
+      "name": "setup-browser-cookies",
+      "source": "gstack",
+      "path": "vendor/gstack/setup-browser-cookies/SKILL.md"
+    },
+    {
+      "id": "gstack/setup-deploy",
+      "name": "setup-deploy",
+      "source": "gstack",
+      "path": "vendor/gstack/setup-deploy/SKILL.md"
+    },
+    {
+      "id": "gstack/setup-gbrain",
+      "name": "setup-gbrain",
+      "source": "gstack",
+      "path": "vendor/gstack/setup-gbrain/SKILL.md"
+    },
+    {
+      "id": "gstack/ship",
+      "name": "ship",
+      "source": "gstack",
+      "path": "vendor/gstack/ship/SKILL.md"
+    },
+    {
+      "id": "gstack/skillify",
+      "name": "skillify",
+      "source": "gstack",
+      "path": "vendor/gstack/skillify/SKILL.md"
+    },
+    {
+      "id": "gstack/spec",
+      "name": "spec",
+      "source": "gstack",
+      "path": "vendor/gstack/spec/SKILL.md"
+    },
+    {
+      "id": "gstack/sync-gbrain",
+      "name": "sync-gbrain",
+      "source": "gstack",
+      "path": "vendor/gstack/sync-gbrain/SKILL.md"
+    },
+    {
+      "id": "gstack/test-audit",
+      "name": "test-audit",
+      "source": "gstack",
+      "path": "vendor/gstack/test-audit/SKILL.md"
+    },
+    {
+      "id": "gstack/unfreeze",
+      "name": "unfreeze",
+      "source": "gstack",
+      "path": "vendor/gstack/unfreeze/SKILL.md"
+    }
+  ]
+}

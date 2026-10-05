@@ -2,6 +2,12 @@
 __pycache__/
 *.py[cod]
 .venv/
+node_modules/
+.pytest_cache/
+.claude/skills/
+.agents/skills/
+.gstack/
+.context/
 dist/
 .env
 .env.*
