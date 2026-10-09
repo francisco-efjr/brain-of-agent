@@ -23,6 +23,11 @@ auditoria de tela ou obrigação legal de acessibilidade.
 
 ## Normas e qual alvo adotar
 
+**Estado das informações normativas:** a tabela é uma orientação de escopo.
+Datas, versões e contagens herdadas ainda precisam de confirmação primária
+por jurisdição antes de fundamentar uma auditoria. Não as trate como validadas
+pelo CI ou por esta skill.
+
 | Referência | Escopo | Base técnica | Obrigatória para |
 | --- | --- | --- | --- |
 | **WCAG 2.2** (W3C, 2023) | conteúdo web; aplicada por analogia a apps | níveis A, AA, AAA | não é lei; é a base técnica de quase todas as leis |
@@ -34,9 +39,18 @@ auditoria de tela ou obrigação legal de acessibilidade.
 | **Section 508** (EUA) | órgãos federais americanos e seus fornecedores | WCAG 2.0 AA | contratos com o governo federal dos EUA |
 | **WCAG 3** | — | — | ninguém: ainda é rascunho (Working Draft) do W3C, **não é norma** |
 
-**Alvo padrão: WCAG 2.2 nível AA.** Ele contém a 2.1 AA e a 2.0 AA, então
-cobre LBI, NBR 17060, EN 301 549 e Section 508 de uma vez. Ninguém exige AAA
-inteiro; puxe critérios AAA isolados quando o público pedir.
+**Referência técnica inicial para web: WCAG 2.2 nível AA**, salvo contrato
+ou requisito aplicável diferente. Isso não declara atendimento automático à
+LBI, NBR 17060, EN 301 549 ou Section 508. Identifique jurisdição, produto,
+contrato, versão vigente e requisitos adicionais antes de avaliar conformidade.
+Section 508, por exemplo, inclui disposições de software, desempenho funcional,
+documentação e outros componentes além de critérios web.
+
+Fonte primária para escopo: [U.S. Access Board — Revised 508 Standards](https://www.access-board.gov/ict/).
+A tabela acima é orientação inicial, não parecer jurídico. Datas, contagens e
+versões normativas devem ser confirmadas na fonte oficial antes de uso; sem
+confirmação, registre **não verificado**. Critérios AAA podem ser necessários
+por contrato ou necessidades do público; não presuma sua dispensa universal.
 
 - A 2.2 **removeu o 4.1.1 (Parsing)**, e o W3C anotou na 2.0 e na 2.1 que ele
   conta como sempre atendido em HTML. Não reporte "HTML inválido"; reporte o

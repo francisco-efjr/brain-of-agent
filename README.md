@@ -55,3 +55,23 @@ obter os fontes. Novos segmentos entram em `brains/<segmento>/`.
 Leia [a arquitetura](docs/architecture.md) e
 [o procedimento de atualização](docs/upstream.md). Licença própria:
 [MIT](LICENSE). Créditos externos: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Ativar o protocolo QA completo
+
+Em um chat com acesso ao repositório, envie:
+
+> QA-COMPLETO. Leia SKILL.md e aplique o protocolo ao projeto [caminho/objeto].
+> Meu escopo é [auditar / implementar correções]. Entregue inventário de leitura,
+> checklist de análise, implementação e revalidação, evidências e riscos pendentes.
+
+A keyword exige leitura integral da base própria, cobertura de todas as áreas
+e justificativa do que não se aplica. Não concede autorização para deploy ou
+instalações. Sem acesso aos arquivos, anexe a base ou aceite cobertura parcial.
+
+- [Protocolo](brains/qa/references/protocolo-qa-completo.md)
+- [Checklist operacional](brains/qa/assets/templates/checklist-qa-completo.md)
+- [Benchmark e avaliação](brains/qa/evals/README.md)
+- [Validação operacional de integração](docs/runtime-validation.md)
+
+As avaliações comportamentais são registradas separadamente dos testes de
+helpers. Casos preparados e checks estruturais não equivalem a execuções de IA.

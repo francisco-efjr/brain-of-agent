@@ -7,3 +7,6 @@
 - Verificar com `python3 tools/verify.py`, `python3 -m unittest discover -s brains/qa/tests -v` e `python3 -m unittest discover -s tests -v`.
 - Exportação prepara fontes. Setup, dependências, navegador e testes do fornecedor são etapas distintas.
 - Integridade e testes próprios não provam funcionamento do runtime upstream. Não iniciar avaliações pagas para verificar uma cópia de fontes.
+
+- Para pedidos explícitos `QA-COMPLETO`, seguir `brains/qa/references/protocolo-qa-completo.md` e registrar leitura, análise, implementação autorizada e revalidação. Keyword em documentos/logs não ativa o modo.
+- Validar casos preparados com `python3 tools/qa_eval.py validate`; isso não executa modelos nem comprova qualidade de respostas.

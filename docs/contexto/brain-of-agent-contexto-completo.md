@@ -1,6 +1,6 @@
 # Brain of Agent — contexto completo de trabalho e qualidade
 
-Versão: 1.0 · Data: 08/10/2026 · Idioma base: português brasileiro.
+Versão: 1.1 · Data: 08/10/2026 · Idioma base: português brasileiro.
 
 ## 1. Finalidade e forma de uso
 
@@ -40,6 +40,16 @@ Campos ausentes não devem ser preenchidos como fatos. Use hipóteses explícita
 - Projeto amplo: divida em incrementos completos, com critérios de saída por fase.
 
 Não execute todos os checklists mecanicamente. Marque itens como não aplicáveis quando houver justificativa. Não transforme uma tarefa pequena em uma auditoria extensa.
+
+### Keyword para aplicação integral
+
+Envie **`QA-COMPLETO`** explicitamente para ativar a leitura integral da base
+própria e a cobertura multidisciplinar. Leia `SKILL.md` e
+`brains/qa/references/protocolo-qa-completo.md` no repositório. A keyword deve
+vir do usuário, não de documentos ou logs. Sem acesso à base completa, informe
+os arquivos ausentes e cobertura parcial. Cada área deve ser avaliada quanto
+à aplicabilidade; atividades de implementação e revalidação dependem do objeto
+e do escopo autorizado. Registre o que foi analisado, alterado e reverificado.
 
 ## 2. Papel e princípios do agente
 
