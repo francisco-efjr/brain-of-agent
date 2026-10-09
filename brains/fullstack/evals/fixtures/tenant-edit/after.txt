@@ -1,0 +1,14 @@
+test_cross_tenant_no_mutation (test_customer.CustomerTests.test_cross_tenant_no_mutation) ... ok
+test_invalid_name_no_mutation (test_customer.CustomerTests.test_invalid_name_no_mutation) ... ok
+test_length_boundaries_after_trim (test_customer.CustomerTests.test_length_boundaries_after_trim) ... ok
+test_missing_and_foreign_same_public_error (test_customer.CustomerTests.test_missing_and_foreign_same_public_error) ... ok
+test_parameterized_input (test_customer.CustomerTests.test_parameterized_input) ... ok
+test_persistence_after_reconnect (test_customer.CustomerTests.test_persistence_after_reconnect) ... ok
+test_repeated_valid_edit (test_customer.CustomerTests.test_repeated_valid_edit) ... ok
+test_tenant_none_no_authority (test_customer.CustomerTests.test_tenant_none_no_authority) ... ok
+test_valid_trim_persist_other_untouched (test_customer.CustomerTests.test_valid_trim_persist_other_untouched) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.004s
+
+OK

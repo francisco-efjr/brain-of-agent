@@ -1,0 +1,11 @@
+{
+  "customer.py": "ccd7f311bf33af803ba67c5041bdfb53eebfc84b3296ce1ad482b6080eb85328",
+  "customer_baseline.py": "b55fc9e5a8715a0fe94a36cee3f2c763b044a8eaecb1d9e755d3203a02190da6",
+  "test_customer.py": "1d17f188f630764102eafcce8b69e8309b02b83dad4e23ab588783bce8f4aad2",
+  "before.txt": "05f6f2ff68562d81ef3d8309b6b0689acc081fe8b8586b92aa103e4ae8ac031d",
+  "before.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+  "after.txt": "2689a072ec7f898a55bada6490131c1ea81ec765bb2622d2557e479d2180435f",
+  "after.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+  "environment.txt": "6245e7edaf7492fab58b50c76bc16521a6699d64dff51aacbfba08adafbe1d2a",
+  "handoff.md": "d624d355ba7e5ec1c5441e1ce39b194763704ebe3c0699bbf6d2528f97190260"
+}

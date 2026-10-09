@@ -15,9 +15,16 @@ python3 tools/export_project.py --host claude --target /caminho/do/projeto
 python3 tools/export_project.py --host codex --target /outro/projeto
 ```
 
-O exportador exige projeto existente e destinos novos. Copia o gstack para
-`.claude/skills/gstack`, origem de projeto reconhecida pelo setup. QA vai para
-`.claude/skills/qa` no Claude, ou `.agents/skills/qa` no Codex. Destinos existentes
+O exportador exige projeto existente e destinos novos. Copia todos os brains próprios disponíveis e o gstack para
+`.claude/skills/gstack`, origem de projeto reconhecida pelo setup. Os brains vão para
+`.claude/skills/<nome>` no Claude, ou `.agents/skills/<nome>` no Codex;
+QA e fullstack ficam adjacentes para suas referências cruzadas. Cada brain
+recebe cópias de contexto, guia de integração e catálogo em `assets/contexto/`
+quando disponíveis na origem; `availability.json` registra disponibilidade
+e o CLI avisa quando faltam recursos. O SKILL.md exportado é a entrada;
+o router da raiz original não é obrigatório nessa cópia.
+O catálogo copiado conserva caminhos da origem e é inventário de intenção;
+para abrir workflows exportados, use o gstack instalado e seus caminhos reais. Destinos existentes
 são recusados antes da cópia; não há `--force`. Os diretórios de destino não
 podem apontar para fora do projeto por symlinks.
 
@@ -54,3 +61,12 @@ com gstack-plan-eng-review”. A invocação nativa depende do host.
 Não execute `gstack-upgrade`, `git pull` ou setup diretamente em `vendor/gstack`:
 isso modifica o snapshot ou usa Git/configuração do repositório pai. Atualize
 com [upstream.md](upstream.md) e revise explicitamente instalações exportadas.
+
+## Invocação no projeto exportado
+
+Peça explicitamente `FULLSTACK-COMPLETO` para desenvolvimento ou
+`QA-COMPLETO` para validação integral. Indique objetivo e escopo. Se o host
+não descobrir a skill automaticamente, aponte para o SKILL.md da pasta
+exportada; a keyword por si só não instala nem carrega arquivos sem acesso.
+Em exportações antigas sem contexto compartilhado, registre cobertura parcial
+ou exporte para novo destino; o exportador não sobrescreve instalações.

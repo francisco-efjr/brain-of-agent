@@ -39,6 +39,8 @@ Leia, em sequência ou em lotes, registrando os arquivos realmente acessados:
 4. Contexto multidisciplinar em `docs/contexto/brain-of-agent-contexto-completo.md`
    se disponível no repositório; em uma exportação só QA, informe a ausência
    e use a matriz deste protocolo, sem afirmar leitura do documento ausente.
+   Em exportações novas, procure primeiro `assets/contexto/contexto-completo.md`,
+   `assets/contexto/integration.md` e `assets/contexto/skills.json`.
 5. Catálogo de workflows e documentação de integração, quando presentes;
    fontes integrais dos workflows selecionados. Helpers são inspecionados ou
    executados somente quando utilizados. Evals da skill são material de
@@ -144,3 +146,11 @@ informação para decisão; não garante ausência de defeitos.
 > exportação. Contrato API revisado. Três falhas corrigidas e revalidadas no
 > ambiente local. Fluxo com pagamento real e leitor de tela não executados.
 > Resultado parcial para validação operacional; riscos detalhados no checklist.
+
+## Cooperação com FULLSTACK-COMPLETO
+
+A skill `fullstack` adjacente implementa e evolui o sistema; QA mantém os
+critérios, riscos e evidências. Quando ambos forem solicitados, use um backlog
+comum por ID e preserve o escopo de cada etapa. Revisão por quem implementou
+é autoavaliação; não a chame de julgamento humano ou independente. Defeitos
+fecham somente após revalidação pertinente, sem duplicar estados conflitantes.

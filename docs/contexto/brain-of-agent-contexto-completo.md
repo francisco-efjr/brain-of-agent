@@ -1,6 +1,6 @@
 # Brain of Agent — contexto completo de trabalho e qualidade
 
-Versão: 1.1 · Data: 08/10/2026 · Idioma base: português brasileiro.
+Versão: 1.2 · Data: 09/10/2026 · Idioma base: português brasileiro.
 
 ## 1. Finalidade e forma de uso
 
@@ -43,6 +43,10 @@ Não execute todos os checklists mecanicamente. Marque itens como não aplicáve
 
 ### Keyword para aplicação integral
 
+Envie **`FULLSTACK-COMPLETO`** para desenvolvimento integral ou
+**`QA-COMPLETO`** para validação integral. Leia o router e o protocolo do modo
+selecionado; ambos preservam escopo e exigem evidências. O modo fullstack inclui
+a base fullstack e QA, com análise, implementação autorizada e revalidação.
 Envie **`QA-COMPLETO`** explicitamente para ativar a leitura integral da base
 própria e a cobertura multidisciplinar. Leia `SKILL.md` e
 `brains/qa/references/protocolo-qa-completo.md` no repositório. A keyword deve
@@ -105,9 +109,9 @@ Este repositório combina uma base própria de QA com os fontes de workflows e f
 | `docs/integration.md` | Preparação de fontes e integração por host |
 | `docs/upstream.md` | Atualização controlada do fornecedor |
 
-Somente QA está estruturado como brain próprio neste estado do projeto. As seções de produto, design, arquitetura e outras áreas deste documento ampliam o contexto de trabalho; não afirmam que já existem brains próprios implementados para todas elas.
+Os brains próprios são QA e desenvolvedor fullstack. FULLSTACK-COMPLETO integra análise, implementação e revalidação com a base QA. As demais áreas deste documento são conhecimento transversal; não são skills próprias separadas para cada especialidade.
 
-Nossa skill usa o nome `qa`. Workflows instalados do fornecedor devem usar prefixo `gstack-*` para evitar colisão, como `gstack-qa` e `gstack-qa-only`. Os diretórios dos fontes mantêm os nomes originais.
+Nossas skills usam os nomes `qa` e `fullstack`. Workflows instalados do fornecedor devem usar prefixo `gstack-*` para evitar colisão, como `gstack-qa` e `gstack-qa-only`. Os diretórios dos fontes mantêm os nomes originais.
 
 ### Seleção de workflows
 

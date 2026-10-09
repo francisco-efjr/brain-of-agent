@@ -16,7 +16,11 @@ jobs:
         run: python3 tools/verify.py
       - name: Validate QA benchmark structure (no model execution)
         run: python3 tools/qa_eval.py validate
+      - name: Validate fullstack benchmark structure (no model execution)
+        run: python3 tools/qa_eval.py --base brains/fullstack/evals validate
       - name: QA helper regressions
         run: python3 -m unittest discover -s brains/qa/tests -v
       - name: Integration regressions
         run: python3 -m unittest discover -s tests -v
+      - name: Fullstack synthetic fixture regressions (no model execution)
+        run: python3 -m unittest discover -s brains/fullstack/evals/fixtures/tenant-edit -v

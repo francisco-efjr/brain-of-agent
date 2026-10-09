@@ -130,6 +130,9 @@ class IntegrationTests(unittest.TestCase):
             project.mkdir()
             destinations = export_project(self.root, project, host)
             self.assertTrue((destinations[1] / 'references/risk.md').is_file())
+            availability = json.loads((destinations[1] / 'assets/contexto/availability.json').read_text())
+            self.assertFalse(availability['complete'])
+            self.assertFalse(availability['resources']['contexto-completo.md'])
             for entry in self.manifest['files']:
                 exported = destinations[0] / entry['path']
                 data = os.readlink(exported).encode() if exported.is_symlink() else exported.read_bytes()
@@ -137,6 +140,48 @@ class IntegrationTests(unittest.TestCase):
             self.assertFalse((destinations[0] / 'EXECUTED').exists())
             self.assertEqual(destinations[1].relative_to(project.resolve()).as_posix(),
                              '.claude/skills/qa' if host == 'claude' else '.agents/skills/qa')
+
+    def test_fullstack_missing_reference_is_detected(self):
+        self.write(self.root / 'brains/fullstack/SKILL.md', '---\nname: fullstack\ndescription: dev\n---\n[Contract](references/contract.md)\n')
+        self.write(self.root / 'registry/skills.json', serialize(build_catalog(self.root)))
+        with self.assertRaisesRegex(ValueError, 'Recurso anunciado ausente'):
+            verify_own(self.root)
+        self.write(self.root / 'brains/fullstack/references/contract.md', 'valid contract')
+        self.assertEqual(verify_own(self.root), len(build_catalog(self.root)['skills']))
+
+    def test_export_all_brains_and_shared_context(self):
+        self.write(self.root / 'brains/fullstack/SKILL.md', '---\nname: fullstack\ndescription: dev\n---\n')
+        self.write(self.root / 'docs/contexto/brain-of-agent-contexto-completo.md', 'shared knowledge')
+        self.write(self.root / 'docs/integration.md', 'setup guide')
+        self.write(self.root / 'registry/skills.json', serialize(build_catalog(self.root)))
+        for host in ('claude', 'codex'):
+            project = self.base / ('multi-' + host)
+            project.mkdir()
+            destinations = export_project(self.root, project, host)
+            self.assertEqual([p.name for p in destinations], ['gstack', 'fullstack', 'qa'])
+            for destination in destinations[1:]:
+                self.assertEqual((destination / 'assets/contexto/contexto-completo.md').read_text(), 'shared knowledge')
+                self.assertTrue((destination / 'assets/contexto/skills.json').is_file())
+                self.assertTrue(json.loads((destination / 'assets/contexto/availability.json').read_text())['complete'])
+            self.assertTrue((destinations[1].parent / 'qa/SKILL.md').exists())
+
+    def test_fullstack_collision_prevents_all_writes(self):
+        self.write(self.root / 'brains/fullstack/SKILL.md', '---\nname: fullstack\ndescription: dev\n---\n')
+        project = self.project()
+        existing = project / '.agents/skills/fullstack/SKILL.md'
+        self.write(existing, 'preserved')
+        with self.assertRaisesRegex(ValueError, 'Destino já existe'):
+            export_project(self.root, project, 'codex')
+        self.assertEqual(existing.read_text(), 'preserved')
+        self.assertFalse((project / '.claude/skills/gstack').exists())
+        self.assertFalse((project / '.agents/skills/qa').exists())
+
+    def test_reserved_brain_name_rejected(self):
+        self.write(self.root / 'brains/gstack/SKILL.md', '---\nname: gstack\ndescription: reserved\n---\n')
+        project = self.project()
+        with self.assertRaisesRegex(ValueError, 'reservado'):
+            export_project(self.root, project, 'codex')
+        self.assertEqual(list(project.iterdir()), [])
 
     def test_export_existing_skill_refuses_before_writing_other_destination(self):
         project = self.project()

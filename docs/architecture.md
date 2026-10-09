@@ -27,3 +27,14 @@ criar um procedimento de patches e executar seus testes antes de alterar os font
 O README antigo descrevia um harness Mo baile não versionado junto à skill.
 Seu texto foi preservado em `docs/harness-legado.md`; esse harness não é
 dependência do brain QA ou do gstack.
+
+## Desenvolvedor fullstack
+
+`brains/fullstack/` contém nove referências técnicas, protocolo, templates e
+benchmark. A keyword `FULLSTACK-COMPLETO` integra as bases fullstack e QA com
+leitura em lotes, matriz de aplicabilidade e ciclo de implementação/revalidação.
+Não impõe linguagem nem herda permissão por selecionar um workflow.
+
+O exportador descobre os brains pelo SKILL.md e copia todos com contexto
+compartilhado; QA e fullstack ficam adjacentes. Testes verificam integridade,
+colisões e portabilidade dos arquivos, não execução real em todo host/modelo.

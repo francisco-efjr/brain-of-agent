@@ -1,12 +1,21 @@
 ---
 name: brain-of-agent
-description: Escolher conhecimento por segmento e workflows do Brain of Agent para pedidos de QA, planejamento, revisão, investigação e entrega de software. Use quando o usuário pedir para usar este projeto ou combinar sua base QA com gstack.
+description: Escolher conhecimento por segmento e workflows do Brain of Agent para pedidos de QA, desenvolvimento fullstack, planejamento, revisão, investigação e entrega de software. Use quando o usuário pedir para usar este projeto ou combinar sua base QA com gstack.
 license: MIT
 ---
 
 # Brain of Agent
 
-## Keyword de modo completo
+## Keywords de modo completo
+
+**`FULLSTACK-COMPLETO`**, quando solicitado explicitamente, ativa
+[a skill desenvolvedor fullstack](brains/fullstack/SKILL.md) e
+[seu protocolo](brains/fullstack/references/protocolo-completo.md).
+Leia a base própria fullstack e QA integralmente; avalie a matriz de áreas,
+implemente dentro do pedido e revalide com evidências. O termo não impõe stack
+nem amplia autorização. Se ambos os modos forem pedidos, compartilhe IDs,
+achados e evidências, distinguindo revisão de implementação.
+
 
 **`QA-COMPLETO`**, quando solicitado explicitamente pelo usuário, ativa o
 [protocolo QA completo](brains/qa/references/protocolo-qa-completo.md). Leia
@@ -35,7 +44,7 @@ leia [a skill QA](brains/qa/SKILL.md), que direciona para as referências.
 | Documentar entrega | `vendor/gstack/document-release/SKILL.md` |
 | Outros workflows | `registry/skills.json` |
 
-Nossa skill mantém o nome `qa`. Workflows instalados com prefixo usam
+Nossas skills mantêm os nomes `qa` e `fullstack`. Workflows instalados com prefixo usam
 `gstack-*`, por exemplo `gstack-qa`.
 
 Combine a base QA para definir risco, dados e oráculos com o workflow adequado

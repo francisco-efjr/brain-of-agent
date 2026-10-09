@@ -1,0 +1,15 @@
+test_cross_tenant_no_mutation (test_customer.CustomerTests.test_cross_tenant_no_mutation) ... FAIL
+
+======================================================================
+FAIL: test_cross_tenant_no_mutation (test_customer.CustomerTests.test_cross_tenant_no_mutation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/brain-fullstack-implementation-fixture/test_customer.py", line 16, in test_cross_tenant_no_mutation
+    with self.assertRaises(CustomerNotFound): edit_customer(self.db,'a',2,'Stolen')
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: CustomerNotFound not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=1)

@@ -78,7 +78,7 @@ def verify_own(root: Path) -> int:
         for raw in paths:
             if '://' not in raw and not raw.startswith('#') and not (entry.parent / raw).is_file():
                 raise ValueError(f'Recurso anunciado ausente: {entry.relative_to(root)} → {raw}')
-        if entry.parent.name == 'qa':
+        if entry.parent.name in ('qa', 'fullstack'):
             table_lines = '\n'.join(line for line in text.splitlines() if line.startswith('|'))
             templates = re.findall(r'`([a-z][a-z-]*\.md)`', table_lines)
             for template in templates:

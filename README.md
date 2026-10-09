@@ -1,13 +1,13 @@
 # Brain of Agent
 
-Conhecimento por segmento combinado com workflows de agentes. O primeiro
-segmento é **QA**. O projeto inclui uma cópia completa dos fontes do
+Conhecimento por segmento combinado com workflows de agentes. Os segmentos próprios são **QA** e **desenvolvedor fullstack**. O projeto inclui uma cópia completa dos fontes do
 [gstack](https://github.com/garrytan/gstack), com licenças e créditos preservados.
 
 ```text
 brain-of-agent/
 ├── SKILL.md                 # entrada para selecionar recursos
-├── brains/qa/               # nossa skill, referências, templates, scripts e testes
+├── brains/qa/               # qualidade, oráculos, risco, templates e helpers
+├── brains/fullstack/        # desenvolvimento, arquitetura, implementação e validação
 ├── vendor/gstack/           # snapshot integral dos arquivos do fornecedor
 ├── registry/                # catálogo e origem/hashes do snapshot
 ├── tools/                   # catálogo, integridade, importação e exportação
@@ -75,3 +75,27 @@ instalações. Sem acesso aos arquivos, anexe a base ou aceite cobertura parcial
 
 As avaliações comportamentais são registradas separadamente dos testes de
 helpers. Casos preparados e checks estruturais não equivalem a execuções de IA.
+
+## Desenvolvedor fullstack e qualidade integrada
+
+> FULLSTACK-COMPLETO. Leia SKILL.md e aplique o protocolo ao projeto [caminho].
+> Implemente [objetivo] preservando [contratos]. Analise criticamente, corrija
+> e revalide dentro do escopo. Entregue checklist, evidências e pendências.
+
+- [Skill fullstack](brains/fullstack/SKILL.md)
+- [Protocolo integral](brains/fullstack/references/protocolo-completo.md)
+- [Checklist](brains/fullstack/assets/templates/checklist-fullstack-completo.md)
+- [Pesquisa em fontes primárias](docs/research/agentes-desenvolvimento.md)
+- [Benchmark fullstack](brains/fullstack/evals/README.md)
+
+FULLSTACK-COMPLETO lê as bases próprias fullstack e QA em lotes, avalia todas
+as áreas e aplica as pertinentes. A keyword não cria permissões nem impõe
+stack. QA-COMPLETO continua adequado à avaliação; em pedido só de auditoria,
+nenhum dos modos autoriza alterar o produto. Padrão Apple é referência de
+acabamento adaptada à plataforma, não requisito de migrar para SwiftUI.
+
+A exportação inclui todos os brains próprios e contexto compartilhado.
+Casos de benchmark preparados, testes de ferramentas e revisão por IA
+são evidências diferentes; não provam superioridade a QA ou a outro modelo.
+
+Evidências iniciais: [forward-tests e limites](docs/validation/fullstack-forward-tests.md).
