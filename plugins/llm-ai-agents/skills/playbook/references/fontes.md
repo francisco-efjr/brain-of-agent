@@ -2,7 +2,7 @@
 
 Consulta e validação: 2026-10-10 · Modelo-alvo: família Claude 4.x/5.x · Rótulos: Verificado, Inferido, Suposição, Não verificável.
 Classe A: oficial da Anthropic ou documentação/norma da tecnologia. Classe B: repositório com licença clara e uso, ou especialista reconhecido. Classe C: comunidade ou fornecedor, usado como sinal. "Destilar" = sem permissão de cópia literal verificada; só redação própria.
-Origem: itens `V-nn` vêm de `docs/research/llm-ai-agents/VALIDATED.md` (conferidos por um validador da família Claude, independência parcial; a API do GitHub estava bloqueada, então estrelas e licenças foram lidas nas páginas dos repositórios e as datas de commit nos feeds `commits.atom`). Nenhuma fonte externa abaixo tem licença de reuso confirmada que permita cópia: tudo o que o plugin traz delas é destilado. Única exceção: trechos do brain-of-agent (MIT, conteúdo do próprio autor).
+Origem: itens `V-nn` vêm de `docs/dev-segments/research/llm-ai-agents/VALIDATED.md` (conferidos por um validador da família Claude, independência parcial; a API do GitHub estava bloqueada, então estrelas e licenças foram lidas nas páginas dos repositórios e as datas de commit nos feeds `commits.atom`). Nenhuma fonte externa abaixo tem licença de reuso confirmada que permita cópia: tudo o que o plugin traz delas é destilado. Única exceção: trechos do brain-of-agent (MIT, conteúdo do próprio autor).
 
 ## Sumário
 

@@ -57,7 +57,7 @@ claude plugin marketplace add francisco-efjr/brain-of-agent
 claude plugin install product-discovery-specs@brain-of-agent
 ```
 
-O marketplace `dev-segments` é a raiz deste repositório (`.claude-plugin/marketplace.json`). Valide uma cópia local com `claude plugin validate <pasta-do-plugin>`.
+O marketplace `brain-of-agent` é a raiz deste repositório (`.claude-plugin/marketplace.json`). Valide uma cópia local com `claude plugin validate <pasta-do-plugin>`.
 
 ## Exemplos de pedidos
 

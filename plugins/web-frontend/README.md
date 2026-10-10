@@ -40,14 +40,14 @@ Os agentes têm `tools: Read, Grep, Glob` e, como todo subagente distribuído po
 
 ## Instalação
 
-Dentro do Claude Code, a partir do marketplace `dev-segments`:
+Dentro do Claude Code, a partir do marketplace `brain-of-agent`:
 
 ```text
 /plugin marketplace add francisco-efjr/brain-of-agent
 /plugin install web-frontend@brain-of-agent
 ```
 
-`<caminho-ou-repo>` é a pasta local do repositório `dev-segments` ou `dono/repositório` no GitHub. Equivalente na CLI: `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install web-frontend@brain-of-agent`.
+`<caminho-ou-repo>` é a pasta local do repositório `brain-of-agent` ou `dono/repositório` no GitHub. Equivalente na CLI: `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install web-frontend@brain-of-agent`.
 
 **Leia o conteúdo do plugin antes de instalar:** skills e agentes executam com as permissões do usuário. Este plugin não traz `hooks/`, `.mcp.json`, `.lsp.json` nem `bin/`.
 

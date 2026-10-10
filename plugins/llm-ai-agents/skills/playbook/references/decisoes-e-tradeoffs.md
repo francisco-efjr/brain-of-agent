@@ -1,6 +1,6 @@
 # Decisões e trade-offs
 
-Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Árvores de decisão destiladas de `V-nn` (`docs/research/llm-ai-agents/VALIDATED.md`); as árvores são síntese (Inferido), cada critério ligado à fonte · Toda decisão registra a alternativa mais simples descartada e a data (use `assets/templates/adr.md` quando a decisão for material).
+Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Árvores de decisão destiladas de `V-nn` (`docs/dev-segments/research/llm-ai-agents/VALIDATED.md`); as árvores são síntese (Inferido), cada critério ligado à fonte · Toda decisão registra a alternativa mais simples descartada e a data (use `assets/templates/adr.md` quando a decisão for material).
 
 ## Sumário
 

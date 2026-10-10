@@ -1,6 +1,6 @@
 # Prompting para modelos Claude atuais
 
-Conferido em 2026-10-10 · Modelo-alvo: família Claude 4.x/5.x (Fable 5.1, Mythos 5.1, Opus 5.5, Sonnet 5.5, Haiku 5.5 e anteriores, conforme a página oficial) · Rótulos: Verificado, Inferido, Suposição, Não verificável. Itens `V-nn` vêm de `docs/research/llm-ai-agents/VALIDATED.md`; a página muda por geração, então confira https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices antes de citar.
+Conferido em 2026-10-10 · Modelo-alvo: família Claude 4.x/5.x (Fable 5.1, Mythos 5.1, Opus 5.5, Sonnet 5.5, Haiku 5.5 e anteriores, conforme a página oficial) · Rótulos: Verificado, Inferido, Suposição, Não verificável. Itens `V-nn` vêm de `docs/dev-segments/research/llm-ai-agents/VALIDATED.md`; a página muda por geração, então confira https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices antes de citar.
 
 ## Sumário
 

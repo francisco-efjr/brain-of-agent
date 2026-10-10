@@ -55,7 +55,7 @@ Dentro do Claude Code:
 /plugin install devops-cloud-infra@brain-of-agent
 ```
 
-Pelo terminal (equivalente): `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install devops-cloud-infra@brain-of-agent`. O marketplace é o repositório `dev-segments` (pasta raiz com `.claude-plugin/marketplace.json`). Valide o plugin com `claude plugin validate plugins/devops-cloud-infra`.
+Pelo terminal (equivalente): `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install devops-cloud-infra@brain-of-agent`. O marketplace é o repositório `brain-of-agent` (pasta raiz com `.claude-plugin/marketplace.json`). Valide o plugin com `claude plugin validate plugins/devops-cloud-infra`.
 
 ## Exemplos de pedidos
 

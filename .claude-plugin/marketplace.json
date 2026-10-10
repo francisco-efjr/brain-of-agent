@@ -259,6 +259,28 @@
       ]
     },
     {
+      "name": "git-workflow-release",
+      "source": "./plugins/git-workflow-release",
+      "description": "Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos, rebase e revert seguros, bisect, semver, changelog e releases, com push, merge, tag e publicação sempre sob confirmação.",
+      "keywords": [
+        "git",
+        "conventional-commits",
+        "pull-request",
+        "code-review",
+        "merge-conflicts",
+        "rebase",
+        "bisect",
+        "worktrees",
+        "semver",
+        "changelog",
+        "release",
+        "release-please",
+        "codeowners",
+        "branching",
+        "RELEASE-COMPLETO"
+      ]
+    },
+    {
       "name": "orchestrator",
       "source": "./plugins/orchestrator",
       "description": "Orquestra demandas de software multiárea: classifica a demanda, escolhe agentes e skills dos plugins por segmento, despacha com validação independente e consolida relatórios.",

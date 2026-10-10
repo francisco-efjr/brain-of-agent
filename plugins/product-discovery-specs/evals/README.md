@@ -30,7 +30,7 @@ Os pedidos não citam o nome das skills: o disparo depende da `description`. O c
 
 ## Como rodar
 
-Requisito: Claude Code 2.1.269 ou superior (`claude --version`). A CLI local desta fábrica é a 2.1.128 (Verificado em 2026-10-10 com `claude --version`), abaixo do requisito; nessa instalação a pasta só é validada de forma estrutural (`python tools/verify_plugin.py plugins/product-discovery-specs`, `claude plugin validate`). Opções, campos de `prompt.md` e de graders e a regra de `arm` abaixo foram conferidos em https://code.claude.com/docs/en/plugin-evals em 2026-10-10 (Verificado); confira de novo com `claude plugin eval --help` na sua versão.
+Requisito: Claude Code 2.1.269 ou superior (`claude --version`). A CLI local desta fábrica é a 2.1.128 (Verificado em 2026-10-10 com `claude --version`), abaixo do requisito; nessa instalação a pasta só é validada de forma estrutural (`python tools/dev-segments/verify_plugin.py plugins/product-discovery-specs`, `claude plugin validate`). Opções, campos de `prompt.md` e de graders e a regra de `arm` abaixo foram conferidos em https://code.claude.com/docs/en/plugin-evals em 2026-10-10 (Verificado); confira de novo com `claude plugin eval --help` na sua versão.
 
 ```bash
 cd plugins/product-discovery-specs

@@ -39,7 +39,7 @@ Nomes definitivos do design do segmento. Chamada de skill: `/backend-api:<skill>
 
 ## Instalação
 
-Dentro do Claude Code, a partir da raiz do marketplace `dev-segments` (caminho local ou repositório):
+Dentro do Claude Code, a partir da raiz do marketplace `brain-of-agent` (caminho local ou repositório):
 
 ```text
 /plugin marketplace add francisco-efjr/brain-of-agent

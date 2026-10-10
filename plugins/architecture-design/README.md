@@ -56,7 +56,7 @@ Dentro do Claude Code:
 /plugin install architecture-design@brain-of-agent
 ```
 
-Equivalente na linha de comando: `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install architecture-design@brain-of-agent`. O marketplace `dev-segments` é a raiz deste repositório. Confira com `claude plugin validate <pasta-do-plugin>` e use `/plugin` para ver o estado. Os comandos podem variar por versão do Claude Code: confira `claude --version` e a documentação em https://code.claude.com/docs/en/plugins-reference.
+Equivalente na linha de comando: `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install architecture-design@brain-of-agent`. O marketplace `brain-of-agent` é a raiz deste repositório. Confira com `claude plugin validate <pasta-do-plugin>` e use `/plugin` para ver o estado. Os comandos podem variar por versão do Claude Code: confira `claude --version` e a documentação em https://code.claude.com/docs/en/plugins-reference.
 
 ## Exemplos de pedidos
 

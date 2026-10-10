@@ -1,6 +1,6 @@
 # llm-ai-agents: Aplicações LLM, agentes e engenharia de prompt
 
-Plugin do Claude Code, parte do marketplace `dev-segments`. Versão 0.1.0 · Conteúdo validado em 2026-10-10 · Modelo-alvo: família Claude 4.x/5.x · Licença MIT.
+Plugin do Claude Code, parte do marketplace `brain-of-agent`. Versão 0.1.0 · Conteúdo validado em 2026-10-10 · Modelo-alvo: família Claude 4.x/5.x · Licença MIT.
 
 ## O que entrega
 

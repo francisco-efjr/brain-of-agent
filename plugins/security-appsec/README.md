@@ -53,7 +53,7 @@ Dentro de uma sessão do Claude Code:
 /plugin install security-appsec@brain-of-agent
 ```
 
-`<caminho-ou-repo>` é o caminho local da pasta `dev-segments` ou o repositório (`dono/repo`) que contém o marketplace. Equivalente na CLI: `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install security-appsec@brain-of-agent`. Verifique com `claude plugin validate <pasta-do-plugin>`.
+`<caminho-ou-repo>` é o caminho local do clone de `brain-of-agent` ou o repositório (`dono/repo`) que contém o marketplace. Equivalente na CLI: `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install security-appsec@brain-of-agent`. Verifique com `claude plugin validate <pasta-do-plugin>`.
 
 ## Exemplos de pedidos
 

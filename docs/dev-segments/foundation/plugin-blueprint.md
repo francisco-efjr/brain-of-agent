@@ -88,7 +88,7 @@ Inclua ao menos 1 caso negativo (pedido não relacionado → a skill **não** de
 
 ## README.md do plugin (pt-BR)
 
-O que entrega · quando usar · tabela de componentes (skills, agentes, comandos) · instalação via marketplace (`/plugin marketplace add` + `/plugin install <slug>@dev-segments`) · exemplos de uso (5+ pedidos) · keyword COMPLETO · principais fontes (top 10, classe) · créditos e licenças de terceiros · limitações honestas.
+O que entrega · quando usar · tabela de componentes (skills, agentes, comandos) · instalação via marketplace (`/plugin marketplace add` + `/plugin install <slug>@brain-of-agent`) · exemplos de uso (5+ pedidos) · keyword COMPLETO · principais fontes (top 10, classe) · créditos e licenças de terceiros · limitações honestas.
 
 ## Qualidade mínima (o validador reprova se faltar)
 

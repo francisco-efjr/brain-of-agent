@@ -25,7 +25,7 @@ Cobertura de requisitos transversais: casos negativos (`negative-near-miss-qa`),
 
 ## Como rodar
 
-Requisito: Claude Code 2.1.269 ou superior (`claude --version`). A especificação local registrou o Claude Code 2.1.128 em 2026-10-09, abaixo desse requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/verify_plugin.py plugins/code-quality-refactoring` e `claude plugin validate`).
+Requisito: Claude Code 2.1.269 ou superior (`claude --version`). A especificação local registrou o Claude Code 2.1.128 em 2026-10-09, abaixo desse requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/dev-segments/verify_plugin.py plugins/code-quality-refactoring` e `claude plugin validate`).
 
 ```bash
 cd plugins/code-quality-refactoring

@@ -1,6 +1,6 @@
 # qa-testing: QA e testes para o Claude Code
 
-Plugin do marketplace `dev-segments` para quem testa, desenvolve ou revisa software com a ajuda de um agente. Ele organiza o trabalho de QA em torno de uma ideia: **teste reduz a incerteza sobre os riscos que importam, a tempo de mudar uma decisão, e toda afirmação de "pronto" precisa de prova executada nesta sessão**. Versão 0.1.0, licença MIT. Português brasileiro; termos técnicos, comandos e nomes de skills e agentes em inglês.
+Plugin do marketplace `brain-of-agent` para quem testa, desenvolve ou revisa software com a ajuda de um agente. Ele organiza o trabalho de QA em torno de uma ideia: **teste reduz a incerteza sobre os riscos que importam, a tempo de mudar uma decisão, e toda afirmação de "pronto" precisa de prova executada nesta sessão**. Versão 0.1.0, licença MIT. Português brasileiro; termos técnicos, comandos e nomes de skills e agentes em inglês.
 
 ## O que entrega
 

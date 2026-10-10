@@ -23,7 +23,7 @@ Os pedidos não citam o nome das skills do plugin: o disparo depende da `descrip
 
 ## Como rodar
 
-Requisito: Claude Code 2.1.269 ou superior e git 2.31 ou superior (`claude --version`). A especificação local da fábrica registrou o Claude Code 2.1.128 em 2026-10-09, abaixo do requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/verify_plugin.py plugins/qa-testing` e `claude plugin validate`). Os campos de grader, a concessão de ferramentas e a exclusão de graders em dois braços foram reconferidos na doc em 2026-10-10 (Verificado; detalhes em `skills/eval-design/references/layout-de-evals.md`). Não verificado: o comportamento do runner na prática, porque nada foi executado. Confirme em `claude plugin eval --help` na versão instalada.
+Requisito: Claude Code 2.1.269 ou superior e git 2.31 ou superior (`claude --version`). A especificação local da fábrica registrou o Claude Code 2.1.128 em 2026-10-09, abaixo do requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/dev-segments/verify_plugin.py plugins/qa-testing` e `claude plugin validate`). Os campos de grader, a concessão de ferramentas e a exclusão de graders em dois braços foram reconferidos na doc em 2026-10-10 (Verificado; detalhes em `skills/eval-design/references/layout-de-evals.md`). Não verificado: o comportamento do runner na prática, porque nada foi executado. Confirme em `claude plugin eval --help` na versão instalada.
 
 ```bash
 cd plugins/qa-testing

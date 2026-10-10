@@ -1,6 +1,6 @@
 # Avaliação de aplicações LLM, agentes, RAG e plugins
 
-Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Itens `V-nn` de `docs/research/llm-ai-agents/VALIDATED.md` · Partes marcadas "brain" são do repositório `francisco-efjr/brain-of-agent` (MIT, `brains/qa/references/ia-e-llm.md` e `brains/fullstack/references/agentes-e-ia.md`), do próprio autor do plugin, adaptadas · Nada aqui foi executado: suítes são "projetadas, não executadas" até alguém rodar.
+Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Itens `V-nn` de `docs/dev-segments/research/llm-ai-agents/VALIDATED.md` · Partes marcadas "brain" são do repositório `francisco-efjr/brain-of-agent` (MIT, `brains/qa/references/ia-e-llm.md` e `brains/fullstack/references/agentes-e-ia.md`), do próprio autor do plugin, adaptadas · Nada aqui foi executado: suítes são "projetadas, não executadas" até alguém rodar.
 
 ## Sumário
 

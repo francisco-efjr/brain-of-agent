@@ -55,7 +55,7 @@ No Claude Code, dentro de uma sessão:
 /plugin install code-quality-refactoring@brain-of-agent
 ```
 
-`<caminho-ou-repo>` é o caminho local da pasta `dev-segments` (raiz do marketplace) ou `dono/repositório` no GitHub quando o marketplace estiver publicado. Equivalente na linha de comando: `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install code-quality-refactoring@brain-of-agent`. Valide a estrutura com `claude plugin validate <pasta-do-plugin>`.
+`<caminho-ou-repo>` é o caminho local do clone de `brain-of-agent` (raiz do marketplace) ou `dono/repositório` no GitHub quando o marketplace estiver publicado. Equivalente na linha de comando: `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install code-quality-refactoring@brain-of-agent`. Valide a estrutura com `claude plugin validate <pasta-do-plugin>`.
 
 Em caminhos com espaço (por exemplo `C:\Users\Nome Sobrenome\dev-segments`), use aspas.
 

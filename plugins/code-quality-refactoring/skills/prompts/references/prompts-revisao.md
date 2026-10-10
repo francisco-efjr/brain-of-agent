@@ -157,7 +157,7 @@ Depois de aplicar, rode [COMANDO_DE_TESTE] e cole a saída.
 ```
 
 - Por que funciona: obriga verificação antes de concordar (evita servilismo) e deixa a discordância rastreável.
-- Fonte: BR-12 via `docs/research/code-quality-refactoring/_leads.md` (Inferido, base própria) ; V-19 · B · https://conventionalcomments.org/
+- Fonte: BR-12 via `docs/dev-segments/research/code-quality-refactoring/_leads.md` (Inferido, base própria) ; V-19 · B · https://conventionalcomments.org/
 
 ### PL-13 Revisão de código gerado por IA em 3 camadas
 - Quando usar: PR com código de agente.

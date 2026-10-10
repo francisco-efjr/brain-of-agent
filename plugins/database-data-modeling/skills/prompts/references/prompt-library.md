@@ -1,6 +1,6 @@
 # Biblioteca de prompts: bancos de dados e modelagem (P-01 a P-20)
 
-Conferida em 2026-10-10 contra `docs/research/database-data-modeling/VALIDATED.md` (itens V-nn). Modelo-alvo: Claude Sonnet 5.5, Fable 5.1 e Haiku 5.5. Conselhos de prompt mudam por modelo e versão do Claude Code: revalide com os evals do plugin antes de tratá-los como regra. Os prompts P-21 a P-28 (segurança, ORM, ferramentas, validação de dados, revisão adversarial, prompt de sistema, mensagem inicial, pedido de saída de comando) estão em `prompt-library-seguranca-e-sistema.md`, na mesma pasta.
+Conferida em 2026-10-10 contra `docs/dev-segments/research/database-data-modeling/VALIDATED.md` (itens V-nn). Modelo-alvo: Claude Sonnet 5.5, Fable 5.1 e Haiku 5.5. Conselhos de prompt mudam por modelo e versão do Claude Code: revalide com os evals do plugin antes de tratá-los como regra. Os prompts P-21 a P-28 (segurança, ORM, ferramentas, validação de dados, revisão adversarial, prompt de sistema, mensagem inicial, pedido de saída de comando) estão em `prompt-library-seguranca-e-sistema.md`, na mesma pasta.
 
 ## Sumário
 

@@ -13,7 +13,7 @@ Versão 0.1.0 · Licença MIT · Fontes conferidas em 2026-10-10 (PostgreSQL 18,
 - **Biblioteca de 28 prompts** prontos (skill `prompts`, P-01 a P-28) e **14 casos de eval** desenhados (`designed_not_executed`), dois deles negativos e dois de escopo e segurança.
 - Rótulos epistêmicos (Verificado, Inferido, Suposição, Não verificável, Não aplicável) e a seção fixa "O que falta para concluir" em toda entrega.
 
-Para conferir a estrutura: `python tools/verify_plugin.py plugins/database-data-modeling` (a partir da raiz do repositório `dev-segments`) e `claude plugin validate plugins/database-data-modeling`.
+Para conferir a estrutura: `python tools/dev-segments/verify_plugin.py plugins/database-data-modeling` (a partir da raiz do repositório `brain-of-agent`) e `claude plugin validate plugins/database-data-modeling`.
 
 ## Quando usar
 
@@ -50,7 +50,7 @@ Dentro de uma sessão do Claude Code:
 /plugin install database-data-modeling@brain-of-agent
 ```
 
-Ou pela CLI: `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install database-data-modeling@brain-of-agent`. O marketplace é a raiz do repositório `dev-segments`, que precisa conter `.claude-plugin/marketplace.json`; se ele ainda não existir na sua cópia, teste o plugin sem instalar com `claude --plugin-dir <caminho-do-plugin>`. Valide a pasta com `claude plugin validate <caminho-do-plugin>`. As skills ficam em `/database-data-modeling:<skill>` e os agentes em `database-data-modeling:<agente>`.
+Ou pela CLI: `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install database-data-modeling@brain-of-agent`. O marketplace é a raiz do repositório `brain-of-agent`, que precisa conter `.claude-plugin/marketplace.json`; se ele ainda não existir na sua cópia, teste o plugin sem instalar com `claude --plugin-dir <caminho-do-plugin>`. Valide a pasta com `claude plugin validate <caminho-do-plugin>`. As skills ficam em `/database-data-modeling:<skill>` e os agentes em `database-data-modeling:<agente>`.
 
 O plugin não traz hooks, `.mcp.json`, `.lsp.json` nem `bin/`. Hooks e servidores MCP recomendados estão documentados e desativados em `skills/playbook/references/ferramentas-e-mcp.md`, com JSON pronto e riscos.
 

@@ -1,6 +1,6 @@
 # Agentes, contexto e harness
 
-Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Itens `V-nn` de `docs/research/llm-ai-agents/VALIDATED.md`; trechos marcados "brain" vêm de `francisco-efjr/brain-of-agent` (MIT, conteúdo do próprio autor, adaptados) · Números de fabricante (90,2%, 4x, 15x) são medições internas de modelos de 2025: contexto, não meta.
+Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Itens `V-nn` de `docs/dev-segments/research/llm-ai-agents/VALIDATED.md`; trechos marcados "brain" vêm de `francisco-efjr/brain-of-agent` (MIT, conteúdo do próprio autor, adaptados) · Números de fabricante (90,2%, 4x, 15x) são medições internas de modelos de 2025: contexto, não meta.
 
 ## Sumário
 

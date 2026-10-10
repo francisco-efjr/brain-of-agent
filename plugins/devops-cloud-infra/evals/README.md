@@ -26,7 +26,7 @@ Os pedidos não citam o nome das skills do plugin: o disparo depende da `descrip
 
 ## Como rodar
 
-Requisito: Claude Code 2.1.269 ou superior e git 2.31 ou superior (`claude --version`). A especificação local da fábrica registrou o Claude Code 2.1.128 em 2026-10-09, abaixo do requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/verify_plugin.py plugins/devops-cloud-infra` e `claude plugin validate`). Flags e tipos de grader foram tomados da pesquisa da fábrica sobre a documentação de plugin evals (lida em 2026-10-10, registrada em `plugins/qa-testing/skills/eval-design/references/layout-de-evals.md`); confirme tudo com `claude plugin eval --help` na versão instalada. Não verificado: o comportamento do runner na prática, porque nada foi executado.
+Requisito: Claude Code 2.1.269 ou superior e git 2.31 ou superior (`claude --version`). A especificação local da fábrica registrou o Claude Code 2.1.128 em 2026-10-09, abaixo do requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/dev-segments/verify_plugin.py plugins/devops-cloud-infra` e `claude plugin validate`). Flags e tipos de grader foram tomados da pesquisa da fábrica sobre a documentação de plugin evals (lida em 2026-10-10, registrada em `plugins/qa-testing/skills/eval-design/references/layout-de-evals.md`); confirme tudo com `claude plugin eval --help` na versão instalada. Não verificado: o comportamento do runner na prática, porque nada foi executado.
 
 ```bash
 cd plugins/devops-cloud-infra

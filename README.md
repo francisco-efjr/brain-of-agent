@@ -18,7 +18,7 @@ claude plugin install orchestrator@brain-of-agent
 claude plugin install architecture-design@brain-of-agent   # e os demais do catálogo
 ```
 
-Plugins publicados: orchestrator, architecture-design, qa-testing, code-quality-refactoring, security-appsec, ux-ui-design, mobile-apps, web-frontend, backend-api, database-data-modeling, devops-cloud-infra, llm-ai-agents e product-discovery-specs. Outros segmentos estão em construção (ver catálogo). Para saber como foram pesquisados, validados e construídos, veja [docs/dev-segments/README.md](docs/dev-segments/README.md).
+Plugins publicados: orchestrator, architecture-design, qa-testing, code-quality-refactoring, security-appsec, ux-ui-design, mobile-apps, web-frontend, backend-api, database-data-modeling, devops-cloud-infra, llm-ai-agents, product-discovery-specs e git-workflow-release. Outros segmentos estão em construção (ver catálogo). Para saber como foram pesquisados, validados e construídos, veja [docs/dev-segments/README.md](docs/dev-segments/README.md).
 
 ---
 

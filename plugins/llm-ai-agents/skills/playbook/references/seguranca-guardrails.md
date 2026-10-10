@@ -1,6 +1,6 @@
 # Segurança de agentes e apps LLM: injeção, capacidades e guardrails
 
-Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Itens `V-nn` de `docs/research/llm-ai-agents/VALIDATED.md` · Cenários marcados "brain" vêm de `francisco-efjr/brain-of-agent` (MIT, adaptados) · Este arquivo orienta revisão e desenho; não é garantia de segurança nem substitui revisão humana em infraestrutura crítica. AppSec geral (OWASP Top 10 web, LGPD, supply chain) fica em `/security-appsec:playbook`.
+Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Itens `V-nn` de `docs/dev-segments/research/llm-ai-agents/VALIDATED.md` · Cenários marcados "brain" vêm de `francisco-efjr/brain-of-agent` (MIT, adaptados) · Este arquivo orienta revisão e desenho; não é garantia de segurança nem substitui revisão humana em infraestrutura crítica. AppSec geral (OWASP Top 10 web, LGPD, supply chain) fica em `/security-appsec:playbook`.
 
 ## Sumário
 

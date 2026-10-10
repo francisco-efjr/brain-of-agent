@@ -1,6 +1,6 @@
 # Padrões e antipadrões de prompts, agentes e instruções
 
-Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · `PAD-nn` e `AP-nn` vêm de `docs/foundation/prompt-principles.md` (consolidação de seis atlas globais); `V-nn` de `docs/research/llm-ai-agents/VALIDATED.md` · Cada padrão traz condição de uso e de não uso · Textos de prompt: redação própria.
+Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · `PAD-nn` e `AP-nn` vêm de `docs/foundation/prompt-principles.md` (consolidação de seis atlas globais); `V-nn` de `docs/dev-segments/research/llm-ai-agents/VALIDATED.md` · Cada padrão traz condição de uso e de não uso · Textos de prompt: redação própria.
 
 ## Sumário
 

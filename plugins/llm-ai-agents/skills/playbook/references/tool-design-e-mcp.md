@@ -1,6 +1,6 @@
 # Design de ferramentas, MCP e tool use
 
-Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Itens `V-nn` de `docs/research/llm-ai-agents/VALIDATED.md` · O protocolo MCP evolui: confira a versão da especificação (páginas de segurança lidas na revisão 2025-11-25; a página de ferramentas cita 2026-07-28) antes de citar campos.
+Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Itens `V-nn` de `docs/dev-segments/research/llm-ai-agents/VALIDATED.md` · O protocolo MCP evolui: confira a versão da especificação (páginas de segurança lidas na revisão 2025-11-25; a página de ferramentas cita 2026-07-28) antes de citar campos.
 
 ## Sumário
 

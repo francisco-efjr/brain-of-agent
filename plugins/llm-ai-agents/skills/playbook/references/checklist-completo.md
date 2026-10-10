@@ -1,6 +1,6 @@
 # Checklist completo: aplicações LLM, agentes e engenharia de prompt
 
-Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável, Não aplicável · Cada item `IA-nn` é verificável por leitura ou por comando, liga a uma referência do plugin e a um item `V-nn` de `docs/research/llm-ai-agents/VALIDATED.md` ou a conhecimento estável. Severidade: **B** bloqueante, **M** melhoria, **O** opcional. Achados de relatório usam o mesmo ID.
+Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável, Não aplicável · Cada item `IA-nn` é verificável por leitura ou por comando, liga a uma referência do plugin e a um item `V-nn` de `docs/dev-segments/research/llm-ai-agents/VALIDATED.md` ou a conhecimento estável. Severidade: **B** bloqueante, **M** melhoria, **O** opcional. Achados de relatório usam o mesmo ID.
 
 ## Sumário
 

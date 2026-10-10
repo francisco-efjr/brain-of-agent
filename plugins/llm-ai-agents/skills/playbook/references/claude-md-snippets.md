@@ -1,6 +1,6 @@
 # Regras prontas para CLAUDE.md e AGENTS.md (projetos com LLM e agentes)
 
-Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Redação própria, destilada dos itens `V-nn` de `docs/research/llm-ai-agents/VALIDATED.md` e do estilo da casa (brain-of-agent, MIT) · Nenhum trecho é cópia de fonte de terceiros.
+Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Redação própria, destilada dos itens `V-nn` de `docs/dev-segments/research/llm-ai-agents/VALIDATED.md` e do estilo da casa (brain-of-agent, MIT) · Nenhum trecho é cópia de fonte de terceiros.
 
 **Antes de colar:** (1) aplique o teste de remoção a cada linha ("remover isto faria o Claude errar?"); (2) mantenha o CLAUDE.md do projeto abaixo de 200 linhas (meta oficial, V-21); (3) adote só o que o projeto precisa; (4) regra que deve valer sempre vira hook ou permissão, não frase (V-40); (5) substitua `[COLCHETES]`; (6) sem segredos. Um CLAUDE.md gerado em massa não ajuda (AP-09).
 

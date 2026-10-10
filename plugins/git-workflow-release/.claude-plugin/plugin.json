@@ -1,0 +1,27 @@
+{
+  "name": "git-workflow-release",
+  "version": "0.1.0",
+  "description": "Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos, rebase e revert seguros, bisect, semver, changelog e releases, com push, merge, tag e publicação sempre sob confirmação.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "git",
+    "conventional-commits",
+    "pull-request",
+    "code-review",
+    "merge-conflicts",
+    "rebase",
+    "bisect",
+    "worktrees",
+    "semver",
+    "changelog",
+    "release",
+    "release-please",
+    "codeowners",
+    "branching",
+    "RELEASE-COMPLETO"
+  ]
+}

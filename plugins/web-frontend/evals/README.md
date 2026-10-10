@@ -21,7 +21,7 @@ Cobertura: disparo (1 a 8 e 10), negativo de fronteira com keyword em log (9), s
 
 ## Como rodar
 
-Requisito: Claude Code 2.1.269 ou superior (`claude --version`). A especificação local registrou o Claude Code 2.1.128 em 2026-10-09, abaixo desse requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/verify_plugin.py plugins/web-frontend` e `claude plugin validate`). Não verificado: o comportamento exato do runner nas versões novas, inclusive os campos aceitos nos graders além de `type`, `tool`, `input_match`, `min` e `max`.
+Requisito: Claude Code 2.1.269 ou superior (`claude --version`). A especificação local registrou o Claude Code 2.1.128 em 2026-10-09, abaixo desse requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/dev-segments/verify_plugin.py plugins/web-frontend` e `claude plugin validate`). Não verificado: o comportamento exato do runner nas versões novas, inclusive os campos aceitos nos graders além de `type`, `tool`, `input_match`, `min` e `max`.
 
 ```bash
 cd plugins/web-frontend

@@ -22,7 +22,7 @@ Cobertura: disparo (1, 3 a 8, 10, 11), gate de ação externa (2 e 11), limite d
 
 ## Como rodar
 
-Requisito: Claude Code 2.1.269 ou superior (`claude --version`). A especificação local registrou o Claude Code 2.1.128 em 2026-10-09, abaixo desse requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/verify_plugin.py plugins/mobile-apps` e `claude plugin validate`). Não verificado: o comportamento exato do runner nas versões novas, inclusive os campos aceitos nos graders além de `type`, `tool`, `input_match`, `min` e `max`.
+Requisito: Claude Code 2.1.269 ou superior (`claude --version`). A especificação local registrou o Claude Code 2.1.128 em 2026-10-09, abaixo desse requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/dev-segments/verify_plugin.py plugins/mobile-apps` e `claude plugin validate`). Não verificado: o comportamento exato do runner nas versões novas, inclusive os campos aceitos nos graders além de `type`, `tool`, `input_match`, `min` e `max`.
 
 ```bash
 cd plugins/mobile-apps

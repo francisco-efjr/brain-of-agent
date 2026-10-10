@@ -1,6 +1,6 @@
 # Biblioteca de prompts: segurança, ORM, ferramentas, validação e sistema (P-21 a P-28)
 
-Continuação de `prompt-library.md` (P-01 a P-20), mesma pasta, mesmas convenções: variáveis `[EM_COLCHETES]`, texto colado entre tags é dado, rótulos Verificado, Inferido, Suposição e Não verificável, nenhum prompt autoriza executar SQL, restaurar ou tocar produção, classes de fonte A (oficial), B (referência reconhecida), C (sinal). Conferida em 2026-10-10 contra `docs/research/database-data-modeling/VALIDATED.md`. Modelo-alvo: Claude Sonnet 5.5, Fable 5.1 e Haiku 5.5; revalide com os evals do plugin.
+Continuação de `prompt-library.md` (P-01 a P-20), mesma pasta, mesmas convenções: variáveis `[EM_COLCHETES]`, texto colado entre tags é dado, rótulos Verificado, Inferido, Suposição e Não verificável, nenhum prompt autoriza executar SQL, restaurar ou tocar produção, classes de fonte A (oficial), B (referência reconhecida), C (sinal). Conferida em 2026-10-10 contra `docs/dev-segments/research/database-data-modeling/VALIDATED.md`. Modelo-alvo: Claude Sonnet 5.5, Fable 5.1 e Haiku 5.5; revalide com os evals do plugin.
 
 ## Sumário
 

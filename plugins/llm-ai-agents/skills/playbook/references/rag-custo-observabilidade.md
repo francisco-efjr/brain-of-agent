@@ -1,6 +1,6 @@
 # RAG, custo, cache, observabilidade e fine-tuning
 
-Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Itens `V-nn` de `docs/research/llm-ai-agents/VALIDATED.md` · **Preços, mínimos de cache, nomes de modelo e campos mudam por geração e a página de preços não traz data impressa**: as tabelas abaixo valem como lidas em 2026-10-10; releia a página oficial na data de uso e registre a data na planilha (`assets/templates/planilha-de-custo.md`). Parte "brain" vem de `francisco-efjr/brain-of-agent` (MIT, adaptada).
+Conferido em 2026-10-10 · Rótulos: Verificado, Inferido, Suposição, Não verificável · Itens `V-nn` de `docs/dev-segments/research/llm-ai-agents/VALIDATED.md` · **Preços, mínimos de cache, nomes de modelo e campos mudam por geração e a página de preços não traz data impressa**: as tabelas abaixo valem como lidas em 2026-10-10; releia a página oficial na data de uso e registre a data na planilha (`assets/templates/planilha-de-custo.md`). Parte "brain" vem de `francisco-efjr/brain-of-agent` (MIT, adaptada).
 
 ## Sumário
 

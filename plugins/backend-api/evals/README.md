@@ -23,7 +23,7 @@ Os pedidos não citam o nome das skills: o disparo depende da `description`. O c
 
 ## Como rodar
 
-Requisito: Claude Code 2.1.269 ou superior (`claude --version`). A instalação local continuava no Claude Code 2.1.128 em 2026-10-10 (`claude --version`, conferido pelo validador de qualidade), abaixo desse requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/verify_plugin.py plugins/backend-api`, `claude plugin validate`). Não verificado: o comportamento exato do runner nas versões novas, inclusive os campos aceitos nos graders além de `type`, `tool`, `input_match`, `min` e `max`.
+Requisito: Claude Code 2.1.269 ou superior (`claude --version`). A instalação local continuava no Claude Code 2.1.128 em 2026-10-10 (`claude --version`, conferido pelo validador de qualidade), abaixo desse requisito; nessa instalação a pasta só pode ser validada de forma estrutural (`python tools/dev-segments/verify_plugin.py plugins/backend-api`, `claude plugin validate`). Não verificado: o comportamento exato do runner nas versões novas, inclusive os campos aceitos nos graders além de `type`, `tool`, `input_match`, `min` e `max`.
 
 ```bash
 cd plugins/backend-api

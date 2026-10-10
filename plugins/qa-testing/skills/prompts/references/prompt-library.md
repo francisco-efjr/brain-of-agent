@@ -17,7 +17,7 @@ Esta parte traz 20 prompts: verificação e evidência (P01 a P04), TDD e regres
 - Variáveis ficam em `[MAIÚSCULAS ENTRE COLCHETES]`. Preencha as que você sabe; deixe o resto entre colchetes e o prompt trata como lacuna (não inventa).
 - Os prompts estão em português. Termos como flaky, mock, seam e smoke ficam em inglês.
 - Trecho de licença permissiva ou texto próprio do usuário só aparece reescrito; não há cópia literal de terceiros nesta biblioteca. Textos adaptados do brain-of-agent (MIT, Francisco Edson) trazem a indicação do arquivo de origem.
-- "Fontes" cita itens V-nn do `VALIDATED.md` do segmento (cópia em `docs/research/qa-testing/VALIDATED.md` do repositório de fábrica), com URL e classe (A oficial ou norma, B referência reconhecida, C sinal de prática). "Próprio" é conteúdo do brain-of-agent, não reverificado em fonte externa (Inferido).
+- "Fontes" cita itens V-nn do `VALIDATED.md` do segmento (cópia em `docs/dev-segments/research/qa-testing/VALIDATED.md` do repositório de fábrica), com URL e classe (A oficial ou norma, B referência reconhecida, C sinal de prática). "Próprio" é conteúdo do brain-of-agent, não reverificado em fonte externa (Inferido).
 - Eficácia: nenhum prompt aqui foi medido. Os casos de `evals/` estão `designed_not_executed`. Trate o texto como ponto de partida e meça no seu modelo e no seu projeto.
 - Quando ninguém puder responder durante a execução (subagente, lote, CI), os prompts com perguntas ou gates mandam registrar tudo em "Decisões pendentes do humano" e seguir até o fim com status rascunho.
 - Plataforma: onde há a variável `[PLATAFORMA]`, informe web, Android, iOS, desktop ou servidor. Para aprofundar mobile use `/mobile-apps:playbook`.

@@ -106,7 +106,7 @@ Política deste projeto: **não ativar** (`hooks/hooks.json`, `.mcp.json`, `.lsp
 }
 ```
 
-O `name` da entrada deve ser igual ao `name` do `plugin.json`. Instalação: `claude plugin marketplace add <caminho-ou-owner/repo>` e `claude plugin install <plugin>@dev-segments` (ou `/plugin marketplace add`, `/plugin install` dentro da sessão).
+O `name` da entrada deve ser igual ao `name` do `plugin.json`. Instalação: `claude plugin marketplace add <caminho-ou-owner/repo>` e `claude plugin install <plugin>@brain-of-agent` (ou `/plugin marketplace add`, `/plugin install` dentro da sessão).
 
 ## Validação
 

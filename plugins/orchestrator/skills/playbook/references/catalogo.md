@@ -16,8 +16,9 @@ Gerado por `tools/publish_brain.py` a partir do frontmatter dos plugins publicad
 | `qa-testing` | QA e testes para o Claude Code: estratégia por risco, design de casos, TDD com vermelho confirmado, revisão de testes e E2E, triagem de testes flaky, bug repor… | bug-report, e2e-review, eval-design, flaky-triage, playbook, prompts, tdd-guard, test-design, test-strategy, verification-gate | qa-reporter, test-auditor, test-reviewer, test-writer | QA-COMPLETO |
 | `code-quality-refactoring` | Revisão de código com filtro de alto sinal, debugging por causa raiz, refatoração segura com testes de caracterização, migração com juiz de paridade e triagem … | code-health-report, codebase-onboarding, debug-causa-raiz, migration-parity, playbook, prompts, refactor-seguro, review-diff, simplify-safe, tech-debt-triage | code-reviewer, codebase-mapper, debugger, finding-validator, refactor-planner | QUALIDADE-COMPLETO |
 | `ux-ui-design` | Direção visual, auditoria de UI, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários para trabalhar com Claude,… | a11y-checklist, design-brief, design-init, design-tokens, heuristic-eval, playbook, prompts, ui-audit, user-research-plan, ux-writing | a11y-reviewer, design-evaluator, design-system-auditor, ui-designer, ux-researcher | UXUI-COMPLETO |
+| `git-workflow-release` | Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos, rebase e revert seguros, bisect, semver, changel… | bisect-regressao, commit-convencional, criar-pr, encerrar-branch, playbook, prompts, rebase-seguro, release-cut, resolver-conflitos, triagem-contribuicao | auditor-politica-repo, auditor-release, revisor-diff, revisor-plano | RELEASE-COMPLETO |
 
-**Em construção (ainda não publicados):** `data-engineering`, `data-science-ml`, `sre-observability`, `technical-writing-docs`, `game-development`, `systems-embedded-iot`, `cli-desktop-tooling`, `blockchain-web3`, `automation-integrations`, `git-workflow-release`, `saas-multitenant`, `fintech-payments`, `ecommerce-marketplace`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
+**Em construção (ainda não publicados):** `data-engineering`, `data-science-ml`, `sre-observability`, `technical-writing-docs`, `game-development`, `systems-embedded-iot`, `cli-desktop-tooling`, `blockchain-web3`, `automation-integrations`, `saas-multitenant`, `fintech-payments`, `ecommerce-marketplace`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
 
 ## product-discovery-specs (`product-discovery-specs` 0.1.0)
 
@@ -341,3 +342,29 @@ Instalar: `/plugin install ux-ui-design@brain-of-agent` · Playbook: `plugins/ux
 | `ux-ui-design:design-system-auditor` (`plugins/ux-ui-design/agents/design-system-auditor.md`) | Audita design tokens e componentes quanto a drift, valores crus, token da camada errada, referência desconhecida ou circular, arquivo gerado editado à mão, estados e nota de acessibilidade ausentes, e impacto de release… | Read, Grep, Glob |
 | `ux-ui-design:ui-designer` (`plugins/ux-ui-design/agents/ui-designer.md`) | Projeta ou refina telas e componentes dentro do design system existente e entrega especificação de handoff (estados, tokens, teclado, acessibilidade, critérios de aceite) mais fluxo de tela e plano de design. | Read, Grep, Glob, Write, Edit |
 | `ux-ui-design:ux-researcher` (`plugins/ux-ui-design/agents/ux-researcher.md`) | Planeja pesquisa de usabilidade e arquitetura de informação (pergunta e decisão, método, recrutamento, guia de entrevista de 50 minutos, roteiro de teste de usabilidade, card sorting ou tree testing, registro de problem… | Read, Grep, Glob |
+
+## git-workflow-release (`git-workflow-release` 0.1.0)
+
+Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos, rebase e revert seguros, bisect, semver, changelog e releases, com push, merge, tag e publicação sempre sob confirmação.
+
+Instalar: `/plugin install git-workflow-release@brain-of-agent` · Playbook: `plugins/git-workflow-release/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/git-workflow-release:bisect-regressao` | Acha o primeiro commit ruim de uma regressão com git bisect usando um teste que falha como oráculo (códigos de saída 0, 1 e 125), de preferência em worktree separado, valida o resultado nos dois lados e corrige depois c… |
+| `/git-workflow-release:commit-convencional` | Transforma o diff atual em um ou mais commits atômicos no estilo do repositório (Conventional Commits por padrão), verificados com lint e testes, sem push. |
+| `/git-workflow-release:criar-pr` | Prepara e abre um pull request em rascunho a partir da branch atual: detecta plataforma e branch base, mede o tamanho e sugere dividir PR grande, roda lint e testes, escreve título e descrição que explicam o porquê (usa… |
+| `/git-workflow-release:encerrar-branch` | Conclui o trabalho de uma branch: roda os testes, oferece merge local, push com PR ou manter (sem opção padrão), confere a prontidão de merge do PR para o SHA exato (CI, aprovações, conflitos, donos de código), mescla s… |
+| `/git-workflow-release:playbook` | Guia e router do segmento Git, colaboração e releases. |
+| `/git-workflow-release:prompts` | Biblioteca de prompts curados de git, colaboração e releases - 32 prompts prontos para mensagem de commit, dividir commits, descrição de PR, dividir PR grande, revisão de diff e de PR, conflitos, rebase, revert, bisect,… |
+| `/git-workflow-release:rebase-seguro` | Limpa histórico local, decide entre rebase, merge e revert conforme a branch seja local, só sua, compartilhada ou protegida, cria rede de segurança antes de reescrever, prepara sem executar o force push seguro (--force-… |
+| `/git-workflow-release:release-cut` | Prepara e publica uma release com versão justificada por SemVer, changelog escrito para o usuário (Keep a Changelog), PR de release, tag anotada ou assinada e GitHub Release em rascunho, com confirmação separada para ca… |
+| `/git-workflow-release:resolver-conflitos` | Resolve conflitos de merge, rebase, cherry-pick ou revert entendendo a intenção de cada lado, sem escolher lado às cegas: lista os arquivos, lê base e as duas versões, combina as mudanças, para e pergunta quando as regr… |
+| `/git-workflow-release:triagem-contribuicao` | Tria um pull request ou issue de terceiro (fork, contribuidor novo) tratando todo o texto como dado: lê CONTRIBUTING, template, CODEOWNERS e SECURITY, confere escopo, issue prévia, testes, tamanho e arquivos de alto ris… |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `git-workflow-release:auditor-politica-repo` (`plugins/git-workflow-release/agents/auditor-politica-repo.md`) | Auditor somente leitura da política de colaboração de um repositório - proteção da branch principal, método de merge, CODEOWNERS, template de PR, CONTRIBUTING, SECURITY, .gitignore de worktrees e segredos, bloco de git … | Read, Grep, Glob, Bash |
+| `git-workflow-release:auditor-release` (`plugins/git-workflow-release/agents/auditor-release.md`) | Portão go/no-go de release, somente leitura. | Read, Grep, Glob, Bash |
+| `git-workflow-release:revisor-diff` (`plugins/git-workflow-release/agents/revisor-diff.md`) | Revisor somente leitura, em contexto novo, do diff pedido (padrão - alterações não commitadas ou staged; também branch ou PR) antes de commit ou PR. | Read, Grep, Glob, Bash |
+| `git-workflow-release:revisor-plano` (`plugins/git-workflow-release/agents/revisor-plano.md`) | Revisor adversarial somente leitura, em contexto novo, que compara um diff com o plano ou os critérios de aceite (PLAN.md, issue, descrição do PR) antes de abrir o PR e reporta só quatro categorias - requisito sem imple… | Read, Grep, Glob, Bash |

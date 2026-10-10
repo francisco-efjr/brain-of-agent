@@ -29,7 +29,7 @@ No Claude Code, dentro da sessão:
 /plugin install ux-ui-design@brain-of-agent
 ```
 
-`<caminho-local-ou-owner/repo>` é a pasta raiz do marketplace `dev-segments` (a que contém `.claude-plugin/marketplace.json`) ou o repositório Git dela. Pela linha de comando, o equivalente é `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install ux-ui-design@brain-of-agent`. Para validar: `claude plugin validate <pasta-do-plugin>`. Todos os componentes ficam sob o namespace `ux-ui-design` (por exemplo `/ux-ui-design:ui-audit`).
+`<caminho-local-ou-owner/repo>` é a pasta raiz do marketplace `brain-of-agent` (a que contém `.claude-plugin/marketplace.json`) ou o repositório Git dela. Pela linha de comando, o equivalente é `claude plugin marketplace add francisco-efjr/brain-of-agent` e `claude plugin install ux-ui-design@brain-of-agent`. Para validar: `claude plugin validate <pasta-do-plugin>`. Todos os componentes ficam sob o namespace `ux-ui-design` (por exemplo `/ux-ui-design:ui-audit`).
 
 ## Componentes
 

@@ -4,7 +4,7 @@ Data de consulta de todas as linhas: 2026-10-10 (um validador, claude-sonnet-5-5
 
 Classes: **A** = fonte primária ou oficial · **B** = autor reconhecido ou repositório com sinais · **C** = relato de praticante ou comunidade (serve de hipótese, não de regra). Nota entre parênteses = nota 0 a 10 do validador. "doc. (destilar)" = texto de documentação sem licença permissiva observada: o plugin usa redação própria e não copia. Estrelas e datas de push são sinais, não prova de qualidade, e vieram da API ou da página do repositório na data da consulta.
 
-Códigos de rastreio que aparecem nas skills: `Cn` (por exemplo C6) é um conflito entre fontes já resolvido no desenho do segmento, e a resolução está escrita na própria frase que o cita; `lacuna n` é um tema sem fonte lida, e o que depende dele sai como Inferido, Suposição ou Não verificável. As listas completas ficam em `docs/research/mobile-apps/SYNTHESIS.md` (seções 3.2 e 7.3) no repositório `dev-segments`, fora do plugin; não é preciso abri-las para aplicar as regras.
+Códigos de rastreio que aparecem nas skills: `Cn` (por exemplo C6) é um conflito entre fontes já resolvido no desenho do segmento, e a resolução está escrita na própria frase que o cita; `lacuna n` é um tema sem fonte lida, e o que depende dele sai como Inferido, Suposição ou Não verificável. As listas completas ficam em `docs/dev-segments/research/mobile-apps/SYNTHESIS.md` (seções 3.2 e 7.3) no repositório `brain-of-agent`, fora do plugin; não é preciso abri-las para aplicar as regras.
 
 ## Sumário
 
