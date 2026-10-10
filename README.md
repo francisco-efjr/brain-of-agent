@@ -6,6 +6,8 @@ Mande o link deste repositório com a sua demanda:
 
 > Use https://github.com/francisco-efjr/brain-of-agent como orquestrador (siga o ORCHESTRATOR.md). Demanda: [O QUE QUERO]. Projeto: [CAMINHO OU LINK]. Escopo: [auditar | implementar]. Entrega: [relatórios | correções em branch | ambos].
 
+**Para receber uma melhoria pronta.** Os especialistas analisam, implementam e testam, e você recebe a branch local, o `MELHORIAS.md` e o `COMO-TESTAR.md`. O prompt completo está em [O-08](plugins/orchestrator/skills/prompts/references/prompt-library.md#o-08-melhoria-pronta-feita-pelos-especialistas) e segue o [modo melhoria, §3.1](ORCHESTRATOR.md#31-modo-melhoria-os-especialistas-melhoram-o-sistema-e-entregam-pronto).
+
 A IA segue o [ORCHESTRATOR.md](ORCHESTRATOR.md). Ela classifica a demanda, escolhe especialistas entre os [plugins por segmento](docs/dev-segments/CATALOGO.md), despacha subagentes com validador independente e entrega relatórios por papel (arquiteto, designer, QA, dev, segurança…) e commit local sem push.
 
 Se o repositório estiver privado, o link só abre onde houver acesso ao GitHub do dono. Isso inclui Claude Code numa máquina com a credencial do git, mesmo com outra conta do Claude, `gh auth login` ou o conector GitHub do chat.

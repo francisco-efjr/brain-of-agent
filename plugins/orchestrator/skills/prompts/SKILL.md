@@ -1,6 +1,6 @@
 ---
 name: prompts
-description: Biblioteca de mensagens prontas para acionar o orquestrador Brain of Agent em outro chat ou terminal (revisão completa, feature, bug, telas novas, auditoria de segurança, release). Use quando o usuário pedir "mensagem pronta", "prompt para orquestrar", "como peço para revisar meu projeto", "starter prompt".
+description: Biblioteca de mensagens prontas para acionar o orquestrador Brain of Agent em outro chat ou terminal (melhoria pronta, revisão completa, feature, bug, telas novas, auditoria de segurança, release). Use quando o usuário pedir "mensagem pronta", "prompt para orquestrar", "como peço para revisar meu projeto", "prompt para melhorar o sistema", "starter prompt".
 ---
 
 # Prompts do orquestrador
@@ -16,3 +16,4 @@ Os prompts estão em [references/prompt-library.md](references/prompt-library.md
 | Telas novas aplicando o design system | O-05 |
 | Auditoria de segurança e LGPD | O-06 |
 | Só planejar, sem executar | O-07 |
+| Melhoria pronta feita pelos especialistas, com testes e COMO-TESTAR | O-08 |

@@ -60,6 +60,48 @@ Respeite as ferramentas declaradas no frontmatter do agente. Revisores e auditor
 7. **Implementar, se o escopo autorizar.** Correções em branch local nova, com mudanças pequenas e testadas. Rode os testes do projeto. O QA revalida depois. Push, deploy, publicação e ações destrutivas só com confirmação explícita do usuário.
 8. **Consolidar e entregar** no formato do §6.
 
+### 3.1 Modo melhoria: os especialistas melhoram o sistema e entregam pronto
+
+Use este modo quando a demanda for "melhore o sistema" ou "faça uma melhoria", ou quando o escopo for `implementar` sem lista fechada de mudanças. Aqui os especialistas fazem mais do que apontar problemas. Cada um olha o sistema pela sua área, define a melhoria e o critério de aceite, acompanha a implementação e revisa o resultado.
+
+Se o usuário pedir para seguir sem esperar aprovação, mostre o plano e siga. Duas regras valem mesmo assim:
+- Use a opção B do §2 (clone e subagentes `general-purpose`), sem instalar plugins nem SDKs.
+- O que exigir confirmação (§5 e passo 4) vira **decisão pendente**: descreva a proposta e salve o patch em `docs/melhorias/AAAA-MM-DD/pendentes/<ID>.patch`, sem aplicá-lo à branch.
+
+1. **Preparar e medir a linha de base.**
+   - Projeto informado por link: clone numa pasta nova.
+   - Rode `git status`. Se houver alterações não commitadas, pare e avise o usuário em vez de levá-las para a branch.
+   - Anote a branch original e crie a branch local `melhoria/AAAA-MM-DD-<tema>`.
+   - Descubra build e testes no README, em `.github/workflows`, `package.json`, `gradlew`, `Makefile` ou `pyproject.toml`, e rode-os antes de mudar qualquer coisa. Registre o que passou, o que falhou e o que não pôde rodar, com o motivo. Falha que já existia entra no relatório, mas não é regressão sua.
+   - **Suíte completa:** testes automatizados, build, lint e compilação dos testes que exigem dispositivo. Em Android: `testDebugUnitTest`, `assembleDebug`, `lint` e `assembleDebugAndroidTest`. O que exige emulador, dispositivo ou serviço externo fica Não verificado, com o motivo, e não conta como regressão.
+   - **Falta de toolchain** (JDK, SDK, runtime): não instale nada nem aceite licenças sem perguntar. Antes, procure uma toolchain já presente na máquina (por exemplo, o JDK embutido do Android Studio). Se ainda assim não rodar, limite-se a melhorias que você prova com teste novo ou com revisão de código, marque-as Não verificado e entregue os comandos para o usuário rodar.
+   - **Projeto sem testes:** o QA (`qa-testing:test-writer`) escreve testes de caracterização do que cada melhoria toca, antes de mudar o código.
+2. **Visão de cada especialista (leitura, em paralelo).** Escolha os especialistas pelo contexto (§4 e catálogo). Em geral: arquitetura, plataforma (`mobile-apps`, `web-frontend` ou `backend-api`), QA, segurança, qualidade de código e UX/UI se houver interface. Dados, DevOps, docs e outros só entram se o projeto pedir.
+   - Cada um entrega até 5 propostas da sua área: ID, problema com evidência `arquivo:linha`, melhoria proposta, ganho (para o usuário ou para o código), esforço (P/M/G), risco, critério de aceite e como verificar.
+   - Os subagentes devolvem ao orquestrador só um resumo estruturado. O relatório completo de cada papel vai para `docs/melhorias/AAAA-MM-DD/revisao/<papel>.md`.
+3. **Contraprova.** Um validador de outro papel desafia as propostas e descarta as sem evidência ou com risco maior que o ganho:
+
+   | Propostas de | Validador |
+   | --- | --- |
+   | Arquitetura | `architecture-design:skeptic-architect` |
+   | Código | `code-quality-refactoring:finding-validator`, que lê o trecho citado |
+   | Segurança | `security-appsec:finding-verifier` |
+   | Testes | `qa-testing:test-auditor` |
+4. **Priorizar.** Escolha um conjunto coerente: primeiro severidade crítica e alta, depois o maior ganho com menor risco. Respeite as restrições do usuário.
+   - **Teto da entrega:** até 6 melhorias e cerca de 600 linhas de diff, sem contar testes e docs. O resto vai para "Próximos passos", com a proposta pronta.
+   - **Exige aprovação explícita:** mudança de regra de negócio, apagar ou migrar dados de forma irreversível, troca de stack, dependência grande, instalar plugins ou SDKs.
+   - **Regra de negócio** é tudo o que muda o resultado para o usuário final ou o documento gerado: textos e cláusulas, cálculos, validações, formatos e nomes de saída, dados de catálogo ou seed, esquema e migração de banco, permissões. Na dúvida, trate como regra de negócio.
+5. **Implementar, uma melhoria por vez.** Nunca dois agentes editam a mesma árvore ao mesmo tempo.
+   - O especialista dono da área define a mudança e o critério de aceite.
+   - Quase todos os agentes dos plugins são somente leitura. Por isso, quem escreve o código é um subagente `general-purpose` (ou o próprio orquestrador) seguindo o playbook e as skills do especialista. Os agentes que escrevem (por exemplo `qa-testing:test-writer`, `mobile-apps:mobile-test-engineer`) ficam com a parte deles.
+   - Em interface, o designer (`ux-ui-design`) especifica com o design system: o do projeto ou, se não houver, o da casa em `design-systems/mo-baile/`, adaptado à plataforma. O implementador segue a especificação.
+   - Em bug, o QA escreve antes o teste que falha e passa depois da correção.
+   - Antes de refatorar código que produz saída (parsers, geradores, formatadores), escreva um teste de caracterização que fixe a saída atual.
+   - **Um commit por melhoria**, com o ID na mensagem. Antes de cada commit, confira com `git diff --cached` que não entrou segredo, dado pessoal real nem arquivo gerado.
+   - Dados de teste e de exemplo são sintéticos. Não leia pastas que o `.gitignore` marca como dados reais ou privados.
+6. **Revisar e testar.** O revisor de código (`code-quality-refactoring:code-reviewer`) e o validador da área revisam o diff de cada melhoria. O QA roda a suíte completa e os testes novos e compara com a linha de base. Regressão bloqueia a entrega até ser corrigida ou revertida.
+7. **Entregar pronto** no formato do §6, com `MELHORIAS.md` e `COMO-TESTAR.md`.
+
 ## 4. Combinações recomendadas
 
 | Demanda | Especialistas (ordem sugerida) |
@@ -93,8 +135,28 @@ Se um plugin aparece como "em construção" no catálogo, use o mais próximo e 
 1. **Plano executado:** especialistas usados, o que cada um fez e quem validou.
 2. **Relatório por papel**, em arquivos `docs/revisao/<papel>.md` no projeto analisado se o usuário autorizar escrita, ou no chat. Cada relatório tem achados com ID, severidade, evidência `arquivo:linha`, impacto e recomendação. O arquiteto inclui o antes e depois. O designer inclui as telas propostas. O QA inclui os bugs reproduzíveis. O dev inclui as mudanças e como validar.
 3. **Consolidado:** resumo em 5 a 10 linhas, achados por severidade, mudanças feitas (diff e testes rodados), decisões pendentes do humano, limitações e próximos passos.
-4. **Commit preparado**, quando houver implementação: branch local nova, mensagem descritiva, **sem push**.
+4. **Commit preparado**, quando houver implementação: branch local nova, mensagem descritiva, **sem push**. No modo melhoria, um commit por melhoria e `docs/melhorias/AAAA-MM-DD/MELHORIAS.md`, com estas seções:
+   - Resumo.
+   - Linha de base × depois: testes, build e lint, com números reais.
+   - Tabela das melhorias: ID, especialista, problema (`arquivo:linha`), mudança, antes → depois, como foi provado (teste ou revisão), commit.
+   - Propostas descartadas na contraprova, em uma linha cada.
+   - Decisões pendentes, com os patches em `pendentes/`.
+   - Próximos passos.
+5. **Como testar** (obrigatório quando houver implementação). Fica em `docs/melhorias/AAAA-MM-DD/COMO-TESTAR.md` e vai resumido no chat. Contém:
+   - pré-requisitos (versões, SDKs, variáveis de ambiente, sem valores secretos);
+   - comandos exatos de build e testes, para copiar e colar, com o resultado esperado. Escreva em bash e em PowerShell quando o projeto puder ser usado no Windows (por exemplo `./gradlew test` e `.\gradlew.bat test`) e informe a versão exigida do JDK ou do runtime;
+   - para cada melhoria, passos manuais numerados, resultado esperado e critério de aceite;
+   - o que foi executado de fato nesta sessão (Verificado) e o que não pôde rodar, com o motivo (por exemplo, testes instrumentados sem emulador);
+   - como desfazer: `git switch <branch-original>` ou `git revert <commit>`.
+
+Se o ambiente não tiver acesso a arquivos ou terminal (por exemplo, chat sem ferramentas), diga isso no início. Nesse caso, entregue as mudanças como patch (`diff`) com o mesmo **Como testar**, marcando os testes como Não verificado.
 
 ## 7. Mensagem inicial sugerida (para o usuário)
 
 > Use https://github.com/francisco-efjr/brain-of-agent como orquestrador (siga o ORCHESTRATOR.md). Demanda: [O QUE QUERO]. Projeto: [CAMINHO OU LINK]. Escopo: [auditar | implementar]. Entrega: [relatórios | correções em branch | ambos]. Restrições: [prazo, stack, o que não mexer].
+
+Para receber a melhoria pronta, use o modo melhoria (§3.1):
+
+> Use https://github.com/francisco-efjr/brain-of-agent como orquestrador (siga o ORCHESTRATOR.md, modo melhoria §3.1). Projeto: [CAMINHO OU LINK]. Melhore o sistema com os especialistas que o contexto pedir. Mostre o plano e siga sem esperar minha aprovação. Entregue a melhoria implementada numa branch local, testada, com MELHORIAS.md e COMO-TESTAR.md. Restrições: [o que não mexer].
+
+O prompt completo, com todas as regras, está em `plugins/orchestrator/skills/prompts/references/prompt-library.md` (O-08).
