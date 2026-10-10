@@ -1,0 +1,14 @@
+{
+  "rules": [
+    {
+      "id": "chave-de-producao-no-codigo",
+      "substrings": ["sk_live_", "AKIA", "-----BEGIN PRIVATE KEY-----"],
+      "reminder": "Chave de produção no código. Não grave segredo no repositório: use cofre ou variável injetada, e se este valor for real, revogue e rotacione."
+    },
+    {
+      "id": "multi-tenant-filtro-obrigatorio",
+      "paths": ["src/api/**", "src/services/**"],
+      "reminder": "Código multi-tenant: toda consulta deve filtrar pelo tenant da sessão; tenant vindo do corpo ou da query nunca é autoridade."
+    }
+  ]
+}

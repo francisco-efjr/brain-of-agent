@@ -1,0 +1,8 @@
+{
+  "name": "database-data-modeling",
+  "version": "0.1.0",
+  "description": "Modelagem, SQL, índices, planos de execução, transações, migrações sem downtime, multi-tenant e backup para PostgreSQL, MySQL, SQLite, SQL Server, MongoDB, Redis e DynamoDB, com agentes somente leitura e rótulos de evidência.",
+  "author": { "name": "Francisco Edson", "url": "https://github.com/francisco-efjr" },
+  "license": "MIT",
+  "keywords": ["database", "sql", "postgresql", "mysql", "sqlite", "mongodb", "redis", "dynamodb", "data-modeling", "indexing", "query-plan", "transactions", "migrations", "multi-tenant", "DADOS-COMPLETO"]
+}

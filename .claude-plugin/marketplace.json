@@ -1,0 +1,275 @@
+{
+  "name": "brain-of-agent",
+  "description": "Brain of Agent: orquestrador e plugins por segmento de software (pesquisados, validados e prontos para Claude Code).",
+  "owner": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "plugins": [
+    {
+      "name": "product-discovery-specs",
+      "source": "./plugins/product-discovery-specs",
+      "description": "Transforma ideias e pedidos vagos em PRD enxuto, spec testável, critérios de aceite, histórias INVEST, priorização (RICE, ICE, MoSCoW, Kano), roadmap, OKRs e experimentos, com entrevista guiada, gates de aprovação humana, revisão adversarial em contexto novo e modo PRODUTO-COMPLETO por pedido explícito.",
+      "keywords": [
+        "PRODUTO-COMPLETO",
+        "product-discovery",
+        "prd",
+        "spec-driven-development",
+        "user-stories",
+        "acceptance-criteria",
+        "gherkin",
+        "ears",
+        "jtbd",
+        "rice",
+        "moscow",
+        "okr",
+        "roadmap",
+        "ab-testing",
+        "requirements"
+      ]
+    },
+    {
+      "name": "architecture-design",
+      "source": "./plugins/architecture-design",
+      "description": "Decisões de arquitetura com humano no comando: ADRs, trade-offs, revisão de desenho, system design, decomposição (DDD, monólito modular, strangler), resiliência e consistência (retry, circuit breaker, outbox, saga, idempotência), contratos de API, C4/Mermaid e modo ARQUITETURA-COMPLETO.",
+      "keywords": [
+        "architecture",
+        "adr",
+        "system-design",
+        "c4",
+        "ddd",
+        "hexagonal",
+        "modular-monolith",
+        "microservices",
+        "event-driven",
+        "cqrs",
+        "resilience",
+        "api-design",
+        "trade-offs",
+        "architecture-review"
+      ]
+    },
+    {
+      "name": "web-frontend",
+      "source": "./plugins/web-frontend",
+      "description": "Guia, skills de tarefa, agentes somente leitura e biblioteca de prompts para frontend web com Claude Code (React e Next.js, Vue e Nuxt, Svelte, Angular, TypeScript, Tailwind, WCAG 2.2, Core Web Vitals, formulários, data fetching e testes de UI), sempre com verificação por evidência.",
+      "keywords": [
+        "frontend",
+        "react",
+        "nextjs",
+        "vue",
+        "nuxt",
+        "svelte",
+        "angular",
+        "typescript",
+        "tailwind",
+        "accessibility",
+        "wcag",
+        "core-web-vitals",
+        "playwright",
+        "forms",
+        "frontend-completo"
+      ]
+    },
+    {
+      "name": "backend-api",
+      "source": "./plugins/backend-api",
+      "description": "Projete, implemente, revise, teste e depure serviços e APIs (REST, GraphQL, gRPC) com contrato OpenAPI, erros RFC 9457, autenticação e autorização, idempotência, paginação, rate limiting e tools para agentes, sempre com verificação por evidência.",
+      "keywords": [
+        "backend",
+        "api",
+        "rest",
+        "openapi",
+        "graphql",
+        "grpc",
+        "oauth2",
+        "jwt",
+        "api-security",
+        "idempotency",
+        "pagination",
+        "rate-limiting",
+        "rfc-9457",
+        "webhooks"
+      ]
+    },
+    {
+      "name": "mobile-apps",
+      "source": "./plugins/mobile-apps",
+      "description": "Playbook, skills, agentes e prompts para construir, revisar, depurar e publicar apps mobile (iOS/SwiftUI, Android/Compose, React Native/Expo, Flutter): arquitetura, offline-first, push, permissões, performance, acessibilidade, testes e checklists de App Store e Google Play, com gates de confirmação antes de qualquer envio.",
+      "keywords": [
+        "mobile",
+        "ios",
+        "android",
+        "swiftui",
+        "jetpack-compose",
+        "react-native",
+        "expo",
+        "flutter",
+        "app-store",
+        "play-store",
+        "offline-first",
+        "push-notifications",
+        "accessibility",
+        "eas",
+        "MOBILE-COMPLETO"
+      ]
+    },
+    {
+      "name": "database-data-modeling",
+      "source": "./plugins/database-data-modeling",
+      "description": "Modelagem, SQL, índices, planos de execução, transações, migrações sem downtime, multi-tenant e backup para PostgreSQL, MySQL, SQLite, SQL Server, MongoDB, Redis e DynamoDB, com agentes somente leitura e rótulos de evidência.",
+      "keywords": [
+        "database",
+        "sql",
+        "postgresql",
+        "mysql",
+        "sqlite",
+        "mongodb",
+        "redis",
+        "dynamodb",
+        "data-modeling",
+        "indexing",
+        "query-plan",
+        "transactions",
+        "migrations",
+        "multi-tenant",
+        "DADOS-COMPLETO"
+      ]
+    },
+    {
+      "name": "llm-ai-agents",
+      "source": "./plugins/llm-ai-agents",
+      "description": "Playbook, skills de tarefa, subagentes somente leitura e biblioteca de prompts para projetar, revisar e testar aplicações LLM e agentes: engenharia de prompt e de contexto, tool use e MCP, RAG medido, evals e LLM-as-judge, defesa contra prompt injection, custo e cache, e autoria de CLAUDE.md, skills e plugins.",
+      "keywords": [
+        "llm",
+        "ai-agents",
+        "prompt-engineering",
+        "context-engineering",
+        "tool-use",
+        "mcp",
+        "rag",
+        "evals",
+        "llm-as-judge",
+        "prompt-injection",
+        "guardrails",
+        "subagents",
+        "skills",
+        "prompt-caching",
+        "agent-sdk",
+        "ia-completo"
+      ]
+    },
+    {
+      "name": "devops-cloud-infra",
+      "source": "./plugins/devops-cloud-infra",
+      "description": "Escreva, revise, planeje e diagnostique infraestrutura (Terraform/OpenTofu/Pulumi, Docker, Kubernetes/Helm, GitOps, GitHub Actions, segredos, canary/blue-green, serverless e custo) com gate humano antes de qualquer mudança real e evidência executável em cada entrega.",
+      "keywords": [
+        "devops",
+        "cloud",
+        "infrastructure-as-code",
+        "terraform",
+        "kubernetes",
+        "docker",
+        "gitops",
+        "github-actions",
+        "secrets-management",
+        "progressive-delivery",
+        "supply-chain",
+        "troubleshooting"
+      ]
+    },
+    {
+      "name": "security-appsec",
+      "source": "./plugins/security-appsec",
+      "description": "Revisão de segurança de diffs e PRs, modelagem de ameaças (STRIDE), autorização por objeto e tenant, segredos, supply chain e triagem de risco de agentes, MCP e plugins, com OWASP Top 10:2025, API Top 10, LLM Top 10 e ASVS, somente leitura por padrão.",
+      "keywords": [
+        "security",
+        "appsec",
+        "owasp",
+        "threat-modeling",
+        "stride",
+        "security-review",
+        "authorization",
+        "idor",
+        "secrets",
+        "supply-chain",
+        "prompt-injection",
+        "asvs",
+        "seguranca",
+        "SEGURANCA-COMPLETO"
+      ]
+    },
+    {
+      "name": "qa-testing",
+      "source": "./plugins/qa-testing",
+      "description": "QA e testes para o Claude Code: estratégia por risco, design de casos, TDD com vermelho confirmado, revisão de testes e E2E, triagem de testes flaky, bug reports com evidência e evals de skills e LLM, com gate de verificação e o modo QA-COMPLETO.",
+      "keywords": [
+        "qa",
+        "testing",
+        "test-strategy",
+        "test-design",
+        "tdd",
+        "e2e",
+        "playwright",
+        "flaky-tests",
+        "bug-report",
+        "llm-evals",
+        "verification",
+        "accessibility-testing",
+        "api-testing",
+        "QA-COMPLETO"
+      ]
+    },
+    {
+      "name": "code-quality-refactoring",
+      "source": "./plugins/code-quality-refactoring",
+      "description": "Revisão de código com filtro de alto sinal, debugging por causa raiz, refatoração segura com testes de caracterização, migração com juiz de paridade e triagem de dívida técnica, sempre com evidência executável e rótulos Verificado/Inferido/Suposição.",
+      "keywords": [
+        "code-review",
+        "refactoring",
+        "debugging",
+        "root-cause",
+        "technical-debt",
+        "legacy-modernization",
+        "migration",
+        "characterization-tests",
+        "static-analysis",
+        "code-quality",
+        "qualidade-completo"
+      ]
+    },
+    {
+      "name": "ux-ui-design",
+      "source": "./plugins/ux-ui-design",
+      "description": "Direção visual, auditoria de UI, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários para trabalhar com Claude, com skills, agentes avaliadores somente leitura, prompts curados e evals.",
+      "keywords": [
+        "ux",
+        "ui",
+        "design-system",
+        "design-tokens",
+        "accessibility",
+        "wcag",
+        "usability",
+        "heuristic-evaluation",
+        "ux-writing",
+        "user-research",
+        "design-review",
+        "dtcg",
+        "uxui-completo"
+      ]
+    },
+    {
+      "name": "orchestrator",
+      "source": "./plugins/orchestrator",
+      "description": "Orquestra demandas de software multiárea: classifica a demanda, escolhe agentes e skills dos plugins por segmento, despacha com validação independente e consolida relatórios.",
+      "keywords": [
+        "orchestrator",
+        "multi-agent",
+        "router",
+        "code-review",
+        "audit",
+        "brain-of-agent"
+      ]
+    }
+  ]
+}

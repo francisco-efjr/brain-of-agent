@@ -1,0 +1,18 @@
+{
+  "name": "orchestrator",
+  "version": "0.1.0",
+  "description": "Orquestra demandas de software multiárea: classifica a demanda, escolhe agentes e skills dos plugins por segmento, despacha com validação independente e consolida relatórios.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "orchestrator",
+    "multi-agent",
+    "router",
+    "code-review",
+    "audit",
+    "brain-of-agent"
+  ]
+}

@@ -1,0 +1,1119 @@
+{
+  "marketplace": "brain-of-agent",
+  "repository": "francisco-efjr/brain-of-agent",
+  "plugins": [
+    {
+      "plugin": "product-discovery-specs",
+      "displayName": "product-discovery-specs",
+      "version": "0.1.0",
+      "description": "Transforma ideias e pedidos vagos em PRD enxuto, spec testável, critérios de aceite, histórias INVEST, priorização (RICE, ICE, MoSCoW, Kano), roadmap, OKRs e experimentos, com entrevista guiada, gates de aprovação humana, revisão adversarial em contexto novo e modo PRODUTO-COMPLETO por pedido explícito.",
+      "keywords": [
+        "PRODUTO-COMPLETO",
+        "product-discovery",
+        "prd",
+        "spec-driven-development",
+        "user-stories",
+        "acceptance-criteria",
+        "gherkin",
+        "ears",
+        "jtbd",
+        "rice",
+        "moscow",
+        "okr",
+        "roadmap",
+        "ab-testing",
+        "requirements"
+      ],
+      "mode_keyword": "PRODUTO-COMPLETO",
+      "skills": [
+        {
+          "name": "acceptance-criteria",
+          "description": "Escreve e revisa critérios de aceite e histórias antes do código: caça palavras vagas, regras implícitas e requisitos não funcionais, escolhe o formato (regra + exemplo, Given/When/Then, EARS, checklist) e entrega critérios testáveis, declarativos, com caminho negativo. Gatilhos PT: \"critérios de aceite\", \"Dado/Quando/Então\", \"Gherkin\", \"cenários BDD\", \"revisar esta história\", \"esta história está vaga\", \"EARS\". EN: \"acceptance criteria\", \"Given When Then\", \"Gherkin scenarios\", \"review this user story\", \"vague requirements\". Não escreve step definitions nem automatiza testes (isso é de qa-testing) e não implementa código."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Produto, descoberta e especificação com IA. Use quando o usuário quiser transformar uma ideia ou pedido vago em artefato de produto verificável antes do código - levantar requisitos, escrever PRD, spec, histórias, critérios de aceite (Given/When/Then, EARS), priorizar (RICE, ICE, MoSCoW, Kano), montar roadmap, OKRs e métricas, planejar sprint, desenhar experimento A/B, fazer descoberta com JTBD ou preparar spec-driven development. Gatilhos PT-BR - \"escreva um PRD\", \"especifique antes de codar\", \"critérios de aceite\", \"priorize o backlog\", \"roadmap\", \"refinar backlog\". EN - \"write a spec\", \"PRD\", \"user stories\", \"acceptance criteria\", \"prioritize\", \"product discovery\". Não use para implementar código, desenhar arquitetura ou automatizar testes, nem para mudança pequena já bem definida. Também ativa o modo PRODUTO-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prioritize-roadmap",
+          "description": "Escolhe o framework de priorização pelo objeto (Opportunity Score, ICE, RICE, MoSCoW, Kano), pontua com origem declarada e versão da escala, mostra sensibilidade e monta roadmap Now-Next-Later, OKRs (objetivo + cerca de 3 key results com definição operacional) e pitches com apetite. Gatilhos PT: \"priorize\", \"RICE\", \"ICE\", \"MoSCoW\", \"Kano\", \"o que fazer primeiro\", \"roadmap\", \"Now Next Later\", \"OKR\", \"apetite\", \"pitch\". EN: \"prioritize\", \"RICE score\", \"roadmap\", \"OKRs\", \"appetite\". O ranking apoia a decisão humana; não inventa dados, não publica roadmap sem confirmação e não avalia pessoas com OKR."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados de Produto, descoberta e especificação. Use quando pedirem prompt, template ou mensagem pronta para entrevista de requisitos, SPEC.md, PRD, spec com FR/SC, critérios de aceite (Given/When/Then, EARS), histórias INVEST, Example Mapping, priorização (RICE, ICE, MoSCoW, Kano), roadmap Now-Next-Later, OKR, roteiro de entrevista JTBD, árvore de oportunidades, quatro riscos, experimento A/B, sprint planning, tarefas a partir da spec, revisão adversarial de spec, briefing de subagente, handoff, prompt de sistema ou mensagem inicial do projeto. Gatilhos PT-BR - \"prompt pronto para PRD\", \"template de critérios de aceite\", \"me dê um prompt para entrevistar usuários\". EN - \"PRD prompt\", \"spec interview prompt\", \"acceptance criteria template\". Para executar a tarefa em si, use a skill de tarefa correspondente."
+        },
+        {
+          "name": "refine-backlog",
+          "description": "Refina o backlog: aplica INVEST, divide histórias e épicos em fatias verticais que entregam valor, conduz Example Mapping e three amigos em 25 minutos, verifica se a história está pronta (story-ready) e prepara o planejamento de sprint em três blocos (meta, seleção, decomposição). Gatilhos PT: \"dividir esta história\", \"história muito grande\", \"épico\", \"INVEST\", \"refinamento\", \"planejar a sprint\", \"definition of ready\", \"three amigos\", \"Example Mapping\". EN: \"split this story\", \"backlog refinement\", \"sprint planning\", \"definition of ready\". Não promete prazo, não impõe Scrum a quem não usa e não escreve código."
+        },
+        {
+          "name": "run-discovery",
+          "description": "Prepara e sintetiza descoberta de produto com usuários em seis modos: interview-script (roteiro JTBD de 30 min, comportamento passado), tree (árvore de oportunidades), risks (quatro grandes riscos), synthesis (notas de entrevistas sem fabricação), premises (desafio de premissas e alternativas) e experiment (desenho de teste A/B com amostra e parada fixas). Gatilhos PT: \"descoberta de produto\", \"roteiro de entrevista com usuários\", \"jobs to be done\", \"árvore de oportunidades\", \"vale a pena construir?\", \"validar a ideia\", \"hipótese\", \"teste A/B\", \"quais riscos\". EN: \"customer interview script\", \"JTBD\", \"opportunity solution tree\", \"is this worth building\", \"design an A/B test\". Nunca inventa falas, dados ou participantes."
+        },
+        {
+          "name": "spec-interview",
+          "description": "Conduz uma entrevista guiada para transformar um pedido vago de feature em um SPEC.md autocontido e aprovado, antes de qualquer código. Use quando o usuário descrever uma funcionalidade com requisitos incompletos, pedir para ser entrevistado ou para levantar requisitos. Gatilhos PT: \"quero construir X mas ainda não sei os detalhes\", \"tenho uma ideia de feature\", \"me ajude a especificar\", \"levantar requisitos\", \"me entreviste antes de codar\", \"faça uma spec\". EN: \"interview me before coding\", \"I want to build\", \"spec this out\", \"requirements gathering\", \"write a SPEC.md\". Não use quando o diff cabe numa frase nem para implementar código."
+        },
+        {
+          "name": "spec-to-tasks",
+          "description": "Transforma uma spec já aprovada pelo humano (gate G1) em tasks.md (T001 [P] [US1] com caminho exato e checkpoint por história), plano de implementação com IDs e critério de conclusão por fase, lista de features com passes e briefing de sessão nova. Só por invocação explícita: /product-discovery-specs:spec-to-tasks <caminho-da-spec>. Gatilhos PT: \"quebrar a spec em tarefas\", \"plano de implementação\", \"lista de features com passes\". EN: \"tasks from spec\", \"implementation plan\", \"feature list with passes\". Recusa spec com [NEEDS CLARIFICATION] bloqueante, só imprime comandos de issue (nunca executa) e não implementa código."
+        },
+        {
+          "name": "write-prd",
+          "description": "Escreve um PRD enxuto (600 a 1.000 palavras) com problema, objetivos mensuráveis, não-objetivos, requisitos de alto nível, riscos, premissas e faseamento, perguntando antes (até 3 perguntas) quando faltar problema, usuário ou métrica, e sem inventar números. Use para iniciativas e features de nível N3 a N4. Gatilhos PT: \"escreva um PRD\", \"documento de requisitos de produto\", \"one-pager do produto\", \"especificação de produto\", \"brief de produto\". EN: \"write a PRD\", \"product requirements document\", \"product brief\", \"one-pager\". Não use para spec detalhada de feature (use write-spec), mudança pequena nem implementação."
+        },
+        {
+          "name": "write-spec",
+          "description": "Formaliza material existente (PRD, notas, ticket, transcrição) em uma spec de feature testável com histórias P1/P2/P3, FR-NNN, SC-NNN sem tecnologia, premissas e [NEEDS CLARIFICATION]; escreve spec de bugfix (atual, esperado, inalterado); e atualiza a spec depois da implementação, listando divergências. Gatilhos PT: \"escreva a spec da feature\", \"formalize em especificação\", \"FR-001\", \"spec de bugfix\", \"atualize a spec com o que foi construído\". EN: \"write the feature spec\", \"spec-driven development\", \"update the spec\", \"bugfix spec\". Não use quando faltam informações básicas (use spec-interview), para PRD (write-prd) nem para implementar."
+        }
+      ],
+      "agents": [
+        {
+          "name": "decision-recorder",
+          "description": "Registra decisões de produto duráveis (escopo, corte, trade-off, \"não faremos\") em um decision record com contexto, opções, justificativa, impacto no usuário e nas métricas e data de revisão. Registra o que o humano decidiu e não decide por ele. Grava somente no caminho que o pedido indicar; sem caminho, devolve o documento para o agente principal gravar. Use depois de uma decisão tomada no chat ou quando prioritize-roadmap ou write-spec produzirem uma escolha material; também para \"registre esta decisão de escopo\", \"por que cortamos X?\". Decisão técnica de arquitetura vai para o ADR do plugin architecture-design.",
+          "tools": "Read, Grep, Glob, Write"
+        },
+        {
+          "name": "discovery-synthesizer",
+          "description": "Sintetiza notas ou transcrições de entrevistas com usuários, fornecidas em arquivos, em temas, oportunidades e premissas a testar, sem inventar fala, número ou participante, com tabela de evidências e rótulo do tamanho da amostra. Retorna o documento completo para o agente principal gravar. Use quando o run-discovery pedir síntese, ou para \"sintetize estas entrevistas\", \"quais temas aparecem nas notas\", \"monte a árvore de oportunidades a partir destas conversas\". Sem arquivos de entrada, não produz síntese.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "feasibility-scout",
+          "description": "Mapeia, somente leitura, o código existente que uma spec ou ideia toca (padrões, componentes reutilizáveis, pontos de integração, contratos, testes, dependências) e aponta o risco de viabilidade técnica com evidência arquivo:linha, sem decidir arquitetura nem estimar prazo. Use proactively antes do spec-to-tasks, na fase de exploração da entrevista de requisitos, ou quando perguntarem \"dá para fazer?\", \"o que no código esta feature toca?\", \"já existe algo parecido?\". Retorna o relatório completo para o agente principal.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "plan-writer",
+          "description": "Transforma uma spec aprovada em plano de implementação com IDs rastreáveis (REQ, TASK, TEST, RISK, ASSUMPTION, ALT) e critério de conclusão mensurável por fase, verificável por comando. Grava somente no caminho que o pedido indicar; sem caminho, devolve o documento completo para o agente principal gravar. Não implementa nem executa comandos. Use quando o spec-to-tasks precisar do plano, ou quando pedirem \"plano de implementação a partir desta spec\", \"quebre a spec em fases com critério de pronto\", \"plano com IDs de requisito e de teste\".",
+          "tools": "Read, Grep, Glob, Write"
+        },
+        {
+          "name": "spec-reviewer",
+          "description": "Revisor adversarial, somente leitura e em contexto novo, de spec, PRD, histórias e critérios de aceite antes do código, e do diff contra a spec depois da implementação. Reporta apenas lacunas de correção ou de requisito, com severidade, confiança e arquivo:linha. Use proactively ao concluir ou alterar uma spec, PRD, história ou critério (antes do gate G1 final ou do spec-to-tasks) e depois de implementar, para comparar diff e spec. Também para \"revise esta spec antes de eu mandar codar\", \"esta história está pronta?\", \"segunda opinião nos critérios\". Não reescreve a spec e não comenta estilo.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
+      "plugin": "architecture-design",
+      "displayName": "architecture-design",
+      "version": "0.2.0",
+      "description": "Decisões de arquitetura com humano no comando: ADRs, trade-offs, revisão de desenho, system design, decomposição (DDD, monólito modular, strangler), resiliência e consistência (retry, circuit breaker, outbox, saga, idempotência), contratos de API, C4/Mermaid e modo ARQUITETURA-COMPLETO.",
+      "keywords": [
+        "architecture",
+        "adr",
+        "system-design",
+        "c4",
+        "ddd",
+        "hexagonal",
+        "modular-monolith",
+        "microservices",
+        "event-driven",
+        "cqrs",
+        "resilience",
+        "api-design",
+        "trade-offs",
+        "architecture-review"
+      ],
+      "mode_keyword": "ARQUITETURA-COMPLETO",
+      "skills": [
+        {
+          "name": "adr",
+          "description": "Decide se uma decisão merece ADR, entrevista o decisor e rascunha o ADR no chat (somente leitura), ou responde 'por que escolhemos X?' lendo docs/adr/. Use para 'registre essa decisão', 'isso merece ADR?', 'escrever ADR', 'por que escolhemos', 'decisão arquitetural', 'write an ADR', 'architecture decision record', 'should this be an ADR', 'why did we choose'. Não grava arquivos: para gravar ou superseder, use adr-write. Convenções de código vão para o CLAUDE.md e requisitos para a spec; elas não precisam de ADR."
+        },
+        {
+          "name": "adr-write",
+          "description": "Grava no repositório um ADR já aprovado pelo usuário (adr-NNNN-slug.md), substitui um ADR aceito por um novo e atualiza o índice docs/adr/README.md, sempre mostrando o arquivo ou diff antes e pedindo aprovação. Acionada só pelo comando /architecture-design:adr-write. Use para 'gravar ADR', 'salvar o ADR', 'supersede ADR-0007', 'save the ADR', 'write the ADR to disk'. Para decidir se algo merece ADR ou rascunhar o texto, use a skill adr antes. Escreve apenas na pasta de ADRs; não executa comandos."
+        },
+        {
+          "name": "api-design",
+          "description": "Desenha ou revisa o contrato de uma API HTTP entre times: recursos, semântica de métodos e status, idempotência, operações assíncronas com 202, paginação por cursor, erro padronizado RFC 9457 (application/problem+json), evolução aditiva, versionamento, ETag e autorização por objeto. Use para 'desenhar o contrato da API', 'revisar o design da API', 'estratégia de versionamento de API', 'modelo de erro padronizado', 'paginação por cursor no contrato', 'REST API design review', 'API versioning strategy', 'problem details error model'. Somente leitura. Implementação em framework, auth detalhada, rate limiting, GraphQL/gRPC e geração de OpenAPI a partir do código: segmento backend-api."
+        },
+        {
+          "name": "architecture-plan",
+          "description": "Conduz mudança arquitetural em arquivos de trabalho versionados, em quatro modos: pesquisar (research.md com arquivo:linha), planejar (plan.md com requisitos EARS, fases e rollback), anotar (incorpora notas do usuário ao plano) e feature (descobrir, explorar, perguntar, opções, plano, implementar por fatia, revisar, com 4 gates humanos). Acionada só pelo comando /architecture-design:architecture-plan. Gatilhos: 'planejar mudança de arquitetura', 'pesquisar antes de implementar', 'research then plan', 'feature with approval gates'. Sem humano para responder, os gates viram decisões pendentes e o plano termina em rascunho. Nenhum código antes da aprovação do plano."
+        },
+        {
+          "name": "decomposition",
+          "description": "Decide entre monólito modular e serviços, mapeia bounded contexts e agregados, desenha fronteiras verificáveis por máquina (hexagonal, regra de dependência com verificador) e planeja extração gradual com strangler fig e expand/contract. Use para 'microsserviços ou monólito', 'quebrar o monólito', 'bounded context', 'agregado', 'arquitetura hexagonal', 'limites de módulo', 'strangler', 'modular monolith', 'split into services', 'domain-driven design', 'ports and adapters'. Somente leitura. Para refatorar o código dentro de um módulo o segmento é code-quality-refactoring; para modelar tabelas, database-data-modeling."
+        },
+        {
+          "name": "design-review",
+          "description": "Revisa em modo somente leitura um plano, design doc, diff ou pasta de arquitetura antes de codar: desafia o escopo, mapeia o estado atual com arquivo:linha, aponta lacunas de correção e de requisitos, lista decisões D-n com opções e recomendação, e fecha com tabela de pendências e dono humano. Use para 'revise esta arquitetura', 'revisar o desenho', 'o plano está bom?', 'antes de codar', 'review this design', 'architecture review', 'design doc review', 'lock in the plan'. Não constrói nada. Para decidir fronteiras use decomposition; para resiliência use resilience-and-consistency; para o contrato HTTP use api-design."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Arquitetura e design de sistemas. Use quando o pedido envolver decisão de arquitetura, ADR, trade-offs, revisão de arquitetura ou de plano técnico, system design, monólito modular vs microsserviços, DDD, hexagonal, C4/diagramas, resiliência e consistência entre serviços, decisões de cache/escala ou contrato de API entre times; em PT-BR \"arquitetura\", \"decisão arquitetural\", \"revisar desenho\", \"qual arquitetura\", \"vale a pena microsserviços\"; em EN \"architecture review\", \"system design\", \"design doc\", \"trade-offs\". Também ativa o modo ARQUITETURA-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados de Arquitetura e design de sistemas. Use quando pedirem prompt, template ou mensagem pronta para ADR, revisão de arquitetura ou de plano, trade-offs, decomposição (monólito modular, bounded contexts, strangler), resiliência e consistência (outbox, retry, saga), revisão de API, system design, diagramas C4 e Mermaid, briefing de subagente ou CLAUDE.md de arquitetura. Em PT-BR, gatilhos como \"prompt pronto para arquitetura\", \"me dê um prompt para revisar desenho\", \"template de ADR\", \"prompt de sistema para arquitetura\". Em EN, gatilhos como \"architecture prompt\", \"ADR prompt\", \"system design prompt template\". Para executar a tarefa em si, use a skill de tarefa correspondente do plugin."
+        },
+        {
+          "name": "resilience-and-consistency",
+          "description": "Escolhe e revisa padrões de resiliência e consistência entre serviços: retry com jitter em uma só camada, circuit breaker, bulkhead, consumidor idempotente, transactional outbox, saga, CQRS e event sourcing, com 'quando NÃO usar' primeiro e a sequência de falha em Mermaid. Use para 'estratégia de retry entre serviços', 'consumidor idempotente', 'outbox', 'saga', 'circuit breaker', 'mensagens duplicadas', 'dual write', 'consistência eventual', 'coreografia ou orquestração', 'arquitetura orientada a eventos', 'backoff with jitter', 'CQRS', 'event sourcing'. Somente leitura. Para a lib do broker ou o workflow de automação, os segmentos backend-api e automation-integrations."
+        },
+        {
+          "name": "system-design",
+          "description": "Conduz o design de um sistema novo ou a evolução de um existente em seis fases (clarificar, estimar, desenhar, trade-offs, modos de falha, iterar), com estimativa de ordem de grandeza feita no texto, diagrama Mermaid de 5 a 15 nós e a lista do que não construir. Use para 'projete um sistema para', 'como arquitetar', 'dimensionar a capacidade', 'estimativa de capacidade', 'estratégia de cache e escala do sistema', 'design a system for', 'system design', 'back-of-envelope', 'how should we architect'. Somente leitura. Para implementar no framework use o segmento backend-api; para IaC e Kubernetes, devops-cloud-infra."
+        }
+      ],
+      "agents": [
+        {
+          "name": "adr-writer",
+          "description": "Redator de ADR que estrutura e grava um Architecture Decision Record somente depois de uma decisão humana e de aprovação explícita. Use apenas quando o usuário pedir explicitamente um agente para rascunhar ou gravar o ADR (o caminho padrão para gravar é a skill adr-write). Primeira chamada devolve o rascunho para aprovação; a gravação em docs/adr/ só ocorre quando o briefing trouxer a aprovação do usuário citada literalmente.",
+          "tools": "Read, Grep, Glob, Write"
+        },
+        {
+          "name": "architecture-blueprint",
+          "description": "Arquiteto sênior somente leitura que entrega um blueprint decisivo para uma feature ou mudança que cruza módulos, ancorado nos padrões reais do código (uma recomendação, 1 a 3 alternativas descartadas, mapa de arquivos, fluxo de dados, sequência de build, riscos). Use proactively depois de pesquisar o código ou de um research.md e antes de implementar; também para \"desenhe a arquitetura desta mudança\", \"blueprint\", \"qual abordagem seguir neste repositório\". Também faz a arquitetura-alvo de um sistema inteiro com antes e depois, migração em fatias e fitness functions. Não grava arquivos (devolve os documentos prontos com caminho sugerido) e devolve as opções quando a decisão é de preferência humana.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "architecture-reviewer",
+          "description": "Revisor adversarial de arquitetura, somente leitura e em contexto novo, que compara uma diff, um plano (PLAN.md) ou um ADR proposto com os requisitos declarados e reporta apenas lacunas de correção ou de requisito, com severidade, confiança e arquivo:linha. Use proactively depois de uma mudança que cruze limites de módulo e antes de aceitar um ADR ou plano; também para \"revise esta mudança contra o plano\" e \"segunda opinião de arquitetura\". Não comenta estilo e não altera arquivos.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "boundary-mapper",
+          "description": "Mapeador de fronteiras somente leitura que levanta módulos, camadas e bounded contexts reais de um código, extrai as dependências efetivas por busca de imports, compara com a regra declarada, aponta violações com arquivo:linha e propõe a tabela camada para imports permitidos com um verificador. Use proactively quando pedirem fronteiras de módulo, arquitetura hexagonal, monólito modular, candidatos a extração de serviço ou plano strangler. Não altera arquivos nem instala ferramentas.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "skeptic-architect",
+          "description": "Arquiteto cético somente leitura que desafia as premissas de uma proposta, mostra a opção mais simples que atende aos requisitos, diz o que não construir e faz um pré-mortem de 12 meses, sem decidir pelo humano. Use proactively quando a proposta envolver microsserviços, CQRS, event sourcing, nova infraestrutura, mais de um sistema novo para um problema pequeno, ou quando a decisão foi tomada pelo agente sem dono humano; também para \"isso é complexo demais?\" e \"existe opção mais simples?\".",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
+      "plugin": "web-frontend",
+      "displayName": "web-frontend",
+      "version": "0.1.0",
+      "description": "Guia, skills de tarefa, agentes somente leitura e biblioteca de prompts para frontend web com Claude Code (React e Next.js, Vue e Nuxt, Svelte, Angular, TypeScript, Tailwind, WCAG 2.2, Core Web Vitals, formulários, data fetching e testes de UI), sempre com verificação por evidência.",
+      "keywords": [
+        "frontend",
+        "react",
+        "nextjs",
+        "vue",
+        "nuxt",
+        "svelte",
+        "angular",
+        "typescript",
+        "tailwind",
+        "accessibility",
+        "wcag",
+        "core-web-vitals",
+        "playwright",
+        "forms",
+        "frontend-completo"
+      ],
+      "mode_keyword": "FRONTEND-COMPLETO",
+      "skills": [
+        {
+          "name": "a11y-review",
+          "description": "Audita acessibilidade de componentes, telas e fluxos contra WCAG 2.2 AA e relata antes de corrigir: HTML nativo antes de ARIA, nome acessível, rótulo e erro de formulário, teclado e foco, diálogos, contraste, alvo mínimo, reflow e os nove critérios novos da 2.2. Use para 'revisar acessibilidade', 'isso passa na WCAG?', 'navegação por teclado', 'leitor de tela', 'contraste', 'foco do modal', 'accessibility audit', 'keyboard test', 'a11y'. Modos: auditar (somente leitura, padrão) e corrigir (patch mínimo depois do relatório). Não dá parecer jurídico nem declara conformidade."
+        },
+        {
+          "name": "component-review",
+          "description": "Revisa componentes web por correção primeiro e performance por impacto depois (React, Next.js App Router e TSX como eixo; Vue, Nuxt, Svelte e Angular pelas regras do playbook) ou, no modo depurar, isola a causa de bug de renderização, hidratação ou estado. Use para 'revisar este componente', 'tem useEffect desnecessário?', 'está certo esse use client?', 'Server Component ou Client Component', 'por que re-renderiza', 'tipar este componente', 'erro de hidratação', 'o estado não atualiza', 'loop de render', 'review my React code', 'hydration mismatch', 'component not updating'. O modo revisar só lê e relata; a correção só vem quando pedida."
+        },
+        {
+          "name": "design-ui",
+          "description": "Cria ou redesenha UI web em código (landing, dashboard, componente de produto) em fases: brief de 3 linhas, plano com tokens e wireframe ASCII, revisão contra o genérico, build com piso de qualidade e crítica com capturas; inclui modo Figma (design-to-code) só de leitura. Use para 'criar landing page', 'redesenhar esta tela', 'melhorar o visual', 'tokens de design', 'implementar o design do Figma', 'make it look better', 'build a dashboard UI', 'design tokens', 'implement this mockup'. Tokens, marca e componentes do projeto vencem a estética padrão da skill. Para correção visual pontual, dispensa o plano."
+        },
+        {
+          "name": "e2e-tests",
+          "description": "Escreve, revisa e estabiliza testes de UI com Playwright (e2e, componente, visual e acessibilidade com axe) e orienta migração guiada por arquivo de regras, por exemplo Cypress para Playwright. Locators por papel, asserções web-first, isolamento, sem sleep nem networkidle, e regra de nunca atualizar baseline só para a falha sumir. Use para 'escrever teste e2e', 'teste instável', 'flaky', 'regressão visual', 'snapshot falhou', 'migrar de Cypress para Playwright', 'testar este componente', 'write a Playwright test', 'visual regression'. Rodar testes e atualizar baseline exige autorização no chat."
+        },
+        {
+          "name": "forms-and-data",
+          "description": "Implementa e revisa formulários acessíveis e fluxos de dados (busca, estado de servidor, cache, SSR/ISR) respeitando framework e versão: validação nativa e no servidor, erro ligado ao campo, Server Actions com useActionState no Next, reactive forms no Angular, useFetch e useAsyncData no Nuxt, load no SvelteKit, TanStack Query, Cache Components ou ISR, resposta obsoleta e duplo envio. Use para 'criar formulário', 'validação de formulário', 'Server Action', 'useActionState', 'buscar dados', 'cache do Next', 'ISR', 'TanStack Query', 'useFetch do Nuxt', 'load do SvelteKit', 'reactive forms', 'form with validation', 'data fetching'. Lê package.json e a config antes de aplicar qualquer regra."
+        },
+        {
+          "name": "frontend-security-review",
+          "description": "Revisa, só em leitura, riscos de segurança do lado do cliente em código de frontend: sinks de DOM (innerHTML, dangerouslySetInnerHTML, v-html, {@html}, bypassSecurityTrust), origem do dado e sanitização, segredo em variável pública (NEXT_PUBLIC_), token em localStorage, postMessage, open redirect, validação só no cliente, CSP estrita com nonce e Trusted Types. Use para 'revisar segurança do frontend', 'XSS', 'dangerouslySetInnerHTML', 'token no localStorage', 'CSP', 'Trusted Types', 'variável de ambiente pública', 'frontend security review', 'sanitize HTML'. Não explora nada e não substitui threat model nem pentest."
+        },
+        {
+          "name": "perf-audit",
+          "description": "Diagnostica lentidão de página web (LCP, INP, CLS, bundle e entrega) a partir de evidência medida e liga cada causa a arquivos do projeto, com correções priorizadas e plano para remedir nas mesmas condições. Use para 'página lenta', 'melhorar o LCP', 'INP alto', 'layout shift', 'bundle muito grande', 'Core Web Vitals', 'slow page', 'web vitals regression', 'lighthouse'. Sem número medido, lista a evidência que falta e para; não promete ganho em segundos."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Frontend web (React, Next.js, Vue, Nuxt, Svelte, Angular, TypeScript, Tailwind, acessibilidade, performance, formulários, data fetching, testes de UI, design-to-code). Use quando o pedido envolver construir, revisar, depurar ou auditar interface web, componente, página, estado, formulário, CSS, WCAG, Core Web Vitals, teste de UI ou design system; em PT-BR \"frontend\", \"front-end\", \"tela\", \"componente\", \"layout quebrado\", \"página lenta\", \"acessibilidade\"; em EN \"UI review\", \"build a component\", \"fix this layout\", \"hydration mismatch\", \"a11y audit\". Ativa o modo FRONTEND-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados do segmento Frontend web (React, Next.js, Vue, Nuxt, Svelte, Angular, TypeScript, Tailwind, acessibilidade, performance, formulários, testes de UI, design-to-code). Use quando pedirem prompt, template ou mensagem pronta para brief e plano de UI, Figma para código, verificar uma tela, revisar useEffect, use client, tipos TSX ou API de componente, auditar acessibilidade e teclado, diagnosticar página lenta, formulário e Server Action, cache do Next, escrever teste e2e, teste instável, regressão visual, XSS e CSP, ou montar o CLAUDE.md e a mensagem inicial de um projeto frontend. Gatilhos PT-BR - \"me dá um prompt para\", \"prompt pronto\", \"template de prompt frontend\", \"prompt de sistema para o projeto\". Gatilhos EN - \"prompt template for\", \"ready-made prompt\", \"frontend prompt library\". Para executar a tarefa em si, use a skill de tarefa correspondente."
+        },
+        {
+          "name": "verify-ui",
+          "description": "Prova por evidência que uma mudança de UI funciona: escreve o critério de aceite antes, roda os checks do projeto com autorização, abre a tela em 320 px e desktop (Chrome conectado, Playwright do projeto ou capturas do usuário), percorre o fluxo com mouse e só com teclado, lê o console, compara com a referência e registra comando, saída e caminho do artefato. Use para 'confirma que está funcionando', 'testa essa tela', 'tira um screenshot', 'compara com o design', 'o layout quebrou no mobile?', 'verify the UI', 'check it in the browser', 'does this look right'. Sem navegador ou sem comando executável, declara Não verificado em vez de afirmar."
+        }
+      ],
+      "agents": [
+        {
+          "name": "frontend-a11y-reviewer",
+          "description": "Revisor somente leitura de acessibilidade de UI web contra WCAG 2.2 AA (React, Next.js, Vue, Nuxt, Svelte, Angular, HTML e CSS), em contexto limpo. Lê componentes, templates e estilos, avalia teclado, foco, nome acessível, formulários, diálogos, contraste, alvo e reflow, e devolve o relatório completo com severidade e arquivo:linha. Use proactively depois de criar ou alterar formulário, modal, menu, tabela, aba, combobox ou qualquer widget interativo, e para \"revisar acessibilidade\", \"isso passa na WCAG?\", \"testar teclado e foco\", \"accessibility audit\", \"keyboard test\", \"a11y review\". Não edita arquivos e não executa nada; o agente principal grava o relatório se quiser.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "frontend-code-reviewer",
+          "description": "Revisor adversarial somente leitura de diffs, componentes e PRs de teste de frontend web (React, Next.js, Vue, Nuxt, Svelte, Angular, TypeScript, Tailwind, Playwright, Vitest), em contexto limpo, que confere requisito a requisito, estados, fronteira client/server, Effects, tipos, resposta obsoleta, teclado, sinks de HTML e falso verde em testes. Use proactively depois de implementar uma mudança de UI e antes de abrir o PR, e para \"revise este diff\", \"review this component\", \"tem useEffect desnecessário?\", \"está certo esse use client?\", \"revisar PR de teste e2e\". O agente principal cola o diff; o revisor devolve o relatório completo, sem gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "frontend-perf-reviewer",
+          "description": "Diagnostica lentidão de página web (LCP, INP, CLS, bundle, hidratação, cascata de requisições) a partir de evidência entregue pelo chamador e liga cada causa ao arquivo provável, em modo somente leitura. Use proactively quando houver relatório do Lighthouse, trace, lista de rede ou queixa de regressão, e para \"página lenta\", \"melhorar o LCP\", \"INP alto\", \"layout shift\", \"bundle grande\", \"regressão de Core Web Vitals\", \"diagnose slow page\", \"web vitals\". Sem evidência, diz o que falta e para. Não edita arquivos, não executa medições e não promete ganhos numéricos.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "frontend-security-auditor",
+          "description": "Auditor de segurança do lado do cliente web, somente leitura. Inventaria sinks de DOM (innerHTML, dangerouslySetInnerHTML, v-html, bypassSecurityTrust, eval), rastreia a origem do dado, confere sanitização, segredos no bundle (NEXT_PUBLIC_), tokens em localStorage, postMessage, open redirect, validação só no cliente, CSP e Trusted Types, e devolve achados com severidade e correção sem executar exploração. Use proactively ao revisar código que renderiza HTML vindo de API, comentário, markdown ou URL, e para \"XSS\", \"revisão de segurança do frontend\", \"CSP\", \"token no localStorage\", \"frontend security review\", \"sanitize HTML\". Threat model completo e pentest ficam com security-appsec.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "ui-evaluator",
+          "description": "Avaliador independente e cético de tela de produto web a partir de capturas em mobile e desktop e do brief ou plano de UI, com nota de 0 a 10 em design, originalidade, craft e funcionalidade, e veredito de aprovação. Use no fim de uma construção ou verificação de tela de produto (landing, dashboard, fluxo principal) e para \"avalie esta UI\", \"dá uma nota para o design\", \"esse visual está genérico?\", \"critique this page\", \"evaluate the UI\". Não use para componente isolado nem para decidir estética sozinho, porque a nota é insumo e a decisão é humana. Somente leitura; sem captura, não pontua.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
+      "plugin": "backend-api",
+      "displayName": "backend-api",
+      "version": "0.1.0",
+      "description": "Projete, implemente, revise, teste e depure serviços e APIs (REST, GraphQL, gRPC) com contrato OpenAPI, erros RFC 9457, autenticação e autorização, idempotência, paginação, rate limiting e tools para agentes, sempre com verificação por evidência.",
+      "keywords": [
+        "backend",
+        "api",
+        "rest",
+        "openapi",
+        "graphql",
+        "grpc",
+        "oauth2",
+        "jwt",
+        "api-security",
+        "idempotency",
+        "pagination",
+        "rate-limiting",
+        "rfc-9457",
+        "webhooks"
+      ],
+      "mode_keyword": "BACKEND-COMPLETO",
+      "skills": [
+        {
+          "name": "agent-tool-design",
+          "description": "Do lado do serviço/API: desenha, revisa e avalia tools e endpoints consumidos por agentes (function calling, servidor MCP) e integra corretamente a API de um modelo Claude/LLM num backend (tool_use, stop_reason, streaming, prompt caching, saída estruturada). Use para 'tool para agente', 'servidor MCP', 'function calling', 'tool use', 'endpoint que chama o Claude', 'streaming de resposta do modelo', 'prompt caching', 'schema estrito', 'o agente erra a tool' / 'design agent tools', 'MCP server', 'function calling schema', 'tool_use', 'LLM endpoint', 'structured outputs', 'strict tool use'. Arquitetura de agentes, RAG e evals de modelo ficam com llm-ai-agents. Não adiciona chamadas Anthropic a projeto que usa outro provedor sem perguntar."
+        },
+        {
+          "name": "api-contract-design",
+          "description": "Desenha, documenta, revisa e evolui o contrato de uma API (REST; GraphQL e gRPC por referência): recursos, status, schemas, erros RFC 9457, paginação por cursor, ETag/cache, operações longas, versionamento, OpenAPI e classificação de breaking change. Use para 'desenhar endpoint', 'contrato da API', 'OpenAPI', 'swagger', 'paginação', 'versionar a API', 'isso é breaking change?', 'formato de erro', 'problem details', 'deprecar endpoint' / 'design an endpoint', 'API contract', 'OpenAPI spec', 'pagination', 'API versioning', 'breaking change', 'deprecate'. Escreve só spec e docs dentro do pedido; não inventa regra de negócio (marca 'a confirmar')."
+        },
+        {
+          "name": "api-security-review",
+          "description": "Audita a segurança de uma API ou serviço (diff, PR, módulo ou endpoint) com a grade OWASP API Security Top 10 2023, validação de JWT/OAuth2 e hardening REST; somente leitura, relatório de achados com severidade, confiança, arquivo:linha, cenário e correção. Use para 'revisar segurança da API', 'auth', 'JWT', 'OAuth', 'IDOR', 'BOLA', 'RBAC', 'CORS', 'SSRF', 'mass assignment', 'vazamento de dados', 'OWASP' / 'API security review', 'broken object level authorization', 'JWT validation', 'OAuth flow review'. Escopo: segurança do lado da API/serviço; threat modeling amplo, SAST/DAST e compliance ficam com security-appsec. Não executa exploit nem tráfego contra sistemas reais."
+        },
+        {
+          "name": "api-test-suite",
+          "description": "Projeta e escreve testes de API (REST, GraphQL, gRPC, eventos, webhooks) que provam regra de negócio, não só status: oráculo independente, authN x authZ com dois usuários, erro RFC 9457, idempotência, paginação, concorrência, teste de contrato (Pact ou OpenAPI) e fuzz em ambiente descartável. Use para 'testar a API', 'testes de endpoint', 'teste de contrato', 'pact', 'schemathesis', 'cobertura de API', 'teste de integração', 'testes flaky de API' / 'API tests', 'endpoint tests', 'contract testing', 'consumer-driven contract', 'fuzz the API'. Estratégia geral de QA, E2E de UI e carga ficam com qa-testing. Execução contra ambiente compartilhado exige autorização."
+        },
+        {
+          "name": "backend-claude-md-setup",
+          "description": "Gera ou atualiza o bloco de CLAUDE.md de um projeto backend a partir do repositório real (stack, versões, comandos, camadas) e dos snippets validados do plugin, com teste de remoção, tamanho limitado e confirmação do diff antes de gravar. Só roda por comando explícito (/backend-api:backend-claude-md-setup [raiz]), pois grava configuração persistente do projeto. Gatilhos: 'configurar CLAUDE.md do backend', 'criar regras para o agente neste projeto', 'set up CLAUDE.md for this backend'. Não instala hooks nem MCP; apenas oferece o hook documentado, desativado."
+        },
+        {
+          "name": "backend-debugging",
+          "description": "Diagnostica e corrige defeitos de backend com causa raiz antes de correção: erro 500, falha intermitente, timeout, regressão, divergência local x produção, endpoint lento, N+1, esgotamento de pool de conexões. Quatro fases (ler e reproduzir, comparar, uma hipótese, teste que falha e uma correção), medição antes de otimizar e parada após três correções falhas. Use para 'erro 500', 'bug no backend', 'intermitente', 'timeout', 'por que está falhando', 'stack trace', 'regressão', 'funciona local mas não em produção', 'endpoint lento', 'N+1', 'latência alta' / 'debug', 'root cause', 'intermittent failure', 'works locally but not in prod', 'slow endpoint'. Não depura contra produção sem autorização."
+        },
+        {
+          "name": "idempotency-and-resilience",
+          "description": "Torna operações de um serviço seguras sob retry, duplicação e falha parcial: chave de idempotência atômica no banco, timeouts e retries com backoff, rate limiting, webhooks (HMAC, replay, dedupe), filas/jobs at-least-once, DLQ e outbox. Use para 'idempotência', 'cobrou duas vezes', 'retry', 'timeout', 'webhook', 'fila', 'job', 'outbox', 'rate limit', '429', 'circuit breaker', 'evento duplicado' / 'idempotency key', 'duplicate charge', 'retry with backoff', 'webhook signature', 'dead letter queue', 'rate limiting'. Foco no lado do serviço/API; PCI, ledger e iPaaS ficam com outros plugins. Migração é só proposta, testada em banco de teste; nunca gera carga contra ambiente compartilhado."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Backend e APIs — desenhar, implementar, revisar, testar e depurar serviços e APIs (REST, GraphQL, gRPC) com contrato OpenAPI, erros RFC 9457, autenticação e autorização, validação, idempotência, paginação, rate limiting, webhooks, filas e jobs, cache, versionamento e tools para agentes. Use quando o pedido tratar de endpoint, API, serviço, contrato, JWT, OAuth, idempotência, paginação, webhook, rate limit, \"cobrou duas vezes\", \"erro 500\", FastAPI, NestJS, Spring, Go net/http ou ASP.NET / Use for API design, endpoint review, OpenAPI, backend debugging, API security, idempotency, pagination. Também ativa o modo BACKEND-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados do segmento Backend e APIs, prontos para colar ou executar. Use quando o usuário pedir prompt, template ou mensagem inicial pronta para tarefas de backend, como idempotência, OpenAPI, revisão de contrato, segurança de API (OWASP, JWT, OAuth), paginação, erros RFC 9457, rate limit, webhook, retries, depuração, testes de endpoint, teste de contrato, fuzz, tools para agentes, migração, handoff, ou um prompt de sistema/CLAUDE.md para projeto backend. Triggers PT-BR - \"me dê um prompt para\", \"prompt pronto\", \"template de prompt\", \"mensagem inicial\". EN - \"prompt for API review\", \"ready-made prompt\", \"prompt template for idempotency\"."
+        },
+        {
+          "name": "stack-conventions",
+          "description": "Revisa ou escreve código de serviço seguindo as convenções verificadas da stack do projeto e a versão instalada: FastAPI (camadas, response_model, auth), Go net/http 1.22+, NestJS (guards), Spring Security (resource server JWT), ASP.NET Core (tratamento de erros, ProblemDetails) e GraphQL (schema, N+1, profundidade). Detecta stack e versão, abre só a referência da stack e verifica camadas por busca com arquivo:linha. Use para 'revisar meu FastAPI', 'estrutura de projeto Go', 'guard do NestJS', 'resource server Spring', 'erro no ASP.NET', 'schema GraphQL', 'camadas router/service/repository' / 'FastAPI review', 'Go net/http routing', 'NestJS guards', 'Spring Security JWT', 'ASP.NET Core error handling', 'GraphQL schema design'. Rust, Django/DRF, Express/Fastify e tRPC são lacunas declaradas."
+        }
+      ],
+      "agents": [
+        {
+          "name": "api-contract-reviewer",
+          "description": "Revisor de contrato e compatibilidade de API em contexto novo. Use proactively quando um PR tocar OpenAPI, serializers/DTOs, enums, paginação, formato de erro, proto ou schema GraphQL, e antes de publicar nova versão ou remover campo. Classifica cada mudança como compatível ou breaking, aponta consumidores afetados e mitigação, e roda apenas validadores locais de leitura (Spectral, Redocly, oasdiff, buf) se já instalados. Não altera a spec e não instala nada.",
+          "tools": "Read, Grep, Glob, Bash"
+        },
+        {
+          "name": "api-security-reviewer",
+          "description": "Auditor de segurança de API e serviços backend, somente leitura e em contexto novo. Use proactively depois de mudança em rotas, autenticação, autorização, validação, serialização, webhooks ou chamadas a URLs remotas, e quando a skill api-security-review delegar. Cobre OWASP API Top 10 2023, JWT/OAuth (RFC 8725 e RFC 9700), autorização por objeto, propriedade, função e tenant, SSRF, CORS e vazamento de dados; devolve relatório com severidade, confiança e arquivo:linha sem alterar nada. Para threat modeling amplo, SAST/DAST no CI ou privacidade/LGPD, aponte o plugin security-appsec.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "api-test-engineer",
+          "description": "Engenheiro de testes de API (REST, GraphQL, gRPC, eventos e webhooks). Use quando for criar ou reforçar a suíte de um endpoint, escolher e montar teste de contrato (Pact, OpenAPI com Schemathesis ou Prism), cobrir idempotência, paginação, authZ e erros RFC 9457, ou estabilizar teste flaky. Escreve apenas arquivos de teste, roda só em ambiente local ou descartável, vê o teste falhar pelo motivo certo antes do verde e cola a saída. Para estratégia geral de QA e E2E, aponte o plugin qa-testing.",
+          "tools": "Read, Grep, Glob, Bash, Edit, Write"
+        },
+        {
+          "name": "backend-architect",
+          "description": "Arquiteto de serviço backend que entrega decisões, contratos esboçados e ADR, não código. Use quando houver novo serviço ou módulo, mudança de limites, escolha entre REST, GraphQL, gRPC ou tRPC, política de idempotência, versionamento, paginação ou modelo de autorização, e para \"monólito modular ou serviços?\" no nível do serviço. Somente leitura; devolve o ADR completo com caminho sugerido. Para system design amplo, DDD ou C4 aponte architecture-design; para índices e migrações, database-data-modeling.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "backend-debugger",
+          "description": "Depurador de causa raiz para backend e APIs, com correção mínima e teste de regressão. Use proactively diante de erro 500, falha intermitente, timeout, regressão, endpoint lento ou N+1, teste vermelho, ou \"funciona local mas não em produção\". Reproduz, coleta evidência por fronteira, testa uma hipótese por vez, escreve o teste que falha, aplica uma correção e cola a saída. Para depuração sem permissão de editar, devolve o diff proposto. Não toca produção ou staging e não executa migração.",
+          "tools": "Read, Grep, Glob, Bash, Edit, Write"
+        }
+      ]
+    },
+    {
+      "plugin": "mobile-apps",
+      "displayName": "mobile-apps",
+      "version": "0.1.0",
+      "description": "Playbook, skills, agentes e prompts para construir, revisar, depurar e publicar apps mobile (iOS/SwiftUI, Android/Compose, React Native/Expo, Flutter): arquitetura, offline-first, push, permissões, performance, acessibilidade, testes e checklists de App Store e Google Play, com gates de confirmação antes de qualquer envio.",
+      "keywords": [
+        "mobile",
+        "ios",
+        "android",
+        "swiftui",
+        "jetpack-compose",
+        "react-native",
+        "expo",
+        "flutter",
+        "app-store",
+        "play-store",
+        "offline-first",
+        "push-notifications",
+        "accessibility",
+        "eas",
+        "MOBILE-COMPLETO"
+      ],
+      "mode_keyword": "MOBILE-COMPLETO",
+      "skills": [
+        {
+          "name": "mobile-accessibility-review",
+          "description": "Revisa a acessibilidade de telas mobile (SwiftUI, Compose, React Native, Flutter): rótulos, hints, agrupamento, ordem de foco, alvos de toque, texto escalável, contraste, movimento reduzido e gestos, para VoiceOver e TalkBack, com números oficiais (44 pt, 48 dp, 4,5:1, 3:1). Use para 'acessibilidade', 'VoiceOver', 'TalkBack', 'Dynamic Type', 'contraste', 'alvo de toque', 'screen reader', 'accessibility audit', 'a11y', 'revisa acessibilidade das telas de login'. Somente leitura; a passagem com leitor de tela é verificação humana."
+        },
+        {
+          "name": "mobile-architecture-review",
+          "description": "Revisa ou projeta a arquitetura de um app mobile: camadas UI/dados/domínio, dono do estado, fluxo unidirecional, ViewModel e repositório, navegação, injeção de dependência e design offline-first com sincronização e conflitos. Use para 'revisar arquitetura', 'MVVM', 'MVI', 'TCA', 'state hoisting', 'offline-first', 'sincronizar quando voltar a rede', 'fila de sincronização', 'repository pattern', 'architecture review', 'how should I structure my Flutter/Compose/SwiftUI app'. Somente leitura; não migra código sem pedido."
+        },
+        {
+          "name": "mobile-build-troubleshoot",
+          "description": "Diagnostica falhas de build, sync e dependências em apps mobile (Gradle e AGP, Kotlin, CocoaPods e SPM, Xcode, Metro, Expo prebuild, flutter pub) e planeja atualização de SDK (Expo SDK, React Native, AGP, targetSdk, Flutter) a partir do log exato. Use para 'o build quebrou', 'Gradle sync falhou', 'pod install deu erro', 'Metro não sobe', 'atualizar Expo SDK', 'build failed', 'dependency conflict', 'upgrade React Native', 'version solving failed'. Isola a primeira causa, propõe a menor correção e reexecuta o mesmo comando. Não publica nada."
+        },
+        {
+          "name": "mobile-performance-diagnosis",
+          "description": "Diagnostica lentidão, jank, recomposição ou re-render excessivo, cold start e consumo de bateria em apps mobile (Compose, SwiftUI, Flutter, React Native), um eixo por vez e sempre com medição antes e depois. Use para 'app lento', 'travando ao rolar', 'recomposição', 're-render', 'cold start', 'bateria', 'wake lock', 'Doze', 'slow scrolling', 'battery drain', 'frame drops', 'coloca remember e @Immutable em tudo'. Não promete ganho numérico sem medir."
+        },
+        {
+          "name": "mobile-platform-features-check",
+          "description": "Audita, somente leitura, recursos de plataforma de apps mobile: push (APNs e FCM), permissões em tempo de execução e purpose strings, deep links (Universal Links e App Links) e armazenamento seguro (Keychain, Keystore), com checklist por plataforma e MASVS. Use para 'push notification', 'permissão de câmera/localização', 'deep link', 'universal link', 'assetlinks', 'armazenar token', 'Keychain', 'Keystore', 'POST_NOTIFICATIONS', 'no Android 13 não chegam notificações', 'segredo no app'. Preparação de contas Apple/Google é ação do usuário."
+        },
+        {
+          "name": "mobile-release-pipeline",
+          "description": "Prepara e, somente após confirmação explícita do usuário, conduz passos de pipeline de release mobile: EAS Build/Submit/Update, fastlane match e pilot, archive e TestFlight pelo Xcode, publicação Play por Gradle. Invocação manual. Use ao pedir 'publicar update', 'eas update', 'gerar build de produção', 'enviar para TestFlight', 'promover trilha', 'release pipeline', 'ship to TestFlight', 'submit to the stores'. Toda ação externa passa por uma ficha de ação confirmada; nunca aciona Submit for Review."
+        },
+        {
+          "name": "mobile-store-release-check",
+          "description": "Audita, somente leitura, a prontidão de um app mobile para App Store e Google Play: App Review Guidelines, privacy manifest, purpose strings, target API, exclusão de conta, Data safety, permissões sensíveis e conta de demonstração. Use quando o usuário disser 'vou publicar', 'checklist de release', 'a Apple rejeitou', 'preparar submissão', 'Play Console', 'store review readiness', 'pre-submission check', 'app rejected'. Não envia nada às lojas nem altera o projeto."
+        },
+        {
+          "name": "mobile-test-strategy",
+          "description": "Define a estratégia e o plano de testes de apps mobile por camada e por plataforma: unitário, ViewModel com fake, UI (Compose test, XCTest e XCUIAutomation, widget test, React Native Testing Library), integração e E2E (Maestro, Detox, Patrol), mais matriz de risco de dispositivos, ciclo de vida, rede e operações ambíguas. Use para 'como testar', 'plano de testes', 'E2E', 'Maestro', 'Detox', 'XCUITest', 'Compose test', 'integration_test', 'test strategy for my app', 'matriz de dispositivos'. Planeja; escrever e rodar testes é do agente mobile-test-engineer."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Aplicativos mobile (iOS/SwiftUI, Android/Compose, React Native/Expo, Flutter). Use ao projetar, implementar, revisar, depurar, testar ou publicar apps mobile - arquitetura (MVVM/MVI/TCA), offline-first e sincronização, push, permissões, deep links, performance e bateria, acessibilidade, build quebrado, App Store, Play Store, TestFlight e EAS. Gatilhos PT-BR e EN - \"app mobile\", \"aplicativo iOS\", \"app Android\", \"SwiftUI\", \"Compose\", \"React Native\", \"Expo\", \"Flutter\", \"publicar na loja\", \"fui rejeitado na App Store\", \"iOS sem Mac\", \"mobile app review\", \"ship to App Store\", \"store readiness\". Também ativa o modo MOBILE-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados do segmento de aplicativos mobile (iOS/SwiftUI, Android/Compose, React Native/Expo, Flutter). Use quando pedirem prompt, template ou mensagem pronta para revisar SwiftUI ou Compose, diagnosticar performance, bateria ou build quebrado, desenhar offline-first, auditar push, permissões, deep links e armazenamento seguro, planejar testes, checar App Store e Google Play, preparar EAS Update com gate de confirmação, escrever notas de versão, ou montar o CLAUDE.md e a mensagem inicial de um projeto mobile. Gatilhos PT-BR - \"me dê um prompt para\", \"prompt pronto\", \"template de prompt mobile\", \"prompt de sistema para o app\". Gatilhos EN - \"mobile prompt template\", \"prompt for SwiftUI review\", \"ready-made prompt for release check\". Para executar a tarefa em si, use a skill de tarefa correspondente."
+        },
+        {
+          "name": "swift-ios-review",
+          "description": "Revisa código Swift e SwiftUI: APIs obsoletas, views, dados e estado, navegação, acessibilidade, performance, e triagem de erros de Swift Concurrency (Sendable, isolamento, @MainActor, Swift 6). Use para 'revisar SwiftUI', 'Swift 6', 'data race', 'Sendable', '@Observable', 'StateObject', 'refatorar view', 'review my SwiftUI code', 'concurrency warnings', 'strict concurrency'. Somente leitura: devolve achados por arquivo, linha e regra com antes e depois mínimos; build e testes exigem macOS."
+        }
+      ],
+      "agents": [
+        {
+          "name": "mobile-architect",
+          "description": "Arquiteto mobile somente leitura que desenha ou revisa a arquitetura de um app (camadas, dono do estado, navegação, offline-first com sincronização e conflitos, escolha nativo vs React Native/Expo vs Flutter) e devolve um plano em fatias verticais e, quando há decisão material, um ADR, tudo ancorado no código existente. Use proactively ao iniciar uma feature que cruza UI, dados e rede, e para pedidos como \"desenhe a arquitetura\", \"offline-first\", \"sincronização\", \"MVVM ou MVI\", \"state hoisting\", \"architecture review\", \"design the sync\". Não edita arquivos; devolve o documento completo com o caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "mobile-pr-reviewer",
+          "description": "Revisor adversarial somente leitura de diffs e PRs de apps mobile (SwiftUI, Compose, React Native/Expo, Flutter) em contexto limpo, que confere requisito a requisito, casos de borda com teste, mudanças fora do escopo e o checklist da plataforma (estado e ciclo de vida, concorrência, acessibilidade, permissões, dados sensíveis). Use proactively depois de implementar uma mudança mobile e antes de abrir o PR, e para \"revise este diff\", \"code review do app\", \"review my mobile PR\", \"tem algo errado nesse Compose/SwiftUI/RN/Flutter\". O agente principal cola o diff no pedido; o revisor devolve o relatório completo, sem gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "mobile-release-auditor",
+          "description": "Auditor somente leitura de prontidão para App Store e Google Play que lê Info.plist, PrivacyInfo.xcprivacy, entitlements, AndroidManifest, Gradle e app.json/app.config e devolve um relatório por prioridade (risco provável de rejeição, alto, médio, baixo), com ações do usuário e itens não verificáveis. Use proactively antes de uma submissão e depois de uma rejeição; também para \"vou publicar\", \"checklist da App Store/Play\", \"a Apple rejeitou\", \"store readiness\", \"pre-submission check\", \"target API\", \"Data safety\". Nunca envia nada a loja; devolve o relatório completo e o caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "mobile-security-auditor",
+          "description": "Auditor de segurança de apps mobile, somente leitura, organizado pelos oito grupos do OWASP MASVS (armazenamento, criptografia, autenticação, rede, plataforma, código, resiliência, privacidade), procurando segredos e chaves de serviço no cliente, token em armazenamento inseguro, uso de Keychain e Keystore, deep links sem validação, permissões, logs com dados pessoais e configuração de rede. Use proactively antes de uma release ou ao tocar autenticação, armazenamento, links e rede; também para \"segurança do app\", \"MASVS\", \"segredo no cliente\", \"onde guardo o token\", \"mobile security review\", \"audit my app's storage\". Devolve o relatório completo e o caminho sugerido, sem gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "mobile-test-engineer",
+          "description": "Engenheiro de testes mobile que escreve ou ajusta testes (unitário com fake, Compose test, Swift Testing e XCTest, widget test, Jest e React Native Testing Library, fluxos Maestro) no framework que o projeto já usa e executa somente os comandos que o pedido indicar. É o único agente do plugin com permissão de escrita. Use quando o pedido for \"escreva os testes\", \"cubra este ViewModel\", \"adicione teste de regressão\", \"write tests for this screen\", \"teste de transição de rede\". Grava apenas nos caminhos de teste indicados no pedido e devolve evidência colada do que rodou.",
+          "tools": "Read, Grep, Glob, Edit, Write, Bash"
+        }
+      ]
+    },
+    {
+      "plugin": "database-data-modeling",
+      "displayName": "database-data-modeling",
+      "version": "0.1.0",
+      "description": "Modelagem, SQL, índices, planos de execução, transações, migrações sem downtime, multi-tenant e backup para PostgreSQL, MySQL, SQLite, SQL Server, MongoDB, Redis e DynamoDB, com agentes somente leitura e rótulos de evidência.",
+      "keywords": [
+        "database",
+        "sql",
+        "postgresql",
+        "mysql",
+        "sqlite",
+        "mongodb",
+        "redis",
+        "dynamodb",
+        "data-modeling",
+        "indexing",
+        "query-plan",
+        "transactions",
+        "migrations",
+        "multi-tenant",
+        "DADOS-COMPLETO"
+      ],
+      "mode_keyword": "DADOS-COMPLETO",
+      "skills": [
+        {
+          "name": "backup-restore-runbook",
+          "description": "Cria e revisa planos e runbooks de backup, restore e PITR (PostgreSQL em profundidade; Redis detalhado; MySQL, SQL Server, MongoDB, DynamoDB, SQLite em modo genérico) com RPO/RTO, teste de restauração em ambiente isolado e rollback. Gatilhos: 'backup', 'restore', 'PITR', 'pg_dump', 'pg_restore', 'RPO', 'RTO', 'disaster recovery', 'restaurar banco', 'banco corrompeu'. Entrega documento e comandos para o usuário executar; não executa nada, nem restore. Evite acionar para backup de arquivos/volumes de infraestrutura ou provisionamento de banco gerenciado (devops-cloud-infra)."
+        },
+        {
+          "name": "db-agent-safety",
+          "description": "Manual. Aplica regras de uso seguro de banco pelo agente em três modos (audit, careful, freeze-migrations) e audita como o agente chega ao banco neste projeto: credenciais, papéis, MCP de banco, permissões, sandbox, hooks e backups. Use com /database-data-modeling:db-agent-safety [audit|careful|freeze-migrations]. Os modos são instruções de sessão, não barreiras técnicas; a barreira real é papel de banco somente leitura mais permissões."
+        },
+        {
+          "name": "db-schema-and-sql",
+          "description": "Projeta e revisa schema relacional e SQL (PostgreSQL, MySQL, SQLite, SQL Server): tabelas, chaves, constraints, tipos, normalização, índices de suporte, consultas parametrizadas e privilégios do papel da aplicação. Use ao escrever SQL, modelar tabelas, revisar queries de ORM ou checar risco de SQL injection. Gatilhos: 'modelar tabelas', 'schema', 'chave estrangeira', 'normalização', 'revisar SQL', 'SQL injection', 'design a table', 'write a query', 'primary key', 'data types'. Evite acionar para ALTER em tabela existente com dados (use safe-migrations), consulta lenta (query-plan-and-indexing), NoSQL (nosql-data-modeling) ou ETL/dbt (data-engineering)."
+        },
+        {
+          "name": "nosql-data-modeling",
+          "description": "Modela e revisa dados NoSQL pelo padrão de acesso: MongoDB (embutir vs referenciar, limite de 16 MB, antipadrões), DynamoDB (partition/sort key, GSIs, chaves de alta cardinalidade) e Redis (estrutura, nomes de chave, persistência RDB/AOF, backup). Gatilhos: 'MongoDB', 'banco de documentos', 'DynamoDB', 'partition key', 'single-table', 'Redis', 'modelar cache no Redis', 'embed or reference', 'RDB AOF', 'access patterns'. Começa sempre pelas perguntas que o sistema precisa responder. Evite acionar para cache HTTP/CDN (architecture-design, backend-api), bancos vetoriais para RAG (llm-ai-agents) ou lakehouse/warehouse (data-engineering)."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Bancos de dados e modelagem. Use ao projetar schema, escrever ou revisar SQL, criar índices, ler planos de execução (EXPLAIN), tratar transações, isolamento, locks e deadlocks, planejar migrações sem downtime (expand/contract), revisar migração gerada por ORM, multi-tenant e RLS, backup e restore, particionamento, ou modelar MongoDB, Redis e DynamoDB. Gatilhos PT/EN - \"modelar banco\", \"migração\", \"índice\", \"consulta lenta\", \"plano de execução\", \"lock\", \"deadlock\", \"backup\", \"restore\", \"multi-tenant\", \"schema design\", \"slow query\", \"zero downtime\", \"isolation level\". Também ativa o modo DADOS-COMPLETO quando o usuário pedir explicitamente. Não use para pipelines/ETL (data-engineering) nem para ML."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados do segmento Bancos de dados e modelagem - 28 prompts prontos para revisar migração (PostgreSQL, MySQL), planejar expand/contract e backfill, ensaiar migração, ler EXPLAIN, diagnosticar consulta lenta, desenhar índice e paginação, modelar schema relacional e NoSQL (MongoDB, DynamoDB, Redis), revisar transação e isolamento, testar concorrência, auditar RLS, escolher tenancy, particionar, planejar backup e restore, revisar SQL injection, migração de ORM e MCP de banco, validar dados pós-escrita, além de um prompt de sistema para CLAUDE.md e uma mensagem inicial sugerida. Use quando o usuário pedir prompt, template ou texto pronto para essas tarefas (\"me dê um prompt para revisar migração\", \"prompt para ler EXPLAIN\", \"template de ADR de tenancy\", \"mensagem inicial para tarefa de banco\", \"prompt for schema design\", \"migration review prompt\"). Entrega o prompt preenchido; para executar a tarefa agora, use as skills do plugin."
+        },
+        {
+          "name": "query-plan-and-indexing",
+          "description": "Diagnostica consultas lentas, interpreta planos de execução (PostgreSQL EXPLAIN ANALYZE/BUFFERS; SQLite com limite de fonte; MySQL e SQL Server em modo genérico) e desenha índices (multicoluna, cobertura, expressão, parcial) e paginação por seek. Gatilhos: 'consulta lenta', 'plano de execução', 'seq scan', 'índice', 'paginação', 'OFFSET lento', 'slow query', 'explain analyze', 'covering index', 'N+1', 'ORM lento'. Pede ao usuário a saída do EXPLAIN em vez de executar em produção. Evite acionar para SQL analítico de warehouse (data-engineering) ou profiling geral de aplicação (sre-observability)."
+        },
+        {
+          "name": "rls-tenant-review",
+          "description": "Escolhe e revisa o isolamento multi-tenant em banco relacional (tenant_id compartilhado, schema por tenant, banco por tenant, sharding) e audita Row-Level Security do PostgreSQL: políticas USING/WITH CHECK, BYPASSRLS, FORCE, contexto de tenant por transação com pool, views, funções SECURITY DEFINER. Gatilhos: 'multi-tenant', 'RLS', 'row level security', 'tenant_id', 'vazamento entre clientes', 'noisy neighbor', 'tenant isolation', 'SaaS isolation'. Evite acionar para billing, SSO/RBAC ou ciclo de vida de tenant (saas-multitenant) e para autorização por objeto na aplicação (security-appsec)."
+        },
+        {
+          "name": "safe-migrations",
+          "description": "Planeja e revisa migrações de banco sem downtime: lock por DDL, CREATE INDEX CONCURRENTLY, NOT VALID/VALIDATE, expand/contract, backfill em lotes, rollback e ensaio em cópia; trata migração gerada por ORM (Alembic, Django, EF, Prisma, TypeORM, Flyway, Liquibase) como rascunho. Gatilhos: 'migração', 'ALTER TABLE', 'adicionar coluna', 'renomear coluna', 'trocar tipo', 'NOT NULL', 'backfill', 'zero downtime', 'migration review', 'expand contract', 'lock_timeout'. Nunca aplica a migração: entrega plano e SQL revisado. Evite acionar para criar tabela nova sem dados (db-schema-and-sql) ou para ordem de migração no pipeline de deploy (devops-cloud-infra)."
+        },
+        {
+          "name": "transactions-and-isolation",
+          "description": "Analisa transações, níveis de isolamento, locks, deadlocks e race conditions (estoque negativo, saldo, reserva, upsert) por SGBD e propõe correção (UPDATE condicional, lock explícito, controle otimista, retry de 40001) com teste concorrente coordenado. Gatilhos: 'race condition', 'deadlock', 'isolation level', 'transação', 'SERIALIZABLE', 'lock wait', 'saldo negativo', 'estoque negativo', 'double spend', 'optimistic locking'. Evite acionar para idempotência de endpoint ou filas (backend-api) e ledger contábil (fintech-payments); aqui fica só a garantia no banco."
+        }
+      ],
+      "agents": [
+        {
+          "name": "db-migration-planner",
+          "description": "Transforma uma mudança de schema ou de dados em plano por fases (expand, backfill, verificação, migrate, contract, limpeza) com lock declarado por DDL, orçamentos, critério de interrupção, rollback versus restauração e roteiro de ensaio em cópia. Delegue para mudança de tipo, renomeação ou remoção de coluna, tabela grande, backfill, mudança de PK, particionamento ou troca de engine. Gatilhos - \"plano de migração\", \"renomear coluna sem downtime\", \"trocar tipo em tabela de 100 milhões\", \"zero downtime migration plan\", \"expand contract\". Devolve o plano completo com caminho sugerido; não aplica nada. Read-only.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "db-query-analyst",
+          "description": "Interpreta planos de execução e consultas lentas (PostgreSQL EXPLAIN ANALYZE e BUFFERS em profundidade; SQLite EXPLAIN QUERY PLAN; MySQL e SQL Server em modo genérico), detecta N+1 de ORM e propõe índices, reescritas e paginação por seek, sempre pedindo ao usuário a saída do plano em vez de executar. Delegue quando o usuário cola um EXPLAIN, relata lentidão ou pede revisão de índice e de acesso de ORM. Gatilhos - \"consulta lenta\", \"analise este plano\", \"seq scan\", \"qual índice criar\", \"OFFSET lento\", \"slow query\", \"N+1\", \"explain analyze\". Devolve o relatório completo com caminho sugerido. Read-only. Não executa SQL.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "db-reviewer",
+          "description": "Revisor adversarial somente leitura, em contexto limpo, de mudanças de banco de dados - migrações, DDL, SQL e consultas de ORM, índices, transações, RLS e modelos NoSQL (PostgreSQL, MySQL, SQLite, SQL Server, MongoDB, Redis, DynamoDB). Use proactively ao alterar migrations, queries, índices ou políticas RLS, antes de aplicar uma migração e como revisão final de qualquer entrega de banco. Gatilhos - \"revise esta migração\", \"review my SQL\", \"esse ALTER TABLE é seguro\", \"pode aplicar em produção\", \"revisar PR de banco\". O agente principal cola o diff e o contexto no pedido; o revisor devolve o relatório completo com caminho sugerido, sem gravar. Read-only. Não executa SQL.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "db-schema-architect",
+          "description": "Desenha modelo de dados - relacional por invariantes e consultas críticas; MongoDB, DynamoDB e Redis pelos padrões de acesso - com ADR curto, índices de suporte, estratégia de tenancy e particionamento só quando necessário. Delegue para modelo novo, refatoração grande de schema, escolha de engine, de modelo multi-tenant ou de chave de partição. Gatilhos - \"modelar o banco de\", \"desenhar o schema\", \"qual banco usar\", \"design the data model\", \"embed or reference\", \"partition key\", \"multi-tenant schema\". Devolve o documento completo com caminho sugerido; não grava e não executa SQL. Read-only.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "db-security-auditor",
+          "description": "Audita segurança de dados em código e configuração, somente leitura - injeção SQL e NoSQL, privilégios do papel da aplicação, segredos de banco, Row-Level Security e isolamento multi-tenant, exposição de dados em logs e erros, criptografia em trânsito e repouso, e como o agente de IA acessa o banco (MCP, credenciais, permissões). Delegue em mudança de autenticação ou tenant, PR com SQL dinâmico, antes de ligar MCP de banco e em revisão de RLS. Gatilhos - \"audite a segurança do banco\", \"SQL injection\", \"vazamento entre tenants\", \"RLS está seguro\", \"secrets no repo\", \"database security review\". Devolve o relatório completo com caminho sugerido. Read-only. Não executa SQL.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
+      "plugin": "llm-ai-agents",
+      "displayName": "llm-ai-agents",
+      "version": "0.1.0",
+      "description": "Playbook, skills de tarefa, subagentes somente leitura e biblioteca de prompts para projetar, revisar e testar aplicações LLM e agentes: engenharia de prompt e de contexto, tool use e MCP, RAG medido, evals e LLM-as-judge, defesa contra prompt injection, custo e cache, e autoria de CLAUDE.md, skills e plugins.",
+      "keywords": [
+        "llm",
+        "ai-agents",
+        "prompt-engineering",
+        "context-engineering",
+        "tool-use",
+        "mcp",
+        "rag",
+        "evals",
+        "llm-as-judge",
+        "prompt-injection",
+        "guardrails",
+        "subagents",
+        "skills",
+        "prompt-caching",
+        "agent-sdk",
+        "ia-completo"
+      ],
+      "mode_keyword": "IA-COMPLETO",
+      "skills": [
+        {
+          "name": "agent-architecture",
+          "description": "Projeta e revisa arquitetura de agentes e workflows com LLM: workflow ou agente, multiagente, delegação a subagentes, gestão de contexto, harness de tarefa longa, escolha entre Agent SDK, CLI, SDK cliente e Managed Agents. Use para 'preciso de agente?', orquestrador, subagentes, contexto estourando, tarefa longa, agent architecture, multi-agent. Não use para system design geral sem LLM (architecture-design) nem para revisar código cliente (llm-api-client-review)."
+        },
+        {
+          "name": "agent-security-review",
+          "description": "Revisa a segurança de agentes e apps LLM: prompt injection direta e indireta, trifecta letal, Regra de Dois (cartão A/B/C), permissões, exfiltração, agência excessiva, OWASP LLM Top 10. Use para 'meu agente é seguro?', prompt injection, guardrails, revisar permissões de agente, agent security, threat model de LLM. Não use para AppSec geral sem LLM, como OWASP Top 10 web ou LGPD (security-appsec)."
+        },
+        {
+          "name": "eval-design",
+          "description": "Projeta avaliações para aplicações LLM, agentes, RAG, skills e plugins: dataset a partir de falhas reais, graders de código, juiz LLM binário calibrado, pass@k e pass^k, `claude plugin eval`. Use para 'como avaliar', evals, LLM-as-judge, regressão de prompt, golden set, benchmark, medir skill, analisar transcrições de falhas. Não use para testes de software sem LLM (qa-testing)."
+        },
+        {
+          "name": "instruction-authoring",
+          "description": "Escreve e revisa CLAUDE.md, AGENTS.md, skills (SKILL.md), subagentes e plugins do Claude Code, e escolhe onde colocar cada instrução (hook, regra, skill, subagente). Use para criar ou enxugar CLAUDE.md, criar skill, 'minha skill não dispara', otimizar description, criar subagente, empacotar plugin; write CLAUDE.md, skill trigger, plugin checklist. Não use para prompts de aplicação (llm-prompt-review) nem para construir servidor MCP ou hook (automation-integrations)."
+        },
+        {
+          "name": "llm-api-client-review",
+          "description": "Revisa código que chama a API Claude ou o Agent SDK: loop de tool use, tool_choice, saídas estruturadas, streaming, citações, prompt caching, contagem de tokens, telemetria OpenTelemetry. Use para revisar cliente LLM, JSON inválido, prefill, cache não acerta, stream de tool, API client review, telemetria de LLM. Não use para decidir RAG, fine-tuning ou modelo (llm-decision-gates)."
+        },
+        {
+          "name": "llm-decision-gates",
+          "description": "Decide entre prompt, RAG e fine-tuning; planeja RAG (chunking, embeddings, reranking, citações) com medição; escolhe modelo e effort; estima custo e latência com preços datados, cache e Batch. Use para 'fine-tuning ou RAG?', chunking, embeddings, qual modelo, custo de tokens, latência, reduzir custo, RAG vs contexto longo. Não use para revisar código do cliente (llm-api-client-review) nem para treinar modelos na prática (data-science-ml)."
+        },
+        {
+          "name": "llm-prompt-review",
+          "description": "Revisa, reescreve e poda prompts, system prompts, templates e prompts de agente para modelos Claude atuais, com checklist de 12 itens e plano de teste. Use quando pedirem revisar, melhorar ou podar prompt, migrar prompt para outro modelo, 'meu prompt ignora instruções', 'prompt muito longo', prefill, prompt review, prompt migration. Não use para SKILL.md, CLAUDE.md ou subagentes (instruction-authoring) nem para código cliente da API (llm-api-client-review)."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Aplicações LLM, agentes e engenharia de prompt. Use quando o usuário pedir para escrever, revisar ou podar prompts e system prompts; projetar agentes, subagentes ou multiagentes; desenhar ferramentas e servidores MCP; montar RAG, evals ou LLM-as-judge; proteger agentes contra prompt injection; reduzir custo ou latência, usar prompt caching; decidir entre prompt, RAG e fine-tuning; ou escrever CLAUDE.md, skills e plugins. Gatilhos - prompt, system prompt, agente, subagente, RAG, evals, juiz LLM, injeção de prompt, MCP, tool use, context engineering, caching, custo de tokens, Agent SDK; agent design, prompt review, LLM evaluation. Também ativa o modo IA-COMPLETO quando o usuário pedir explicitamente. Não use para ML clássico, pipelines de dados nem CRUD sem LLM."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de 39 prompts curados para LLM e agentes, prontos para colar, com variáveis, motivo e fonte. Cobre revisão e poda de prompts, migração de modelo, tarefa com critério verificável, spec, revisão adversarial, briefing de subagente, contexto e handoff, CLAUDE.md, avaliação e juiz LLM, segurança de agentes e política contra injeção, RAG, custo, cache e telemetria, prompt de sistema e mensagem inicial IA-COMPLETO. Use quando pedirem 'um prompt para', 'template de briefing', 'prompt de juiz', 'prompt de sistema para meu projeto', 'ready-made prompt for' essas tarefas. Indica qual prompt usar; não executa a tarefa do prompt."
+        },
+        {
+          "name": "tool-design-review",
+          "description": "Revisa e melhora definições de tools para agentes e servidores MCP: descrição, schema, nomes de parâmetro, erros, formato de saída, paginação, orçamento de tokens, segurança e autorização MCP. Use para 'revisa esta tool', desenhar ferramenta, MCP server, tool use, tool schema. Não use para revisar o loop de tool use no código cliente (llm-api-client-review)."
+        }
+      ],
+      "agents": [
+        {
+          "name": "agent-architect",
+          "description": "Arquiteto de agentes e workflows com LLM, somente leitura, que analisa requisitos e código existente e devolve um brief de arquitetura: chamada única, workflow ou agente; multiagente só se justificado; contexto, delegação a subagentes, harness de tarefa longa, superfície (Agent SDK, CLI, API, Managed Agents), cartão A/B/C e plano de eval. Use proactively ao iniciar um projeto de agente e para 'preciso de agente ou workflow?', 'multiagente vale a pena?', 'contexto estourando', 'tarefa longa', 'agent architecture', 'orchestrator-workers'. Não implementa; devolve o documento completo com caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "agent-security-reviewer",
+          "description": "Auditor de segurança, somente leitura, de agentes e apps LLM: prompt injection direta e indireta, trifecta letal e Regra de Dois (cartão A/B/C), permissões e allowlists, exfiltração, saída do modelo tratada como confiável, agência excessiva, servidores MCP e OWASP LLM Top 10. Use proactively quando entrar um agente novo, uma ferramenta nova, uma fonte de dados nova ou mudança de permissões. Gatilhos: 'meu agente é seguro?', 'revisar permissões do agente', 'prompt injection', 'threat model de LLM', 'is this agent safe'. Devolve o relatório completo com caminho sugerido; não edita nem ataca nada.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "eval-designer",
+          "description": "Projetista de avaliações para prompts, agentes, RAG, skills e plugins, somente leitura: monta suíte de 20 a 50 casos a partir de falhas reais, rubrica, graders de código antes de juiz LLM, plano de calibração do juiz (TPR/TNR), protocolo de execução com pass@k e pass^k, custo e casos para claude plugin eval. Use proactively antes de mudar um prompt, skill ou agente e depois de uma falha em produção. Gatilhos: 'como avaliar isso?', 'monte o dataset de eval', 'juiz LLM', 'golden set', 'regressão de prompt', 'eval plan'. Devolve o documento completo com caminho sugerido; não executa avaliação nem chama modelo.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "prompt-reviewer",
+          "description": "Revisor somente leitura, em contexto limpo, de prompts de aplicação, system prompts, templates, SKILL.md, subagentes, comandos e CLAUDE.md/AGENTS.md para modelos Claude atuais: motivo das regras, tom, estrutura XML, exemplos, formato de saída, verificação, escopo, conteúdo externo como dado, prefill e budget_tokens obsoletos. Use proactively depois de criar ou editar um desses arquivos e antes de publicar. Gatilhos: 'revise este prompt', 'meu prompt ignora regras', 'poda para o modelo novo', 'review my system prompt', 'check this SKILL.md'. Devolve o relatório completo com caminho sugerido para o agente principal gravar; não edita nada.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "rag-pipeline-reviewer",
+          "description": "Revisor somente leitura de código e configuração de RAG e de uso de citações: gate 'a base cabe no contexto?', chunking medido, embeddings e input_type, busca híbrida, reranking, filtro por tenant, citações (documentos e search_result), tratamento de resposta sem fonte, injeção em documento indexado e avaliação separada de recuperação e geração. Use proactively ao revisar ou alterar um pipeline de recuperação. Gatilhos: 'revisa meu RAG', 'chunking', 'embeddings', 'reranker', 'a resposta inventa fonte', 'citações', 'review my retrieval pipeline'. Devolve o relatório completo com caminho sugerido; não edita nem executa.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
+      "plugin": "devops-cloud-infra",
+      "displayName": "devops-cloud-infra",
+      "version": "0.1.0",
+      "description": "Escreva, revise, planeje e diagnostique infraestrutura (Terraform/OpenTofu/Pulumi, Docker, Kubernetes/Helm, GitOps, GitHub Actions, segredos, canary/blue-green, serverless e custo) com gate humano antes de qualquer mudança real e evidência executável em cada entrega.",
+      "keywords": [
+        "devops",
+        "cloud",
+        "infrastructure-as-code",
+        "terraform",
+        "kubernetes",
+        "docker",
+        "gitops",
+        "github-actions",
+        "secrets-management",
+        "progressive-delivery",
+        "supply-chain",
+        "troubleshooting"
+      ],
+      "mode_keyword": "DEVOPS-COMPLETO",
+      "skills": [
+        {
+          "name": "cloud-review",
+          "description": "Revisa serviços e arquitetura na nuvem - AWS Lambda, Azure Functions, Cloud Run - e questões de Well-Architected (AWS, GCP, Azure), custo e FinOps (Infracost, Cost Optimization) e plataforma interna (golden path, self-service). Use ao pedir 'revisar lambda', 'serverless review', 'azure functions', 'cloud run', 'Well-Architected', 'quanto vai custar', 'estimar custo do terraform', 'platform engineering', 'golden path', 'review my cloud architecture', ou antes de PR que crie uma função ou serviço gerenciado. Topologia e multi-região ficam em architecture-design."
+        },
+        {
+          "name": "deploy-infra",
+          "description": "Conduz plano, revisão e aplicação de uma mudança de infraestrutura já revisada, com gates de aprovação, alvo confirmado e verificação pós-mudança. Use apenas quando o usuário pedir explicitamente 'aplicar', 'apply', 'deploy' ou 'subir' uma mudança de infra já revisada."
+        },
+        {
+          "name": "gha-hardening-review",
+          "description": "Revisa e escreve workflows do GitHub Actions e pipelines de CI/CD com foco em segurança e confiabilidade - pin por SHA, permissions mínimas, script injection, pull_request_target, OIDC, environments com aprovação, cache, concorrência, segredos e supply chain (SLSA, cosign) - incluindo o uso de claude-code-action. Use ao pedir 'revisar workflow', 'GitHub Actions seguro?', 'harden my CI', 'pin por SHA', 'pull_request_target', 'assinar imagem', 'claude no CI', 'cria um workflow de CI', 'write a GitHub Actions pipeline', ou antes de PR que altere .github/workflows. GitLab CI e Azure Pipelines - ver Gotchas."
+        },
+        {
+          "name": "helm-gitops-review",
+          "description": "Escreve e revisa Helm charts (Chart.yaml, values, templates) contra as convenções oficiais, roda lint e renderização local, e revisa configuração GitOps - Argo CD (Application, ApplicationSet, sync, prune, self-heal) e Flux (Kustomization, HelmRelease, dependsOn, SOPS) - quanto a segredos, ordem, drift e rollback. Use ao pedir 'revisar helm chart', 'helm review', 'checar values.yaml', 'cria um chart helm', 'write a helm chart', 'argocd', 'flux', 'gitops review', 'applicationset', ou antes de PR em repositório de config. Manifests puros ficam em iac-review."
+        },
+        {
+          "name": "iac-review",
+          "description": "Escreve e revisa infraestrutura como código - Terraform/OpenTofu/Pulumi, Dockerfile, docker-compose e manifests Kubernetes - contra checklists de segurança e boas práticas oficiais; na revisão devolve achados por severidade com arquivo:linha e evidência, na autoria gera o arquivo já conforme e roda os checks disponíveis. Use ao pedir 'revisar terraform', 'review my Dockerfile', 'k8s manifest review', 'checar IaC', 'esse compose é seguro?', 'tfvars com segredo?', 'revisar o plan', 'escreve um Dockerfile', 'cria um módulo terraform', 'write a k8s deployment', ou antes de abrir PR de infra. Para workflows de CI use gha-hardening-review; para charts Helm e GitOps use helm-gitops-review."
+        },
+        {
+          "name": "infra-troubleshoot",
+          "description": "Diagnostica em modo leitura por que um deploy, Pod, release Helm, sync do Argo CD ou Flux, terraform plan/apply ou job de CI/CD falhou e propõe a correção com evidência - CrashLoopBackOff, ImagePullBackOff, Pending, OOMKilled, probe falhando, OutOfSync/Degraded, state lock, erro de provider, job vermelho ou verde por engano. Use ao pedir 'por que o pod não sobe', 'debug deploy', 'pipeline falhou', 'CrashLoopBackOff', 'helm upgrade falhou', 'erro no terraform plan', 'why is my deployment failing', 'fix my CI'. Organização de incidente e postmortem ficam em sre-observability."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento DevOps, cloud e infraestrutura. Use quando o pedido envolver escrever, revisar, planejar, endurecer, entregar ou diagnosticar infraestrutura e entrega - Terraform/OpenTofu/Pulumi, Dockerfile e compose, Kubernetes e Helm, GitOps (Argo CD, Flux), GitHub Actions e CI/CD, segredos, deploy blue-green/canary e rollback, serverless (Lambda, Azure Functions, Cloud Run), custo/FinOps, AWS/GCP/Azure, ou as permissões de um agente em repositório de infra. Gatilhos - terraform, tofu, kubectl, helm, pipeline falhou, deploy, rollback, infra, revisar IaC, write a Dockerfile, review my Dockerfile, harden my CI, gitops. Também ativa o modo DEVOPS-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "progressive-delivery",
+          "description": "Planeja e revisa deploy progressivo - blue-green, canary, Argo Rollouts, Flagger, feature flags - com critérios de rollout e rollback definidos antes do deploy, incluindo o que não reverte (schema, state, dados, e-mail enviado). Use ao pedir 'canary', 'blue-green', 'rollback plan', 'plano de rollout', 'argo rollouts', 'flagger', 'feature flag', 'como reverter essa release', 'estratégia de deploy', 'zero downtime', ou ao criar um Rollout/Canary. Não promove, aborta nem aplica nada."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de 32 prompts curados de DevOps, cloud e infraestrutura, prontos para colar, com variáveis, motivo e fontes. Cobre gate antes de mutar infra, plano de mudança, delegação de revisão, revisão de Terraform/OpenTofu, Dockerfile, compose, Kubernetes, Helm, GitOps, GitHub Actions e segredos, rollout e rollback, diagnóstico de pod e CI, serverless, custo, supply chain, segurança do agente, prompt de sistema e mensagem inicial. Use quando pedirem 'um prompt para', 'prompt pronto de DevOps', 'template de pedido para revisar terraform/k8s/pipeline', 'ready-made prompt for infra review', 'prompt for canary plan'. Indica qual prompt usar; não executa a tarefa do prompt."
+        },
+        {
+          "name": "secrets-review",
+          "description": "Revisa como segredos são criados, guardados, injetados e rotacionados em IaC, Kubernetes, Docker, GitOps e CI, sem expor valores - cita só tipo e arquivo:linha e recomenda rotação quando o segredo esteve em Git, imagem ou log. Use ao pedir 'revisar segredos', 'secrets review', 'tem segredo no repo?', 'como guardar senha no cluster', 'rotação de chave', 'External Secrets', 'tfvars com senha', 'vazou token', 'secret scanning', ou antes de PR que toque credenciais. Para o código da aplicação (appsec) use security-appsec."
+        }
+      ],
+      "agents": [
+        {
+          "name": "infra-reviewer",
+          "description": "Revisor independente e somente leitura de mudanças de infraestrutura como código (Terraform/OpenTofu/Pulumi, Dockerfile, docker-compose, manifests Kubernetes, Helm, workflows do GitHub Actions) em contexto limpo. Devolve relatório com achados por severidade, evidência arquivo:linha e correção. Use proactively depois de editar IaC, antes de abrir PR de infra ou quando o iac-review oferecer revisão independente (diff grande, IAM, rede ou state). Triggers - 'revise esse terraform', 'review this infra diff', 'esse Dockerfile/manifest está seguro?'. Não aplica, não executa e não edita; devolve o documento completo com o caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "k8s-workload-auditor",
+          "description": "Auditor somente leitura de manifests Kubernetes e charts Helm já renderizados quanto a Pod Security Standards, securityContext, RBAC, NetworkPolicy, probes, requests/limits, Secrets e imagens. Devolve tabela por workload (controle ok, falha, NA ou Não verificável) e achados com arquivo:linha. Use proactively em PR de manifests, antes de ativar enforce do Pod Security Admission ou antes de um deploy em produção. Triggers - 'audite esses manifests', 'k8s security review', 'esse Deployment pode ir para produção?'. Não aplica nada no cluster e não roda kubectl; devolve o documento completo com o caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "pipeline-security-auditor",
+          "description": "Auditor somente leitura de workflows do GitHub Actions e pipelines de CI/CD - injeção de script, pull_request_target, permissions, pin por SHA, segredos, environments, cache, runners, claude-code-action, gates que mascaram falha e cadeia de suprimentos (SLSA, cosign). Use proactively ao alterar .github/workflows/**, ao introduzir claude-code-action ou antes de publicar um pipeline de release. Triggers - 'audite meus workflows', 'harden my CI', 'esse pipeline é seguro?'. Devolve a auditoria completa com o caminho sugerido para o agente principal gravar; não edita, não executa e não dispara runs.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "rollout-planner",
+          "description": "Planejador somente leitura de mudança de infraestrutura e de rollout/rollback. A partir de um diff, de uma saída de plan/diff colada ou de uma descrição, produz o plano de mudança (alvo, efeito, recursos com estado, o que não reverte, verificação pós-mudança) e o plano de rollout (critérios de canary ou blue-green definidos antes do deploy). Use proactively antes de qualquer apply, helm upgrade ou deploy, ao criar um Rollout/Canary e quando pedirem 'plano de rollback', 'como reverter essa release' ou 'change plan'. Nunca aplica nada; devolve o plano completo com o caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
+      "plugin": "security-appsec",
+      "displayName": "security-appsec",
+      "version": "0.1.0",
+      "description": "Revisão de segurança de diffs e PRs, modelagem de ameaças (STRIDE), autorização por objeto e tenant, segredos, supply chain e triagem de risco de agentes, MCP e plugins, com OWASP Top 10:2025, API Top 10, LLM Top 10 e ASVS, somente leitura por padrão.",
+      "keywords": [
+        "security",
+        "appsec",
+        "owasp",
+        "threat-modeling",
+        "stride",
+        "security-review",
+        "authorization",
+        "idor",
+        "secrets",
+        "supply-chain",
+        "prompt-injection",
+        "asvs",
+        "seguranca",
+        "SEGURANCA-COMPLETO"
+      ],
+      "mode_keyword": "SEGURANCA-COMPLETO",
+      "skills": [
+        {
+          "name": "access-control-review",
+          "description": "Revisa, só em leitura, a autorização de rotas, handlers, consultas, filas, exports e downloads: checagem no servidor, por objeto (IDOR/BOLA), por função (BFLA), por propriedade (mass assignment) e por tenant, com matriz papel x ação x recurso e testes de negação. Use para 'IDOR', 'BOLA', 'autorização', 'vaza dado de outro usuário', 'isolamento de tenant', 'mass assignment', 'só admin acessa', 'esta rota está protegida?', 'broken access control', 'tenant isolation', 'check authorization on these routes'. Não executa requisições e não corrige código."
+        },
+        {
+          "name": "agent-risk-triage",
+          "description": "Tria o risco de um agente, skill, subagente, servidor MCP, plugin ou integração antes de instalar ou conceder acesso: inventário de capacidades, teste da tríade letal (dados privados + conteúdo não confiável + comunicação externa), perguntas do OWASP LLM Top 10, hooks, permissões e dependências de primeira execução; entrega veredito (instalar, instalar com restrições, não instalar, não avaliado). Use para 'posso instalar este plugin/MCP?', 'esse agente é seguro?', 'tríade letal', 'prompt injection no meu agente', 'revisar permissões do agente', 'is this MCP safe?', 'lethal trifecta check', 'audit this plugin before install'. Somente leitura; não instala nada."
+        },
+        {
+          "name": "harden-claude-code",
+          "description": "Audita em leitura e propõe a configuração de segurança do Claude Code de um projeto: permissions.deny para .env, chaves e segredos, modos de permissão (bypass e auto), hook PreToolUse que bloqueia comando destrutivo com falha fechada e teste de marcador, sandbox (Windows nativo não tem: WSL2 ou dev container), plugins security-guidance e claude-security. Use para 'proteger o Claude Code', 'bloquear leitura de .env', 'impedir comando perigoso/destrutivo', 'deny rules', 'configurar sandbox', 'hook de segurança', 'harden Claude Code settings', 'block reading .env', 'PreToolUse guard'. Não grava settings: entrega JSON e passos para o usuário aplicar."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router de segurança de aplicações (appsec) - revisão de código, diff ou PR, modelagem de ameaças (STRIDE), autorização por objeto e tenant (IDOR/BOLA), injeção, XSS, SSRF, autenticação e sessão, segredos, supply chain e SBOM, segurança de agentes, MCP e plugins e configuração do Claude Code. Use quando o pedido for \"revisão de segurança\", \"security review\", \"threat model\", \"isso é seguro?\", \"vulnerabilidade\", \"OWASP\", \"IDOR\", \"prompt injection\", \"tem segredo no repo?\", \"auditar PR\", \"regras de segurança para o CLAUDE.md\". Também ativa o modo SEGURANCA-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados de segurança de aplicações, prontos para colar ou executar. Use quando o usuário pedir prompt, template ou mensagem inicial pronta para revisão de segurança de diff/PR, threat model/STRIDE, IDOR e isolamento de tenant, SQL injection, XSS, SSRF, upload, autenticação e sessão, criptografia, segredos no repo, Dockerfile, abuso de lógica de negócio, ASVS, refutar achado, patch, teste de regressão, triagem de agente/MCP/plugin, SBOM/SSDF, SECURITY.md, relato de vulnerabilidade, ou um prompt de sistema/CLAUDE.md de segurança. Gatilhos PT - \"me dê um prompt para revisar segurança\", \"prompt pronto\", \"template de prompt\", \"mensagem inicial\". EN - \"security review prompt\", \"ready-made prompt for threat modeling\", \"prompt template for IDOR review\"."
+        },
+        {
+          "name": "propose-patch",
+          "description": "Rascunha a correção mínima de um achado de segurança já verificado, com teste de regressão que falha antes e passa depois, e a submete a revisão independente (agente patch-reviewer) antes de entregar. Entrega patch, teste, riscos e o comando para aplicar; não aplica no produto sem pedido explícito. Só por comando: /security-appsec:propose-patch <VULN-NNN | descrição | arquivo:linha>. Equivale a 'corrija esta vulnerabilidade', 'patch for this finding', 'fix this security issue', 'proponha a correção'."
+        },
+        {
+          "name": "secrets-supply-chain-review",
+          "description": "Revisa, só em leitura, segredos no código, no histórico e no CI, dependências (typosquatting, scripts de instalação, lockfiles, alerta de CVE x caminho de uso), workflows de CI (permissões, Actions fixadas por SHA, injeção via contexto) e checklist de release com SBOM CycloneDX, atestação e rótulos SSDF. Nunca reproduz o valor de um segredo. Use para 'tem segredo no repo?', 'vazou uma chave', 'commitei o .env', 'auditar dependências', 'SBOM', 'workflow do GitHub seguro', 'supply chain', 'esse CVE nos afeta?', 'alerta do Dependabot', 'leaked secret', 'pin GitHub Actions', 'are we affected by this CVE?'. Scanners só documentados, não executados."
+        },
+        {
+          "name": "security-review-diff",
+          "description": "Revisa, só em leitura, o diff de uma branch, PR ou lista de arquivos e relata apenas as vulnerabilidades que esta mudança introduz (injeção SQL/comando, XSS, SSRF, autenticação, autorização/IDOR, segredos, cripto fraca, desserialização, validação removida), com arquivo:linha, cenário de ataque em passos e confiança Alta/Média. Use para 'revisão de segurança', 'revisa a segurança deste PR/diff/branch', 'auditar esta mudança', 'tem vulnerabilidade nesta mudança?', 'antes do merge', 'security review', 'review this diff for vulnerabilities', 'audit this PR'. Não executa código, não corrige e não substitui pentest."
+        },
+        {
+          "name": "threat-model",
+          "description": "Modela as ameaças de uma feature ou sistema em quatro fases: escopo e ativos, DFD textual com fronteiras de confiança, STRIDE por fluxo que cruza fronteira, resposta por ameaça (mitigar, eliminar, transferir, aceitar) com teste de verificação e risco residual. Marca fronteira não descrita como Suposição. Use para 'modelar ameaças', 'modelo de ameaças desta feature', 'STRIDE', 'DFD', 'fronteiras de confiança', 'casos de abuso', 'o que pode dar errado nesta arquitetura', 'threat model this feature', 'abuse cases', 'security design review'. Somente leitura; não explora nada."
+        },
+        {
+          "name": "verify-finding",
+          "description": "Tenta refutar, lendo o código, um achado de segurança (do modelo, de scanner SAST/DAST, de pentest ou de colega) e decide Mantido, Rebaixado ou Refutado com prova em arquivo:linha. Procura proteção a montante, entrada não controlável, condição inalcançável, mitigação do framework e configuração confiável. Use para 'confirme este achado', 'é falso positivo?', 'valide esta vulnerabilidade', 'o scanner disse SQL injection, procede?', 'refute', 'verify this finding', 'is this a false positive?', 'try to disprove this'. Somente leitura; não reproduz exploração."
+        }
+      ],
+      "agents": [
+        {
+          "name": "agent-config-auditor",
+          "description": "Auditor somente leitura de configuração e superfície de risco de agentes de IA. Use proactively antes de instalar plugin, skill, subagente ou servidor MCP de terceiros, antes de dar ferramenta nova a um agente, e para revisar settings do Claude Code (permissões, deny de .env e segredos, hooks, sandbox, modos auto e bypass). Aplica o teste da tríade letal (dados privados, conteúdo de terceiros, comunicação externa), perguntas do OWASP LLM Top 10 e o checklist de instalação, e devolve tabela capacidade, evidência, risco, mitigação e decisão do usuário, com veredito e proposta de configuração para o humano aplicar. Não instala, não edita settings, não executa hooks.",
+          "tools": "Read, Glob, Grep"
+        },
+        {
+          "name": "finding-verifier",
+          "description": "Verificador cético somente leitura que tenta derrubar um achado de segurança antes de ele ir ao relatório. Use proactively para todo achado de severidade alta produzido pelo security-reviewer ou por revisão manual, e para achados vindos de scanner (SAST, SCA, segredos) ou de terceiros (\"isso é falso positivo?\", \"confirme este achado\", \"tente refutar\"). Recebe só local, invariante violada e entrada alegada, procura proteção a montante, entrada não controlável e condição inalcançável, e devolve Mantido, Rebaixado ou Refutado com evidência arquivo:linha. Não corrige, não executa, não sobe severidade além do que a leitura sustenta.",
+          "tools": "Read, Glob, Grep"
+        },
+        {
+          "name": "patch-reviewer",
+          "description": "Revisor independente somente leitura de patch de segurança. Use proactively sempre que a skill propose-patch (ou o agente principal) rascunhar uma correção de vulnerabilidade e antes de entregá-la, e quando pedirem \"revise este patch de segurança\", \"essa correção realmente fecha a falha?\". Recebe o achado e o patch no prompt e verifica se corrige a causa raiz e não o sintoma, se não cria vulnerabilidade nova, se não muda comportamento legítimo e se o teste de regressão falharia sem a correção. Devolve Aprovado, Reprovado ou Aprovado com ressalvas com motivos arquivo:linha. Não aplica nada, não executa testes.",
+          "tools": "Read, Glob, Grep"
+        },
+        {
+          "name": "security-reviewer",
+          "description": "Revisor de segurança de aplicações somente leitura e em contexto novo. Use proactively depois de mudanças em rotas, autenticação, sessão, autorização por objeto ou tenant, consultas ao banco, upload, parsing, chamadas a URLs externas, segredos, dependências ou CI, e quando as skills security-review-diff, access-control-review ou secrets-supply-chain-review delegarem. Recebe o diff ou a lista de arquivos, rastreia origem até uso, tenta refutar o próprio achado e devolve relatório VULN/VERIFY com severidade, confiança e arquivo:linha, sem alterar nada. Cobre servidor, web, mobile (Android/iOS) e desktop, apontando o plugin certo quando o assunto for específico de plataforma.",
+          "tools": "Read, Glob, Grep"
+        },
+        {
+          "name": "threat-modeler",
+          "description": "Analista de modelagem de ameaças somente leitura. Use proactively quando começar uma feature nova com dado sensível, upload, pagamento, autenticação, integração externa, webhook, componente LLM ou mudança de arquitetura, e quando a skill threat-model delegar. Monta o DFD textual com fronteiras de confiança, aplica STRIDE por fluxo que cruza fronteira (LINDDUN se houver dado pessoal, perguntas LLM Top 10 se houver LLM), ranqueia, define resposta e teste de verificação por ameaça e devolve o documento completo para o agente principal gravar. Fronteira não descrita vira Suposição. Cobre servidor, web, mobile e desktop.",
+          "tools": "Read, Glob, Grep"
+        }
+      ]
+    },
+    {
+      "plugin": "qa-testing",
+      "displayName": "qa-testing",
+      "version": "0.1.0",
+      "description": "QA e testes para o Claude Code: estratégia por risco, design de casos, TDD com vermelho confirmado, revisão de testes e E2E, triagem de testes flaky, bug reports com evidência e evals de skills e LLM, com gate de verificação e o modo QA-COMPLETO.",
+      "keywords": [
+        "qa",
+        "testing",
+        "test-strategy",
+        "test-design",
+        "tdd",
+        "e2e",
+        "playwright",
+        "flaky-tests",
+        "bug-report",
+        "llm-evals",
+        "verification",
+        "accessibility-testing",
+        "api-testing",
+        "QA-COMPLETO"
+      ],
+      "mode_keyword": "QA-COMPLETO",
+      "skills": [
+        {
+          "name": "bug-report",
+          "description": "Transforma um sintoma em bug report reproduzível e decidível; reduz o caso ao mínimo, classifica severidade e prioridade, conduz triagem, verificação da correção e escape analysis. Use para 'bug report', 'relatar bug', 'reproduzir', 'passos para reproduzir', 'severidade', 'prioridade', 'triagem', 'não reproduz', 'caso mínimo', 'postmortem de teste' / Use to write, minimize, triage and verify bugs. Não inventa passos, versões nem números; não cria issue em sistema externo sem confirmação."
+        },
+        {
+          "name": "e2e-review",
+          "description": "Revisa ou escreve testes E2E e de UI (Playwright, Cypress, Selenium) com checklist de estabilidade, ordenando achados por dano (falso verde primeiro) e aplicando o guardrail do healer. Use para 'revisar este teste e2e', 'teste de UI', 'seletor', 'waitForTimeout', 'Page Object', 'playwright test', 'cypress', 'healer', 'login nos testes', 'stub de rede', 'teste instável de navegador' / Use to review or author E2E and UI tests, selectors, waits, network stubs and login strategy. Nunca roda contra produção nem contra terceiros."
+        },
+        {
+          "name": "eval-design",
+          "description": "Desenha e planeja avaliações (evals) de skills, plugins, agentes e funcionalidades com LLM: casos tirados de falhas reais, graders de código antes de juiz LLM, juiz binário com crítica, caso que dispara e caso que não dispara, pass^k. Use para 'testar minha skill', 'eval', 'claude plugin eval', 'rubrica', 'LLM judge', 'avaliar prompt', 'medir se o plugin ajuda', 'casos de teste para IA' / Use to design evals for skills, plugins, agents and LLM features. Os casos ficam designed_not_executed até alguém rodar; nunca afirma resultado que não rodou."
+        },
+        {
+          "name": "flaky-triage",
+          "description": "Diagnostica teste instável (passa e falha sem mudança de código). Use quando um teste falha só no CI, 'às vezes', está 'intermitente', 'flaky' ou 'instável', quando alguém sugere aumentar retries ou timeouts, ou quando a suíte fica vermelha e verde sem motivo / Use for intermittent test failures and CI-only failures. Mede a taxa de falha, classifica a causa em uma de sete, corrige a causa, valida com repetição e, se não der para corrigir agora, propõe quarentena com ticket, dono e prazo (a ser confirmada pelo usuário)."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento QA e testes — estratégia e plano de testes por risco, design de casos (partição, valor-limite, tabela de decisão), TDD, testes unitários, de integração, de contrato e E2E (Playwright, Cypress), testes flaky, bug reports com evidência, acessibilidade, performance, testes de API e evals de IA/LLM. Use para plano de teste, casos de teste, \"está pronto para produção?\", revisar testes, teste flaky ou intermitente, bug report, cobertura ou prova de que algo funciona / Use for test strategy, test design, TDD, E2E, flaky tests, bug reports, evals. Também ativa o modo QA-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de 31 prompts curados de QA e testes, prontos para colar, com variáveis e fontes. Cobre verificação antes de 'pronto', TDD e regressão, estratégia e plano de teste, casos de teste, charter exploratório, parecer go/no-go, revisão de testes e de E2E, auditoria de suíte, testes flaky, bug report e triagem, evals e juiz LLM, prompt de sistema e mensagem inicial. Use quando pedirem 'um prompt para', 'prompt de QA', 'prompt de teste', 'template de pedido para a IA' / 'ready-made prompt', 'prompt for test review', 'QA prompt template' para essas tarefas. Indica qual prompt usar em cada situação; não executa a tarefa do prompt."
+        },
+        {
+          "name": "tdd-guard",
+          "description": "Guia implementação test-first em fatias verticais, com vermelho confirmado pelo motivo certo. Use ao criar funcionalidade, corrigir bug ou escrever testes para código novo: 'TDD', 'red-green-refactor', 'teste primeiro', 'escreva o teste antes', 'teste de regressão do bug', 'cobrir com testes' / Use for test-first feature work, bug fixes and regression tests. Cobre fronteira pública (seam), oráculo independente, mutation check, exceções (protótipo, configuração) e o que fazer quando um teste quebra depois de uma mudança."
+        },
+        {
+          "name": "test-design",
+          "description": "Deriva casos de teste concretos com técnica explícita: partição de equivalência, valor-limite, tabela de decisão, transição de estados, pairwise, cenários Gherkin e charters exploratórios. Use para 'casos de teste', 'cenários de teste', 'valores de borda', 'o que testar neste campo ou regra', 'roteiro exploratório', 'casos negativos de API', 'critério de aceite testável' / Use to design test cases, boundary values, decision tables, state tests, API negative cases and exploratory charters. Cada caso sai com dado concreto e resultado esperado verificável; ambiguidade vira pergunta, não esperado inventado."
+        },
+        {
+          "name": "test-strategy",
+          "description": "Monta estratégia, plano de testes e parecer de prontidão a partir do risco. Use para 'plano de teste', 'estratégia de testes', 'o que testar primeiro', 'tenho pouco tempo para testar', 'está pronto para produção?', 'go/no-go', escolha entre unitário, integração, contrato e E2E, pirâmide ou troféu, e também para linhas de API, acessibilidade (WCAG) e performance (k6) / Use for test plans, risk-based strategy, test-level decisions and release-readiness opinions. Entrega tabela de riscos falha -> efeito, camadas, o que fica de fora e risco residual."
+        },
+        {
+          "name": "verification-gate",
+          "description": "Exige prova executada nesta sessão antes de declarar uma tarefa concluída, corrigida ou aprovada. Use ao terminar uma mudança, antes de commit ou PR, e quando a conversa disser 'pronto', 'funciona', 'testes passam', 'corrigi' ou pedir 'confirma que está certo' / Use before claiming done, fixed or passing, or when asked to confirm that something works. Produz o bloco Evidência (comando, saída, código de saída) e o bloco Não verificado; nunca apresenta o resultado esperado como se fosse o obtido."
+        }
+      ],
+      "agents": [
+        {
+          "name": "qa-reporter",
+          "description": "Explora um alvo (web, API, CLI, job, worker, webhook, app mobile ou desktop) em modo só relatório e devolve bugs reproduzíveis com evidência, sem corrigir código nem escrever testes de produto. Use quando pedirem 'só relatar bugs', 'QA report only', 'testa isso e me diz o que achou', 'explorar a funcionalidade' ou para funcionalidade nova com pouca especificação. Devolve o relatório completo com caminho sugerido para o agente principal gravar; precisa de ambiente de teste, nunca produção.",
+          "tools": "Read, Grep, Glob, Bash"
+        },
+        {
+          "name": "test-auditor",
+          "description": "Audita a suíte de testes existente em busca de testes que custam mais do que protegem (sem asserção, auto-comparação, fixtures copiadas, grep frágil em código-fonte, exports só para teste, duplicatas) e devolve um relatório com cartões de retenção. Use quando pedirem 'auditar a suíte', 'testes inúteis', 'podar testes', 'suíte lenta ou barulhenta' ou 'dívida de testes', e antes de refatoração grande. Somente relatório; não edita, não roda a suíte e devolve o relatório completo com caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob, Bash"
+        },
+        {
+          "name": "test-reviewer",
+          "description": "Revisa testes novos ou alterados (unitário, integração, contrato, E2E, UI) em contexto limpo e somente leitura e devolve um relatório com achados por severidade, evidência arquivo:linha e recomendação. Use proactively depois de escrever ou alterar testes, antes de PR que muda testes, ou quando pedirem 'revise estes testes', 'esse teste prova alguma coisa' ou 'review these tests'. Não escreve nem executa nada; devolve o relatório completo com o caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "test-writer",
+          "description": "Escreve testes (unitário, integração, contrato ou E2E) para um comportamento descrito, sem alterar código de produção, e grava só nos caminhos de teste indicados no pedido. Use quando pedirem 'escreva os testes', 'cobrir esta função', 'teste de regressão para este bug', 'testes de caracterização do legado' ou 'write tests for'; depois acione o test-reviewer. Se a mudança exigir código de produção, para e reporta.",
+          "tools": "Read, Grep, Glob, Write, Edit, Bash"
+        }
+      ]
+    },
+    {
+      "plugin": "code-quality-refactoring",
+      "displayName": "code-quality-refactoring",
+      "version": "0.1.0",
+      "description": "Revisão de código com filtro de alto sinal, debugging por causa raiz, refatoração segura com testes de caracterização, migração com juiz de paridade e triagem de dívida técnica, sempre com evidência executável e rótulos Verificado/Inferido/Suposição.",
+      "keywords": [
+        "code-review",
+        "refactoring",
+        "debugging",
+        "root-cause",
+        "technical-debt",
+        "legacy-modernization",
+        "migration",
+        "characterization-tests",
+        "static-analysis",
+        "code-quality",
+        "qualidade-completo"
+      ],
+      "mode_keyword": "QUALIDADE-COMPLETO",
+      "skills": [
+        {
+          "name": "code-health-report",
+          "description": "Roda as ferramentas do próprio projeto (tipos, lint, testes, código morto, shell lint) ou usa as saídas que o usuário colar, e monta um painel de saúde somente leitura - nota 0 a 10 por categoria, nota composta calculada em código, cobertura declarada, indisponível sem virar falha, tendência só entre rodadas comparáveis e recomendações por peso x déficit. Só por comando explícito (/code-quality-refactoring:code-health-report), porque executa comandos do projeto. Gatilhos - saúde do código, health check, panorama de qualidade, rode lint tipos e testes; code health, quality dashboard, run linters and tests and summarize. Não corrige nada."
+        },
+        {
+          "name": "codebase-onboarding",
+          "description": "Mapeia uma base de código desconhecida antes de agir - pontos de entrada, build e testes, convenções com um arquivo de exemplo e contagem de ocorrências (Verificado com 3 ou mais arquivos, Inferido com 1 ou 2), dependências entre módulos, áreas de risco e perguntas abertas - em modo somente leitura, e responde \"onde fica X\" e \"como funciona Y\" com caminho e trecho. Use para \"entenda este repositório\", \"onde fica\", \"como funciona\", \"convenções do projeto\", \"mapa do código\", \"primeira vez nesse projeto\", \"onboard me\", \"map the repo\", \"where is X\". Não use para escrever documentação para terceiros (technical-writing-docs) nem para desenhar arquitetura nova (architecture-design)."
+        },
+        {
+          "name": "debug-causa-raiz",
+          "description": "Investiga bug, teste que falha, build quebrado ou regressão até a causa raiz no código, corrige com teste de regressão visto falhar antes e passar depois, e entrega relatório com evidência (comando e saída). Use quando houver erro, stack trace ou comportamento inesperado - \"por que quebrou\", \"achar o bug\", \"teste falhando\", \"quebrou depois da mudança\", \"intermitente por concorrência ou estado\", \"causa raiz\", \"debug this\", \"failing test\", \"root cause\", \"regression\". Não use para teste instável por infraestrutura, dados de teste ou e2e (qa-testing) nem para incidente em produção em andamento (sre-observability mitiga primeiro; depois volte aqui para a causa no código)."
+        },
+        {
+          "name": "migration-parity",
+          "description": "Planeja e conduz migração ou upgrade de grande porte (linguagem, framework, versão major, biblioteca) com juiz validado primeiro, rulebook, piloto descartável, lotes retomáveis em disco, revisão adversarial e veredito de paridade por módulo (PROVADO, PARCIALMENTE PROVADO, NÃO PROVADO). Só por comando explícito (/code-quality-refactoring:migration-parity), porque altera muitos arquivos. Gatilhos - migrar, port, upgrade major, modernizar legado, trocar biblioteca, converter para TypeScript; migrate, port, bump major version, modernize legacy. Bump de patch ou minor sem breaking change não precisa desta skill; use o playbook. Não decide arquitetura nova nem migra dados (database-data-modeling)."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router de qualidade de código existente - code review de PR/diff, debugging por causa raiz, refatoração segura, simplificação, dívida técnica, compreensão de base de código, modernização de legado e upgrades. Use quando o pedido for amplo ou misturar essas tarefas (\"como melhorar a qualidade deste módulo\", \"por onde começo com este legado\", \"revise e refatore\", \"quality pass\", \"legacy codebase\", \"review and fix\"); para uma tarefa única, as skills específicas do plugin são mais diretas. Não cobre estratégia de testes/e2e (qa-testing), threat modeling (security-appsec), desenho de arquitetura (architecture-design) nem escrita de feature nova. Também ativa o modo QUALIDADE-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados para qualidade de código - 34 prompts prontos para revisar diff ou PR, depurar bug por causa raiz, caracterizar e refatorar, simplificar, dividir mudança grande, migrar ou atualizar dependência, triar dívida técnica, auditar testes, mapear código, usar análise estática e painel de saúde, além de um prompt de sistema para CLAUDE.md e uma mensagem inicial sugerida. Use quando o usuário pedir um prompt, template ou texto pronto para essas tarefas (\"me dê um prompt para revisar PR\", \"template de code review\", \"prompt de refatoração\", \"prompt de debug\", \"mensagem inicial\", \"prompt for code review\", \"refactoring prompt template\"). Entrega o prompt preenchido; para executar a tarefa agora, use as skills review-diff, debug-causa-raiz, refactor-seguro e as demais do plugin."
+        },
+        {
+          "name": "refactor-seguro",
+          "description": "Refatora código preservando o comportamento - mapeia usos e API pública, cria testes de caracterização quando faltam testes, executa passos pequenos nomeados do catálogo de refatorações, roda os testes a cada passo, separa refatoração de mudança de comportamento e lista bugs encontrados como follow-up. Use para \"refatore\", \"extraia função\", \"divida esse arquivo\", \"reorganize\", \"renomeie\", \"remova duplicação\", \"sem mudar o comportamento\", \"refactor safely\", \"extract function\", \"split this module\", \"dedupe\". Não use para redesenho de arquitetura ou fronteiras de serviço (architecture-design) nem para corrigir bug (debug-causa-raiz). Commit só mediante pedido explícito."
+        },
+        {
+          "name": "review-diff",
+          "description": "Revisa um diff, branch ou PR em modo somente leitura e devolve achados de alto sinal com arquivo:linha, evidência, severidade e veredito (aprovar, aprovar com ressalvas, bloquear), validando cada achado antes de reportar e descartando estilo, pré-existente e o que o linter já pega. Use para \"revise este PR/diff\", \"antes de commitar\", \"antes do merge\", \"pode mergear?\", \"olhe esse diff\", \"autorrevisão antes de abrir PR\", \"review this PR\", \"before I merge\", \"look for bugs in this change\". Complementa o /code-review nativo com filtro de falsos positivos e rótulos de evidência. Não use para auditoria de segurança completa ou threat model (security-appsec). Não edita arquivos nem posta comentários."
+        },
+        {
+          "name": "simplify-safe",
+          "description": "Simplifica código recém-alterado sem mudar o comportamento - retornos antecipados, menos aninhamento, duplicação removida, nomes que dizem a intenção, ternário aninhado trocado por if/else, comentário redundante apagado - com a mesma saída de testes antes e depois. Use para \"simplifique\", \"limpe isso\", \"deixe mais legível\", \"reduza o aninhamento\", \"tire a duplicação desse diff\", \"ficou confuso\", \"simplify\", \"clean up\", \"make it readable\". Equivale em objetivo ao /simplify nativo, com garantia explícita de comportamento. Não use para reestruturar módulos ou mudar API pública (refactor-seguro) nem para corrigir bugs (debug-causa-raiz)."
+        },
+        {
+          "name": "tech-debt-triage",
+          "description": "Levanta e prioriza dívida técnica de um módulo ou repositório sem corrigir nada - candidatos por busca e histórico git, quadrante de Fowler, prioridade por frequência de mudança x dor, ação proposta por item e modo testes para achar testes que custam mais do que protegem. Use para \"dívida técnica\", \"o que refatorar primeiro\", \"code smells\", \"hotspots\", \"auditoria de código\", \"testes inúteis\", \"priorizar manutenção\", \"tech debt\", \"what to refactor first\", \"audit tests\". Só relatório. Não use para corrigir os itens (refactor-seguro) nem para estratégia de testes (qa-testing)."
+        }
+      ],
+      "agents": [
+        {
+          "name": "code-reviewer",
+          "description": "Revisor somente leitura, em contexto novo, que compara um diff com a intenção declarada (plano, issue, requisito) e reporta apenas lacunas de correção, segurança e requisito, com severidade, confiança e arquivo:linha. Use proactively quando o usuário pedir revisão de diff, branch ou PR antes de commit ou merge e o diff puder ser colado no prompt de delegação. Devolve o relatório completo para o agente principal gravar; não edita nada nem posta em PR.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "codebase-mapper",
+          "description": "Pesquisador somente leitura de base de código que devolve um mapa curto (cerca de 60 linhas) com pontos de entrada, comandos de build e teste lidos nos manifestos, convenções com exemplo e contagem, dependências entre módulos e áreas de risco. Use proactively quando a base for desconhecida, para perguntas amplas de \"onde fica\" e \"como funciona\", e antes de triagem de dívida, refatoração ou migração; protege o contexto do agente principal devolvendo resumo, não arquivos.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "debugger",
+          "description": "Investigador de bugs que reproduz, isola e propõe a correção como diff, sem editar arquivos. Use quando algo quebrou (erro, stack trace, teste que falha, comportamento inesperado, regressão) e a causa não é óbvia, ou proactively dentro da fase de investigação de uma depuração por causa raiz. Devolve o relatório de depuração completo com hipóteses testadas por comando, causa raiz, patch em texto e teste de regressão; o agente principal aplica e grava.",
+          "tools": "Read, Grep, Glob, Bash"
+        },
+        {
+          "name": "finding-validator",
+          "description": "Cético somente leitura que tenta refutar achados de revisão de código lendo o código (reabre o trecho, procura guarda, teste ou chamada que torne o achado falso) e decide CONFIRMADO, REFUTADO ou INCONCLUSIVO com a linha que decide. Use proactively depois do code-reviewer, em lote ou um achado por vez, antes de qualquer achado entrar no relatório final ou ser publicado em PR.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "refactor-planner",
+          "description": "Planejador somente leitura de refatoração segura. Mapeia usos e contratos por nome (reflexão, strings, serialização), avalia a rede de testes, propõe testes de caracterização e uma sequência de passos pequenos com nome do catálogo de refatorações, ponto de desfazer e divisão de commits. Use antes de refatorar trecho grande, com muitos usos ou sem testes, quando o pedido for \"refatore\", \"divida este módulo\" ou \"extraia\"; devolve o plano completo para o agente principal executar.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
+      "plugin": "ux-ui-design",
+      "displayName": "ux-ui-design",
+      "version": "0.1.0",
+      "description": "Direção visual, auditoria de UI, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários para trabalhar com Claude, com skills, agentes avaliadores somente leitura, prompts curados e evals.",
+      "keywords": [
+        "ux",
+        "ui",
+        "design-system",
+        "design-tokens",
+        "accessibility",
+        "wcag",
+        "usability",
+        "heuristic-evaluation",
+        "ux-writing",
+        "user-research",
+        "design-review",
+        "dtcg",
+        "uxui-completo"
+      ],
+      "mode_keyword": "UXUI-COMPLETO",
+      "skills": [
+        {
+          "name": "a11y-checklist",
+          "description": "Especifica e revisa acessibilidade de telas, componentes e fluxos contra WCAG 2.2 AA - checklist por tela, diálogo modal, formulários, foco, movimento reduzido, alvos de toque e convenções Apple - com roteiro de teste manual e formato de achado. Use para \"acessibilidade\", \"WCAG\", \"contraste\", \"foco do modal\", \"leitor de tela\", \"checklist de a11y\", \"isso passa na WCAG?\" / \"a11y review\", \"accessibility checklist\", \"keyboard navigation\", \"screen reader\". Revisão de código com arquivo:linha usa web-frontend:a11y-review, se instalado. Não declara conformidade legal."
+        },
+        {
+          "name": "design-brief",
+          "description": "Cria o brief, a direção visual e o plano de design (cores, tipografia, layout, estados, movimento, acessibilidade) antes de construir UI, revisa o plano contra escolhas genéricas, mapeia fluxos de tela com wireframe de baixa fidelidade e gera especificação de handoff para código. Use para \"desenhar esta tela\", \"direção visual\", \"paleta e tipografia antes de codar\", \"fluxo de usuário\", \"wireframe\", \"spec de componente\", \"handoff\", \"brief de design system\", \"revisar o plano de design\" / \"design direction\", \"design brief\", \"user flow\", \"wireframe\", \"component spec\", \"design handoff\". Não implementa a UI em código; isso fica com o plugin de frontend."
+        },
+        {
+          "name": "design-init",
+          "description": "Cria o DESIGN.md do projeto (front matter YAML de tokens mais oito seções com a justificativa em prosa) a partir de tokens e CSS já existentes e de perguntas curtas, mostrando o conteúdo completo antes de gravar e nunca sobrescrevendo um arquivo existente. Com confirmação separada, acrescenta ao CLAUDE.md do projeto o bloco que manda consultar o DESIGN.md. Uso explícito do usuário - /ux-ui-design:design-init. Formato Google Labs em versão alpha."
+        },
+        {
+          "name": "design-tokens",
+          "description": "Audita e estrutura design tokens em três camadas (primitivo, semântico, componente), relata drift e quebra de API de tokens, propõe esqueleto no formato DTCG 2025.10 e plano de migração com lista de nomes antigos e novos. Use para \"tokens de design\", \"design system\", \"cores em variáveis\", \"hex espalhado no CSS\", \"dark mode\", \"drift\", \"renomear token\", \"Figma para código\" / \"design tokens\", \"theming\", \"token audit\", \"token migration\". Padrão é relatório; edita só após confirmação da lista de nomes. Não instala nem executa ferramentas de terceiros."
+        },
+        {
+          "name": "heuristic-eval",
+          "description": "Conduz avaliação heurística de uma tela ou fluxo estreito com as 10 heurísticas de Nielsen, duas passadas, severidade 0 a 4 (frequência, impacto, persistência) e lista do que validar com usuários. Use para \"avaliação heurística\", \"problemas de usabilidade neste fluxo\", \"heurísticas de Nielsen\", \"revisão de usabilidade\", \"esse fluxo é fácil de usar?\" / \"heuristic evaluation\", \"usability review\", \"usability issues\", \"Nielsen heuristics\". É opinião estruturada de modelo, não teste com usuários; não projeta abandono nem conversão."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento UX, UI e design systems — direção visual, auditoria de interface, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing, pesquisa com usuários e handoff design→código. Use quando o usuário pedir para desenhar, melhorar, criticar ou auditar uma tela, criar ou revisar um design system, escrever microcopy, planejar pesquisa ou avaliar usabilidade (\"define a direção visual\", \"revisa essa UI\", \"estratégia de design system\", \"tokens de design\", \"contraste\", \"heurísticas de Nielsen\", \"UX writing\", \"design review\", \"audit this UI\", \"design critique\"). Não é para implementar a UI em código (isso é do plugin de frontend). Também ativa o modo UXUI-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados do segmento UX, UI e design systems, prontos para colar ou executar. Use quando o usuário pedir prompt, template ou mensagem inicial pronta para direção visual, plano de design antes de código, auditoria de UI, avaliação heurística, crítica de design, acessibilidade WCAG 2.2 AA, diálogo modal, tokens de design, DESIGN.md, handoff de componente, UX writing e mensagens de erro, entrevista e teste de usabilidade, card sorting, fluxo de tela, movimento, performance percebida, ou um prompt de sistema/CLAUDE.md para projeto com interface. Triggers PT-BR - \"me dê um prompt para\", \"prompt pronto\", \"template de prompt\", \"mensagem inicial\". EN - \"prompt for design review\", \"ready-made prompt\", \"prompt template for UX audit\"."
+        },
+        {
+          "name": "ui-audit",
+          "description": "Audita uma interface em dez categorias (hierarquia, tipografia, cor e contraste, espaçamento, estados, responsividade, movimento, microcopy, sinais de visual genérico de IA, desempenho percebido), somente leitura, com PASS/PARTIAL/FAIL, impacto e evidência por achado. Use para \"revisa o visual\", \"audita a UI\", \"isso parece genérico?\", \"crítica de design\", \"visual QA\", \"está com cara de template\" / \"audit this UI\", \"design review\", \"design critique\", \"does this look AI-generated\". Não corrige nada; correção é outro pedido."
+        },
+        {
+          "name": "user-research-plan",
+          "description": "Planeja pesquisa com usuários - pergunta e decisão, escolha de método, recrutamento, guia de entrevista de 50 minutos, roteiro de teste de usabilidade, card sorting ou tree testing, registro e síntese de notas fornecidas. Use para \"plano de pesquisa\", \"roteiro de entrevista\", \"teste de usabilidade\", \"card sorting\", \"tree testing\", \"como validar isso com usuários\", \"sintetize estas entrevistas\" / \"research plan\", \"interview guide\", \"usability test plan\", \"synthesize interview notes\". Nunca inventa participantes, citações ou resultados; survey, personas e JTBD ficam com product-discovery-specs."
+        },
+        {
+          "name": "ux-writing",
+          "description": "Escreve e revisa microcopy de interface (botões, mensagens de erro, estados vazios, confirmações destrutivas, tooltips, onboarding) em PT-BR e EN, com alternativas por tom e notas para tradução. Use para \"texto do botão\", \"mensagem de erro\", \"microcopy\", \"estado vazio\", \"tom de voz\", \"reescreve os textos da tela\", \"revisar copy\" / \"UX writing\", \"error message copy\", \"button labels\", \"empty state copy\", \"content design\". Não inventa números, prazos nem políticas; tom de marca sem guia é Suposição."
+        }
+      ],
+      "agents": [
+        {
+          "name": "a11y-reviewer",
+          "description": "Revisor de acessibilidade somente leitura de telas, componentes e fluxos contra WCAG 2.2 AA, que escolhe o checklist pelo tipo de arquivo (HTML/JSX/CSS, documento ou markdown, fluxo, app nativo) e devolve achados com critério, severidade, arquivo:linha, quem é afetado e correção. Delegar para \"revise a acessibilidade\", \"isso passa na WCAG 2.2 AA?\", \"foco do modal\", \"contraste\", \"navegação por teclado\", \"a11y review\" ou \"accessibility audit\", e proativamente (use proactively) quando um PR ou spec tocar formulário, diálogo, menu, aba, tabela de dados ou cor. Não corrige, não executa e não declara conformidade legal.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "design-evaluator",
+          "description": "Avaliador cético e independente de interface já renderizada, capturada em imagem ou descrita em markup, contra o briefing e a especificação. Devolve notas 1 a 5 com evidência localizável, achados P0/P1/P2 e veredito aprovar ou retrabalhar; não edita nada nem executa nada. Delegar depois que uma tela ou componente for gerado, em redesenho amplo, entrega a cliente ou tela de alto tráfego, e quando o usuário pedir \"critique/avalie esta tela\", \"segunda opinião cética\", \"design review\" ou \"UI critique\". Custo alto em execuções longas, então não acionar para ajuste pequeno.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "design-system-auditor",
+          "description": "Audita design tokens e componentes quanto a drift, valores crus, token da camada errada, referência desconhecida ou circular, arquivo gerado editado à mão, estados e nota de acessibilidade ausentes, e impacto de release (major, minor ou patch), somente leitura. Delegar antes de renomear ou trocar tokens de marca, antes de publicar versão do design system, ao migrar para tokens em três camadas, ou para \"audite o design system\", \"token drift\", \"onde há cor hardcoded\", \"preciso renomear tokens\" (design system audit). Devolve relatório e, para renomeações, a lista de nomes antigos e novos; não escreve, não roda build, não instala Style Dictionary, não toca no Figma.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "ui-designer",
+          "description": "Projeta ou refina telas e componentes dentro do design system existente e entrega especificação de handoff (estados, tokens, teclado, acessibilidade, critérios de aceite) mais fluxo de tela e plano de design. Delegar para \"desenhe/refine esta tela\", \"crie a spec do componente X\", \"mapeie o fluxo de cadastro\", \"handoff para o time de código\" (UI design, component spec, design handoff). Grava somente em caminhos que o pedido indicar; não constrói a UI de produção nem mexe em Figma, CI, commits ou instalação de pacotes.",
+          "tools": "Read, Grep, Glob, Write, Edit"
+        },
+        {
+          "name": "ux-researcher",
+          "description": "Planeja pesquisa de usabilidade e arquitetura de informação (pergunta e decisão, método, recrutamento, guia de entrevista de 50 minutos, roteiro de teste de usabilidade, card sorting ou tree testing, registro de problemas) e sintetiza notas fornecidas pelo usuário, sem inventar participantes, citações ou resultados. Delegar para \"plano de pesquisa\", \"roteiro de entrevista\", \"roteiro de teste de usabilidade\", \"sintetize estas entrevistas\", \"como validar isso com usuários\" (research plan, interview guide, usability test plan, synthesis). Não faz survey, personas nem JTBD, que são encaminhados para product-discovery-specs.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    }
+  ],
+  "pending": [
+    "data-engineering",
+    "data-science-ml",
+    "sre-observability",
+    "technical-writing-docs",
+    "game-development",
+    "systems-embedded-iot",
+    "cli-desktop-tooling",
+    "blockchain-web3",
+    "automation-integrations",
+    "git-workflow-release",
+    "saas-multitenant",
+    "fintech-payments",
+    "ecommerce-marketplace"
+  ]
+}

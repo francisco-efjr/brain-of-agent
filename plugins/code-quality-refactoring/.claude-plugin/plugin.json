@@ -1,0 +1,20 @@
+{
+  "name": "code-quality-refactoring",
+  "version": "0.1.0",
+  "description": "Revisão de código com filtro de alto sinal, debugging por causa raiz, refatoração segura com testes de caracterização, migração com juiz de paridade e triagem de dívida técnica, sempre com evidência executável e rótulos Verificado/Inferido/Suposição.",
+  "author": { "name": "Francisco Edson", "url": "https://github.com/francisco-efjr" },
+  "license": "MIT",
+  "keywords": [
+    "code-review",
+    "refactoring",
+    "debugging",
+    "root-cause",
+    "technical-debt",
+    "legacy-modernization",
+    "migration",
+    "characterization-tests",
+    "static-analysis",
+    "code-quality",
+    "qualidade-completo"
+  ]
+}

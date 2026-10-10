@@ -1,0 +1,26 @@
+{
+  "name": "security-appsec",
+  "version": "0.1.0",
+  "description": "Revisão de segurança de diffs e PRs, modelagem de ameaças (STRIDE), autorização por objeto e tenant, segredos, supply chain e triagem de risco de agentes, MCP e plugins, com OWASP Top 10:2025, API Top 10, LLM Top 10 e ASVS, somente leitura por padrão.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "appsec",
+    "owasp",
+    "threat-modeling",
+    "stride",
+    "security-review",
+    "authorization",
+    "idor",
+    "secrets",
+    "supply-chain",
+    "prompt-injection",
+    "asvs",
+    "seguranca",
+    "SEGURANCA-COMPLETO"
+  ]
+}

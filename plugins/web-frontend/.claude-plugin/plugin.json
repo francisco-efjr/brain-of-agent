@@ -1,0 +1,27 @@
+{
+  "name": "web-frontend",
+  "version": "0.1.0",
+  "description": "Guia, skills de tarefa, agentes somente leitura e biblioteca de prompts para frontend web com Claude Code (React e Next.js, Vue e Nuxt, Svelte, Angular, TypeScript, Tailwind, WCAG 2.2, Core Web Vitals, formulários, data fetching e testes de UI), sempre com verificação por evidência.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "frontend",
+    "react",
+    "nextjs",
+    "vue",
+    "nuxt",
+    "svelte",
+    "angular",
+    "typescript",
+    "tailwind",
+    "accessibility",
+    "wcag",
+    "core-web-vitals",
+    "playwright",
+    "forms",
+    "frontend-completo"
+  ]
+}

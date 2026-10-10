@@ -1,0 +1,24 @@
+[
+  {
+    "id": "F-001",
+    "category": "functional",
+    "description": "Cliente aplica cupom percentual e o total reflete o desconto, com frete grátis a partir de R$ 199,00",
+    "steps": [
+      "Abrir o checkout com subtotal de R$ 250,00 e CEP 01310-100",
+      "Aplicar o cupom PRIMEIRA10",
+      "Verificar que o total exibido e o retornado pela API é R$ 225,00"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F-002",
+    "category": "functional",
+    "description": "Pedido pendente pode ser cancelado e o status persiste no back-end",
+    "steps": [
+      "Criar um pedido pendente por API",
+      "Cancelar pelo botão da tela de pedido, informando o motivo",
+      "Verificar o status Cancelado na tela e na consulta à API"
+    ],
+    "passes": false
+  }
+]

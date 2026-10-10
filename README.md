@@ -1,5 +1,25 @@
 # Brain of Agent
 
+## Usar como orquestrador (em qualquer chat ou terminal)
+
+Mande o link deste repositório com a sua demanda:
+
+> Use https://github.com/francisco-efjr/brain-of-agent como orquestrador (siga o ORCHESTRATOR.md). Demanda: [O QUE QUERO]. Projeto: [CAMINHO OU LINK]. Escopo: [auditar | implementar]. Entrega: [relatórios | correções em branch | ambos].
+
+A IA segue o [ORCHESTRATOR.md](ORCHESTRATOR.md). Ela classifica a demanda, escolhe especialistas entre os [plugins por segmento](docs/dev-segments/CATALOGO.md), despacha subagentes com validador independente e entrega relatórios por papel (arquiteto, designer, QA, dev, segurança…) e commit local sem push.
+
+No Claude Code, também dá para instalar como plugins:
+
+```bash
+claude plugin marketplace add francisco-efjr/brain-of-agent
+claude plugin install orchestrator@brain-of-agent
+claude plugin install architecture-design@brain-of-agent   # e os demais do catálogo
+```
+
+Plugins publicados: orchestrator, architecture-design, qa-testing, code-quality-refactoring, security-appsec, ux-ui-design, mobile-apps, web-frontend, backend-api, database-data-modeling, devops-cloud-infra, llm-ai-agents e product-discovery-specs. Outros segmentos estão em construção (ver catálogo). Para saber como foram pesquisados, validados e construídos, veja [docs/dev-segments/README.md](docs/dev-segments/README.md).
+
+---
+
 Conhecimento por segmento combinado com workflows de agentes. Os segmentos próprios são **QA** e **desenvolvedor fullstack**. O projeto inclui uma cópia completa dos fontes do
 [gstack](https://github.com/garrytan/gstack), com licenças e créditos preservados.
 

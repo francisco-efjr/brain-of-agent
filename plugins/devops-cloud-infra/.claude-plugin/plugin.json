@@ -1,0 +1,24 @@
+{
+  "name": "devops-cloud-infra",
+  "version": "0.1.0",
+  "description": "Escreva, revise, planeje e diagnostique infraestrutura (Terraform/OpenTofu/Pulumi, Docker, Kubernetes/Helm, GitOps, GitHub Actions, segredos, canary/blue-green, serverless e custo) com gate humano antes de qualquer mudança real e evidência executável em cada entrega.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "devops",
+    "cloud",
+    "infrastructure-as-code",
+    "terraform",
+    "kubernetes",
+    "docker",
+    "gitops",
+    "github-actions",
+    "secrets-management",
+    "progressive-delivery",
+    "supply-chain",
+    "troubleshooting"
+  ]
+}

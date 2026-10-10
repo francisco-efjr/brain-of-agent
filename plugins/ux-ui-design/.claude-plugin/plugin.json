@@ -1,0 +1,25 @@
+{
+  "name": "ux-ui-design",
+  "version": "0.1.0",
+  "description": "Direção visual, auditoria de UI, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários para trabalhar com Claude, com skills, agentes avaliadores somente leitura, prompts curados e evals.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ux",
+    "ui",
+    "design-system",
+    "design-tokens",
+    "accessibility",
+    "wcag",
+    "usability",
+    "heuristic-evaluation",
+    "ux-writing",
+    "user-research",
+    "design-review",
+    "dtcg",
+    "uxui-completo"
+  ]
+}

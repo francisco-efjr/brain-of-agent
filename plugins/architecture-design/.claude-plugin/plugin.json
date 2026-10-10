@@ -1,0 +1,26 @@
+{
+  "name": "architecture-design",
+  "version": "0.2.0",
+  "description": "Decisões de arquitetura com humano no comando: ADRs, trade-offs, revisão de desenho, system design, decomposição (DDD, monólito modular, strangler), resiliência e consistência (retry, circuit breaker, outbox, saga, idempotência), contratos de API, C4/Mermaid e modo ARQUITETURA-COMPLETO.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "architecture",
+    "adr",
+    "system-design",
+    "c4",
+    "ddd",
+    "hexagonal",
+    "modular-monolith",
+    "microservices",
+    "event-driven",
+    "cqrs",
+    "resilience",
+    "api-design",
+    "trade-offs",
+    "architecture-review"
+  ]
+}

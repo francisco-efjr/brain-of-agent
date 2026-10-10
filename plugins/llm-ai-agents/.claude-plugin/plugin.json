@@ -1,0 +1,28 @@
+{
+  "name": "llm-ai-agents",
+  "version": "0.1.0",
+  "description": "Playbook, skills de tarefa, subagentes somente leitura e biblioteca de prompts para projetar, revisar e testar aplicações LLM e agentes: engenharia de prompt e de contexto, tool use e MCP, RAG medido, evals e LLM-as-judge, defesa contra prompt injection, custo e cache, e autoria de CLAUDE.md, skills e plugins.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "llm",
+    "ai-agents",
+    "prompt-engineering",
+    "context-engineering",
+    "tool-use",
+    "mcp",
+    "rag",
+    "evals",
+    "llm-as-judge",
+    "prompt-injection",
+    "guardrails",
+    "subagents",
+    "skills",
+    "prompt-caching",
+    "agent-sdk",
+    "ia-completo"
+  ]
+}

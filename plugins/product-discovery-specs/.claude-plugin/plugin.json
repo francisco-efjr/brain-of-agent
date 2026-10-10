@@ -1,0 +1,27 @@
+{
+  "name": "product-discovery-specs",
+  "version": "0.1.0",
+  "description": "Transforma ideias e pedidos vagos em PRD enxuto, spec testável, critérios de aceite, histórias INVEST, priorização (RICE, ICE, MoSCoW, Kano), roadmap, OKRs e experimentos, com entrevista guiada, gates de aprovação humana, revisão adversarial em contexto novo e modo PRODUTO-COMPLETO por pedido explícito.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "PRODUTO-COMPLETO",
+    "product-discovery",
+    "prd",
+    "spec-driven-development",
+    "user-stories",
+    "acceptance-criteria",
+    "gherkin",
+    "ears",
+    "jtbd",
+    "rice",
+    "moscow",
+    "okr",
+    "roadmap",
+    "ab-testing",
+    "requirements"
+  ]
+}

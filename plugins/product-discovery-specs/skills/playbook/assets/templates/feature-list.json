@@ -1,0 +1,21 @@
+{
+  "regras": [
+    "Somente o campo passes pode mudar, e somente depois de rodar todos os steps e ver o resultado esperado.",
+    "Proibido remover ou editar itens (perder funcionalidade sem perceber é o risco que a regra evita).",
+    "Uma feature por vez, a de maior prioridade com passes false.",
+    "Rotina de início de sessão: confirmar o diretório, ler o log de progresso e git log, escolher o item pendente, subir o ambiente, rodar um teste ponta a ponta básico antes de construir.",
+    "Use em sandbox ou repositório confiável; os steps executam comandos."
+  ],
+  "features": [
+    {
+      "category": "functional",
+      "description": "Descrição observável de uma feature, por exemplo: usuário recupera a senha por link válido por 30 minutos.",
+      "steps": [
+        "Passo 1 verificável, com dado concreto",
+        "Passo 2",
+        "Resultado esperado observável"
+      ],
+      "passes": false
+    }
+  ]
+}

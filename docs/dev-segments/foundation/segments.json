@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "marketplace": "dev-segments",
+  "snapshot_root": "docs/foundation/brain-of-agent-snapshot",
+  "segments": [
+    {
+      "slug": "product-discovery-specs",
+      "keyword": "PRODUTO-COMPLETO",
+      "name": "Produto, descoberta e especificação",
+      "scope": "Descoberta de produto, JTBD, entrevistas, PRD/spec, user stories, critérios de aceite (BDD/Gherkin), priorização (RICE/ICE/MoSCoW/Kano), roadmap, OKRs/métricas, experimentos A/B, sprint planning, refinamento de backlog, spec-driven development com IA.",
+      "search_seeds": ["PRD prompt", "spec-driven development Claude", "user story acceptance criteria prompt", "product manager claude code skill", "jobs to be done interview prompt", "GitHub spec-kit"],
+      "brain_refs": ["brains/qa/references/requisitos-e-bdd.md", "vendor/gstack/office-hours/SKILL.md", "vendor/gstack/plan-ceo-review/SKILL.md", "vendor/gstack/spec/SKILL.md"]
+    },
+    {
+      "slug": "architecture-design",
+      "keyword": "ARQUITETURA-COMPLETO",
+      "name": "Arquitetura e design de sistemas",
+      "scope": "System design, ADRs, C4, DDD (bounded contexts, agregados), arquitetura hexagonal/clean, modular monolith vs microsserviços, event-driven, CQRS/event sourcing, escalabilidade, cache, consistência, resiliência (retry, circuit breaker, idempotência), design de APIs, análise de trade-offs, revisão de arquitetura.",
+      "search_seeds": ["system design prompt", "architecture decision record prompt", "software architect subagent", "DDD claude", "C4 model diagram prompt", "architecture review checklist"],
+      "brain_refs": ["brains/fullstack/references/arquitetura-e-dominio.md", "brains/fullstack/assets/templates/adr.md", "vendor/gstack/plan-eng-review/SKILL.md", "vendor/gstack/diagram/SKILL.md"]
+    },
+    {
+      "slug": "web-frontend",
+      "keyword": "FRONTEND-COMPLETO",
+      "name": "Frontend web",
+      "scope": "React, Next.js (App Router/RSC), Vue/Nuxt, Svelte/SvelteKit, Angular, TypeScript, gerenciamento de estado, CSS/Tailwind, design system em código, acessibilidade WCAG 2.2, Core Web Vitals e performance, SSR/SSG/ISR, formulários, data fetching, testes de UI, design-to-code.",
+      "search_seeds": ["react best practices cursor rules", "nextjs claude code skill", "frontend developer subagent", "accessibility audit prompt", "core web vitals optimization prompt", "frontend design skill anthropic"],
+      "brain_refs": ["brains/fullstack/references/frontend-e-estado.md", "brains/fullstack/references/apple-design.md", "brains/qa/references/acessibilidade.md", "brains/qa/references/automacao-web.md", "vendor/gstack/design-html/SKILL.md"]
+    },
+    {
+      "slug": "backend-api",
+      "keyword": "BACKEND-COMPLETO",
+      "name": "Backend e APIs",
+      "scope": "Serviços em Node/TypeScript, Python (FastAPI/Django), Go, Java/Spring, C#/.NET, Rust; REST, GraphQL, gRPC, tRPC, OpenAPI; autenticação/autorização (OAuth2/OIDC, RBAC/ABAC); validação; erros; paginação; idempotência; filas e jobs; cache; rate limiting; integrações; versionamento de contrato.",
+      "search_seeds": ["backend architect subagent", "API design guidelines prompt", "fastapi cursor rules", "go best practices claude", "openapi spec generation prompt", "REST API review checklist"],
+      "brain_refs": ["brains/fullstack/references/backend-e-contratos.md", "brains/qa/references/automacao-api.md"]
+    },
+    {
+      "slug": "mobile-apps",
+      "keyword": "MOBILE-COMPLETO",
+      "name": "Aplicativos mobile",
+      "scope": "iOS (Swift/SwiftUI), Android (Kotlin/Jetpack Compose), React Native/Expo, Flutter/Dart; arquitetura (MVVM/MVI/TCA), navegação, offline-first e sincronização, push, deep links, permissões, performance e bateria, acessibilidade mobile, testes, publicação App Store/Play Store, Human Interface Guidelines/Material.",
+      "search_seeds": ["swiftui claude code", "android compose cursor rules", "react native expo best practices prompt", "flutter developer subagent", "mobile app store release checklist", "ios developer agent"],
+      "brain_refs": ["brains/qa/references/mobile.md", "brains/fullstack/references/apple-design.md", "vendor/gstack/ios-qa/SKILL.md", "vendor/gstack/ios-design-review/SKILL.md"]
+    },
+    {
+      "slug": "database-data-modeling",
+      "keyword": "DADOS-COMPLETO",
+      "name": "Bancos de dados e modelagem",
+      "scope": "PostgreSQL, MySQL, SQLite, SQL Server, MongoDB, Redis, DynamoDB; modelagem e normalização, índices, planos de execução e tuning, transações e isolamento, locks, migrações zero-downtime (expand/contract), ORMs, multi-tenant, backup/restore, particionamento, segurança de dados.",
+      "search_seeds": ["database architect subagent", "postgres query optimization prompt", "sql review checklist", "zero downtime migration guide", "schema design prompt", "database optimizer agent"],
+      "brain_refs": ["brains/fullstack/references/dados-e-migracoes.md"]
+    },
+    {
+      "slug": "data-engineering",
+      "keyword": "DATAENG-COMPLETO",
+      "name": "Engenharia de dados e analytics",
+      "scope": "Pipelines ETL/ELT, dbt, Airflow/Dagster/Prefect, Spark, streaming (Kafka/Flink), warehouses (BigQuery/Snowflake/Databricks/Redshift), lakehouse (Iceberg/Delta), contratos e qualidade de dados, observabilidade de dados, modelagem dimensional, SQL analítico, BI/dashboards, governança e linhagem.",
+      "search_seeds": ["data engineer subagent", "dbt best practices prompt", "airflow dag review", "data quality checks prompt", "sql analytics claude skill", "data pipeline design prompt"],
+      "brain_refs": ["brains/qa/references/dados-ambientes-ci.md"]
+    },
+    {
+      "slug": "data-science-ml",
+      "keyword": "DATASCIENCE-COMPLETO",
+      "name": "Ciência de dados e machine learning",
+      "scope": "EDA, estatística aplicada, testes de hipótese, feature engineering, scikit-learn, PyTorch, gradient boosting, avaliação de modelos e vazamento de dados, séries temporais, inferência causal, experimentação, notebooks reprodutíveis, MLOps (tracking, registry, deploy, monitoramento de drift), visualização.",
+      "search_seeds": ["data scientist subagent", "machine learning engineer prompt", "EDA prompt template", "ml model evaluation checklist", "mlops best practices claude", "jupyter notebook claude code"],
+      "brain_refs": ["brains/qa/references/ia-e-llm.md"]
+    },
+    {
+      "slug": "llm-ai-agents",
+      "keyword": "IA-COMPLETO",
+      "name": "Aplicações LLM, agentes e engenharia de prompt",
+      "scope": "Engenharia de prompt e de contexto, Claude API/Agent SDK, tool use, RAG (chunking, embeddings, reranking), agentes e multiagentes, MCP, avaliação (evals, LLM-as-judge), guardrails e prompt injection, custo/latência/caching, observabilidade de LLM, fine-tuning quando cabe, skills/subagentes do Claude Code.",
+      "search_seeds": ["anthropic prompt engineering guide", "building effective agents anthropic", "RAG best practices", "LLM evals Hamel Husain", "prompt engineer subagent", "context engineering agents"],
+      "brain_refs": ["brains/fullstack/references/agentes-e-ia.md", "brains/qa/references/ia-e-llm.md", "docs/research/agentes-desenvolvimento.md"]
+    },
+    {
+      "slug": "devops-cloud-infra",
+      "keyword": "DEVOPS-COMPLETO",
+      "name": "DevOps, cloud e infraestrutura",
+      "scope": "CI/CD (GitHub Actions, GitLab CI), Docker, Kubernetes/Helm, Terraform/OpenTofu/Pulumi, AWS/GCP/Azure, deploy blue-green/canary, feature flags, gestão de segredos, GitOps (Argo/Flux), serverless, platform engineering, FinOps, ambientes e infraestrutura reprodutível.",
+      "search_seeds": ["devops engineer subagent", "terraform best practices prompt", "kubernetes manifest review", "github actions security hardening", "dockerfile best practices", "cloud architect agent"],
+      "brain_refs": ["brains/fullstack/references/entrega-e-operacao.md", "brains/qa/references/dados-ambientes-ci.md", "vendor/gstack/setup-deploy/SKILL.md", "vendor/gstack/land-and-deploy/SKILL.md"]
+    },
+    {
+      "slug": "sre-observability",
+      "keyword": "SRE-COMPLETO",
+      "name": "SRE, observabilidade e performance",
+      "scope": "SLI/SLO/error budget, métricas/logs/traces (OpenTelemetry, Prometheus, Grafana), alertas acionáveis, resposta a incidentes, postmortem blameless, runbooks, capacidade, testes de carga (k6/Locust), profiling e otimização de performance, caos, confiabilidade de dependências.",
+      "search_seeds": ["incident response prompt", "SRE subagent", "postmortem template blameless", "performance engineer agent", "opentelemetry instrumentation guide", "SLO alerting best practices"],
+      "brain_refs": ["brains/fullstack/references/entrega-e-operacao.md", "brains/qa/references/performance.md", "vendor/gstack/canary/SKILL.md", "vendor/gstack/benchmark/SKILL.md"]
+    },
+    {
+      "slug": "security-appsec",
+      "keyword": "SEGURANCA-COMPLETO",
+      "name": "Segurança de aplicações",
+      "scope": "Threat modeling (STRIDE), revisão de código seguro, OWASP Top 10/ASVS/API Top 10/LLM Top 10, autenticação e sessão, autorização por objeto/tenant, segredos, supply chain (SBOM, dependências), SAST/DAST, criptografia aplicada, segurança de cloud e containers, privacidade (LGPD/GDPR), resposta a vulnerabilidades.",
+      "search_seeds": ["security review claude code", "anthropic security-review command", "threat modeling prompt", "OWASP code review checklist", "security auditor subagent", "secure coding guidelines llm"],
+      "brain_refs": ["brains/fullstack/references/seguranca-e-privacidade.md", "brains/qa/references/seguranca.md", "vendor/gstack/cso/SKILL.md", "vendor/gstack/careful/SKILL.md"]
+    },
+    {
+      "slug": "qa-testing",
+      "keyword": "QA-COMPLETO",
+      "name": "QA e testes",
+      "scope": "Estratégia e plano de testes, pirâmide/troféu, unitários, integração, contrato, e2e (Playwright/Cypress), TDD/BDD, property-based e mutation testing, testes flaky, dados de teste, testes exploratórios, acessibilidade, performance, testes de APIs, testes de IA/LLM, relatórios de bug e evidência.",
+      "search_seeds": ["test automation subagent", "TDD claude code workflow", "playwright best practices prompt", "test strategy prompt", "flaky test diagnosis", "qa engineer agent"],
+      "brain_refs": ["brains/qa/SKILL.md", "brains/qa/references/protocolo-qa-completo.md", "brains/qa/references/estrategia.md", "brains/qa/references/design-de-testes.md", "brains/qa/references/unitarios-e-integracao.md", "brains/qa/references/bugs-e-relatorios.md", "brains/fullstack/references/testes-e-debugging.md", "vendor/gstack/qa/SKILL.md", "vendor/gstack/qa-only/SKILL.md", "vendor/gstack/test-audit/SKILL.md"]
+    },
+    {
+      "slug": "code-quality-refactoring",
+      "keyword": "QUALIDADE-COMPLETO",
+      "name": "Qualidade de código, revisão, refatoração e debugging",
+      "scope": "Code review (PR), clean code e legibilidade, refatoração segura (passos pequenos, testes de caracterização), dívida técnica, debugging sistemático, compreensão de base de código, modernização de legado, upgrades de framework/dependência, análise estática, simplificação.",
+      "search_seeds": ["code reviewer subagent", "code review prompt", "refactoring prompt", "debugging methodology llm", "legacy code modernization claude", "technical debt assessment prompt"],
+      "brain_refs": ["brains/fullstack/references/testes-e-debugging.md", "vendor/gstack/review/SKILL.md", "vendor/gstack/investigate/SKILL.md", "vendor/gstack/health/SKILL.md"]
+    },
+    {
+      "slug": "ux-ui-design",
+      "keyword": "UXUI-COMPLETO",
+      "name": "UX, UI e design systems",
+      "scope": "Pesquisa com usuários, arquitetura de informação, fluxos, heurísticas de usabilidade, design visual (tipografia, cor, grid, espaçamento), design systems e tokens, acessibilidade, crítica de design, UX writing, prototipação, handoff design→código, motion, princípios Apple HIG/Material adaptados.",
+      "search_seeds": ["frontend design skill anthropic", "ui designer subagent", "design critique prompt", "design system tokens prompt", "ux writing prompt", "usability heuristic evaluation prompt"],
+      "brain_refs": ["brains/fullstack/references/apple-design.md", "brains/qa/references/acessibilidade.md", "vendor/gstack/design-review/SKILL.md", "vendor/gstack/design-consultation/SKILL.md", "vendor/gstack/plan-design-review/SKILL.md"]
+    },
+    {
+      "slug": "technical-writing-docs",
+      "keyword": "DOCS-COMPLETO",
+      "name": "Documentação e escrita técnica",
+      "scope": "README, documentação de API (OpenAPI), tutoriais e guias (Diátaxis), ADRs, runbooks, changelogs e release notes, docs-as-code, diagramas (Mermaid/C4/PlantUML), onboarding, guias de estilo, documentação para agentes (CLAUDE.md/AGENTS.md), comentários e docstrings.",
+      "search_seeds": ["technical writer subagent", "README generator prompt", "diataxis framework", "API documentation prompt", "CLAUDE.md best practices", "changelog keep a changelog"],
+      "brain_refs": ["vendor/gstack/document-release/SKILL.md", "vendor/gstack/document-generate/SKILL.md", "brains/fullstack/assets/templates/handoff-checkpoint.md"]
+    },
+    {
+      "slug": "game-development",
+      "keyword": "GAMEDEV-COMPLETO",
+      "name": "Desenvolvimento de jogos",
+      "scope": "Unity/C#, Unreal/C++/Blueprints, Godot/GDScript, game loop, ECS, física, IA de jogo (FSM, behavior trees), game design (GDD, loops, balanceamento), performance/profiling, netcode multiplayer, pipeline de assets, shaders, UI de jogo, playtesting, publicação.",
+      "search_seeds": ["unity developer subagent", "godot claude code", "unreal engine cursor rules", "game design document prompt", "game developer agent prompt", "game performance optimization checklist"],
+      "brain_refs": []
+    },
+    {
+      "slug": "systems-embedded-iot",
+      "keyword": "EMBARCADOS-COMPLETO",
+      "name": "Sistemas, embarcados e IoT",
+      "scope": "C, C++ moderno, Rust (embedded/no_std), gerenciamento de memória, concorrência, RTOS (FreeRTOS/Zephyr), firmware ESP32/STM32/Arduino, protocolos (I2C, SPI, UART, CAN, MQTT, BLE), drivers, depuração com hardware, OTA, consumo de energia, segurança embarcada, práticas safety-critical (MISRA).",
+      "search_seeds": ["embedded systems claude code", "rust embedded best practices prompt", "c++ modern guidelines llm", "firmware review checklist", "esp32 cursor rules", "systems programming subagent"],
+      "brain_refs": []
+    },
+    {
+      "slug": "cli-desktop-tooling",
+      "keyword": "TOOLING-COMPLETO",
+      "name": "CLI, desktop e ferramentas de desenvolvedor",
+      "scope": "Design de CLIs (UX, argumentos, exit codes, saída para humanos e máquinas), TUIs, apps desktop (Electron, Tauri, .NET/WPF/WinUI/MAUI, Qt), empacotamento e distribuição, auto-update, assinatura de código, multiplataforma (Windows/macOS/Linux), scripts shell/PowerShell, ferramentas de DX.",
+      "search_seeds": ["command line interface guidelines clig", "electron security checklist", "tauri best practices", "cli tool design prompt", "powershell best practices", "developer experience review prompt"],
+      "brain_refs": ["vendor/gstack/devex-review/SKILL.md", "vendor/gstack/plan-devex-review/SKILL.md"]
+    },
+    {
+      "slug": "blockchain-web3",
+      "keyword": "WEB3-COMPLETO",
+      "name": "Blockchain e Web3",
+      "scope": "Solidity, Foundry/Hardhat, padrões ERC (20/721/1155/4626), segurança e auditoria de smart contracts (reentrância, oráculos, controle de acesso, upgradeability), fuzzing e invariantes, otimização de gas, L2s, wallets, indexação, Solana/Rust (Anchor), DeFi patterns.",
+      "search_seeds": ["solidity security audit prompt", "smart contract auditor subagent", "foundry best practices", "solidity cursor rules", "web3 developer agent", "SWC registry smart contract weaknesses"],
+      "brain_refs": []
+    },
+    {
+      "slug": "automation-integrations",
+      "keyword": "AUTOMACAO-COMPLETO",
+      "name": "Automação, integrações e MCP",
+      "scope": "Automação de workflows (n8n, Zapier, Make), webhooks, integrações entre APIs, scripts de automação, scraping responsável, bots, jobs agendados, construção de servidores MCP, autoria de skills/plugins/hooks do Claude Code, automação com agentes, tratamento de falhas e reprocessamento.",
+      "search_seeds": ["mcp server best practices", "anthropic mcp builder skill", "n8n workflow ai", "webhook integration best practices", "claude code hooks examples", "claude code plugin development"],
+      "brain_refs": ["vendor/gstack/scrape/SKILL.md", "vendor/gstack/skillify/SKILL.md"]
+    },
+    {
+      "slug": "git-workflow-release",
+      "keyword": "RELEASE-COMPLETO",
+      "name": "Git, colaboração e releases",
+      "scope": "Estratégias de branching (trunk-based, GitHub flow), commits (Conventional Commits), PRs pequenos e descrições, code owners, resolução de conflitos, semver, changelog, release engineering, monorepos, manutenção open source, git avançado (bisect, rebase, worktrees), automação de release.",
+      "search_seeds": ["commit message prompt", "pull request description prompt", "conventional commits", "release management checklist", "git workflow claude code", "open source maintainer guide"],
+      "brain_refs": ["vendor/gstack/ship/SKILL.md", "vendor/gstack/land-and-deploy/SKILL.md", "vendor/gstack/document-release/SKILL.md", "vendor/gstack/retro/SKILL.md"]
+    },
+    {
+      "slug": "saas-multitenant",
+      "keyword": "SAAS-COMPLETO",
+      "name": "SaaS multi-tenant e billing",
+      "scope": "Modelos de multi-tenancy e isolamento (RLS, schema, banco), autorização por tenant, assinaturas e billing (Stripe Billing), entitlements e feature flags, metering de uso, onboarding, admin/RBAC, SSO/SAML/SCIM, auditoria, ciclo de vida de dados (LGPD/GDPR), métricas SaaS, limites e noisy neighbors.",
+      "search_seeds": ["multi-tenant saas architecture", "postgres row level security multi tenant", "stripe billing best practices", "saas boilerplate claude code", "tenant isolation checklist", "entitlements feature flags saas"],
+      "brain_refs": ["brains/qa/references/dominios.md", "brains/fullstack/evals/cases.json"]
+    },
+    {
+      "slug": "fintech-payments",
+      "keyword": "FINTECH-COMPLETO",
+      "name": "Fintech e pagamentos",
+      "scope": "Pagamentos (Pix, cartões, boletos; Stripe/Adyen/Mercado Pago/Pagar.me), ledger de partidas dobradas, representação de dinheiro (decimal/centavos), idempotência, webhooks, conciliação, estornos e chargebacks, antifraude, KYC/AML, PCI-DSS, regulação BACEN/Open Finance, LGPD, auditoria.",
+      "search_seeds": ["payments system design", "double entry ledger design", "idempotency keys payments", "pix integration best practices", "PCI DSS developer checklist", "fintech engineering blog reconciliation"],
+      "brain_refs": ["brains/qa/references/dominios.md", "brains/qa/scripts/documentos_br.py"]
+    },
+    {
+      "slug": "ecommerce-marketplace",
+      "keyword": "ECOMMERCE-COMPLETO",
+      "name": "E-commerce e marketplaces",
+      "scope": "Catálogo e variações, busca e filtros, carrinho e checkout, estoque e reservas, preços e promoções, gestão de pedidos, frete e logística, nota fiscal (NF-e) e impostos no Brasil, marketplace multi-seller (split de pagamento), recomendações, SEO, conversão e performance, plataformas (Shopify, VTEX, WooCommerce, Medusa).",
+      "search_seeds": ["ecommerce architecture best practices", "checkout optimization checklist", "inventory reservation pattern", "shopify app development claude", "marketplace split payment", "ecommerce seo technical checklist"],
+      "brain_refs": ["brains/qa/references/dominios.md", "brains/qa/scripts/documentos_br.py"]
+    }
+  ]
+}
