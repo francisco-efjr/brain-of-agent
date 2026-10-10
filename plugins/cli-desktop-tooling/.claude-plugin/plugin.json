@@ -1,0 +1,8 @@
+{
+  "name": "cli-desktop-tooling",
+  "version": "0.1.0",
+  "description": "Playbook, skills, agentes e prompts para projetar, revisar, empacotar e distribuir CLIs, TUIs e apps desktop (Electron, Tauri, WPF, WinUI, MAUI, Qt), com design de CLI para humanos e agentes, segurança desktop, assinatura de código, instaladores, auto-update, scripts PowerShell e bash e auditoria de developer experience.",
+  "author": { "name": "Francisco Edson", "url": "https://github.com/francisco-efjr" },
+  "license": "MIT",
+  "keywords": ["cli", "command-line", "tui", "electron", "tauri", "wpf", "winui", "powershell", "shellcheck", "code-signing", "msix", "auto-update", "developer-experience", "windows", "TOOLING-COMPLETO"]
+}

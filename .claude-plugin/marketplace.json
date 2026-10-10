@@ -347,6 +347,114 @@
       ]
     },
     {
+      "name": "game-development",
+      "source": "./plugins/game-development",
+      "description": "Playbook, skills, agentes e prompts para desenvolver, revisar, otimizar e testar jogos em Godot/GDScript, Unity/C# e Unreal/C++, com verificação por execução (headless, sondas, captura), performance por orçamento, autoridade de rede, revisão de GDD, plano de QA e playtest, e modo GAMEDEV-COMPLETO por pedido explícito.",
+      "keywords": [
+        "game-development",
+        "gamedev",
+        "godot",
+        "gdscript",
+        "unity",
+        "unreal",
+        "game-loop",
+        "physics",
+        "netcode",
+        "profiling",
+        "gdd",
+        "playtest",
+        "headless",
+        "GAMEDEV-COMPLETO"
+      ]
+    },
+    {
+      "name": "systems-embedded-iot",
+      "source": "./plugins/systems-embedded-iot",
+      "description": "Revisão, depuração e testes de firmware (C/C++, Rust no_std, FreeRTOS, Zephyr, ESP32/STM32) com portão humano para gravar em hardware, datasheet primeiro e checklists de ISR, barramentos, MQTT e OTA seguro.",
+      "keywords": [
+        "embedded",
+        "firmware",
+        "iot",
+        "rtos",
+        "freertos",
+        "zephyr",
+        "esp32",
+        "stm32",
+        "rust-no-std",
+        "mqtt",
+        "ota",
+        "misra",
+        "datasheet",
+        "EMBARCADOS-COMPLETO"
+      ]
+    },
+    {
+      "name": "cli-desktop-tooling",
+      "source": "./plugins/cli-desktop-tooling",
+      "description": "Playbook, skills, agentes e prompts para projetar, revisar, empacotar e distribuir CLIs, TUIs e apps desktop (Electron, Tauri, WPF, WinUI, MAUI, Qt), com design de CLI para humanos e agentes, segurança desktop, assinatura de código, instaladores, auto-update, scripts PowerShell e bash e auditoria de developer experience.",
+      "keywords": [
+        "cli",
+        "command-line",
+        "tui",
+        "electron",
+        "tauri",
+        "wpf",
+        "winui",
+        "powershell",
+        "shellcheck",
+        "code-signing",
+        "msix",
+        "auto-update",
+        "developer-experience",
+        "windows",
+        "TOOLING-COMPLETO"
+      ]
+    },
+    {
+      "name": "blockchain-web3",
+      "source": "./plugins/blockchain-web3",
+      "description": "Revisão de segurança de smart contracts (Solidity; Anchor com cobertura parcial), testes de invariantes e fuzz com Foundry, checklists de ERC-20/721/1155/4626, oráculos, L2, upgradeability e assinaturas, com portões de validação por PoC e regras para manter chaves e deploy fora do agente.",
+      "keywords": [
+        "web3",
+        "blockchain",
+        "solidity",
+        "smart-contracts",
+        "foundry",
+        "openzeppelin",
+        "audit",
+        "fuzzing",
+        "invariants",
+        "erc4626",
+        "oracles",
+        "eip712",
+        "security-review",
+        "anchor",
+        "WEB3-COMPLETO"
+      ]
+    },
+    {
+      "name": "automation-integrations",
+      "source": "./plugins/automation-integrations",
+      "description": "Playbook, skills, agentes e prompts para automação de workflows, webhooks idempotentes, integrações entre APIs, servidores MCP, hooks de guardrail, jobs agendados com claude -p, scraping responsável e autoria de skills e plugins do Claude Code, com segurança contra injeção em conteúdo externo.",
+      "keywords": [
+        "automation",
+        "integrations",
+        "mcp",
+        "mcp-server",
+        "webhooks",
+        "idempotency",
+        "n8n",
+        "hooks",
+        "skills",
+        "plugins",
+        "scheduled-jobs",
+        "scraping",
+        "prompt-injection",
+        "automacao",
+        "AUTOMACAO-COMPLETO"
+      ]
+    },
+    {
       "name": "git-workflow-release",
       "source": "./plugins/git-workflow-release",
       "description": "Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos, rebase e revert seguros, bisect, semver, changelog e releases, com push, merge, tag e publicação sempre sob confirmação.",

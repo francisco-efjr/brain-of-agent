@@ -20,10 +20,15 @@ Gerado por `tools/publish_brain.py` a partir do frontmatter dos plugins publicad
 | `code-quality-refactoring` | Revisão de código com filtro de alto sinal, debugging por causa raiz, refatoração segura com testes de caracterização, migração com juiz de paridade e triagem … | code-health-report, codebase-onboarding, debug-causa-raiz, migration-parity, playbook, prompts, refactor-seguro, review-diff, simplify-safe, tech-debt-triage | code-reviewer, codebase-mapper, debugger, finding-validator, refactor-planner | QUALIDADE-COMPLETO |
 | `ux-ui-design` | Direção visual, auditoria de UI, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários para trabalhar com Claude,… | a11y-checklist, design-brief, design-init, design-tokens, heuristic-eval, playbook, prompts, ui-audit, user-research-plan, ux-writing | a11y-reviewer, design-evaluator, design-system-auditor, ui-designer, ux-researcher | UXUI-COMPLETO |
 | `technical-writing-docs` | Documentação técnica com Claude Code: README, tutoriais e guias (Diátaxis), ADRs, runbooks, changelog, docs de API (OpenAPI), docstrings, diagramas Mermaid, do… | auditar-claude-md, diagramar-arquitetura, documentar-codigo, escrever-adr, escrever-changelog-release, escrever-guia-diataxis, escrever-readme, escrever-runbook, playbook, prompts | auditor-de-docs, revisor-de-instrucoes, revisor-de-leitor, technical-writer | DOCS-COMPLETO |
+| `game-development` | Playbook, skills, agentes e prompts para desenvolver, revisar, otimizar e testar jogos em Godot/GDScript, Unity/C# e Unreal/C++, com verificação por execução (… | game-netcode-review, game-perf-audit, game-qa-plan, game-verify-by-running, gdd-review, godot-gdscript, playbook, prompts, unity-csharp, unreal-cpp | game-engine-specialist, game-evaluator, gameplay-programmer, gameplay-reviewer, gdd-reviewer | GAMEDEV-COMPLETO |
+| `systems-embedded-iot` | Revisão, depuração e testes de firmware (C/C++, Rust no_std, FreeRTOS, Zephyr, ESP32/STM32) com portão humano para gravar em hardware, datasheet primeiro e che… | bus-protocol-review, datasheet-first, firmware-review, firmware-root-cause, firmware-test-host, hw-bench-loop, ota-security-review, playbook, prompts, rtos-concurrency-review | embedded-architect, firmware-debugger, firmware-reviewer, firmware-test-engineer, iot-security-auditor | EMBARCADOS-COMPLETO |
+| `cli-desktop-tooling` | Playbook, skills, agentes e prompts para projetar, revisar, empacotar e distribuir CLIs, TUIs e apps desktop (Electron, Tauri, WPF, WinUI, MAUI, Qt), com desig… | cli-design-review, desktop-release-checklist, desktop-security-audit, desktop-stack-decision, dotnet-desktop-review, dx-audit, playbook, prompts, shell-script-review, tui-review | cli-ux-reviewer, desktop-security-auditor, diff-gap-reviewer, release-readiness-auditor, script-reviewer | TOOLING-COMPLETO |
+| `blockchain-web3` | Revisão de segurança de smart contracts (Solidity; Anchor com cobertura parcial), testes de invariantes e fuzz com Foundry, checklists de ERC-20/721/1155/4626,… | audit-contracts, contract-security-review, defi-oracle-l2-review, exploit-poc, foundry-testing, playbook, prompts, solana-anchor-review, token-standards-review, wallet-signing-review | defi-protocol-analyst, finding-refuter, invariant-test-engineer, solidity-security-reviewer, web3-agent-safety-auditor | WEB3-COMPLETO |
+| `automation-integrations` | Playbook, skills, agentes e prompts para automação de workflows, webhooks idempotentes, integrações entre APIs, servidores MCP, hooks de guardrail, jobs agenda… | assessing-automation-risk, authoring-plugin-skills, building-mcp-servers, designing-workflow-automations, playbook, prompts, responsible-scraping, reviewing-webhook-receivers, scheduling-headless-jobs, writing-hook-guardrails | automation-architect, integration-reviewer, mcp-security-reviewer, plugin-validator, third-party-auditor | AUTOMACAO-COMPLETO |
 | `git-workflow-release` | Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos, rebase e revert seguros, bisect, semver, changel… | bisect-regressao, commit-convencional, criar-pr, encerrar-branch, playbook, prompts, rebase-seguro, release-cut, resolver-conflitos, triagem-contribuicao | auditor-politica-repo, auditor-release, revisor-diff, revisor-plano | RELEASE-COMPLETO |
 | `design-engineering-kit` | Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 sk… | animate, animate-expo, animation-vocabulary, apple-design, break-ui, design-taste-frontend, emil-design-eng, find-animation-opportunities, high-end-visual-design, improve-animations, industrial-brutalist-ui, minimalist-ui, mobile-native, pick-ui-library, playbook, prompts, prototype, redesign-existing-projects, review-animations | motion-polish-reviewer, ui-verifier | DESIGNENG-COMPLETO |
 
-**Em construção (ainda não publicados):** `game-development`, `systems-embedded-iot`, `cli-desktop-tooling`, `blockchain-web3`, `automation-integrations`, `saas-multitenant`, `fintech-payments`, `ecommerce-marketplace`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
+**Em construção (ainda não publicados):** `saas-multitenant`, `fintech-payments`, `ecommerce-marketplace`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
 
 ## product-discovery-specs (`product-discovery-specs` 0.1.0)
 
@@ -454,6 +459,141 @@ Instalar: `/plugin install technical-writing-docs@brain-of-agent` · Playbook: `
 | `technical-writing-docs:revisor-de-instrucoes` (`plugins/technical-writing-docs/agents/revisor-de-instrucoes.md`) | Revisor independente, somente leitura e em contexto limpo, de arquivos de instrução para agentes - CLAUDE.md, CLAUDE.local.md, AGENTS.md, .claude/rules/*, SKILL.md e agents/*.md. | Read, Grep, Glob |
 | `technical-writing-docs:revisor-de-leitor` (`plugins/technical-writing-docs/agents/revisor-de-leitor.md`) | Leitor novo e limpo, somente leitura, que responde perguntas reais usando apenas o texto de um documento e aponta lacunas - termos sem definição, passos que não conseguiria executar, contradições, pressupostos ocultos e… | Read |
 | `technical-writing-docs:technical-writer` (`plugins/technical-writing-docs/agents/technical-writer.md`) | Redator técnico que recebe um briefing (leitor, tipo ou quadrante Diátaxis, fontes de fatos, caminhos de saída) e escreve ou edita arquivos de documentação - README, tutorial, how-to, referência, explicação, ADR de deci… | Read, Grep, Glob, Write, Edit |
+
+## game-development (`game-development` 0.1.0)
+
+Playbook, skills, agentes e prompts para desenvolver, revisar, otimizar e testar jogos em Godot/GDScript, Unity/C# e Unreal/C++, com verificação por execução (headless, sondas, captura), performance por orçamento, autoridade de rede, revisão de GDD, plano de QA e playtest, e modo GAMEDEV-COMPLETO por pedido explícito.
+
+Instalar: `/plugin install game-development@brain-of-agent` · Playbook: `plugins/game-development/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/game-development:game-netcode-review` | Revisa código multiplayer (Unity Netcode for GameObjects e Godot high-level multiplayer) quanto a autoridade, validação de RPC e confiança no cliente, somente leitura, com cenário de abuso por achado. |
+| `/game-development:game-perf-audit` | Audita a performance de um jogo (Godot, Unity, Unreal) contra os orçamentos do projeto, sem editar código; lista insumos FOUND/ABSENT, classifica CPU-bound ou GPU-bound, aponta candidatos por impacto x esforço e dá vere… |
+| `/game-development:game-qa-plan` | Cria plano de QA de jogo por tipo de teste (Logic, Integration, Visual/Feel, UI, Config/Data), plano de smoke e de playtest, e relatório de playtest que separa defeito de sensação. |
+| `/game-development:game-verify-by-running` | Verifica uma funcionalidade ou correção de jogo rodando o projeto (checks headless, sondas, captura, log) e entrega relatório com evidência real, separando o verificado do que exige humano (sensação, áudio, legibilidade… |
+| `/game-development:gdd-review` | Revisa GDD ou documento de design de um sistema de jogo em quatro dimensões (completude, consistência, implementabilidade, encaixe com outros sistemas e pilares), com veredito por dimensão e agregado e lista de pergunta… |
+| `/game-development:godot-gdscript` | Escreve, revisa e depura GDScript em Godot 4 conforme o guia de estilo oficial, com física em _physics_process e verificação headless. |
+| `/game-development:playbook` | Guia e router do segmento Desenvolvimento de jogos (Godot/GDScript, Unity/C#, Unreal/C++) - verificação por execução do jogo, game loop e física, performance e profiling, netcode e autoridade, revisão de GDD, plano de Q… |
+| `/game-development:prompts` | Biblioteca de prompts curados do segmento Desenvolvimento de jogos (Godot/GDScript, Unity/C#, Unreal/C++). |
+| `/game-development:unity-csharp` | Escreve e revisa C# de runtime em Unity (6000.x; conferir 2022 LTS) com foco em alocação por frame, ciclo de vida, async com Awaitable, ScriptableObjects e testes Edit Mode/Play Mode. |
+| `/game-development:unreal-cpp` | Revisa e escreve C++ de Unreal Engine conforme o padrão de código da Epic (UE 5.8) e orienta onde cada dado mora no Gameplay Framework (GameMode, GameState, PlayerState, PlayerController, Pawn, HUD). |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `game-development:game-engine-specialist` (`plugins/game-development/agents/game-engine-specialist.md`) | Especialista somente leitura na engine do projeto (Godot 4, Unity ou Unreal) para dúvidas de API, estrutura de cenas, prefabs e actors, sinais e eventos, e escolha de linguagem (GDScript x C# x GDExtension). | Read, Glob, Grep |
+| `game-development:game-evaluator` (`plugins/game-development/agents/game-evaluator.md`) | Avaliador cético e independente do autor para uma funcionalidade de jogo já construída. | Read, Glob, Grep, Bash |
+| `game-development:gameplay-programmer` (`plugins/game-development/agents/gameplay-programmer.md`) | Implementa mecânicas de jogo (máquina de estados, input, eventos, dados de gameplay) em GDScript, C# de Unity ou C++ de Unreal a partir de um GDD, critério de aceite ou spec aprovados, e só grava nos caminhos que o pedi… | Read, Glob, Grep, Write, Edit |
+| `game-development:gameplay-reviewer` (`plugins/game-development/agents/gameplay-reviewer.md`) | Revisor adversarial somente leitura de diffs e scripts de gameplay (GDScript, C# de Unity, C++ de Unreal) em contexto limpo. | Read, Grep, Glob |
+| `game-development:gdd-reviewer` (`plugins/game-development/agents/gdd-reviewer.md`) | Segunda leitura independente e somente leitura de um GDD ou documento de design de sistema, em quatro dimensões (completude, consistência, implementabilidade, encaixe com outros sistemas e pilares), com veredito por dim… | Read, Glob, Grep |
+
+## systems-embedded-iot (`systems-embedded-iot` 0.1.0)
+
+Revisão, depuração e testes de firmware (C/C++, Rust no_std, FreeRTOS, Zephyr, ESP32/STM32) com portão humano para gravar em hardware, datasheet primeiro e checklists de ISR, barramentos, MQTT e OTA seguro.
+
+Instalar: `/plugin install systems-embedded-iot@brain-of-agent` · Playbook: `plugins/systems-embedded-iot/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/systems-embedded-iot:bus-protocol-review` | Revisa drivers de barramento e clientes de rede de dispositivo, somente relato: I2C, SPI, UART, CAN (TWAI), MQTT 3.1.1/5.0 e decisões de pilha BLE. |
+| `/systems-embedded-iot:datasheet-first` | Escreve, porta ou revisa driver e código de periférico de firmware ancorando cada registrador, campo de bits, IRQ, pino e função HAL em fonte citada (datasheet, reference manual, errata, SVD ou header); sem fonte, para … |
+| `/systems-embedded-iot:firmware-review` | Revisa código C/C++ de firmware sem editá-lo: retorno de erro, recursos, tipos e atomicidade, estilo defensivo, robustez de campo e política de memória. |
+| `/systems-embedded-iot:firmware-root-cause` | Depura travamentos, resets, HardFault, panic, watchdog, corrupção de memória e comportamento intermitente de firmware com causa raiz antes da correção: registra motivo de reset e registradores de falha, formula no máxim… |
+| `/systems-embedded-iot:firmware-test-host` | Planeja, escreve e roda testes de firmware no host e, com gate, no alvo: ztest (unit_testing, native_sim), Unity/CMock/Ceedling, ESP-IDF (Unity no alvo, mocks no host Linux, pytest-embedded), PlatformIO native, Rust (ca… |
+| `/systems-embedded-iot:hw-bench-loop` | Conduz o ciclo compilar, gravar com confirmação, observar, comparar e corrigir numa bancada real de firmware, com cartão de gravação, confirmação explícita no chat, parada em ambiguidade e registro de evidência por está… |
+| `/systems-embedded-iot:ota-security-review` | Revisa, somente leitura, atualização OTA, bootloader (MCUboot, ESP-IDF), secure boot, custódia de chaves, interfaces de depuração e baseline de segurança de dispositivo IoT (perguntas derivadas de NIST IR 8259A/Rev. |
+| `/systems-embedded-iot:playbook` | Guia e router do segmento Sistemas, embarcados e IoT - revisar, depurar, testar e projetar firmware (C/C++, Rust no_std, FreeRTOS, Zephyr, ESP32/STM32/Arduino), barramentos (I2C, SPI, UART, CAN, MQTT, BLE), OTA e segura… |
+| `/systems-embedded-iot:prompts` | Biblioteca de 30 prompts curados de firmware, embarcados e IoT, prontos para colar, com variáveis, motivo e fonte. |
+| `/systems-embedded-iot:rtos-concurrency-review` | Revisa ISR, tarefas, prioridades, pilhas e dado compartilhado em firmware bare metal, FreeRTOS, Zephyr e Rust (RTIC, Embassy, critical-section), somente relato: tabela de dados compartilhados, tabela API por contexto, y… |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `systems-embedded-iot:embedded-architect` (`plugins/systems-embedded-iot/agents/embedded-architect.md`) | Arquiteto de decisões de firmware que produz ADR e orçamentos iniciais sem escrever arquivos. | Read, Grep, Glob |
+| `systems-embedded-iot:firmware-debugger` (`plugins/systems-embedded-iot/agents/firmware-debugger.md`) | Investigador de causa raiz de firmware que propõe correção mínima sem aplicar. | Read, Grep, Glob, Bash |
+| `systems-embedded-iot:firmware-reviewer` (`plugins/systems-embedded-iot/agents/firmware-reviewer.md`) | Revisor adversarial somente leitura de diffs e arquivos de firmware (C/C++/Rust no_std, FreeRTOS, Zephyr, ESP-IDF, STM32 HAL), em contexto limpo. | Read, Grep, Glob |
+| `systems-embedded-iot:firmware-test-engineer` (`plugins/systems-embedded-iot/agents/firmware-test-engineer.md`) | Escritor de testes de firmware no host - Unity/CMock/Ceedling, ztest (unit_testing, native_sim), ESP-IDF Unity e pytest-embedded, PlatformIO native, cargo test com fakes de embedded-hal - mais planos de HIL com portão d… | Read, Grep, Glob, Write, Edit, Bash |
+| `systems-embedded-iot:iot-security-auditor` (`plugins/systems-embedded-iot/agents/iot-security-auditor.md`) | Auditor somente leitura de segurança de dispositivo IoT e embarcado - OTA, bootloader, secure boot, custódia de chaves, interfaces de depuração, segredos no repositório, TLS do cliente e baseline NIST IR 8259A e ETSI EN… | Read, Grep, Glob |
+
+## cli-desktop-tooling (`cli-desktop-tooling` 0.1.0)
+
+Playbook, skills, agentes e prompts para projetar, revisar, empacotar e distribuir CLIs, TUIs e apps desktop (Electron, Tauri, WPF, WinUI, MAUI, Qt), com design de CLI para humanos e agentes, segurança desktop, assinatura de código, instaladores, auto-update, scripts PowerShell e bash e auditoria de developer experience.
+
+Instalar: `/plugin install cli-desktop-tooling@brain-of-agent` · Playbook: `plugins/cli-desktop-tooling/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/cli-desktop-tooling:cli-design-review` | Revisa, somente leitura, o design de uma CLI (qualquer linguagem) para humanos e para agentes: subcomandos, flags, --help, exit codes, stdout versus stderr, --json, --no-input, erros acionáveis, segredos, ações destruti… |
+| `/cli-desktop-tooling:desktop-release-checklist` | Audita, somente leitura, a prontidão de release de um app desktop (não tags, changelog ou semver, que são de git-workflow-release): assinatura de código no Windows e no macOS, SmartScreen, notarização, instaladores (MSI… |
+| `/cli-desktop-tooling:desktop-security-audit` | Audita, somente leitura, a segurança de um app desktop Electron ou Tauri v2: mapa da fronteira de confiança, isolamento de contexto, sandbox, IPC, navegação, novas janelas, permissões, CSP, fuses, capabilities, AppManif… |
+| `/cli-desktop-tooling:desktop-stack-decision` | Ajuda a escolher a stack de um app desktop (Electron, Tauri, WinUI 3, WPF, .NET MAUI ou Qt) a partir dos requisitos, separando restrições duras de distribuição (MSIX, Store, macOS, mobile, licença) de preferências, apli… |
+| `/cli-desktop-tooling:dotnet-desktop-review` | Revisa, somente leitura, um app desktop .NET (WPF, WinUI 3 ou MAUI): comandos e data binding, MVVM Toolkit (CommunityToolkit.Mvvm), acessibilidade (nome acessível, teclado, alto contraste, escala, AutomationPeer, Narrat… |
+| `/cli-desktop-tooling:dx-audit` | Audita a developer experience (DX) de uma CLI, biblioteca ou ferramenta: tempo até o primeiro resultado útil (TTHW), atritos de instalação, qualidade de ajuda e erros, documentação, caminho de upgrade e desinstalação, c… |
+| `/cli-desktop-tooling:playbook` | Guia e router do segmento CLI, desktop e ferramentas de desenvolvedor: design de CLIs (argumentos, exit codes, saída para humanos e máquinas, uso por agentes), TUIs, apps desktop (Electron, Tauri, WPF, WinUI, MAUI, Qt),… |
+| `/cli-desktop-tooling:prompts` | Biblioteca de prompts curados do segmento CLI, desktop e ferramentas de desenvolvedor (30 prompts prontos, com variáveis, motivo e fonte). |
+| `/cli-desktop-tooling:shell-script-review` | Revisa, somente leitura, scripts PowerShell (.ps1, .psm1) e shell (.sh): verbos aprovados, SupportsShouldProcess e -WhatIf, tratamento de erro, $LASTEXITCODE em comandos nativos, PowerShell 5.1 versus 7, PSScriptAnalyze… |
+| `/cli-desktop-tooling:tui-review` | Revisa, somente leitura, uma TUI (interface de terminal) em Textual (Python), Ratatui (Rust) ou Bubble Tea (Go): separação entre estado e renderização, bindings de teclado visíveis, ordem de foco, tratamento de resize, … |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `cli-desktop-tooling:cli-ux-reviewer` (`plugins/cli-desktop-tooling/agents/cli-ux-reviewer.md`) | Revisor somente leitura de CLIs e TUIs, em contexto limpo, para humanos e agentes. | Read, Grep, Glob |
+| `cli-desktop-tooling:desktop-security-auditor` (`plugins/cli-desktop-tooling/agents/desktop-security-auditor.md`) | Auditor somente leitura da fronteira de confiança de apps Electron e Tauri v2: contextIsolation, nodeIntegration, sandbox, preload, IPC, navegação, permissões, CSP, fuses, capabilities, isolation pattern. | Read, Grep, Glob |
+| `cli-desktop-tooling:diff-gap-reviewer` (`plugins/cli-desktop-tooling/agents/diff-gap-reviewer.md`) | Revisor adversarial genérico, em contexto novo e somente leitura, para qualquer mudança de CLI, TUI, app desktop, script ou instalador. | Read, Grep, Glob |
+| `cli-desktop-tooling:release-readiness-auditor` (`plugins/cli-desktop-tooling/agents/release-readiness-auditor.md`) | Auditor somente leitura da prontidão de release de apps desktop: assinatura de código (Windows e macOS), SmartScreen, notarização, instaladores (MSIX, Inno Setup, WiX, NSIS, MSI), winget, auto-update (Electron, Tauri, S… | Read, Grep, Glob |
+| `cli-desktop-tooling:script-reviewer` (`plugins/cli-desktop-tooling/agents/script-reviewer.md`) | Revisor somente leitura de scripts PowerShell (.ps1, .psm1) e shell (.sh/bash/sh): verbos aprovados, ShouldProcess e -WhatIf, tratamento de erro, $LASTEXITCODE, PSScriptAnalyzer, Pester, ShellCheck, aspas, cd sem ||, lo… | Read, Grep, Glob |
+
+## blockchain-web3 (`blockchain-web3` 0.1.0)
+
+Revisão de segurança de smart contracts (Solidity; Anchor com cobertura parcial), testes de invariantes e fuzz com Foundry, checklists de ERC-20/721/1155/4626, oráculos, L2, upgradeability e assinaturas, com portões de validação por PoC e regras para manter chaves e deploy fora do agente.
+
+Instalar: `/plugin install blockchain-web3@brain-of-agent` · Playbook: `plugins/blockchain-web3/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/blockchain-web3:audit-contracts` | Conduz auditoria assistida de smart contracts em 5 fases com portões (definição, reconhecimento, varredura, validação, relatório), marcador de conclusão em cada arquivo de audit/, aprovação de custo antes de paralelismo… |
+| `/blockchain-web3:contract-security-review` | Revisa diff ou arquivos de smart contract (Solidity) e relata só vulnerabilidades exploráveis, com caminho de ataque, refutação e confiança >= 0,8, somente leitura. |
+| `/blockchain-web3:defi-oracle-l2-review` | Revisa como contratos consomem preço e oráculo (Chainlink: idade por updatedAt, decimals, feed por rede), premissas de L2 (feed de uptime do sequenciador, carência, alias de endereço, taxa de dados L1) e hooks do Uniswa… |
+| `/blockchain-web3:exploit-poc` | Transforma um candidato a achado de segurança em PoC executável somente em fork local ou teste diferencial Foundry, roda forge test, cola comando e saída e classifica: PoC-passed, PoC-failed, apenas-rastro-de-código ou … |
+| `/blockchain-web3:foundry-testing` | Cria e revisa testes Foundry para smart contracts em quatro modos: unit (unitário e fork local), invariants (handler, ghost, bound(), contadores), fuzz e gas (forge snapshot antes/depois). |
+| `/blockchain-web3:playbook` | Guia e router do segmento Blockchain e Web3: desenvolvimento e auditoria assistida de smart contracts (Solidity; Anchor parcial), testes unitários, de fork, invariantes e fuzz com Foundry, padrões ERC (20, 721, 1155, 46… |
+| `/blockchain-web3:prompts` | Biblioteca de 29 prompts curados de Blockchain e Web3 prontos para colar, com variáveis e fontes. |
+| `/blockchain-web3:solana-anchor-review` | Revisa constraints de conta e riscos básicos de programas Solana escritos em Anchor (Signer, UncheckedAccount com /// CHECK:, PDAs com seeds e bump, has_one, init_if_needed, realloc, close, discriminador), somente leitu… |
+| `/blockchain-web3:token-standards-review` | Confere conformidade e integração segura de tokens ERC-20, ERC-721, ERC-1155 e cofres ERC-4626 (arredondamento, preview, ataque de inflação de shares, hooks de recebimento, token com taxa ou rebase), somente leitura. |
+| `/blockchain-web3:wallet-signing-review` | Revisa a segurança de assinaturas off-chain (EIP-712, permit, meta-transação, claim assinado) e da integração de carteira (EIP-1193): domínio, nonce, validade, replay, frontrunning, erros do provider e 'o que o usuário … |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `blockchain-web3:defi-protocol-analyst` (`plugins/blockchain-web3/agents/defi-protocol-analyst.md`) | Analista somente leitura de oráculos de preço, premissas de L2, vaults ERC-4626 e hooks do Uniswap v4 em protocolos DeFi. | Read, Grep, Glob |
+| `blockchain-web3:finding-refuter` (`plugins/blockchain-web3/agents/finding-refuter.md`) | Revisor adversarial em contexto novo que tenta derrubar um achado de segurança de smart contract antes de ele entrar no relatório ou virar PoC. | Read, Grep, Glob |
+| `blockchain-web3:invariant-test-engineer` (`plugins/blockchain-web3/agents/invariant-test-engineer.md`) | Engenheiro de testes Foundry que escreve handlers, ghosts, invariantes, testes de fuzz, de fork e de regressão para smart contracts e mede gás com forge snapshot. | Read, Grep, Glob, Write, Edit, Bash |
+| `blockchain-web3:solidity-security-reviewer` (`plugins/blockchain-web3/agents/solidity-security-reviewer.md`) | Revisa diffs e arquivos de smart contracts (Solidity; Anchor com cobertura parcial) em busca de vulnerabilidades exploráveis, somente leitura, e devolve um relatório com achados por severidade, evidência arquivo:linha e… | Read, Grep, Glob |
+| `blockchain-web3:web3-agent-safety-auditor` (`plugins/blockchain-web3/agents/web3-agent-safety-auditor.md`) | Audita a configuração do Claude Code de um repositório Web3 (permissões, hooks, CLAUDE.md, MCP, scripts, skills de terceiros) quanto a vazamento de chave e a movimentação de fundos pelo agente. | Read, Grep, Glob |
+
+## automation-integrations (`automation-integrations` 0.1.0)
+
+Playbook, skills, agentes e prompts para automação de workflows, webhooks idempotentes, integrações entre APIs, servidores MCP, hooks de guardrail, jobs agendados com claude -p, scraping responsável e autoria de skills e plugins do Claude Code, com segurança contra injeção em conteúdo externo.
+
+Instalar: `/plugin install automation-integrations@brain-of-agent` · Playbook: `plugins/automation-integrations/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/automation-integrations:assessing-automation-risk` | Avalia, só em leitura, o risco de uma automação, de uma configuração de MCP ou da adoção de skill, plugin, hook ou instalador de terceiro: trifecta letal (dado privado, conteúdo hostil, saída externa), escopos e aprovaç… |
+| `/automation-integrations:authoring-plugin-skills` | Cria, revisa, calibra e avalia skills e plugins do Claude Code: frontmatter real, descrição que dispara, estrutura com progressive disclosure, suíte claude plugin eval, checklist de manifesto e codificação de um fluxo a… |
+| `/automation-integrations:building-mcp-servers` | Projeta, implementa e avalia um servidor MCP (stdio local ou HTTP remoto) que expõe uma API ou sistema como tools para o Claude: mapa API-para-tools por intenção, schemas, anotações de risco, logs em stderr, checagem de… |
+| `/automation-integrations:designing-workflow-automations` | Desenha workflows de automação (n8n, Zapier, Make, scripts, cron) e sincronizações entre APIs com contrato de falha: workflow ou agente, chave de idempotência, retry com backoff, 429 e Retry-After, paginação, OAuth refr… |
+| `/automation-integrations:playbook` | Guia e router do segmento Automação, integrações e MCP. |
+| `/automation-integrations:prompts` | Biblioteca de prompts curados do segmento Automação, integrações e MCP, prontos para colar: entrevista de requisitos, workflow ou agente, plano e avaliação de servidor MCP, revisão de segurança de MCP, auditoria e imple… |
+| `/automation-integrations:responsible-scraping` | Planeja e executa extração de dados da web em modo somente leitura, respeitando robots.txt (RFC 9309), taxa e termos, e devolve um JSON estável com nota de conformidade. |
+| `/automation-integrations:reviewing-webhook-receivers` | Revisa ou implementa um receptor de webhook confiável: corpo bruto, assinatura em tempo constante, tolerância de timestamp, deduplicação por ID de evento, 2xx rápido com fila, ordem não garantida, fila de mortas e repro… |
+| `/automation-integrations:scheduling-headless-jobs` | Desenha jobs agendados e automações de CI com claude -p e a claude-code-action de forma segura e verificável: --bare, lista mínima de ferramentas, modo sem prompts, teto de custo, saída JSON, gate de plugin_errors e mcp… |
+| `/automation-integrations:writing-hook-guardrails` | Projeta, escreve e testa um hook de guardrail do Claude Code (por exemplo bloquear git push --force, rm -rf fora do projeto ou leitura de segredos) e entrega script, casos de teste e o trecho de configuração sem ativá-l… |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `automation-integrations:automation-architect` (`plugins/automation-integrations/agents/automation-architect.md`) | Projetista de automações e integrações: escolhe a forma mais simples e confiável (workflow, agente com limite, tool MCP, hook, job claude -p, skill) e desenha o contrato de falha, os riscos e o plano de verificação, sem… | Read, Grep, Glob |
+| `automation-integrations:integration-reviewer` (`plugins/automation-integrations/agents/integration-reviewer.md`) | Revisor independente, adversarial e somente leitura de integrações: receptores de webhook, consumidores de fila, jobs agendados, clientes de API de saída e fluxos de erro de workflows (n8n e similares). | Read, Grep, Glob |
+| `automation-integrations:mcp-security-reviewer` (`plugins/automation-integrations/agents/mcp-security-reviewer.md`) | Revisor somente leitura de segurança de servidores MCP (código) e de configuração de MCP (.mcp.json, settings, servidores de plugin, uso em claude -p e CI). | Read, Grep, Glob |
+| `automation-integrations:plugin-validator` (`plugins/automation-integrations/agents/plugin-validator.md`) | Valida estrutura, manifesto, frontmatter e qualidade de prompt de um plugin do Claude Code (skills, agentes, evals), rodando só os validadores oficiais e a verificação estrutural, sem instalar nem executar código do plu… | Read, Grep, Glob, Bash |
+| `automation-integrations:third-party-auditor` (`plugins/automation-integrations/agents/third-party-auditor.md`) | Auditor somente leitura de skills, plugins, servidores MCP, hooks, scripts e instaladores de terceiros antes da adoção. | Read, Grep, Glob |
 
 ## git-workflow-release (`git-workflow-release` 0.1.0)
 

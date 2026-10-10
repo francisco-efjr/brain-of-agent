@@ -1,0 +1,8 @@
+{
+  "name": "systems-embedded-iot",
+  "version": "0.1.0",
+  "description": "Revisão, depuração e testes de firmware (C/C++, Rust no_std, FreeRTOS, Zephyr, ESP32/STM32) com portão humano para gravar em hardware, datasheet primeiro e checklists de ISR, barramentos, MQTT e OTA seguro.",
+  "author": { "name": "Francisco Edson", "url": "https://github.com/francisco-efjr" },
+  "license": "MIT",
+  "keywords": ["embedded", "firmware", "iot", "rtos", "freertos", "zephyr", "esp32", "stm32", "rust-no-std", "mqtt", "ota", "misra", "datasheet", "EMBARCADOS-COMPLETO"]
+}

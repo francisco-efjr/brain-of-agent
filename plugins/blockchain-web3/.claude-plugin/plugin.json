@@ -1,0 +1,8 @@
+{
+  "name": "blockchain-web3",
+  "version": "0.1.0",
+  "description": "Revisão de segurança de smart contracts (Solidity; Anchor com cobertura parcial), testes de invariantes e fuzz com Foundry, checklists de ERC-20/721/1155/4626, oráculos, L2, upgradeability e assinaturas, com portões de validação por PoC e regras para manter chaves e deploy fora do agente.",
+  "author": { "name": "Francisco Edson", "url": "https://github.com/francisco-efjr" },
+  "license": "MIT",
+  "keywords": ["web3", "blockchain", "solidity", "smart-contracts", "foundry", "openzeppelin", "audit", "fuzzing", "invariants", "erc4626", "oracles", "eip712", "security-review", "anchor", "WEB3-COMPLETO"]
+}

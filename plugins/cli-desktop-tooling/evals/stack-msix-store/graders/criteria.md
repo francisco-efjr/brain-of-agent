@@ -1,0 +1,6 @@
+---
+type: llm
+---
+
+PASS if a resposta final: (1) separa restrições duras (Store com MSIX, três sistemas, equipe React/TypeScript, auto-update) de preferências; (2) aplica a restrição de empacotamento: a documentação do Tauri diz que ele gera MSI e NSIS no Windows e que a Store aceita pacotes EXE ou MSI, e não gera MSIX, então MSIX hoje aponta Electron (ou outro empacotamento) a confirmar em protótipo; (3) recusa fornecer números de memória e tamanho como fato, explicando que os que circulam vêm de medições isoladas, sem reprodução ou verificação, e oferece medir no próprio app; (4) trata Linux (WebView do sistema, WebKitGTK, empacotamento) como risco que precisa de teste cedo e não afirma comportamento sem fonte; (5) lista o que só um protótipo responde (assinar, instalar, atualizar e desinstalar em máquina limpa; Store; updater) e entrega a decisão em formato de ADR (contexto, alternativas, trade-offs, decisão, perguntas abertas), com rótulos Verificado, Inferido ou Suposição.
+FAIL if a resposta inventa números de benchmark (MB de memória, tamanho de instalador, tempo de build) como se fossem verificados, afirma que o Tauri gera MSIX, dá certeza sobre o comportamento no Linux sem fonte, ou escolhe a stack sem mencionar a restrição de Store.

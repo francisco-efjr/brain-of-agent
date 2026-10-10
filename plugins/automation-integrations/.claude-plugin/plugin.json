@@ -1,0 +1,27 @@
+{
+  "name": "automation-integrations",
+  "version": "0.1.0",
+  "description": "Playbook, skills, agentes e prompts para automação de workflows, webhooks idempotentes, integrações entre APIs, servidores MCP, hooks de guardrail, jobs agendados com claude -p, scraping responsável e autoria de skills e plugins do Claude Code, com segurança contra injeção em conteúdo externo.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "automation",
+    "integrations",
+    "mcp",
+    "mcp-server",
+    "webhooks",
+    "idempotency",
+    "n8n",
+    "hooks",
+    "skills",
+    "plugins",
+    "scheduled-jobs",
+    "scraping",
+    "prompt-injection",
+    "automacao",
+    "AUTOMACAO-COMPLETO"
+  ]
+}

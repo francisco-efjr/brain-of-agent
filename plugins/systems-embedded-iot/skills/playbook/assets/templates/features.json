@@ -1,0 +1,23 @@
+{
+  "_instrucoes": "Somente o campo 'passes' muda depois da criacao da lista. 'passes' so vira true com saida de teste de host ou log de bancada colado em 'evidencia'. Uma funcionalidade por sessao. Fonte: V-02 (adaptado para firmware).",
+  "projeto": "<nome do firmware>",
+  "alvo": "<MCU exato + revisao; framework e versao>",
+  "features": [
+    {
+      "id": "F-001",
+      "descricao": "Ler temperatura do sensor via I2C e publicar a cada 10 s; erro de barramento registrado e reportado",
+      "hw_necessario": false,
+      "comando_teste_host": "<ex.: ceedling test:sensor ou west twister -p unit_testing -T tests/sensor>",
+      "evidencia": "",
+      "passes": false
+    },
+    {
+      "id": "F-002",
+      "descricao": "Reconectar ao broker MQTT com backoff e jitter apos queda de rede",
+      "hw_necessario": true,
+      "comando_teste_host": "<teste de host da logica de backoff>",
+      "evidencia": "",
+      "passes": false
+    }
+  ]
+}

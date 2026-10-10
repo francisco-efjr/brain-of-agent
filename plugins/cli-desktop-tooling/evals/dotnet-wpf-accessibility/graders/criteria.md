@@ -1,0 +1,6 @@
+---
+type: llm
+---
+
+PASS if a resposta final aponta com evidência do trecho: (1) o botão só com ícone (glifo de fonte) não tem nome acessível, e propõe AutomationProperties.Name (ou texto equivalente), e o mesmo para a caixa de busca (rótulo associado ou AutomationProperties.Name); (2) Background e Foreground fixos (#FFEEEEEE e #FF999999) têm contraste baixo e não respeitam o tema de alto contraste, e propõe recursos de tema do sistema; (3) o handler de clique acessa o banco e remove sem validar (SelectedItem nulo, sem confirmação de exclusão), e propõe comando (ICommand, por exemplo RelayCommand do CommunityToolkit.Mvvm) com ViewModel sem referência a controles; (4) ordem de Tab e DataGrid com AutoGenerateColumns merecem revisão para teclado; (5) Narrator e outros leitores de tela são verificação humana nos fluxos críticos que o modelo não substitui. Declara como lacuna ou Inferido que não leu uma página oficial de acessibilidade específica do WPF (as regras vêm da documentação de WinUI e de Windows, e UI Automation é comum), e que não executou o app.
+FAIL if a resposta afirma ter testado com Narrator ou executado o app, afirma que o MVVM Toolkit é compatível ou incompatível com MAUI sem fonte, inventa propriedades de WPF que não existem, ou ignora a ausência de nome acessível no botão de ícone.

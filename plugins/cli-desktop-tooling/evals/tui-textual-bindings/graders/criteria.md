@@ -1,0 +1,6 @@
+---
+type: llm
+---
+
+PASS if a resposta final aponta com evidência do código: (1) os bindings não têm descrição e três estão com show=False, então a tecla não aparece no rodapé; (2) priority=True em todos, quando deveria ficar só para sair e ajuda, porque um binding prioritário é checado antes do widget focado e o widget não consegue desativá-lo (isso quebra, por exemplo, digitar "n" ou "d" no Input); (3) a ação "nova" e a ação "salvar" estão declaradas mas não implementadas; (4) apagar sem tratar tabela vazia ou sem confirmação. Propõe testes: app.run_test() com Pilot (press, click) por fluxo, snapshot com pytest-textual-snapshot (snap_compare) em pelo menos dois tamanhos (por exemplo 80x24 e 120x40) e configuração do modo asyncio do pytest, ressaltando que instalar essas dependências é decisão do usuário. Registra acessibilidade como risco aberto, sem fonte oficial lida, e rotula como Suposição qualquer sugestão (contraste, não depender só de cor, alternativa em texto).
+FAIL if a resposta afirma que o Textual tem leitor de tela ou acessibilidade integrada como fato, inventa APIs do Textual ou do Pilot, afirma ter executado o app ou os testes, ou não percebe o problema de priority=True com o Input.
