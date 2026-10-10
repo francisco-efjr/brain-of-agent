@@ -161,6 +161,28 @@ Destilado localmente das categorias do `web-interface-guidelines` da Vercel (lic
 | Hidratação | Valores iniciais iguais no servidor e no cliente; sem `window` no render. |
 | Copy | Verbo e objeto no botão; erro diz como corrigir; sem jargão interno. |
 
+## Design system da casa (Mo baile)
+
+Aplica-se quando o projeto adota `design-systems/mo-baile/`, criado pelo usuário. Os valores ficam nos arquivos de origem (`tokens/*.css`, `components/mb.css`); não copie valores daqui. Visão completa e a regra de precedência: `/ux-ui-design:playbook`.
+
+- **Tokens em camadas por aparência.** `:root` é o claro; `[data-theme="dark"]` e `[data-contrast="high"]` só sobrescrevem tokens; componentes não conhecem a aparência. Origem: `tokens/colors.css` (cabeçalho e blocos de aparência).
+
+  ```css
+  /* camada 1: claro (valores em tokens/colors.css) */
+  :root { --label-primary: …; --separator: …; }
+  /* camada 2: escuro */
+  :root:not([data-theme="light"]) { --label-primary: …; }   /* dentro de @media (prefers-color-scheme: dark) */
+  :root[data-theme="dark"] { --label-primary: …; }
+  /* camada 3: alto contraste */
+  :root[data-contrast="high"] { --label-primary: …; --separator: …; }
+  ```
+
+- **Fallbacks de sistema como sobrescrita de token, sem `if` nos componentes.** `@media (prefers-reduced-transparency: reduce)` troca vidro e blur por sólidos; `@media (prefers-reduced-motion: reduce)` troca `--spring-*-ease` por `linear` e encurta durações. Origem: `tokens/materials.css`, `tokens/motion.css`. Os atributos `data-reduce-transparency` e `data-reduce-motion` do protótipo servem para testar os dois estados lado a lado.
+- **Foco visível tokenizado.** `:focus-visible` com anel em `--focus-ring` (origem: `components/mb.css`).
+- **Lint de aderência.** ESLint ou oxlint com `no-restricted-syntax` contra literais de hex (`#[0-9a-fA-F]{3,8}`) e px crus, e `no-restricted-imports` que obriga importar só pelo índice do DS. Origem: `design-systems/mo-baile/_adherence.oxlintrc.json` (regras em `warn`). Esse seletor pega literais de string em JS/JSX; para CSS puro, o equivalente é Stylelint `declaration-property-value-disallowed-list` (a regra equivalente em CSS não existe no bundle; é adaptação). Confirme a sintaxe da versão de oxlint adotada antes de subir a regra.
+- **Fonte.** O DS declara SF Pro Text e SF Pro Display; fora do macOS a substituição (Helvetica Neue) é pendência declarada (`design-systems/mo-baile/readme.md`, "Substituições a validar"). Não adicione webfont sem decisão explícita.
+- **Estado nunca só por cor.** Ícone, cor e texto juntos (origem: `components/indicators/StatusIndicator.prompt.md`).
+
 ## Lacunas
 
 Storybook para design system e documentação de componentes, pipeline de tokens, compatibilidade por navegador de container queries e a leitura integral do `web-interface-guidelines` ficaram fora da pesquisa. Trate como Não verificado.

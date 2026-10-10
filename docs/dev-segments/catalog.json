@@ -1041,7 +1041,7 @@
         },
         {
           "name": "design-init",
-          "description": "Cria o DESIGN.md do projeto (front matter YAML de tokens mais oito seções com a justificativa em prosa) a partir de tokens e CSS já existentes e de perguntas curtas, mostrando o conteúdo completo antes de gravar e nunca sobrescrevendo um arquivo existente. Com confirmação separada, acrescenta ao CLAUDE.md do projeto o bloco que manda consultar o DESIGN.md. Uso explícito do usuário - /ux-ui-design:design-init. Formato Google Labs em versão alpha."
+          "description": "Cria o DESIGN.md do projeto (front matter YAML de tokens mais oito seções com a justificativa em prosa) a partir de tokens e CSS já existentes e de perguntas curtas, mostrando o conteúdo completo antes de gravar e nunca sobrescrevendo um arquivo existente. Com o argumento bundle, propõe também o esqueleto de um design system completo (tokens em camadas, contrato de componentes, lint, fundamentos de conteúdo, SKILL.md). Com confirmação separada, acrescenta ao CLAUDE.md do projeto o bloco que manda consultar o DESIGN.md. Uso explícito do usuário - /ux-ui-design:design-init. Formato Google Labs em versão alpha."
         },
         {
           "name": "design-tokens",

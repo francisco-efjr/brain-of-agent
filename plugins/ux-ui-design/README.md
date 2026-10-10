@@ -9,8 +9,12 @@ A ideia central: levar o trabalho do contexto (usuário, tarefa, produto) até u
 - **Processo** de contexto até entrega: brief de uma linha, plano antes de código, revisão contra o visual genérico, estados e dados extremos, verificação com evidência, crítica independente, relatório com rótulos Verificado, Inferido, Suposição e Não verificável.
 - **Skills de tarefa** para direção visual, auditoria de UI em dez categorias, avaliação heurística (Nielsen, severidade 0 a 4), checklist de acessibilidade WCAG 2.2 AA, microcopy, tokens em três camadas e plano de pesquisa.
 - **Agentes somente leitura** (avaliador cético, revisor de acessibilidade, pesquisador, auditor de design system) e um agente de design com escrita limitada ao que o usuário indicar.
-- **Base de conhecimento** em 12 referências (checklist completo, padrões e anti-padrões, decisões, regras prontas de CLAUDE.md, ferramentas desativadas com riscos, bibliografia, WCAG, plataformas Apple, tokens, pesquisa, UX writing, avaliação por LLM) e 12 templates.
+- **Base de conhecimento** em 13 referências (checklist completo, padrões e anti-padrões, decisões, regras prontas de CLAUDE.md, ferramentas desativadas com riscos, bibliografia, WCAG, plataformas Apple, tokens, pesquisa, UX writing, avaliação por LLM, design system da casa) e 13 templates (incluindo a estrutura recomendada de um design system).
 - **Biblioteca de prompts** curados (37 prompts em cinco temas: começar e dirigir, auditoria, acessibilidade e plataforma, pesquisa e escrita, design system; distribuídos em três arquivos de `skills/prompts/references/`) e 12 casos de eval.
+
+## Design system da casa (Mo baile)
+
+O Mo baile Design System é o design system de referência do autor (macOS 27, Liquid Glass). O plugin incorpora as **boas práticas dele**, com evidência por arquivo, em `skills/playbook/references/design-system-da-casa.md` e a estrutura reutilizável em `skills/playbook/assets/templates/design-system-bundle.md`: tokens em camadas por aparência (claro, escuro, alto contraste), fallbacks de acessibilidade como tokens, contrato por componente, lint de aderência, fundamentos de conteúdo e rastreabilidade. Ele só é usado **quando você pede** ("aplica o design system que já temos") e nunca como padrão universal: a estética macOS vale em app macOS; em outro produto ou plataforma o plugin herda a estrutura, não a identidade. O bundle fica em `design-systems/mo-baile/` do repositório publicado e não faz parte deste plugin.
 
 ## Quando usar
 
@@ -34,18 +38,18 @@ No Claude Code, dentro da sessão:
 | Skill (núcleo) | `playbook` | Router, princípios, processo, proporcionalidade, fronteiras e modo `UXUI-COMPLETO`; guarda as referências e os templates |
 | Skill | `prompts` | Índice e biblioteca de prompts: começar e dirigir, auditoria, acessibilidade e plataforma, pesquisa e escrita, design system |
 | Skill | `design-brief` | Brief, direção visual, plano de design, fluxo de telas com wireframe, spec de handoff, revisão de plano e brief de design system |
-| Skill | `ui-audit` | Auditoria somente leitura em dez categorias com PASS/PARTIAL/FAIL e impacto |
+| Skill | `ui-audit` | Auditoria somente leitura em dez categorias com PASS/PARTIAL/FAIL e impacto, mais checagem de aderência ao design system (sem hex/px crus, tokens via `var()`, componente com contrato) |
 | Skill | `heuristic-eval` | Avaliação heurística de um fluxo com severidade 0 a 4 |
 | Skill | `a11y-checklist` | Especificar e revisar acessibilidade WCAG 2.2 AA com roteiro de teste manual |
-| Skill | `ux-writing` | Microcopy, erros em três partes, estados vazios, voz e notas de localização |
-| Skill | `design-tokens` | Tokens em três camadas, drift, release e esqueleto DTCG 2025.10 |
+| Skill | `ux-writing` | Microcopy, erros em três partes, estados vazios, voz (com os fundamentos de conteúdo do Mo baile como exemplo de guia pt-BR) e notas de localização |
+| Skill | `design-tokens` | Tokens em três camadas, aparências claro/escuro/alto contraste, fallbacks de reduzir movimento e transparência, lint de aderência, drift, release e esqueleto DTCG 2025.10 |
 | Skill | `user-research-plan` | Plano de pesquisa, entrevista de 50 minutos, teste de usabilidade, card sorting, tree testing |
-| Skill | `design-init` | Cria o `DESIGN.md`; só por comando explícito (`disable-model-invocation`) |
+| Skill | `design-init` | Cria o `DESIGN.md` e, com `bundle`, propõe a estrutura de um design system completo; só por comando explícito (`disable-model-invocation`) |
 | Agente | `design-evaluator` | Avaliador cético de UI, somente leitura |
-| Agente | `ui-designer` | Projeta ou refina telas e componentes dentro do design system e entrega spec |
+| Agente | `ui-designer` | Projeta ou refina telas e componentes dentro do design system (inclusive o design system da casa, quando você pedir) e entrega spec |
 | Agente | `a11y-reviewer` | Revisão de acessibilidade somente leitura, com checklist por tipo de arquivo |
 | Agente | `ux-researcher` | Planeja pesquisa e sintetiza notas fornecidas, sem inventar |
-| Agente | `design-system-auditor` | Audita tokens e componentes: drift, camada errada, release |
+| Agente | `design-system-auditor` | Audita tokens e componentes: drift, camada errada, release, aderência e contrato por componente |
 | Comandos | (nenhum) | Cada skill já vira `/ux-ui-design:<skill>` |
 
 ## Exemplos de pedidos

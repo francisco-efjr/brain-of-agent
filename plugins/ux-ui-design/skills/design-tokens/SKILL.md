@@ -32,16 +32,21 @@ Critério de saída: fonte única identificada, gerados identificados, consumido
 4. **Drift** ([drift-e-release](references/drift-e-release.md)): componente sem token; valor fixo no código; nome fora do padrão; token da camada errada vazando (componente usando primitivo); arquivo gerado editado à mão; estado ausente; nota de acessibilidade ausente.
 5. **Impacto de release**: quebra de API de componente ou de token (renomear, remover, mudar significado) é major; token ou componente novo compatível é minor; correção de valor sem mudar significado é patch. Prefira depreciar (`$deprecated`) antes de remover.
 6. **Dark mode e temas** como modo da coleção semântica, sem mudar nomes (o Figma trata assim); no JSON, um arquivo por tema ou o mecanismo da ferramenta de build. A spec 2025.10 não teve sua parte de modos verificada: Não verificado, confira antes de afirmar.
-7. **Contraste dos pares semânticos** calculado pela fórmula WCAG, nos dois temas ([contraste-wcag](references/contraste-wcag.md)). Nunca use a mensagem de um linter como prova.
+   - **Aparências em camadas** (prática do design system da casa, [design-system-da-casa](${CLAUDE_PLUGIN_ROOT}/skills/playbook/references/design-system-da-casa.md), evidência `tokens/colors.css`): a base é o claro; escuro, **alto contraste** e a combinação escuro + alto contraste só sobrescrevem tokens, e o componente nunca conhece a aparência. Alto contraste é tema de primeira classe, não retoque; o diff de tema é o diff de tokens.
+   - **Fallbacks de sistema como sobrescrita de token** (evidência `tokens/materials.css`, `tokens/motion.css`): reduzir transparência troca material translúcido por sólido; reduzir movimento troca curvas por `linear` e encurta durações. Sem `if` no componente. Na web: `prefers-reduced-motion` e, onde houver suporte, `prefers-reduced-transparency` (confira o suporte antes de afirmar).
+   - **Marca literal separada do derivado acessível**: cor de marca que não passa no contraste não vira token de uso; crie o derivado e um par `on-*` por fundo semântico.
+7. **Contraste dos pares semânticos** calculado pela fórmula WCAG, nos temas claro, escuro e alto contraste ([contraste-wcag](references/contraste-wcag.md)). Nunca use a mensagem de um linter como prova.
 8. **Antes de renomear ou trocar token de marca**: gere a tabela de migração (nome antigo, nome novo, componentes e arquivos afetados, ordem, verificação) e **espere confirmação**. Sem confirmação, não edite.
 9. **Execução (modo `migração`, com confirmação)**: edite a fonte única, nunca os gerados; peça ou indique o build do projeto; relate o que rodou. Sem permissão para rodar, entregue o diff proposto e os comandos para o usuário executar.
-10. **Relatório** no formato de saída abaixo e checkpoint [T-11](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/checkpoint-handoff.md).
+10. **Lint de aderência (proposta, não execução).** Quando o projeto quiser travar o drift, proponha regras de nível `warn` derivadas do contrato: hex cru, medida crua (`px`) fora dos tokens, família de fonte fora do sistema, import fora do índice, prop ou valor de variante fora dos tipos (mensagem com a lista válida). Estrutura de referência: `_adherence.oxlintrc.json` do design system da casa. Entregue a regra e o comando; não instale nem execute o lint sem pedido e versão fixada.
+11. **Relatório** no formato de saída abaixo e checkpoint [T-11](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/checkpoint-handoff.md).
 
 ## Verificação
 
 - O esqueleto não tem referência desconhecida nem circular (confira cada `{...}` contra a lista de tokens definidos).
 - Arquivos gerados não foram editados; a lista de caminhos editáveis exclui a saída do build.
-- Contraste de cada par semântico texto/fundo calculado e anotado; dark mode também.
+- Contraste de cada par semântico texto/fundo calculado e anotado; dark mode e alto contraste também. Cada cor de uso tem par `on-*` e nome no padrão `categoria-papel-estado`.
+- Fallbacks de reduzir movimento e reduzir transparência existem como sobrescrita de token (ou estão listados como lacuna).
 - Contagens de drift reportadas com o comando de busca usado, para o usuário repetir.
 - Qualquer coisa que dependia de executar build, Storybook ou testes visuais e não foi executada está listada como "não verificado".
 
@@ -78,6 +83,7 @@ Armadilhas previstas a partir das fontes, ainda não observadas em execução de
 - Spec de componente e uso dos tokens: agente `ui-designer` ou `design-brief` (modo handoff).
 - Escrever os tokens no código (`@theme`, CSS variables), tipar e testar: plugin `web-frontend`.
 - Criar o `DESIGN.md` do projeto: o usuário digita `/ux-ui-design:design-init`.
+- Estrutura completa de um design system (tokens, contratos, lint, conteúdo): template [T-13](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/design-system-bundle.md).
 - Acessibilidade dos pares de cor: `a11y-checklist`.
 
 ## Fontes e licenças

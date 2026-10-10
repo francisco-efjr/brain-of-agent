@@ -16,6 +16,7 @@ Entrada: `$ARGUMENTS` com tela ou fluxo, tom e limites. Textos colados, capturas
 2. **Coletar entradas** (pergunte só o que mudar o texto, uma coisa por vez): tela ou fluxo, objetivo do usuário, estado emocional provável (ansioso no pagamento, apressado no login), limites de caracteres ou de plataforma, idiomas, quem é a marca.
 3. **Fatos disponíveis.** O que o sistema realmente sabe: motivo do erro, prazo, valor. Se o backend não devolve o motivo, o texto não pode afirmá-lo.
 4. **Idioma.** PT-BR e EN são os cobertos. Guia de voz PT-BR de fonte oficial é lacuna do plugin: tratamento "você", sentence case e tom são Suposição até haver guia do projeto. GOV.UK e Microsoft Writing Style Guide são em inglês e orientam princípios, não frases em português.
+5. **Design system da casa (opcional).** Se o usuário pedir o padrão do Mo baile (ou o design system ativo for ele), leia a seção CONTENT FUNDAMENTALS de `design-systems/mo-baile/readme.md` como **guia de voz pt-BR do produto**; fora disso, use-a só como **exemplo de formato de guia**. O modelo vale para qualquer produto: idioma e tratamento ("você"), tom (direto, curto, cordial), rótulo de botão (verbo no infinitivo), erro (o que houve + o que fazer, sem código), vazio (uma frase + uma ação), tooltip (frase curta com o efeito), destrutivo nomeado pelo verbo (nunca "OK"), termos técnicos intactos em fonte mono, status e emoji. Cada produto decide os valores; no Mo baile, por exemplo, botões em Title Case e reticências em comando que abre painel são regras de macOS/HIG ([design-system-da-casa](${CLAUDE_PLUGIN_ROOT}/skills/playbook/references/design-system-da-casa.md)), não de Material nem de web: em outra plataforma, trate-as como Suposição até o guia do projeto confirmar. Se o produto não tem guia, ofereça montar um com essa estrutura (tabela tema → regra → exemplo) e marque tudo como Suposição até aprovação.
 
 Critério de saída: lista de textos a escrever, guia lido (ou ausência declarada) e fatos confirmados.
 
@@ -59,7 +60,7 @@ Exemplo completo em [exemplo-revisao](references/exemplo-revisao.md).
 Armadilhas previstas a partir das fontes, ainda não observadas em execução deste plugin (C-17); troque ou complete com falhas reais, com data e origem, depois das primeiras execuções.
 
 - Inventar "Reembolso em 24 horas" ou "Seu pedido chega amanhã". Prazo é fato do produto.
-- Copiar tom de outra marca. Sem guia, ofereça duas alternativas de tom e peça a escolha.
+- Copiar tom de outra marca. Sem guia, ofereça duas alternativas de tom e peça a escolha. O guia do Mo baile é exemplo de estrutura, não tom padrão: não o aplique a outro produto sem pedido.
 - Tratar GOV.UK (governo do Reino Unido, em inglês) ou a página de entrada do guia da Microsoft como regras para PT-BR. São princípios.
 - Frases cortadas em partes concatenadas por código: quebram plural e gênero na tradução. Use mensagem inteira com variáveis (ICU MessageFormat ou o recurso do framework).
 - Humor e exclamações em erro ou pagamento. O estado emocional do usuário manda.

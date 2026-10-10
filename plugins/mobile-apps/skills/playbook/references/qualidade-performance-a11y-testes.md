@@ -69,6 +69,19 @@ A passagem manual com VoiceOver ou TalkBack é **verificação humana**: o agent
 
 O agente revisa rótulos, alvos, escala, contraste, ordem e movimento por leitura de código e, quando o ambiente permite, por inspetor. O humano executa a passagem com leitor de tela. Seletores de teste não substituem nomes acessíveis úteis a pessoas.
 
+## Tokens do design system em Compose/SwiftUI
+
+Quando o app adota o design system da casa (`design-systems/mo-baile/`, criado pelo usuário), mapeie os tokens semânticos para o tema nativo; não crie um tema paralelo. Os valores vêm do código de origem, não desta referência. O Mo baile nasceu de `Theme/DesignTokens.swift`, `Theme/PraiaLightTheme.swift` e `Theme/PraiaDarkTheme.swift`, conforme `design-systems/mo-baile/github.md` (Screen map). Mantenha no repositório do app uma tabela token→arquivo nativo, para rastrear código→token.
+
+- **Compose:** papéis de cor no `MaterialTheme` (`ColorScheme`); métricas, raios e movimento que o Material não cobre num objeto próprio via `CompositionLocal`. Claro, escuro e alto contraste são variantes do tema, escolhidas pela configuração do sistema.
+- **SwiftUI:** Asset Catalog com Appearances (Any, Dark, High Contrast) e cores nomeadas, por exemplo `Color("label.primary")`, lidas por um `Theme` injetado em `Environment`.
+- **Reduzir movimento e transparência:** no Compose, ler a escala de animação do sistema (`Settings.Global.ANIMATOR_DURATION_SCALE`) e injetar no tema; no SwiftUI, `@Environment(\.accessibilityReduceMotion)` e `accessibilityReduceTransparency`. O efeito é o mesmo do fallback de token da web: troca de movimento e de material, sem `if` nas telas.
+- **Molas:** `spring(dampingRatio, stiffness)` no Compose e `.smooth`, `.snappy`, `.bouncy` no SwiftUI, com constantes nomeadas que espelham `tokens/motion.css` do DS.
+- **Tipografia:** `sp` no Compose e `Font.TextStyle` (Dynamic Type) no SwiftUI, nunca tamanhos fixos vindos do protótipo macOS.
+- **Lint de aderência:** detekt ou Android Lint com regra própria contra `Color(0x…)` e `.dp` literal fora do tema; SwiftLint `custom_rules` contra `Color(red:` e `.font(.system(size:`.
+- **Estado:** ícone, texto e cor juntos (`Icon` ou `Label` com `contentDescription` ou `accessibilityLabel`).
+- Visão completa e precedência do DS: `/ux-ui-design:playbook`.
+
 ## Estratégia de testes
 
 | Camada | Android | iOS | Flutter | React Native |
