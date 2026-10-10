@@ -94,6 +94,8 @@ Templates em `assets/templates/`: `plano-ui`, `relatorio-revisao-ui`, `checklist
 
 Se o pedido não casa com nenhuma linha, aplique o processo essencial com as referências pertinentes; não force uma skill.
 
+Complemento opcional: `design-engineering-kit` (`/design-engineering-kit:playbook`) traz Figma para código (Figma MCP oficial), verificação de UI com Playwright MCP, motion e polimento. O design system do projeto vence as direções de estética dessas skills; instalar os plugins oficiais `figma` e `playwright` é decisão do usuário, com confirmação.
+
 ## Rótulos epistêmicos
 
 Marque cada afirmação relevante: **Verificado** (conferido em ferramenta nesta sessão ou em fonte lida), **Inferido** (leitura sua, não reconferida), **Suposição** (premissa não validada, como um limiar adotado por convenção), **Não verificável** (sem acesso ou sem fonte), **Não aplicável** (com motivo). Leitura de código não é teste executado; captura de tela não prova persistência nem semântica assistiva; CI verde com asserção fraca não prova o fluxo; comportamento de leitor de tela que você não observou é Inferido. Nunca afirme execução que não houve.

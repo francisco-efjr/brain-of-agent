@@ -1,0 +1,27 @@
+{
+  "name": "data-engineering",
+  "version": "0.1.0",
+  "description": "Engenharia de dados e analytics para o Claude Code: pipelines ETL/ELT, dbt, Airflow e Dagster, Spark e streaming, SQL analítico e custo em warehouses, contratos e qualidade de dados, linhagem e text-to-SQL seguro, com verificação por saída real, reconciliação de contagens, agentes somente leitura e o modo DATAENG-COMPLETO.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "data-engineering",
+    "etl",
+    "elt",
+    "dbt",
+    "airflow",
+    "dagster",
+    "spark",
+    "streaming",
+    "bigquery",
+    "lakehouse",
+    "data-quality",
+    "data-contracts",
+    "text-to-sql",
+    "idempotency",
+    "DATAENG-COMPLETO"
+  ]
+}

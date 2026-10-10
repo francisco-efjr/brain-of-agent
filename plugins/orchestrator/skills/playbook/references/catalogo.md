@@ -10,15 +10,20 @@ Gerado por `tools/publish_brain.py` a partir do frontmatter dos plugins publicad
 | `backend-api` | Projete, implemente, revise, teste e depure serviços e APIs (REST, GraphQL, gRPC) com contrato OpenAPI, erros RFC 9457, autenticação e autorização, idempotênci… | agent-tool-design, api-contract-design, api-security-review, api-test-suite, backend-claude-md-setup, backend-debugging, idempotency-and-resilience, playbook, prompts, stack-conventions | api-contract-reviewer, api-security-reviewer, api-test-engineer, backend-architect, backend-debugger | BACKEND-COMPLETO |
 | `mobile-apps` | Playbook, skills, agentes e prompts para construir, revisar, depurar e publicar apps mobile (iOS/SwiftUI, Android/Compose, React Native/Expo, Flutter): arquite… | mobile-accessibility-review, mobile-architecture-review, mobile-build-troubleshoot, mobile-performance-diagnosis, mobile-platform-features-check, mobile-release-pipeline, mobile-store-release-check, mobile-test-strategy, playbook, prompts, swift-ios-review | mobile-architect, mobile-pr-reviewer, mobile-release-auditor, mobile-security-auditor, mobile-test-engineer | MOBILE-COMPLETO |
 | `database-data-modeling` | Modelagem, SQL, índices, planos de execução, transações, migrações sem downtime, multi-tenant e backup para PostgreSQL, MySQL, SQLite, SQL Server, MongoDB, Red… | backup-restore-runbook, db-agent-safety, db-schema-and-sql, nosql-data-modeling, playbook, prompts, query-plan-and-indexing, rls-tenant-review, safe-migrations, transactions-and-isolation | db-migration-planner, db-query-analyst, db-reviewer, db-schema-architect, db-security-auditor | DADOS-COMPLETO |
+| `data-engineering` | Engenharia de dados e analytics para o Claude Code: pipelines ETL/ELT, dbt, Airflow e Dagster, Spark e streaming, SQL analítico e custo em warehouses, contrato… | airflow-dag-workflow, data-contracts-quality, dbt-model-workflow, gated-pipeline-migration, pipeline-acceptance, playbook, prompts, spark-streaming-review, sql-review, text-to-sql-safe | analytics-reviewer, data-pipeline-architect, data-pipeline-reviewer, eval-judge, pipeline-debugger | DATAENG-COMPLETO |
+| `data-science-ml` | Playbook de ciência de dados e machine learning para Claude Code: EDA sem vazamento, validação e métricas, treino e tuning reprodutíveis, séries temporais, A/B… | ds-eda, ds-inference-review, ds-leakage-audit, ds-llm-eval, ds-mlops-promotion, ds-model-evaluation, ds-time-series-backtest, ds-train-debug, playbook, prompts | ds-eval-auditor, ds-experiment-reviewer, ds-inference-reviewer, ds-leakage-auditor, ds-model-promotion-reviewer | DATASCIENCE-COMPLETO |
 | `llm-ai-agents` | Playbook, skills de tarefa, subagentes somente leitura e biblioteca de prompts para projetar, revisar e testar aplicações LLM e agentes: engenharia de prompt e… | agent-architecture, agent-security-review, eval-design, instruction-authoring, llm-api-client-review, llm-decision-gates, llm-prompt-review, playbook, prompts, tool-design-review | agent-architect, agent-security-reviewer, eval-designer, prompt-reviewer, rag-pipeline-reviewer | IA-COMPLETO |
 | `devops-cloud-infra` | Escreva, revise, planeje e diagnostique infraestrutura (Terraform/OpenTofu/Pulumi, Docker, Kubernetes/Helm, GitOps, GitHub Actions, segredos, canary/blue-green… | cloud-review, deploy-infra, gha-hardening-review, helm-gitops-review, iac-review, infra-troubleshoot, playbook, progressive-delivery, prompts, secrets-review | infra-reviewer, k8s-workload-auditor, pipeline-security-auditor, rollout-planner | DEVOPS-COMPLETO |
+| `sre-observability` | SLI/SLO e error budget, alertas por burn rate, telemetria (OpenTelemetry, Prometheus), triagem de incidentes somente leitura, postmortem blameless, runbooks, c… | alert-review, incident-triage, performance-engineering, playbook, postmortem, prompts, release-health, root-cause-investigation, runbook, slo-design, telemetry-review | incident-support, perf-analyst, postmortem-scribe, reliability-reviewer | SRE-COMPLETO |
 | `security-appsec` | Revisão de segurança de diffs e PRs, modelagem de ameaças (STRIDE), autorização por objeto e tenant, segredos, supply chain e triagem de risco de agentes, MCP … | access-control-review, agent-risk-triage, harden-claude-code, playbook, prompts, propose-patch, secrets-supply-chain-review, security-review-diff, threat-model, verify-finding | agent-config-auditor, finding-verifier, patch-reviewer, security-reviewer, threat-modeler | SEGURANCA-COMPLETO |
 | `qa-testing` | QA e testes para o Claude Code: estratégia por risco, design de casos, TDD com vermelho confirmado, revisão de testes e E2E, triagem de testes flaky, bug repor… | bug-report, e2e-review, eval-design, flaky-triage, playbook, prompts, tdd-guard, test-design, test-strategy, verification-gate | qa-reporter, test-auditor, test-reviewer, test-writer | QA-COMPLETO |
 | `code-quality-refactoring` | Revisão de código com filtro de alto sinal, debugging por causa raiz, refatoração segura com testes de caracterização, migração com juiz de paridade e triagem … | code-health-report, codebase-onboarding, debug-causa-raiz, migration-parity, playbook, prompts, refactor-seguro, review-diff, simplify-safe, tech-debt-triage | code-reviewer, codebase-mapper, debugger, finding-validator, refactor-planner | QUALIDADE-COMPLETO |
 | `ux-ui-design` | Direção visual, auditoria de UI, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários para trabalhar com Claude,… | a11y-checklist, design-brief, design-init, design-tokens, heuristic-eval, playbook, prompts, ui-audit, user-research-plan, ux-writing | a11y-reviewer, design-evaluator, design-system-auditor, ui-designer, ux-researcher | UXUI-COMPLETO |
+| `technical-writing-docs` | Documentação técnica com Claude Code: README, tutoriais e guias (Diátaxis), ADRs, runbooks, changelog, docs de API (OpenAPI), docstrings, diagramas Mermaid, do… | auditar-claude-md, diagramar-arquitetura, documentar-codigo, escrever-adr, escrever-changelog-release, escrever-guia-diataxis, escrever-readme, escrever-runbook, playbook, prompts | auditor-de-docs, revisor-de-instrucoes, revisor-de-leitor, technical-writer | DOCS-COMPLETO |
 | `git-workflow-release` | Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos, rebase e revert seguros, bisect, semver, changel… | bisect-regressao, commit-convencional, criar-pr, encerrar-branch, playbook, prompts, rebase-seguro, release-cut, resolver-conflitos, triagem-contribuicao | auditor-politica-repo, auditor-release, revisor-diff, revisor-plano | RELEASE-COMPLETO |
+| `design-engineering-kit` | Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 sk… | animate, animate-expo, animation-vocabulary, apple-design, break-ui, design-taste-frontend, emil-design-eng, find-animation-opportunities, high-end-visual-design, improve-animations, industrial-brutalist-ui, minimalist-ui, mobile-native, pick-ui-library, playbook, prompts, prototype, redesign-existing-projects, review-animations | motion-polish-reviewer, ui-verifier | DESIGNENG-COMPLETO |
 
-**Em construção (ainda não publicados):** `data-engineering`, `data-science-ml`, `sre-observability`, `technical-writing-docs`, `game-development`, `systems-embedded-iot`, `cli-desktop-tooling`, `blockchain-web3`, `automation-integrations`, `saas-multitenant`, `fintech-payments`, `ecommerce-marketplace`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
+**Em construção (ainda não publicados):** `game-development`, `systems-embedded-iot`, `cli-desktop-tooling`, `blockchain-web3`, `automation-integrations`, `saas-multitenant`, `fintech-payments`, `ecommerce-marketplace`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
 
 ## product-discovery-specs (`product-discovery-specs` 0.1.0)
 
@@ -183,6 +188,60 @@ Instalar: `/plugin install database-data-modeling@brain-of-agent` · Playbook: `
 | `database-data-modeling:db-schema-architect` (`plugins/database-data-modeling/agents/db-schema-architect.md`) | Desenha modelo de dados - relacional por invariantes e consultas críticas; MongoDB, DynamoDB e Redis pelos padrões de acesso - com ADR curto, índices de suporte, estratégia de tenancy e particionamento só quando necessá… | Read, Grep, Glob |
 | `database-data-modeling:db-security-auditor` (`plugins/database-data-modeling/agents/db-security-auditor.md`) | Audita segurança de dados em código e configuração, somente leitura - injeção SQL e NoSQL, privilégios do papel da aplicação, segredos de banco, Row-Level Security e isolamento multi-tenant, exposição de dados em logs e… | Read, Grep, Glob |
 
+## data-engineering (`data-engineering` 0.1.0)
+
+Engenharia de dados e analytics para o Claude Code: pipelines ETL/ELT, dbt, Airflow e Dagster, Spark e streaming, SQL analítico e custo em warehouses, contratos e qualidade de dados, linhagem e text-to-SQL seguro, com verificação por saída real, reconciliação de contagens, agentes somente leitura e o modo DATAENG-COMPLETO.
+
+Instalar: `/plugin install data-engineering@brain-of-agent` · Playbook: `plugins/data-engineering/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/data-engineering:airflow-dag-workflow` | Revisa, cria, testa e depura DAGs do Airflow (e orienta assets do Dagster e princípios para Prefect) com checklist de 12 perguntas (idempotência, intervalo da execução, now(), código no topo do arquivo, XCom, sensores, … |
+| `/data-engineering:data-contracts-quality` | Define contratos de dados (Open Data Contract Standard 3.2.0), regras de qualidade com ação fail/drop/warn e contagem de violações, política block/warn/log para agentes, convenção de linhagem (OpenLineage) e checklist d… |
+| `/data-engineering:dbt-model-workflow` | Cria ou altera modelos dbt (staging, intermediate, marts), YAML, testes e documentação: lê o projeto e os consumidores antes de escrever, segue as convenções vizinhas, testa por tipo de coluna e verifica em target de de… |
+| `/data-engineering:gated-pipeline-migration` | Migração ou upgrade de pipeline com fases e gates (dbt, Airflow, Spark, troca de plataforma): preflight de git, lista de mudanças a partir de fonte verificável, detecção sem editar, correções determinísticas, julgamento… |
+| `/data-engineering:pipeline-acceptance` | Aceitação de pipeline ou modelo gerado por agente antes de mergear ou promover: reconcilia contagem origem vs destino e campos vs colunas, roda a carga duas vezes para provar idempotência, confere chaves nos dados carre… |
+| `/data-engineering:playbook` | Guia e router do segmento Engenharia de dados e analytics. |
+| `/data-engineering:prompts` | Biblioteca de prompts curados de engenharia de dados e analytics (dbt, Airflow, Dagster, Spark, streaming, SQL, BigQuery, Delta, contratos e qualidade, evals). |
+| `/data-engineering:spark-streaming-review` | Revisa jobs Spark/PySpark, garantias de entrega em streaming (Kafka, Flink, Structured Streaming) e manutenção de tabelas Delta: lê o plano antes de ajustar configuração, AQE, skew, broadcast, UDF, escrita idempotente, … |
+| `/data-engineering:sql-review` | Revisa e otimiza SQL analítico sem mudar o resultado: checklist de custo para BigQuery (bytes lidos, partição, sharding, tipos de junção, auto-junção, DML) e checklist de equivalência semântica (NULL, duplicidade, tipo,… |
+| `/data-engineering:text-to-sql-safe` | Gera SQL de leitura a partir de perguntas em linguagem natural usando o schema real e a definição governada da métrica, com regras de segurança e custo (só SELECT, sem SELECT *, LIMIT, filtro de partição, sem PII por pa… |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `data-engineering:analytics-reviewer` (`plugins/data-engineering/agents/analytics-reviewer.md`) | Revisor cético e somente leitura de SQL analítico, métricas, modelos de mart e consultas que alimentam relatórios ou dashboards, antes de chegarem a stakeholders. | Read, Grep, Glob |
+| `data-engineering:data-pipeline-architect` (`plugins/data-engineering/agents/data-pipeline-architect.md`) | Desenha pipelines de dados novos e mudanças estruturais antes de qualquer implementação, em modo somente leitura - batch ou streaming, workflow fixo ou agente, camadas dbt e grão, modelagem dimensional (fato e dimensões… | Read, Glob, Grep |
+| `data-engineering:data-pipeline-reviewer` (`plugins/data-engineering/agents/data-pipeline-reviewer.md`) | Revisor cético e somente leitura de pipelines de dados (modelos e testes dbt, DAGs do Airflow, assets do Dagster, jobs Spark/PySpark, streaming Kafka/Flink, SQL de carga e merge, tabelas Delta, contratos e regras de qua… | Read, Glob, Grep |
+| `data-engineering:eval-judge` (`plugins/data-engineering/agents/eval-judge.md`) | Juiz binário de um único modo de falha em saídas de agentes de dados (respostas de skills, prompts, revisões, SQL gerado). | Read |
+| `data-engineering:pipeline-debugger` (`plugins/data-engineering/agents/pipeline-debugger.md`) | Investigador somente leitura da causa raiz de falha ou resultado errado em pipelines (DAG do Airflow, asset do Dagster, job Spark, modelo dbt, carga, streaming), a partir de logs, SQL compilado, diffs e versões fornecid… | Read, Glob, Grep |
+
+## data-science-ml (`data-science-ml` 0.1.0)
+
+Playbook de ciência de dados e machine learning para Claude Code: EDA sem vazamento, validação e métricas, treino e tuning reprodutíveis, séries temporais, A/B e inferência causal, avaliação de componentes LLM e promoção de modelos com registro, serving e drift.
+
+Instalar: `/plugin install data-science-ml@brain-of-agent` · Playbook: `plugins/data-science-ml/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/data-science-ml:ds-eda` | Conduz análise exploratória de um dataset antes de modelar, usando só o conjunto de treino - forma e tipos, ausentes e padrão de ausência, alvo e balanceamento, relação com o alvo, cardinalidade, outliers e suspeitas de… |
+| `/data-science-ml:ds-inference-review` | Revisa inferência estatística e causal - experimentos A/B (SRM, guardrails, métrica primária, poder e MDE, multiplicidade, CUPED), relatórios com tamanho de efeito e intervalo, escolha de teste (t, Mann-Whitney, qui-qua… |
+| `/data-science-ml:ds-leakage-audit` | Audita vazamento de dados (data leakage) e o desenho de validação de um projeto de ML - ordem do split e do pré-processamento, Pipeline, grupos, duplicatas, tempo e disponibilidade de cada feature no momento da decisão. |
+| `/data-science-ml:ds-llm-eval` | Projeta a avaliação de um componente LLM dentro de um projeto de dados (classificação, extração, resumo) - critérios de sucesso mensuráveis, conjunto de casos de falhas reais, graders de código antes de juiz, validação … |
+| `/data-science-ml:ds-mlops-promotion` | Prepara e revisa a promoção de um modelo para produção - registro de runs e modelos (MLflow), checklist de serving (incluindo o risco de pickle e joblib), plano de monitoramento de drift, prontidão de ML (training-servi… |
+| `/data-science-ml:ds-model-evaluation` | Define métrica, baseline e desenho de validação para um problema de ML supervisionado, trata classes desbalanceadas (métrica, pesos, reamostragem dentro do fold, limiar), calibração e feature engineering (encoders por c… |
+| `/data-science-ml:ds-time-series-backtest` | Projeta e revisa o backtest de modelos de séries temporais e previsão - origem rolante, horizonte da decisão, covariáveis conhecidas na origem, dados point-in-time, baseline sazonal-naive, MASE, erro por horizonte e cob… |
+| `/data-science-ml:ds-train-debug` | Depura e revisa treino de modelos (PyTorch, scikit-learn, LightGBM, XGBoost) - loss que não cai, NaN, treino bom e validação ruim, métrica suspeita, reprodutibilidade (seeds, determinismo, checkpoint) - e planeja tuning… |
+| `/data-science-ml:playbook` | Guia e router do segmento Ciência de dados e machine learning: EDA, vazamento de dados e validação, métricas, treino (scikit-learn, PyTorch, gradient boosting), tuning, séries temporais, experimentos A/B, inferência cau… |
+| `/data-science-ml:prompts` | Biblioteca de prompts curados do segmento Ciência de dados e machine learning (EDA, vazamento e validação, métricas, treino com scikit-learn, PyTorch e gradient boosting, tuning, séries temporais, A/B, inferência causal… |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `data-science-ml:ds-eval-auditor` (`plugins/data-science-ml/agents/ds-eval-auditor.md`) | Revisor somente leitura do desenho de avaliação de um componente LLM dentro de um projeto de dados (classificação, extração, resumo), em contexto limpo. | Read, Grep, Glob |
+| `data-science-ml:ds-experiment-reviewer` (`plugins/data-science-ml/agents/ds-experiment-reviewer.md`) | Revisor independente e somente leitura de experimentos de ML e de avaliação de componentes LLM, em contexto limpo. | Read, Grep, Glob |
+| `data-science-ml:ds-inference-reviewer` (`plugins/data-science-ml/agents/ds-inference-reviewer.md`) | Revisor somente leitura de inferência estatística e causal, em contexto limpo. | Read, Grep, Glob |
+| `data-science-ml:ds-leakage-auditor` (`plugins/data-science-ml/agents/ds-leakage-auditor.md`) | Auditor somente leitura de vazamento de dados e do desenho de validação de ML, em contexto limpo. | Read, Grep, Glob |
+| `data-science-ml:ds-model-promotion-reviewer` (`plugins/data-science-ml/agents/ds-model-promotion-reviewer.md`) | Revisor independente e somente leitura que emite uma decisão (APPROVE, APPROVE WITH WARNINGS ou BLOCK) antes de promover um modelo de ML ou aceitar um pipeline (contratos de dados, vazamento, reprodutibilidade, avaliaçã… | Read, Grep, Glob |
+
 ## llm-ai-agents (`llm-ai-agents` 0.1.0)
 
 Playbook, skills de tarefa, subagentes somente leitura e biblioteca de prompts para projetar, revisar e testar aplicações LLM e agentes: engenharia de prompt e de contexto, tool use e MCP, RAG medido, evals e LLM-as-judge, defesa contra prompt injection, custo e cache, e autoria de CLAUDE.md, skills e plugins.
@@ -235,6 +294,33 @@ Instalar: `/plugin install devops-cloud-infra@brain-of-agent` · Playbook: `plug
 | `devops-cloud-infra:k8s-workload-auditor` (`plugins/devops-cloud-infra/agents/k8s-workload-auditor.md`) | Auditor somente leitura de manifests Kubernetes e charts Helm já renderizados quanto a Pod Security Standards, securityContext, RBAC, NetworkPolicy, probes, requests/limits, Secrets e imagens. | Read, Grep, Glob |
 | `devops-cloud-infra:pipeline-security-auditor` (`plugins/devops-cloud-infra/agents/pipeline-security-auditor.md`) | Auditor somente leitura de workflows do GitHub Actions e pipelines de CI/CD - injeção de script, pull_request_target, permissions, pin por SHA, segredos, environments, cache, runners, claude-code-action, gates que masca… | Read, Grep, Glob |
 | `devops-cloud-infra:rollout-planner` (`plugins/devops-cloud-infra/agents/rollout-planner.md`) | Planejador somente leitura de mudança de infraestrutura e de rollout/rollback. | Read, Grep, Glob |
+
+## sre-observability (`sre-observability` 0.1.0)
+
+SLI/SLO e error budget, alertas por burn rate, telemetria (OpenTelemetry, Prometheus), triagem de incidentes somente leitura, postmortem blameless, runbooks, canário, testes de carga e performance, com agentes que investigam sem tocar em produção.
+
+Instalar: `/plugin install sre-observability@brain-of-agent` · Playbook: `plugins/sre-observability/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/sre-observability:alert-review` | Revisa regras de alerta, rotas e painéis: separa alerta de sintoma (SLO) de alerta de causa (recurso), converte para burn rate multijanela mostrando a conta, define página x ticket x dashboard, valida PromQL e propõe te… |
+| `/sre-observability:incident-triage` | Apoia o Incident Commander durante um incidente de produção em modo somente leitura: sintoma em termos de usuário, severidade sugerida, mudanças recentes, no máximo 3 hipóteses refutáveis com a consulta que as refuta, e… |
+| `/sre-observability:performance-engineering` | Planeja e interpreta performance sem executar carga: plano e script de teste de carga (k6, Locust) com thresholds derivados do SLO, leitura de resultados, Core Web Vitals por dado de campo, leitura de flame graph e gate… |
+| `/sre-observability:playbook` | Guia e router do segmento SRE, observabilidade e performance - SLI/SLO e error budget, alertas por burn rate, métricas/logs/traces (OpenTelemetry, Prometheus, Grafana), resposta a incidentes, postmortem blameless, runbo… |
+| `/sre-observability:postmortem` | Redige ou revisa um postmortem blameless a partir de evidências: confirma o gatilho, monta a linha do tempo com fonte por evento, quantifica o impacto com origem, propõe causas contribuintes de sistema e processo como c… |
+| `/sre-observability:prompts` | Biblioteca de 36 prompts curados de SRE, observabilidade e performance, prontos para colar, com variáveis, motivo e fontes. |
+| `/sre-observability:release-health` | Conduz, só por comando explícito, a verificação somente leitura de um canário ou do pós-deploy: critérios de rollback definidos antes, poucas métricas (de preferência SLIs), canário comparado com controle concorrente, b… |
+| `/sre-observability:root-cause-investigation` | Investiga a causa raiz de um sintoma observado em sistema em execução (regressão de latência ou erro depois de deploy, erro intermitente em produção, p95 que piorou após mudança) antes de propor correção: reproduz, comp… |
+| `/sre-observability:runbook` | Escreve ou revisa um runbook por assinatura de falha ligado a um alerta: impacto, diagnóstico somente leitura com comando exato e saída esperada, mitigações como opções que exigem decisão humana e aprovador, escalonamen… |
+| `/sre-observability:slo-design` | Conduz a definição do primeiro SLO de um serviço (ou a revisão de um existente) e redige a política de error budget: jornadas críticas, até 5 tipos de SLI em linguagem de usuário, linha de base por janela fixa, metas po… |
+| `/sre-observability:telemetry-review` | Revisa instrumentação e telemetria em seis modos: métricas (nomes, unidades, rótulos, cardinalidade, contador x medidor), sinais e pipelines do OpenTelemetry Collector (oficial x Suposição), logging seguro com teste de … |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `sre-observability:incident-support` (`plugins/sre-observability/agents/incident-support.md`) | Apoia o Incident Commander em modo somente leitura durante um incidente de produção em andamento - organiza o sintoma em termos de usuário, mudanças recentes na janela, até 3 hipóteses refutáveis, evidências com procedê… | Read, Grep, Glob |
+| `sre-observability:perf-analyst` (`plugins/sre-observability/agents/perf-analyst.md`) | Interpreta resultados de carga, benchmark e perfil que o usuário já executou (resumo do k6, saídas de Locust/JMeter/Gatling, Lighthouse, dados de campo de Web Vitals, flame graph descrito, métricas de APM) e separa medi… | Read, Grep, Glob |
+| `sre-observability:postmortem-scribe` (`plugins/sre-observability/agents/postmortem-scribe.md`) | Monta a linha do tempo e o rascunho de postmortem blameless de um incidente já resolvido, apenas a partir das evidências fornecidas (notas, mensagens, alertas, deploys, gráficos descritos, tickets). | Read, Grep, Glob |
+| `sre-observability:reliability-reviewer` (`plugins/sre-observability/agents/reliability-reviewer.md`) | Revisor independente, cético e somente leitura de mudanças de confiabilidade em contexto limpo - timeouts, retries, health checks, regras de alerta e burn rate, SLO, instrumentação (rótulos, cardinalidade, logs com dado… | Read, Grep, Glob |
 
 ## security-appsec (`security-appsec` 0.1.0)
 
@@ -343,6 +429,32 @@ Instalar: `/plugin install ux-ui-design@brain-of-agent` · Playbook: `plugins/ux
 | `ux-ui-design:ui-designer` (`plugins/ux-ui-design/agents/ui-designer.md`) | Projeta ou refina telas e componentes dentro do design system existente e entrega especificação de handoff (estados, tokens, teclado, acessibilidade, critérios de aceite) mais fluxo de tela e plano de design. | Read, Grep, Glob, Write, Edit |
 | `ux-ui-design:ux-researcher` (`plugins/ux-ui-design/agents/ux-researcher.md`) | Planeja pesquisa de usabilidade e arquitetura de informação (pergunta e decisão, método, recrutamento, guia de entrevista de 50 minutos, roteiro de teste de usabilidade, card sorting ou tree testing, registro de problem… | Read, Grep, Glob |
 
+## technical-writing-docs (`technical-writing-docs` 0.1.0)
+
+Documentação técnica com Claude Code: README, tutoriais e guias (Diátaxis), ADRs, runbooks, changelog, docs de API (OpenAPI), docstrings, diagramas Mermaid, docs-as-code e arquivos para agentes (CLAUDE.md, AGENTS.md, skills), verificando o que escreve e sem afirmar execução que não houve.
+
+Instalar: `/plugin install technical-writing-docs@brain-of-agent` · Playbook: `plugins/technical-writing-docs/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/technical-writing-docs:auditar-claude-md` | Audita e enxuga arquivos de instrução para agentes (CLAUDE.md, CLAUDE.local.md, AGENTS.md, .claude/rules, arquivos de subpacotes) com rubrica de 100 pontos, relatório antes de qualquer edição, diffs mínimos com motivo, … |
+| `/technical-writing-docs:diagramar-arquitetura` | Produz diagramas de arquitetura e fluxo como código (Mermaid, níveis do C4) para documentação, um nível por diagrama, com texto explicativo e teste de renderização no destino antes de prometer que funciona; cai para flo… |
+| `/technical-writing-docs:documentar-codigo` | Escreve docstrings e comentários de documentação por linguagem (Python, TypeScript/JavaScript, Rust, Java) com exemplos verificáveis, e documenta APIs a partir de um contrato (OpenAPI, protobuf) ou anotações com fonte ú… |
+| `/technical-writing-docs:escrever-adr` | Registra por escrito uma decisão de arquitetura ou engenharia que já foi tomada, em ADR numerada e imutável depois de aceita (formato do projeto ou MADR mínimo), com contexto neutro, opções, decisão em voz ativa e conse… |
+| `/technical-writing-docs:escrever-changelog-release` | Escreve entradas de CHANGELOG para humanos (Keep a Changelog) e rascunho de release notes a partir de um intervalo de commits ou PRs, marcando quebras de compatibilidade e recomendando a versão pela convenção de commits. |
+| `/technical-writing-docs:escrever-guia-diataxis` | Classifica o pedido nos quatro quadrantes Diátaxis (tutorial, how-to, referência, explicação) e escreve ou reorganiza a documentação a partir do código, dos testes e do contrato, um modo por página, com ligação cruzada,… |
+| `/technical-writing-docs:escrever-readme` | Cria, atualiza ou revisa o README de um projeto comparando-o com o estado real do código (manifesto, scripts, LICENSE), com abertura de landing page, exemplo cedo, Quick Start copiável e sem enchimento; marca instalação… |
+| `/technical-writing-docs:escrever-runbook` | Escreve runbook ou playbook de alerta para uso em on-call, com pré-requisitos, passos numerados (comando exato, resultado esperado e ramo de falha), marcação de passos destrutivos, verificação, rollback e escalonamento. |
+| `/technical-writing-docs:playbook` | Guia e router do segmento Documentação e escrita técnica. |
+| `/technical-writing-docs:prompts` | Biblioteca de prompts curados do segmento Documentação e escrita técnica. |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `technical-writing-docs:auditor-de-docs` (`plugins/technical-writing-docs/agents/auditor-de-docs.md`) | Auditor somente leitura que cruza um diff (PR, branch, intervalo de commits ou release) com a documentação do projeto e devolve mapa de cobertura Diátaxis, correções factuais com evidência arquivo:linha, links quebrados… | Read, Grep, Glob, Bash |
+| `technical-writing-docs:revisor-de-instrucoes` (`plugins/technical-writing-docs/agents/revisor-de-instrucoes.md`) | Revisor independente, somente leitura e em contexto limpo, de arquivos de instrução para agentes - CLAUDE.md, CLAUDE.local.md, AGENTS.md, .claude/rules/*, SKILL.md e agents/*.md. | Read, Grep, Glob |
+| `technical-writing-docs:revisor-de-leitor` (`plugins/technical-writing-docs/agents/revisor-de-leitor.md`) | Leitor novo e limpo, somente leitura, que responde perguntas reais usando apenas o texto de um documento e aponta lacunas - termos sem definição, passos que não conseguiria executar, contradições, pressupostos ocultos e… | Read |
+| `technical-writing-docs:technical-writer` (`plugins/technical-writing-docs/agents/technical-writer.md`) | Redator técnico que recebe um briefing (leitor, tipo ou quadrante Diátaxis, fontes de fatos, caminhos de saída) e escreve ou edita arquivos de documentação - README, tutorial, how-to, referência, explicação, ADR de deci… | Read, Grep, Glob, Write, Edit |
+
 ## git-workflow-release (`git-workflow-release` 0.1.0)
 
 Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos, rebase e revert seguros, bisect, semver, changelog e releases, com push, merge, tag e publicação sempre sob confirmação.
@@ -368,3 +480,36 @@ Instalar: `/plugin install git-workflow-release@brain-of-agent` · Playbook: `pl
 | `git-workflow-release:auditor-release` (`plugins/git-workflow-release/agents/auditor-release.md`) | Portão go/no-go de release, somente leitura. | Read, Grep, Glob, Bash |
 | `git-workflow-release:revisor-diff` (`plugins/git-workflow-release/agents/revisor-diff.md`) | Revisor somente leitura, em contexto novo, do diff pedido (padrão - alterações não commitadas ou staged; também branch ou PR) antes de commit ou PR. | Read, Grep, Glob, Bash |
 | `git-workflow-release:revisor-plano` (`plugins/git-workflow-release/agents/revisor-plano.md`) | Revisor adversarial somente leitura, em contexto novo, que compara um diff com o plano ou os critérios de aceite (PLAN.md, issue, descrição do PR) antes de abrir o PR e reporta só quatro categorias - requisito sem imple… | Read, Grep, Glob, Bash |
+
+## design-engineering-kit (`design-engineering-kit` 0.1.0)
+
+Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 skills de motion, polimento e direção visual (Emil Kowalski e taste-skill, MIT, vendorizadas sem alteração), precedência explícita de estilo (design system do projeto, design system da casa, direções taste), agentes somente leitura, prompts e evals.
+
+Instalar: `/plugin install design-engineering-kit@brain-of-agent` · Playbook: `plugins/design-engineering-kit/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/design-engineering-kit:animate` | Build an animation from scratch, making the decisions in the order that determines whether it feels right — should it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrup… |
+| `/design-engineering-kit:animate-expo` | Build animations in React Native and Expo, making the decisions in the order that determines whether they feel right — should it animate, which thread it runs on, which properties, spring or timing, how the gesture hand… |
+| `/design-engineering-kit:animation-vocabulary` | Reverse-lookup glossary that turns a vague description of a web animation or motion effect into its exact term ("the bouncy thing when a popover opens" → Pop in; "the iOS rubber-band scroll" → Rubber-banding). |
+| `/design-engineering-kit:apple-design` | Apple's approach to interface design and fluid, physical motion, translated for the web. |
+| `/design-engineering-kit:break-ui` | Try to break a piece of UI by feeding it worst-case data — long names, unbreakable emails, one-letter names, missing fields, huge counts, zero items, long labels, non-Latin text, emoji, extreme numbers — then render it … |
+| `/design-engineering-kit:design-taste-frontend` | Anti-slop frontend skill for landing pages, portfolios, and redesigns. |
+| `/design-engineering-kit:emil-design-eng` | This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great. |
+| `/design-engineering-kit:find-animation-opportunities` | Search a codebase or UI for places that don't animate but should, and reject everything that shouldn't. |
+| `/design-engineering-kit:high-end-visual-design` | Teaches the AI to design like a high-end agency. |
+| `/design-engineering-kit:improve-animations` | Survey a codebase's animation and motion code as a senior motion advisor, then produce a prioritized audit and self-contained implementation plans for other agents (or cheaper models) to execute. |
+| `/design-engineering-kit:industrial-brutalist-ui` | Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. |
+| `/design-engineering-kit:minimalist-ui` | Clean editorial-style interfaces. |
+| `/design-engineering-kit:mobile-native` | Make a web app feel native on a phone — the small CSS and meta-tag fixes that separate "a website in a browser" from something that feels installed. |
+| `/design-engineering-kit:pick-ui-library` | Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP inputs, charts, command menus, virtualization, drag and drop, toasts, state, styling, and more. |
+| `/design-engineering-kit:playbook` | Guia e router do designer-engenheiro. |
+| `/design-engineering-kit:prompts` | Biblioteca de 16 prompts prontos para designer-engenheiro, com objetivo, quando usar, prompt em bloco e critério de pronto - implementar tela a partir de link do Figma, mapear variáveis para tokens, comparar com o frame… |
+| `/design-engineering-kit:prototype` | Build multiple genuinely different versions of a UI piece you describe, rendered behind a visual picker so you can flip through them live and promote the one that feels right. |
+| `/design-engineering-kit:redesign-existing-projects` | Upgrades existing websites and apps to premium quality. |
+| `/design-engineering-kit:review-animations` | Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `design-engineering-kit:motion-polish-reviewer` (`plugins/design-engineering-kit/agents/motion-polish-reviewer.md`) | Revisa motion e polimento de UI por leitura, aplicando os 10 padrões da skill review-animations, o checklist do emil-design-eng e o catálogo do break-ui, sempre depois dos tokens de motion do design system do projeto. | Read, Grep, Glob |
+| `design-engineering-kit:ui-verifier` (`plugins/design-engineering-kit/agents/ui-verifier.md`) | Verifica no navegador, com o Playwright MCP, uma UI já implementada contra o Figma, o brief ou o design system, e devolve relatório com achados (ID, severidade, evidência, recomendação). | (herda) |

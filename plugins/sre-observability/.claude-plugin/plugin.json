@@ -1,0 +1,8 @@
+{
+  "name": "sre-observability",
+  "version": "0.1.0",
+  "description": "SLI/SLO e error budget, alertas por burn rate, telemetria (OpenTelemetry, Prometheus), triagem de incidentes somente leitura, postmortem blameless, runbooks, canário, testes de carga e performance, com agentes que investigam sem tocar em produção.",
+  "author": { "name": "Francisco Edson", "url": "https://github.com/francisco-efjr" },
+  "license": "MIT",
+  "keywords": ["sre", "observability", "slo", "error-budget", "burn-rate", "alerting", "opentelemetry", "prometheus", "incident-response", "postmortem", "runbook", "load-testing", "k6", "performance", "sre-completo"]
+}

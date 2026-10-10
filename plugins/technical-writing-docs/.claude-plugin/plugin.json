@@ -1,0 +1,27 @@
+{
+  "name": "technical-writing-docs",
+  "version": "0.1.0",
+  "description": "Documentação técnica com Claude Code: README, tutoriais e guias (Diátaxis), ADRs, runbooks, changelog, docs de API (OpenAPI), docstrings, diagramas Mermaid, docs-as-code e arquivos para agentes (CLAUDE.md, AGENTS.md, skills), verificando o que escreve e sem afirmar execução que não houve.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "documentation",
+    "technical-writing",
+    "readme",
+    "diataxis",
+    "adr",
+    "runbook",
+    "changelog",
+    "release-notes",
+    "openapi",
+    "docstrings",
+    "mermaid",
+    "docs-as-code",
+    "claude-md",
+    "agents-md",
+    "DOCS-COMPLETO"
+  ]
+}

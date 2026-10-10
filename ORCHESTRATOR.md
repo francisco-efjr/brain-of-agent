@@ -68,7 +68,7 @@ Respeite as ferramentas declaradas no frontmatter do agente. Revisores e auditor
 | Feature nova | `product-discovery-specs` (spec, critérios de aceite) → `architecture-design` (plano) → plugin da plataforma (implementação) → `qa-testing` (testes) → `code-quality-refactoring` (revisão) |
 | Bug ou incidente | `code-quality-refactoring` (debug sistemático) + `qa-testing` (teste de regressão) + `sre-observability` se for produção |
 | Segurança e privacidade (LGPD) | `security-appsec` + `database-data-modeling` + plugin da plataforma |
-| Telas novas ou redesign | `ux-ui-design` (brief, auditoria de UI, tokens, acessibilidade) → `web-frontend` ou `mobile-apps`; aplique o design system da casa (pasta `design-systems/mo-baile/`, princípios adaptados à plataforma) |
+| Telas novas ou redesign | `ux-ui-design` (brief, auditoria de UI, tokens, acessibilidade) → `web-frontend` ou `mobile-apps`; aplique o design system da casa (pasta `design-systems/mo-baile/`, princípios adaptados à plataforma); opcional: `design-engineering-kit` (Figma para código, verificação no navegador, motion e polimento) com os plugins oficiais `figma` e `playwright` do marketplace `claude-plugins-official` (instalar exige confirmação do usuário) |
 | App Android/iOS | `mobile-apps` + `architecture-design` + `qa-testing` + `security-appsec` |
 | API ou serviço | `backend-api` + `database-data-modeling` + `security-appsec` |
 | Infra, CI/CD, deploy | `devops-cloud-infra` (+ `sre-observability`) |

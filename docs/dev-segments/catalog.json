@@ -563,6 +563,192 @@
       ]
     },
     {
+      "plugin": "data-engineering",
+      "displayName": "data-engineering",
+      "version": "0.1.0",
+      "description": "Engenharia de dados e analytics para o Claude Code: pipelines ETL/ELT, dbt, Airflow e Dagster, Spark e streaming, SQL analítico e custo em warehouses, contratos e qualidade de dados, linhagem e text-to-SQL seguro, com verificação por saída real, reconciliação de contagens, agentes somente leitura e o modo DATAENG-COMPLETO.",
+      "keywords": [
+        "data-engineering",
+        "etl",
+        "elt",
+        "dbt",
+        "airflow",
+        "dagster",
+        "spark",
+        "streaming",
+        "bigquery",
+        "lakehouse",
+        "data-quality",
+        "data-contracts",
+        "text-to-sql",
+        "idempotency",
+        "DATAENG-COMPLETO"
+      ],
+      "mode_keyword": "DATAENG-COMPLETO",
+      "skills": [
+        {
+          "name": "airflow-dag-workflow",
+          "description": "Revisa, cria, testa e depura DAGs do Airflow (e orienta assets do Dagster e princípios para Prefect) com checklist de 12 perguntas (idempotência, intervalo da execução, now(), código no topo do arquivo, XCom, sensores, catchup), teste de import, gate de aprovação do plano e consentimento antes de disparar execução. Backfill vira plano, nunca execução. Use para 'revisar DAG', 'criar DAG', 'DAG falhou', 'task travada', 'backfill', 'dagster asset', ou 'review airflow dag', 'author DAG', 'debug failed run', 'idempotent task'."
+        },
+        {
+          "name": "data-contracts-quality",
+          "description": "Define contratos de dados (Open Data Contract Standard 3.2.0), regras de qualidade com ação fail/drop/warn e contagem de violações, política block/warn/log para agentes, convenção de linhagem (OpenLineage) e checklist de produto de dados. Produz rascunho de contrato, matriz de regras, política e nota de linhagem para o usuário validar. Use para 'contrato de dados', 'regras de qualidade', 'expectations', 'SLA de frescor', 'quarentena', 'linhagem', 'data product', ou 'data contract', 'data quality rules', 'OpenLineage', 'breaking change in a dataset'."
+        },
+        {
+          "name": "dbt-model-workflow",
+          "description": "Cria ou altera modelos dbt (staging, intermediate, marts), YAML, testes e documentação: lê o projeto e os consumidores antes de escrever, segue as convenções vizinhas, testa por tipo de coluna e verifica em target de desenvolvimento com dbt build --select. Cobre mudança que quebra consumidores (modelo versionado), incrementais, snapshots e depuração de erro. Use para 'criar modelo dbt', 'renomear/remover coluna', 'adicionar testes dbt', 'dbt build falhou', 'revisar projeto dbt', 'desenhar fato e dimensões', ou 'create dbt model', 'add dbt tests', 'fix dbt compilation error'."
+        },
+        {
+          "name": "gated-pipeline-migration",
+          "description": "Migração ou upgrade de pipeline com fases e gates (dbt, Airflow, Spark, troca de plataforma): preflight de git, lista de mudanças a partir de fonte verificável, detecção sem editar, correções determinísticas, julgamento com diff e confirmação, verificação com teto de tentativas, oráculo antes/depois e relatório do que não foi verificado. Invocação explícita (/data-engineering:gated-pipeline-migration); não executa instalação de pacote, deploy nem escrita em produção."
+        },
+        {
+          "name": "pipeline-acceptance",
+          "description": "Aceitação de pipeline ou modelo gerado por agente antes de mergear ou promover: reconcilia contagem origem vs destino e campos vs colunas, roda a carga duas vezes para provar idempotência, confere chaves nos dados carregados, SCD2 e warn com número, e emite veredito com evidência. Invocação explícita (/data-engineering:pipeline-acceptance); executa verificações somente em desenvolvimento, uma permissão por execução. Gatilhos: 'o build passou, posso mergear?', 'validar carga', 'aceitar pipeline', 'reconciliar contagens', 'pipeline acceptance', 'is this load correct'."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Engenharia de dados e analytics. Use ao criar, revisar, depurar ou migrar pipelines ETL/ELT, modelos dbt, DAGs Airflow, Dagster ou Prefect, jobs Spark/PySpark, streaming Kafka/Flink, SQL analítico, tabelas de warehouse e lakehouse (BigQuery, Snowflake, Databricks, Redshift, Delta, Iceberg), contratos e qualidade de dados, linhagem, modelagem dimensional, ou ao deixar um agente consultar dados. Triggers PT/EN: 'pipeline de dados', 'modelo dbt', 'DAG', 'job Spark', 'consulta lenta no warehouse', 'qualidade de dados', 'contrato de dados', 'backfill', 'data pipeline', 'dbt model', 'warehouse cost', 'text-to-SQL'. Também ativa o modo DATAENG-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados de engenharia de dados e analytics (dbt, Airflow, Dagster, Spark, streaming, SQL, BigQuery, Delta, contratos e qualidade, evals). Use quando pedirem um prompt, template ou mensagem pronta para revisar PR de dbt ou DAG, aceitar pipeline gerado por agente, text-to-SQL seguro, otimizar SQL sem mudar resultado, revisar custo no BigQuery, plano de backfill, garantias de streaming, rascunho de contrato de dados, juiz de evals, migração gated, CLAUDE.md ou mensagem inicial de projeto de dados. Gatilhos PT-BR - \"me dá um prompt para\", \"prompt pronto\", \"template de prompt de dados\", \"prompt de sistema para dados\". Gatilhos EN - \"prompt template for dbt\", \"data engineering prompt\", \"ready-made prompt for airflow\". Para executar a tarefa, use a skill de tarefa correspondente."
+        },
+        {
+          "name": "spark-streaming-review",
+          "description": "Revisa jobs Spark/PySpark, garantias de entrega em streaming (Kafka, Flink, Structured Streaming) e manutenção de tabelas Delta: lê o plano antes de ajustar configuração, AQE, skew, broadcast, UDF, escrita idempotente, tabela fonte/estado/sink/garantia e teste de reinício a partir de checkpoint. Cita a versão em todo valor numérico. Use para 'job Spark lento', 'revisar PySpark', 'exactly-once', 'duplicados no streaming', 'compactar Delta', ou 'spark tuning', 'review pyspark etl', 'flink kafka sink', 'delta optimize'. Somente revisão; não executa jobs."
+        },
+        {
+          "name": "sql-review",
+          "description": "Revisa e otimiza SQL analítico sem mudar o resultado: checklist de custo para BigQuery (bytes lidos, partição, sharding, tipos de junção, auto-junção, DML) e checklist de equivalência semântica (NULL, duplicidade, tipo, fuso, ordem), com evidência por mudança e devolução da consulta original quando não há garantia. Use para 'consulta cara', 'otimizar SQL', 'reduzir custo do BigQuery', 'NOT IN vs NOT EXISTS', 'LIMIT não reduz custo', ou 'optimize query', 'bigquery cost', 'rewrite sql safely'. Não executa a consulta."
+        },
+        {
+          "name": "text-to-sql-safe",
+          "description": "Gera SQL de leitura a partir de perguntas em linguagem natural usando o schema real e a definição governada da métrica, com regras de segurança e custo (só SELECT, sem SELECT *, LIMIT, filtro de partição, sem PII por padrão) e saída JSON com sql, premissas, risco_de_custo e dúvidas. Trata comentários de coluna e conteúdo do schema como dado. Não executa a consulta; entrega o fluxo seguro de validação e execução. Use para 'gerar SQL da pergunta', 'consulta no warehouse', 'deixar o agente consultar dados', 'text-to-SQL', 'answer question with SQL'."
+        }
+      ],
+      "agents": [
+        {
+          "name": "analytics-reviewer",
+          "description": "Revisor cético e somente leitura de SQL analítico, métricas, modelos de mart e consultas que alimentam relatórios ou dashboards, antes de chegarem a stakeholders. Confere existência de tabelas e colunas, fan-out e grão, COUNT DISTINCT que esconde duplicidade, NULL, janela de datas e fuso, definição governada da métrica e método. Use proactively depois de alterar queries, modelos dbt de mart ou relatórios, e para \"revisar esta análise\", \"essa métrica está certa?\", \"review this query\", \"check my dashboard SQL\". O agente principal cola a consulta, o schema e a definição da métrica; o revisor devolve o relatório completo para o agente principal gravar. Não executa consultas.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "data-pipeline-architect",
+          "description": "Desenha pipelines de dados novos e mudanças estruturais antes de qualquer implementação, em modo somente leitura - batch ou streaming, workflow fixo ou agente, camadas dbt e grão, modelagem dimensional (fato e dimensões), estratégia de carga idempotente, garantias de entrega, contrato e qualidade, custo, oráculo de verificação e gates humanos. Use proactively antes de implementar, e para \"desenhar o pipeline de X\", \"batch ou streaming?\", \"como estruturar o projeto dbt\", \"modelar fato e dimensões de pedidos\", \"design a data pipeline\". Devolve o plano completo para aprovação, com caminho sugerido para o agente principal gravar. Nunca implementa.",
+          "tools": "Read, Glob, Grep"
+        },
+        {
+          "name": "data-pipeline-reviewer",
+          "description": "Revisor cético e somente leitura de pipelines de dados (modelos e testes dbt, DAGs do Airflow, assets do Dagster, jobs Spark/PySpark, streaming Kafka/Flink, SQL de carga e merge, tabelas Delta, contratos e regras de qualidade). Use proactively depois de alterar models/, dags/, jobs ou contratos e antes de mergear, e para \"revise este pipeline\", \"o build passou, posso mergear?\", \"review this dbt PR\", \"check this DAG\". Relata só lacunas que afetam correção, idempotência, custo, segurança ou requisitos. O agente principal cola o diff e o plano; o revisor devolve o relatório completo para o agente principal gravar. Não executa consultas nem comandos.",
+          "tools": "Read, Glob, Grep"
+        },
+        {
+          "name": "eval-judge",
+          "description": "Juiz binário de um único modo de falha em saídas de agentes de dados (respostas de skills, prompts, revisões, SQL gerado). Recebe a saída, UM critério de falha e a evidência esperada, e devolve somente JSON com falha true ou false e a evidência literal. Use na calibração de evals das skills do plugin, na análise de erros de 20 a 50 saídas e em regressão de prompts de text-to-SQL, e para \"julgue esta saída contra este critério\", \"run the judge on these outputs\". Não use para aprovar entregas nem para dar nota. Somente leitura; devolve o resultado para o agente principal gravar.",
+          "tools": "Read"
+        },
+        {
+          "name": "pipeline-debugger",
+          "description": "Investigador somente leitura da causa raiz de falha ou resultado errado em pipelines (DAG do Airflow, asset do Dagster, job Spark, modelo dbt, carga, streaming), a partir de logs, SQL compilado, diffs e versões fornecidos. Use quando algo falhou ou deu número errado e há log, erro ou diff para analisar, antes de qualquer correção, e para \"por que essa DAG falhou?\", \"o dbt build quebrou\", \"job duplicando linhas\", \"why did this run fail\". Devolve relatório de causa raiz completo para o agente principal gravar. Não executa comandos nem reexecuta nada.",
+          "tools": "Read, Glob, Grep"
+        }
+      ]
+    },
+    {
+      "plugin": "data-science-ml",
+      "displayName": "data-science-ml",
+      "version": "0.1.0",
+      "description": "Playbook de ciência de dados e machine learning para Claude Code: EDA sem vazamento, validação e métricas, treino e tuning reprodutíveis, séries temporais, A/B e inferência causal, avaliação de componentes LLM e promoção de modelos com registro, serving e drift.",
+      "keywords": [
+        "data-science",
+        "machine-learning",
+        "scikit-learn",
+        "pytorch",
+        "gradient-boosting",
+        "data-leakage",
+        "cross-validation",
+        "eda",
+        "time-series",
+        "ab-testing",
+        "causal-inference",
+        "llm-evals",
+        "mlops",
+        "drift",
+        "datascience-completo"
+      ],
+      "mode_keyword": "DATASCIENCE-COMPLETO",
+      "skills": [
+        {
+          "name": "ds-eda",
+          "description": "Conduz análise exploratória de um dataset antes de modelar, usando só o conjunto de treino - forma e tipos, ausentes e padrão de ausência, alvo e balanceamento, relação com o alvo, cardinalidade, outliers e suspeitas de vazamento - com relatório de saída fixa. Use para 'EDA', 'explore estes dados', 'analisa este dataset', 'primeira olhada nos dados', 'profile this dataset', 'exploratory data analysis'. Não altera os dados de origem. Não use para escolher métrica ou modelar (ds-model-evaluation) nem para auditar um experimento pronto (ds-leakage-audit)."
+        },
+        {
+          "name": "ds-inference-review",
+          "description": "Revisa inferência estatística e causal - experimentos A/B (SRM, guardrails, métrica primária, poder e MDE, multiplicidade, CUPED), relatórios com tamanho de efeito e intervalo, escolha de teste (t, Mann-Whitney, qui-quadrado) e afirmações causais (estimando, DAG, método pelo mecanismo de atribuição, refutação). Use para 'o teste A/B ganhou', 'SRM', 'significância', 'p-valor', 'tamanho de amostra', 'teste t ou Mann-Whitney', 'intervalo de confiança', 'efeito causal', 'diferença em diferenças', 'diff-in-diff', 'regression discontinuity', 'causal inference'. Não use para métricas de modelo (ds-model-evaluation) nem para decisão de produto sobre lançar."
+        },
+        {
+          "name": "ds-leakage-audit",
+          "description": "Audita vazamento de dados (data leakage) e o desenho de validação de um projeto de ML - ordem do split e do pré-processamento, Pipeline, grupos, duplicatas, tempo e disponibilidade de cada feature no momento da decisão. Use quando a métrica offline parecer boa demais, a performance cair após o deploy, ao revisar split ou cross-validation, ou quando pedirem 'tem vazamento', 'data leakage', 'revisa meu split', 'AUC alto demais', 'train-test contamination', 'is my CV leaking'. Guia a auditoria no contexto atual; para segunda opinião em contexto novo use o agente ds-leakage-auditor. Não use para escolher métrica (ds-model-evaluation) nem para backtest de séries (ds-time-series-backtest)."
+        },
+        {
+          "name": "ds-llm-eval",
+          "description": "Projeta a avaliação de um componente LLM dentro de um projeto de dados (classificação, extração, resumo) - critérios de sucesso mensuráveis, conjunto de casos de falhas reais, graders de código antes de juiz, validação do juiz LLM (TPR, TNR, kappa, divisão treino/dev/teste), análise de erros, pass@k e pass^k, intervalos de incerteza. Use para 'avaliar com LLM', 'juiz LLM', 'LLM-as-judge', 'evals', 'golden set', 'medir qualidade do prompt', 'pass@k', 'concordância com humano'. Para agentes de código, RAG, tool use ou evals de plugin use o plugin llm-ai-agents."
+        },
+        {
+          "name": "ds-mlops-promotion",
+          "description": "Prepara e revisa a promoção de um modelo para produção - registro de runs e modelos (MLflow), checklist de serving (incluindo o risco de pickle e joblib), plano de monitoramento de drift, prontidão de ML (training-serving skew, heurística como baseline) e model card. Use para 'posso promover este modelo', 'deploy do modelo', 'serving', 'drift', 'monitoramento de modelo', 'model card', 'model registry', 'rollback', 'productionize'. Não faz deploy nem registra modelos; produz plano, checklist e decisão APPROVE, APPROVE WITH WARNINGS ou BLOCK. Infra e CI/CD ficam em devops-cloud-infra."
+        },
+        {
+          "name": "ds-model-evaluation",
+          "description": "Define métrica, baseline e desenho de validação para um problema de ML supervisionado, trata classes desbalanceadas (métrica, pesos, reamostragem dentro do fold, limiar), calibração e feature engineering (encoders por cardinalidade, target encoding fora do fold) e faz análise de erros por fatia. Use para 'qual métrica usar', 'classes desbalanceadas', 'imbalanced', 'SMOTE', 'threshold', 'limiar', 'calibração', 'target encoding', 'feature engineering', 'comparar modelos', 'model evaluation'. Não use para depurar treino (ds-train-debug), vazamento (ds-leakage-audit) nem séries temporais (ds-time-series-backtest)."
+        },
+        {
+          "name": "ds-time-series-backtest",
+          "description": "Projeta e revisa o backtest de modelos de séries temporais e previsão - origem rolante, horizonte da decisão, covariáveis conhecidas na origem, dados point-in-time, baseline sazonal-naive, MASE, erro por horizonte e cobertura de intervalos. Use para 'forecast', 'previsão', 'série temporal', 'backtest', 'TimeSeriesSplit', 'time series cross-validation', 'rolling origin', ou quando houver k-fold embaralhado em dados com tempo. Não use para vazamento genérico sem componente temporal (ds-leakage-audit) nem para escolher métrica de classificação (ds-model-evaluation)."
+        },
+        {
+          "name": "ds-train-debug",
+          "description": "Depura e revisa treino de modelos (PyTorch, scikit-learn, LightGBM, XGBoost) - loss que não cai, NaN, treino bom e validação ruim, métrica suspeita, reprodutibilidade (seeds, determinismo, checkpoint) - e planeja tuning de hiperparâmetros (grid, random, Optuna, early stopping). Use para 'loss não cai', 'NaN no treino', 'overfitting', 'resultado não reproduz', 'tuning', 'hiperparâmetros', 'training loop', 'seeds', 'training is unstable', 'not reproducible'. Não use para vazamento de dados (ds-leakage-audit) nem para escolher métrica (ds-model-evaluation)."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Ciência de dados e machine learning: EDA, vazamento de dados e validação, métricas, treino (scikit-learn, PyTorch, gradient boosting), tuning, séries temporais, experimentos A/B, inferência causal, avaliação de componentes LLM, MLOps (registro, serving, drift) e notebooks reprodutíveis. Use quando o pedido envolver treinar, avaliar, auditar ou promover um modelo, analisar um dataset, interpretar um experimento ou escrever o CLAUDE.md de um projeto de dados; gatilhos: \"ciência de dados\", \"machine learning\", \"vazamento\", \"data leakage\", \"validação cruzada\", \"cross-validation\", \"EDA\", \"feature engineering\", \"teste de hipótese\", \"teste A/B\", \"drift\", \"model review\", \"métrica do modelo\", \"notebook não reproduz\", \"gráfico do resultado\". Não use para ETL/orquestração (data-engineering) nem para agentes/RAG (llm-ai-agents). Também ativa o modo DATASCIENCE-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados do segmento Ciência de dados e machine learning (EDA, vazamento e validação, métricas, treino com scikit-learn, PyTorch e gradient boosting, tuning, séries temporais, A/B, inferência causal, avaliação de componentes LLM, juiz LLM, MLOps, drift, model card, notebooks, figuras). Use quando pedirem prompt, template ou mensagem pronta para auditar vazamento, revisar um experimento, escolher métrica, tratar classe rara, planejar backtest ou A/B, validar um juiz LLM, revisar promoção de modelo, montar o CLAUDE.md ou a primeira mensagem de um projeto de dados. Gatilhos PT-BR - \"me dá um prompt para\", \"prompt pronto\", \"template de prompt de dados\", \"prompt de sistema para o projeto\". Gatilhos EN - \"prompt template for\", \"ready-made prompt\", \"data science prompt library\". Para executar a tarefa em si, use a skill de tarefa correspondente."
+        }
+      ],
+      "agents": [
+        {
+          "name": "ds-eval-auditor",
+          "description": "Revisor somente leitura do desenho de avaliação de um componente LLM dentro de um projeto de dados (classificação, extração, resumo), em contexto limpo. Confere critérios de sucesso mensuráveis, casos de falhas reais e de borda, graders de código antes do juiz, validação do juiz LLM (especialista, TPR e TNR, kappa, divisão, prompt congelado), vieses, juiz diferente do gerador, intervalos e falhas críticas separadas da média. Devolve o relatório completo com arquivo:linha. Use proactively antes de confiar num eval ou num juiz, e para \"esse eval está bom?\", \"juiz LLM\", \"LLM-as-judge\", \"golden set\", \"pass@k\", \"concordância de 94%\". Não edita nem executa nada; o agente principal grava o relatório se quiser. Para agentes de código, RAG e tool use, use o plugin llm-ai-agents.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "ds-experiment-reviewer",
+          "description": "Revisor independente e somente leitura de experimentos de ML e de avaliação de componentes LLM, em contexto limpo. Triagem rápida em 7 itens (teste separado antes de ajustes, teste usado para escolher, entidades e tempo, features na hora da decisão, métrica contra critério e baseline, seeds e versões, evals de LLM) e devolve o relatório completo com arquivo:linha. Use proactively depois de treinar, avaliar ou mudar split, features, métrica ou prompt de avaliação, e para \"revisar este experimento\", \"review this experiment\", \"o resultado está confiável?\", \"conferir antes de reportar\". Não edita nem executa nada; o agente principal grava o relatório se quiser. Para auditoria profunda de vazamento use ds-leakage-auditor; para decisão de promoção, ds-model-promotion-reviewer.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "ds-inference-reviewer",
+          "description": "Revisor somente leitura de inferência estatística e causal, em contexto limpo. Revisa experimentos A/B (SRM primeiro, guardrails, métrica primária pré-registrada, multiplicidade, poder e MDE, unidade de randomização, clusters, CUPED), relatórios estatísticos (tamanho de efeito com intervalo, pressupostos, p exato, confirmatório contra exploratório) e afirmações causais (estimando, DAG, método pelo mecanismo de atribuição, refutação). Devolve o relatório completo com veredito de evidência e arquivo:linha. Use proactively antes de aceitar \"o teste A/B ganhou\", \"é significativo\", \"o programa causou X\", e para \"revisar este experimento\", \"SRM\", \"p-valor\", \"efeito causal\", \"diff-in-diff\". Não edita nem executa nada; o agente principal grava o relatório se quiser. Não decide se o produto deve lançar a mudança.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "ds-leakage-auditor",
+          "description": "Auditor somente leitura de vazamento de dados e do desenho de validação de ML, em contexto limpo. Fixa o instante de decisão, monta a tabela de disponibilidade das features, audita split, Pipeline, grupos, duplicatas, tempo, agregados, janelas e cohort, e devolve o relatório completo com severidade, frase de ordem temporal e arquivo:linha. Use proactively quando a métrica offline parecer boa demais, a performance cair depois do deploy, ao revisar split, cross-validation, lista de features ou jobs SQL e pandas, e para \"tem vazamento?\", \"data leakage\", \"AUC alto demais\", \"revisa meu split\", \"train-test contamination\". Não edita nem executa nada; o agente principal grava o relatório se quiser. Para triagem rápida de um experimento use ds-experiment-reviewer.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "ds-model-promotion-reviewer",
+          "description": "Revisor independente e somente leitura que emite uma decisão (APPROVE, APPROVE WITH WARNINGS ou BLOCK) antes de promover um modelo de ML ou aceitar um pipeline (contratos de dados, vazamento, reprodutibilidade, avaliação com baseline, serving (incluindo risco de pickle), skew treino-serving, monitoramento de drift e rollback). Use proactively depois de treinar, alterar features, split, métrica ou serving, antes de abrir ou aprovar um PR de modelo, e para \"revisar este modelo para produção\", \"model review\", \"posso promover?\", \"pre-deploy review\". Não faz deploy, não registra modelo, não executa nada; o agente principal grava o relatório se quiser. Infra e CI/CD ficam em devops-cloud-infra.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
       "plugin": "llm-ai-agents",
       "displayName": "llm-ai-agents",
       "version": "0.1.0",
@@ -737,6 +923,98 @@
         {
           "name": "rollout-planner",
           "description": "Planejador somente leitura de mudança de infraestrutura e de rollout/rollback. A partir de um diff, de uma saída de plan/diff colada ou de uma descrição, produz o plano de mudança (alvo, efeito, recursos com estado, o que não reverte, verificação pós-mudança) e o plano de rollout (critérios de canary ou blue-green definidos antes do deploy). Use proactively antes de qualquer apply, helm upgrade ou deploy, ao criar um Rollout/Canary e quando pedirem 'plano de rollback', 'como reverter essa release' ou 'change plan'. Nunca aplica nada; devolve o plano completo com o caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
+      "plugin": "sre-observability",
+      "displayName": "sre-observability",
+      "version": "0.1.0",
+      "description": "SLI/SLO e error budget, alertas por burn rate, telemetria (OpenTelemetry, Prometheus), triagem de incidentes somente leitura, postmortem blameless, runbooks, canário, testes de carga e performance, com agentes que investigam sem tocar em produção.",
+      "keywords": [
+        "sre",
+        "observability",
+        "slo",
+        "error-budget",
+        "burn-rate",
+        "alerting",
+        "opentelemetry",
+        "prometheus",
+        "incident-response",
+        "postmortem",
+        "runbook",
+        "load-testing",
+        "k6",
+        "performance",
+        "sre-completo"
+      ],
+      "mode_keyword": "SRE-COMPLETO",
+      "skills": [
+        {
+          "name": "alert-review",
+          "description": "Revisa regras de alerta, rotas e painéis: separa alerta de sintoma (SLO) de alerta de causa (recurso), converte para burn rate multijanela mostrando a conta, define página x ticket x dashboard, valida PromQL e propõe teste de disparo e reset; a regra sai como rascunho não executado. Use ao pedir 'revisar alerta', 'alerta ruidoso', 'muitas páginas', 'burn rate', 'alertmanager', 'regra do Prometheus', 'reduzir páginas do plantão', 'dashboard dos sinais de ouro', 'noisy alert', 'alert fatigue', 'multiwindow'. Definir o SLO em si fica em slo-design; incidente em curso em incident-triage."
+        },
+        {
+          "name": "incident-triage",
+          "description": "Apoia o Incident Commander durante um incidente de produção em modo somente leitura: sintoma em termos de usuário, severidade sugerida, mudanças recentes, no máximo 3 hipóteses refutáveis com a consulta que as refuta, evidência com procedência (fonte, janela UTC, filtro, ambiente, versão) e rascunhos de comunicação; mitigação só como opção para o IC decidir, nunca executada. Use ao dizer 'estamos em incidente', '5xx subiu', 'serviço fora do ar', 'queda em produção', 'alerta disparou', 'plantão', 'quem é o IC', 'we have an incident', 'production is down', 'outage', 'triage this alert'. Diagnóstico técnico de pod, pipeline ou terraform sem usuário afetado fica em devops-cloud-infra; postmortem em postmortem."
+        },
+        {
+          "name": "performance-engineering",
+          "description": "Planeja e interpreta performance sem executar carga: plano e script de teste de carga (k6, Locust) com thresholds derivados do SLO, leitura de resultados, Core Web Vitals por dado de campo, leitura de flame graph e gate de regressão com baseline próprio. Use ao pedir 'aguenta o pico?', 'quantos usuários suporta', 'teste de carga', 'k6', 'Locust', 'p99', 'está lento' (sem mudança recente), 'Core Web Vitals', 'LCP INP CLS', 'Lighthouse', 'flame graph', 'capacidade', 'load test', 'stress test', 'profile this'. Se o p95 ou p99 piorou depois de uma mudança (deploy, config, dependência), use root-cause-investigation. Nunca roda carga contra produção ou terceiros."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento SRE, observabilidade e performance - SLI/SLO e error budget, alertas por burn rate, métricas/logs/traces (OpenTelemetry, Prometheus, Grafana), resposta a incidentes, postmortem blameless, runbooks, canário, capacidade, testes de carga (k6/Locust), profiling e resiliência de dependências. Use quando o usuário falar de SLO, alerta, on-call/plantão, incidente, postmortem, observabilidade, latência p95/p99, \"está lento\", \"aguenta o pico?\", teste de carga, burn rate, cardinalidade, canary, \"production is down\" ou \"why is it slow\". Também ativa o modo SRE-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "postmortem",
+          "description": "Redige ou revisa um postmortem blameless a partir de evidências: confirma o gatilho, monta a linha do tempo com fonte por evento, quantifica o impacto com origem, propõe causas contribuintes de sistema e processo como candidatas e prepara ações com dono e prazo para aprovação humana, com lint de culpa e de dado pessoal. Use ao pedir 'escrever postmortem', 'pós-mortem', 'retro do incidente', 'linha do tempo do incidente', 'causas contribuintes', 'ações de acompanhamento', 'revisar este postmortem', 'write the postmortem', 'blameless', 'incident review'. Durante o incidente use incident-triage; causa raiz de regressão sem incidente fica em root-cause-investigation."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de 36 prompts curados de SRE, observabilidade e performance, prontos para colar, com variáveis, motivo e fontes. Cobre prompt de sistema e mensagem inicial, primeiro SLO, política de error budget, burn rate, revisão de alertas e PromQL, triagem de incidente, comunicação, linha do tempo e postmortem blameless, causa raiz, instrumentação e OpenTelemetry, logging seguro, plano e leitura de teste de carga (k6), Web Vitals, flame graph, canário, resiliência, caos, capacidade, runbook, traces de LLM e telemetria do Claude Code. Use quando pedirem 'um prompt para', 'prompt pronto de SRE', 'template de pedido para revisar alertas/SLO/postmortem', 'ready-made prompt for incident triage', 'prompt for load test plan'. Indica qual prompt usar; não executa a tarefa do prompt."
+        },
+        {
+          "name": "release-health",
+          "description": "Conduz, só por comando explícito, a verificação somente leitura de um canário ou do pós-deploy: critérios de rollback definidos antes, poucas métricas (de preferência SLIs), canário comparado com controle concorrente, baseline capturado antes e imutável, alerta apenas após o mesmo padrão em 2 checagens seguidas, estado HEALTHY/DEGRADED/BROKEN e relatório; o rollback é decisão humana e a skill nunca o executa. Gatilhos: 'monitorar depois do deploy', 'canário', 'rollback?', 'post-deploy check', 'canary release health'."
+        },
+        {
+          "name": "root-cause-investigation",
+          "description": "Investiga a causa raiz de um sintoma observado em sistema em execução (regressão de latência ou erro depois de deploy, erro intermitente em produção, p95 que piorou após mudança) antes de propor correção: reproduz, compara baseline e estado atual, isola uma variável por vez, exige teste que falha antes e para após 3 tentativas. Use ao pedir 'por que ficou lento depois do deploy', 'p95 subiu', 'regressão em produção', 'erro intermitente em produção', 'root cause', 'why did this regress', 'investigate before fixing'. Quanto aguenta, planejar ou ler teste de carga, Web Vitals e flame graph ficam em performance-engineering; bug reproduzível localmente no código fica em code-quality-refactoring:debug-causa-raiz."
+        },
+        {
+          "name": "runbook",
+          "description": "Escreve ou revisa um runbook por assinatura de falha ligado a um alerta: impacto, diagnóstico somente leitura com comando exato e saída esperada, mitigações como opções que exigem decisão humana e aprovador, escalonamento, verificação pelo SLI e histórico por PR; nenhum passo é executado. Use ao pedir 'escrever runbook', 'runbook para o alerta X', 'revisar runbook', 'procedimento de plantão', 'o que fazer quando disparar', 'write a runbook', 'on-call playbook for this alert', 'review this runbook'. Redação e estrutura do texto em si ficam em technical-writing-docs; triagem de um incidente real em incident-triage."
+        },
+        {
+          "name": "slo-design",
+          "description": "Conduz a definição do primeiro SLO de um serviço (ou a revisão de um existente) e redige a política de error budget: jornadas críticas, até 5 tipos de SLI em linguagem de usuário, linha de base por janela fixa, metas por percentil, aritmética do orçamento e consequência SLO x SLA. Use ao pedir 'definir SLO', 'qual SLI usar', 'error budget', 'política de orçamento de erro', '99,99% de disponibilidade', 'SLO ou SLA?', 'disponibilidade e latência alvo', 'define SLOs', 'service level indicators', 'error budget policy'. Alertas sobre o SLO ficam em alert-review; incidente em curso em incident-triage."
+        },
+        {
+          "name": "telemetry-review",
+          "description": "Revisa instrumentação e telemetria em seis modos: métricas (nomes, unidades, rótulos, cardinalidade, contador x medidor), sinais e pipelines do OpenTelemetry Collector (oficial x Suposição), logging seguro com teste de redação, upgrade de OTel em cópia isolada, telemetria do próprio Claude Code no time e análise de erros em traces de LLM. Use ao pedir 'revisar métricas', 'cardinalidade', 'nomes de métricas', 'OpenTelemetry', 'collector', 'logs vazando dado', 'upgrade do OTel', 'telemetria do Claude Code', 'traces do agente', 'review instrumentation', 'high cardinality', 'redact logs'. Regras de alerta ficam em alert-review; convenções GenAI do OTel ficam em llm-ai-agents."
+        }
+      ],
+      "agents": [
+        {
+          "name": "incident-support",
+          "description": "Apoia o Incident Commander em modo somente leitura durante um incidente de produção em andamento - organiza o sintoma em termos de usuário, mudanças recentes na janela, até 3 hipóteses refutáveis, evidências com procedência e linhas para o documento do incidente. Use proactively quando o usuário descrever sintoma de produção ativo (alerta disparou, 5xx subiu, serviço fora do ar, plantão, 'we have an incident', 'production is down', 'triage this alert'). Não use para incidente já encerrado (postmortem-scribe), nem para falha de build ou de deploy em staging sem usuário afetado. Não aplica mitigação, não executa comandos; devolve o resumo completo com o caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "perf-analyst",
+          "description": "Interpreta resultados de carga, benchmark e perfil que o usuário já executou (resumo do k6, saídas de Locust/JMeter/Gatling, Lighthouse, dados de campo de Web Vitals, flame graph descrito, métricas de APM) e separa medido de extrapolado. Devolve veredito, tabela de evidências, ranking de hipóteses de gargalo com a confirmação sugerida e o que não foi verificado. Use proactively depois que o usuário colar ou apontar um resultado de teste de performance ('o p95 deu X', 'olha o resumo do k6', 'dropped_iterations', 'Lighthouse deu 62', 'how do I read this flame graph'). Não executa carga nem comandos e não edita; devolve o documento completo com o caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "postmortem-scribe",
+          "description": "Monta a linha do tempo e o rascunho de postmortem blameless de um incidente já resolvido, apenas a partir das evidências fornecidas (notas, mensagens, alertas, deploys, gráficos descritos, tickets). Cada evento traz horário UTC e fonte; memória fica como Inferido; nomes viram papéis; causa raiz, contribuintes e ações são só candidatas para os humanos decidirem. Use proactively quando o usuário pedir postmortem, pós-mortem, retro do incidente, linha do tempo ou 'write the postmortem', e para manter o documento vivo de um incidente longo. Não use durante o incidente ativo (incident-support). Não grava, não publica, não envia; devolve o documento completo com o caminho sugerido para o agente principal gravar.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "reliability-reviewer",
+          "description": "Revisor independente, cético e somente leitura de mudanças de confiabilidade em contexto limpo - timeouts, retries, health checks, regras de alerta e burn rate, SLO, instrumentação (rótulos, cardinalidade, logs com dado sensível), autoscaling e plano de rollout. Devolve relatório com achados por severidade, confiança, evidência arquivo:linha, cenário e correção. Use proactively depois de editar código ou configuração com retry, timeout, alert:, rate(, livenessProbe, autoscaling, antes de abrir PR, ou ao fim do modo SRE-COMPLETO. Triggers - 'revise esses alertas', 'esse retry é seguro?', 'review this reliability change'. Não edita nem executa; devolve o documento completo com o caminho sugerido para o agente principal gravar.",
           "tools": "Read, Grep, Glob"
         }
       ]
@@ -1101,6 +1379,94 @@
       ]
     },
     {
+      "plugin": "technical-writing-docs",
+      "displayName": "technical-writing-docs",
+      "version": "0.1.0",
+      "description": "Documentação técnica com Claude Code: README, tutoriais e guias (Diátaxis), ADRs, runbooks, changelog, docs de API (OpenAPI), docstrings, diagramas Mermaid, docs-as-code e arquivos para agentes (CLAUDE.md, AGENTS.md, skills), verificando o que escreve e sem afirmar execução que não houve.",
+      "keywords": [
+        "documentation",
+        "technical-writing",
+        "readme",
+        "diataxis",
+        "adr",
+        "runbook",
+        "changelog",
+        "release-notes",
+        "openapi",
+        "docstrings",
+        "mermaid",
+        "docs-as-code",
+        "claude-md",
+        "agents-md",
+        "DOCS-COMPLETO"
+      ],
+      "mode_keyword": "DOCS-COMPLETO",
+      "skills": [
+        {
+          "name": "auditar-claude-md",
+          "description": "Audita e enxuga arquivos de instrução para agentes (CLAUDE.md, CLAUDE.local.md, AGENTS.md, .claude/rules, arquivos de subpacotes) com rubrica de 100 pontos, relatório antes de qualquer edição, diffs mínimos com motivo, lista de remoções separada e aprovação por arquivo; modos --refatorar (raiz curta com índice) e --aprender (regras a partir da sessão). Skill de invocação manual porque altera configuração que vale para todas as sessões futuras - o usuário digita /technical-writing-docs:auditar-claude-md. Gatilhos PT - \"auditar o CLAUDE.md\", \"enxugar o AGENTS.md\", \"o CLAUDE.md está grande demais\", \"revisar as instruções do projeto\". EN - \"audit CLAUDE.md\", \"slim down AGENTS.md\", \"review project instructions\"."
+        },
+        {
+          "name": "diagramar-arquitetura",
+          "description": "Produz diagramas de arquitetura e fluxo como código (Mermaid, níveis do C4) para documentação, um nível por diagrama, com texto explicativo e teste de renderização no destino antes de prometer que funciona; cai para flowchart quando o C4 do Mermaid não renderiza. Edita PlantUML existente sem migrar. Para modelar ou decidir a arquitetura use o plugin architecture-design. Gatilhos PT - \"diagrama de arquitetura\", \"fluxograma\", \"diagrama de sequência\", \"Mermaid\", \"C4\", \"desenhar o fluxo\", \"diagrama dos contêineres\". EN - \"architecture diagram\", \"sequence diagram\", \"flowchart\", \"Mermaid diagram\", \"C4 model\", \"draw the system\"."
+        },
+        {
+          "name": "documentar-codigo",
+          "description": "Escreve docstrings e comentários de documentação por linguagem (Python, TypeScript/JavaScript, Rust, Java) com exemplos verificáveis, e documenta APIs a partir de um contrato (OpenAPI, protobuf) ou anotações com fonte única da verdade, checklist por campo, deprecação e changelog de API. Não executa doctests nem testes; propõe o comando e marca não executado. Gatilhos PT - \"docstring\", \"documentar função\", \"comentários de documentação\", \"JSDoc\", \"TSDoc\", \"Rustdoc\", \"Javadoc\", \"documentar a API\", \"descrição dos endpoints\", \"OpenAPI\". EN - \"add docstrings\", \"document this module\", \"API documentation\", \"OpenAPI descriptions\", \"doc comments\". Projetar a API é do plugin backend-api."
+        },
+        {
+          "name": "escrever-adr",
+          "description": "Registra por escrito uma decisão de arquitetura ou engenharia que já foi tomada, em ADR numerada e imutável depois de aceita (formato do projeto ou MADR mínimo), com contexto neutro, opções, decisão em voz ativa e consequências negativas. Não avalia opções nem decide; para decidir entre alternativas use o plugin architecture-design. Gatilhos PT - \"escrever ADR\", \"registrar a decisão que tomamos\", \"transformar esta discussão em ADR\", \"documentar a escolha já feita entre A e B\", \"por que escolhemos X\". EN - \"write an ADR\", \"architecture decision record\", \"document this decision\", \"record the decision\"."
+        },
+        {
+          "name": "escrever-changelog-release",
+          "description": "Escreve entradas de CHANGELOG para humanos (Keep a Changelog) e rascunho de release notes a partir de um intervalo de commits ou PRs, marcando quebras de compatibilidade e recomendando a versão pela convenção de commits. Só texto - não sobe versão, não cria tag, não publica release (isso é do plugin git-workflow-release). Gatilhos PT - \"changelog\", \"notas de release\", \"release notes\", \"o que mudou nesta versão\", \"escrever as mudanças para o usuário\", \"atualizar o CHANGELOG\". EN - \"write the changelog\", \"release notes\", \"what changed in this release\", \"Keep a Changelog\", \"draft release notes\"."
+        },
+        {
+          "name": "escrever-guia-diataxis",
+          "description": "Classifica o pedido nos quatro quadrantes Diátaxis (tutorial, how-to, referência, explicação) e escreve ou reorganiza a documentação a partir do código, dos testes e do contrato, um modo por página, com ligação cruzada, portões de acurácia e completude e teste de leitor limpo. Cobre também guia de onboarding e guia de migração. Gatilhos PT - \"tutorial\", \"guia passo a passo\", \"how-to\", \"documentação de referência\", \"explicar por que a arquitetura é assim\", \"guia de onboarding\", \"guia de migração\", \"esta página mistura tudo\". EN - \"write a tutorial\", \"how-to guide\", \"reference documentation\", \"explanation doc\", \"onboarding guide\", \"migration guide\", \"Diataxis\"."
+        },
+        {
+          "name": "escrever-readme",
+          "description": "Cria, atualiza ou revisa o README de um projeto comparando-o com o estado real do código (manifesto, scripts, LICENSE), com abertura de landing page, exemplo cedo, Quick Start copiável e sem enchimento; marca instalação e comandos como não executados quando não rodou. Use quando pedirem README, melhorar o README, documentar instalação e uso ou getting started. Gatilhos PT - \"escrever README\", \"melhorar o README\", \"README do projeto\", \"documentar como instalar e usar\", \"README está ruim\". EN - \"write a README\", \"improve the README\", \"project README\", \"getting started section\". Para guias longos use escrever-guia-diataxis; para changelog use escrever-changelog-release."
+        },
+        {
+          "name": "escrever-runbook",
+          "description": "Escreve runbook ou playbook de alerta para uso em on-call, com pré-requisitos, passos numerados (comando exato, resultado esperado e ramo de falha), marcação de passos destrutivos, verificação, rollback e escalonamento. Só escreve o arquivo; nunca executa os comandos nem inventa a saída deles. Gatilhos PT - \"runbook\", \"playbook de incidente\", \"procedimento operacional\", \"o que fazer quando o alerta X dispara\", \"passo a passo de rollback\", \"documentar tarefa recorrente de operação\". EN - \"write a runbook\", \"on-call playbook\", \"incident procedure\", \"operational procedure\". Conteúdo de SLO, alertas e postmortem é do plugin sre-observability."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Documentação e escrita técnica. Use ao escrever, revisar, organizar ou auditar documentação - README, tutorial, how-to, referência, explicação (Diátaxis), ADR, runbook, changelog, release notes, documentação de API (OpenAPI), docstrings, diagramas Mermaid/C4, onboarding, guia de estilo, docs-as-code (Vale, markdownlint, lychee) e arquivos para agentes (CLAUDE.md, AGENTS.md, rules, SKILL.md). Triggers - documentar, documentação, README, tutorial, guia, ADR, runbook, changelog, release notes, docstring, diagrama, onboarding, CLAUDE.md, AGENTS.md, \"escrever docs\", write docs, document this, API docs, style guide, technical writing. Também ativa o modo DOCS-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados do segmento Documentação e escrita técnica. Use quando pedirem prompt, template ou mensagem pronta para README, tutorial, how-to, referência, explicação (Diátaxis), ADR, runbook, docstrings, documentação de API/OpenAPI, changelog e release notes, diagrama Mermaid/C4, auditoria de CLAUDE.md/AGENTS.md, regra escopada, revisão de SKILL.md, teste de leitor limpo, CI de docs, guia de estilo, prompt de sistema ou mensagem inicial para projeto de documentação. Gatilhos - \"prompt pronto para documentação\", \"template de prompt para README\", \"me dê um prompt para escrever ADR\", \"prompt de sistema para docs\", \"ready-made documentation prompt\", \"prompt template for API docs\". Para executar a tarefa em si, use a skill de tarefa correspondente do plugin."
+        }
+      ],
+      "agents": [
+        {
+          "name": "auditor-de-docs",
+          "description": "Auditor somente leitura que cruza um diff (PR, branch, intervalo de commits ou release) com a documentação do projeto e devolve mapa de cobertura Diátaxis, correções factuais com evidência arquivo:linha, links quebrados e dívida de documentação pronta para colar no PR. Use proactively antes de release ou merge que altere API pública, comandos, flags, configuração, endpoints ou variáveis de ambiente, e em \"a documentação acompanhou este PR?\", \"o que falta documentar?\" e \"revise esta documentação contra o código\" (EN - \"did the docs keep up with this PR?\", \"docs coverage check\", \"audit docs against the diff\"). Não edita arquivos, não gera as páginas faltantes e não sobe versão.",
+          "tools": "Read, Grep, Glob, Bash"
+        },
+        {
+          "name": "revisor-de-instrucoes",
+          "description": "Revisor independente, somente leitura e em contexto limpo, de arquivos de instrução para agentes - CLAUDE.md, CLAUDE.local.md, AGENTS.md, .claude/rules/*, SKILL.md e agents/*.md. Pontua pela rubrica de 100 pontos, aplica o teste de linha que merece existir e a checklist de frontmatter, e devolve achados com severidade, confiança e arquivo:linha. Use antes de publicar uma skill ou um agente, como segunda opinião da auditoria de CLAUDE.md, e em \"revise este CLAUDE.md\", \"este SKILL.md está bom?\" ou \"audite as instruções do projeto\" quando só o relatório é pedido (EN - \"review this CLAUDE.md\", \"audit the project instructions\", \"is this SKILL.md good?\"). Não edita arquivos e não testa disparo de skill.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "revisor-de-leitor",
+          "description": "Leitor novo e limpo, somente leitura, que responde perguntas reais usando apenas o texto de um documento e aponta lacunas - termos sem definição, passos que não conseguiria executar, contradições, pressupostos ocultos e mistura de quadrantes. Use ao terminar ADR, runbook, tutorial, how-to, onboarding, README de entrada ou qualquer documento longo, e em \"outra pessoa consegue seguir isto?\" ou \"teste este guia com um leitor novo\" (EN - \"can a newcomer follow this?\", \"fresh-reader test\"). Máximo de 3 rodadas por documento. Não edita, não consulta código e não opina sobre mérito técnico.",
+          "tools": "Read"
+        },
+        {
+          "name": "technical-writer",
+          "description": "Redator técnico que recebe um briefing (leitor, tipo ou quadrante Diátaxis, fontes de fatos, caminhos de saída) e escreve ou edita arquivos de documentação - README, tutorial, how-to, referência, explicação, ADR de decisão já tomada, runbook, entrada de changelog e comentários de documentação aprovados. Delegue volume de redação (vários documentos, passada de edição, rascunho a partir do código) depois que escopo e leitor estiverem decididos; não delegue decisão de escopo, remoção de conteúdo nem edição de CLAUDE.md, AGENTS.md ou SKILL.md. Gatilhos EN - \"draft these docs from the briefing\", \"write the tutorial/how-to/reference from this outline\". Grava somente nos caminhos que o pedido indicar; não executa comandos nem acessa a web.",
+          "tools": "Read, Grep, Glob, Write, Edit"
+        }
+      ]
+    },
+    {
       "plugin": "git-workflow-release",
       "displayName": "git-workflow-release",
       "version": "0.1.0",
@@ -1187,13 +1553,122 @@
           "tools": "Read, Grep, Glob, Bash"
         }
       ]
+    },
+    {
+      "plugin": "design-engineering-kit",
+      "displayName": "design-engineering-kit",
+      "version": "0.1.0",
+      "description": "Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 skills de motion, polimento e direção visual (Emil Kowalski e taste-skill, MIT, vendorizadas sem alteração), precedência explícita de estilo (design system do projeto, design system da casa, direções taste), agentes somente leitura, prompts e evals.",
+      "keywords": [
+        "design-engineering",
+        "figma",
+        "figma-mcp",
+        "playwright",
+        "playwright-mcp",
+        "design-to-code",
+        "ui-verification",
+        "motion",
+        "animation",
+        "ui-polish",
+        "emil-kowalski",
+        "taste-skill",
+        "react-native",
+        "designeng-completo"
+      ],
+      "mode_keyword": "DESIGNENG-COMPLETO",
+      "skills": [
+        {
+          "name": "animate",
+          "description": "Build an animation from scratch, making the decisions in the order that determines whether it feels right — should it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrupts, how it exits. Writes the implementation. Use when asked to animate something, add motion, make a component feel alive, or build a transition. For critiquing existing motion use review-animations; for auditing a whole codebase use improve-animations."
+        },
+        {
+          "name": "animate-expo",
+          "description": "Build animations in React Native and Expo, making the decisions in the order that determines whether they feel right — should it animate, which thread it runs on, which properties, spring or timing, how the gesture hands off, how it degrades. Writes the implementation with Reanimated, Gesture Handler, Expo Router and expo-haptics. Use when animating anything in an Expo app, adding gestures, sheets, screen transitions, press feedback or haptics, or fixing motion that stutters on device. For web animation use `animate`."
+        },
+        {
+          "name": "animation-vocabulary",
+          "description": "Reverse-lookup glossary that turns a vague description of a web animation or motion effect into its exact term (\"the bouncy thing when a popover opens\" → Pop in; \"the iOS rubber-band scroll\" → Rubber-banding). Use when the user asks \"what's it called when…\", or describes a motion effect without knowing its name and wants the right word to prompt an AI or designer with. For naming an effect, not designing or building one."
+        },
+        {
+          "name": "apple-design",
+          "description": "Apple's approach to interface design and fluid, physical motion, translated for the web. Use when building or reviewing gesture-driven UI, spring animations, drag/swipe/sheet interactions, momentum and interruptible transitions, translucent materials and depth, typography (optical sizing, tracking, leading), reduced-motion, or the design foundations (feedback, spatial consistency, restraint) behind Apple-style interfaces."
+        },
+        {
+          "name": "break-ui",
+          "description": "Try to break a piece of UI by feeding it worst-case data — long names, unbreakable emails, one-letter names, missing fields, huge counts, zero items, long labels, non-Latin text, emoji, extreme numbers — then render it behind a \"Demo data / Worst case\" toggle and report everything that broke, with the fix for each. Use when the user asks to stress-test, break, or find edge cases in a component or screen, or to \"try the worst case\". For visual design critique use emil-design-eng; for motion use review-animations."
+        },
+        {
+          "name": "design-taste-frontend",
+          "description": "Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check."
+        },
+        {
+          "name": "emil-design-eng",
+          "description": "This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great."
+        },
+        {
+          "name": "find-animation-opportunities",
+          "description": "Search a codebase or UI for places that don't animate but should, and reject everything that shouldn't. Read-only; it proposes motion with exact values, it does not implement it. Use when the user asks \"what could be animated here?\" or wants to \"make this feel more alive\". For fixing existing animations, use improve-animations or review-animations instead."
+        },
+        {
+          "name": "high-end-visual-design",
+          "description": "Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. Blocks all the common defaults that make AI designs look cheap or generic."
+        },
+        {
+          "name": "improve-animations",
+          "description": "Survey a codebase's animation and motion code as a senior motion advisor, then produce a prioritized audit and self-contained implementation plans for other agents (or cheaper models) to execute. Read-only on source code — it plans improvements, it does not apply them. Use when the user asks to \"improve the animations\", \"audit the motion\", \"make this app feel better\", or wants a roadmap of animation fixes rather than a review of a single diff."
+        },
+        {
+          "name": "industrial-brutalist-ui",
+          "description": "Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid grids, extreme type scale contrast, utilitarian color, analog degradation effects. For data-heavy dashboards, portfolios, or editorial sites that need to feel like declassified blueprints."
+        },
+        {
+          "name": "minimalist-ui",
+          "description": "Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels. No gradients, no heavy shadows."
+        },
+        {
+          "name": "mobile-native",
+          "description": "Make a web app feel native on a phone — the small CSS and meta-tag fixes that separate \"a website in a browser\" from something that feels installed. Covers sticky hover states, tap highlight flashes, the 100vh bug, inputs that zoom the page, laggy taps, pull-to-refresh hijacking scroll, content under the notch, long-press selecting button text, carousels that scroll the wrong way, mismatched status bars, and the rule that you test on real hardware. Use when a web app is being built for or reviewed on mobile, when something \"works in Chrome but feels wrong on my phone\", when building a PWA, a bottom sheet, a carousel, a full-screen layout, or any touch interaction. For motion itself use animate; for React Native use animate-expo."
+        },
+        {
+          "name": "pick-ui-library",
+          "description": "Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP inputs, charts, command menus, virtualization, drag and drop, toasts, state, styling, and more. Only runs when explicitly invoked; it does not trigger on its own."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do designer-engenheiro. Leva um design (link do Figma, brief, tela existente) até UI implementada, verificada no navegador e polida, usando as skills de motion e polimento (Emil Kowalski) e de direção visual (taste-skill) deste kit e os MCPs oficiais Figma e Playwright quando instalados. Use para \"implementa este frame do Figma\", \"do Figma para código\", \"verifica a tela no navegador\", \"screenshot em 375/768/1280\", \"revisa as animações\", \"polir a UI\", \"deixa com cara de app nativo\", \"redesenha sem cara de IA\", \"telas Android com os princípios do Mo baile\"; EN \"Figma to code\", \"verify the UI with Playwright\", \"review motion\", \"UI polish\", \"design engineering\". Define a precedência de estilo (design system do projeto, depois o da casa, depois direções taste). Não define a direção de design nem os tokens (é do ux-ui-design). Ativa o modo DESIGNENG-COMPLETO só por pedido explícito."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de 16 prompts prontos para designer-engenheiro, com objetivo, quando usar, prompt em bloco e critério de pronto - implementar tela a partir de link do Figma, mapear variáveis para tokens, comparar com o frame, verificar tela com Playwright em 3 larguras, auditar estrutura de acessibilidade, auditar e revisar motion, quebrar UI com dados extremos, redesign respeitando o design system, nova direção visual, telas Android com princípios do Mo baile e Material motion, animação em Expo e polimento final. Use quando o usuário pedir \"qual prompt uso para…\", \"me dá um prompt de…\", \"prompt para verificar a UI\", \"prompt para implementar o Figma\", \"prompt de revisão de motion\"; EN \"prompt for Figma to code\", \"prompt to review animations\"."
+        },
+        {
+          "name": "prototype",
+          "description": "Build multiple genuinely different versions of a UI piece you describe, rendered behind a visual picker so you can flip through them live and promote the one that feels right. Only runs when explicitly invoked; it does not trigger on its own."
+        },
+        {
+          "name": "redesign-existing-projects",
+          "description": "Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and applies high-end design standards without breaking functionality. Works with any CSS framework or vanilla CSS."
+        },
+        {
+          "name": "review-animations",
+          "description": "Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. Default to flagging; approval is earned."
+        }
+      ],
+      "agents": [
+        {
+          "name": "motion-polish-reviewer",
+          "description": "Revisa motion e polimento de UI por leitura, aplicando os 10 padrões da skill review-animations, o checklist do emil-design-eng e o catálogo do break-ui, sempre depois dos tokens de motion do design system do projeto. Delegar antes de mesclar uma mudança que anima algo, para \"revisa essas animações\", \"essa transição está lenta ou travando\", \"falta polimento nesta tela\", \"audita o motion do diff\" (review motion, animation craft review). Somente leitura; devolve achados com arquivo:linha, tabela Before/After/Why e veredito Block ou Approve. Não edita, não roda comandos, não afirma ter visto o movimento rodando.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "ui-verifier",
+          "description": "Verifica no navegador, com o Playwright MCP, uma UI já implementada contra o Figma, o brief ou o design system, e devolve relatório com achados (ID, severidade, evidência, recomendação). Somente leitura no código. Delegar para \"verifica a tela no navegador\", \"compara com o Figma\", \"screenshots em 375, 768 e 1280\", \"a tela está igual ao design?\", \"confere console e acessibilidade estrutural\" (verify UI, compare with design, responsive check). Não edita código nem documentos (grava só as capturas de tela), não roda shell, não instala MCP nem plugin, não escreve no Figma, só navega em localhost ou URL autorizada.",
+          "tools": "(herda)"
+        }
+      ]
     }
   ],
   "pending": [
-    "data-engineering",
-    "data-science-ml",
-    "sre-observability",
-    "technical-writing-docs",
     "game-development",
     "systems-embedded-iot",
     "cli-desktop-tooling",

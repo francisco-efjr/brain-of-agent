@@ -1,0 +1,27 @@
+{
+  "name": "data-science-ml",
+  "version": "0.1.0",
+  "description": "Playbook de ciência de dados e machine learning para Claude Code: EDA sem vazamento, validação e métricas, treino e tuning reprodutíveis, séries temporais, A/B e inferência causal, avaliação de componentes LLM e promoção de modelos com registro, serving e drift.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "data-science",
+    "machine-learning",
+    "scikit-learn",
+    "pytorch",
+    "gradient-boosting",
+    "data-leakage",
+    "cross-validation",
+    "eda",
+    "time-series",
+    "ab-testing",
+    "causal-inference",
+    "llm-evals",
+    "mlops",
+    "drift",
+    "datascience-completo"
+  ]
+}

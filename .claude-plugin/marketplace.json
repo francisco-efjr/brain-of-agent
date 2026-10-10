@@ -137,6 +137,50 @@
       ]
     },
     {
+      "name": "data-engineering",
+      "source": "./plugins/data-engineering",
+      "description": "Engenharia de dados e analytics para o Claude Code: pipelines ETL/ELT, dbt, Airflow e Dagster, Spark e streaming, SQL analítico e custo em warehouses, contratos e qualidade de dados, linhagem e text-to-SQL seguro, com verificação por saída real, reconciliação de contagens, agentes somente leitura e o modo DATAENG-COMPLETO.",
+      "keywords": [
+        "data-engineering",
+        "etl",
+        "elt",
+        "dbt",
+        "airflow",
+        "dagster",
+        "spark",
+        "streaming",
+        "bigquery",
+        "lakehouse",
+        "data-quality",
+        "data-contracts",
+        "text-to-sql",
+        "idempotency",
+        "DATAENG-COMPLETO"
+      ]
+    },
+    {
+      "name": "data-science-ml",
+      "source": "./plugins/data-science-ml",
+      "description": "Playbook de ciência de dados e machine learning para Claude Code: EDA sem vazamento, validação e métricas, treino e tuning reprodutíveis, séries temporais, A/B e inferência causal, avaliação de componentes LLM e promoção de modelos com registro, serving e drift.",
+      "keywords": [
+        "data-science",
+        "machine-learning",
+        "scikit-learn",
+        "pytorch",
+        "gradient-boosting",
+        "data-leakage",
+        "cross-validation",
+        "eda",
+        "time-series",
+        "ab-testing",
+        "causal-inference",
+        "llm-evals",
+        "mlops",
+        "drift",
+        "datascience-completo"
+      ]
+    },
+    {
       "name": "llm-ai-agents",
       "source": "./plugins/llm-ai-agents",
       "description": "Playbook, skills de tarefa, subagentes somente leitura e biblioteca de prompts para projetar, revisar e testar aplicações LLM e agentes: engenharia de prompt e de contexto, tool use e MCP, RAG medido, evals e LLM-as-judge, defesa contra prompt injection, custo e cache, e autoria de CLAUDE.md, skills e plugins.",
@@ -176,6 +220,28 @@
         "progressive-delivery",
         "supply-chain",
         "troubleshooting"
+      ]
+    },
+    {
+      "name": "sre-observability",
+      "source": "./plugins/sre-observability",
+      "description": "SLI/SLO e error budget, alertas por burn rate, telemetria (OpenTelemetry, Prometheus), triagem de incidentes somente leitura, postmortem blameless, runbooks, canário, testes de carga e performance, com agentes que investigam sem tocar em produção.",
+      "keywords": [
+        "sre",
+        "observability",
+        "slo",
+        "error-budget",
+        "burn-rate",
+        "alerting",
+        "opentelemetry",
+        "prometheus",
+        "incident-response",
+        "postmortem",
+        "runbook",
+        "load-testing",
+        "k6",
+        "performance",
+        "sre-completo"
       ]
     },
     {
@@ -259,6 +325,28 @@
       ]
     },
     {
+      "name": "technical-writing-docs",
+      "source": "./plugins/technical-writing-docs",
+      "description": "Documentação técnica com Claude Code: README, tutoriais e guias (Diátaxis), ADRs, runbooks, changelog, docs de API (OpenAPI), docstrings, diagramas Mermaid, docs-as-code e arquivos para agentes (CLAUDE.md, AGENTS.md, skills), verificando o que escreve e sem afirmar execução que não houve.",
+      "keywords": [
+        "documentation",
+        "technical-writing",
+        "readme",
+        "diataxis",
+        "adr",
+        "runbook",
+        "changelog",
+        "release-notes",
+        "openapi",
+        "docstrings",
+        "mermaid",
+        "docs-as-code",
+        "claude-md",
+        "agents-md",
+        "DOCS-COMPLETO"
+      ]
+    },
+    {
       "name": "git-workflow-release",
       "source": "./plugins/git-workflow-release",
       "description": "Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos, rebase e revert seguros, bisect, semver, changelog e releases, com push, merge, tag e publicação sempre sob confirmação.",
@@ -278,6 +366,27 @@
         "codeowners",
         "branching",
         "RELEASE-COMPLETO"
+      ]
+    },
+    {
+      "name": "design-engineering-kit",
+      "source": "./plugins/design-engineering-kit",
+      "description": "Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 skills de motion, polimento e direção visual (Emil Kowalski e taste-skill, MIT, vendorizadas sem alteração), precedência explícita de estilo (design system do projeto, design system da casa, direções taste), agentes somente leitura, prompts e evals.",
+      "keywords": [
+        "design-engineering",
+        "figma",
+        "figma-mcp",
+        "playwright",
+        "playwright-mcp",
+        "design-to-code",
+        "ui-verification",
+        "motion",
+        "animation",
+        "ui-polish",
+        "emil-kowalski",
+        "taste-skill",
+        "react-native",
+        "designeng-completo"
       ]
     },
     {

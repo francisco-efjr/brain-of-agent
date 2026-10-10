@@ -120,6 +120,10 @@ Exemplo de linha de relatório: `A-03 · Cor e contraste · impacto alto · labe
 
 Este plugin não instala pacotes, não executa `npx`, não liga hooks, não escreve no Figma, não faz commit, push nem publicação, e não envia material a terceiros. Qualquer um desses só por pedido concreto do usuário na própria sessão, com a versão fixada e o risco explicado (`references/ferramentas-e-mcp.md`). Auditoria é somente leitura: correção é outro pedido, com diff revisável.
 
+## Ferramentas de design engineering (opcional)
+
+Do spec ao código verificado existe o plugin opcional `design-engineering-kit` (`/design-engineering-kit:playbook`): Figma para código, verificação de UI no navegador (agente `ui-verifier`), revisão de motion (`motion-polish-reviewer`) e skills de polimento e direção visual. Ele usa os plugins oficiais `figma` e `playwright` (marketplace `claude-plugins-official`) quando instalados; instalar é decisão do usuário, com confirmação, e continua fora da fronteira de ações deste plugin. Precedência resumida: o design system do projeto vence; depois o da casa, quando pedido; direções de gosto (taste) só sem sistema ou com pedido de nova direção; as regras de motion do kit valem dentro de qualquer sistema. Sem o kit, este plugin segue como está: spec, crítica e tokens.
+
 ## Gotchas
 
 Lista prevista, não observada em uso real; substitua por falhas com data e origem depois das primeiras execuções.
