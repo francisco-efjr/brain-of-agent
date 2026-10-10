@@ -8,6 +8,8 @@ Mande o link deste repositório com a sua demanda:
 
 A IA segue o [ORCHESTRATOR.md](ORCHESTRATOR.md). Ela classifica a demanda, escolhe especialistas entre os [plugins por segmento](docs/dev-segments/CATALOGO.md), despacha subagentes com validador independente e entrega relatórios por papel (arquiteto, designer, QA, dev, segurança…) e commit local sem push.
 
+Se o repositório estiver privado, o link só abre onde houver acesso ao GitHub do dono. Isso inclui Claude Code numa máquina com a credencial do git, mesmo com outra conta do Claude, `gh auth login` ou o conector GitHub do chat.
+
 No Claude Code, também dá para instalar como plugins:
 
 ```bash

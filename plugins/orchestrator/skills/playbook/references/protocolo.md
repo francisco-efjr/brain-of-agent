@@ -20,6 +20,8 @@ Idioma: português brasileiro. Termos técnicos, comandos e código ficam em ing
 
 ## 2. Como acessar (use a primeira opção que funcionar)
 
+> O repositório pode ser **privado**. Nesse caso, todas as opções abaixo exigem acesso autenticado ao GitHub do dono: credencial do git na máquina (`git clone` funciona), `gh auth login` ou o conector do GitHub no chat. Se o acesso falhar com 404, peça ao usuário para autenticar. Não tente contornar.
+
 **A. Claude Code com plugins instalados (melhor).** Agentes viram subagentes nativos e skills viram comandos.
 
 ```bash
