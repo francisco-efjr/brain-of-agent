@@ -2,7 +2,9 @@
 
 ## Usar como orquestrador (em qualquer chat ou terminal)
 
-Mande o link deste repositório com a sua demanda:
+Mande **só o link**, com o projeto aberto na sessão, ou o link com a sua demanda. A IA assume como **orquestrador e agente principal** e cria os especialistas de cada plugin necessário. Ela conduz com autonomia: decide, implementa em branch local e testa. No fim, diz **onde testar agora**: servidor rodando, app aberto no aparelho ou comando pronto. Push, deploy, publicação, regra de negócio, troca de stack, instalações e ações irreversíveis ficam como decisão sua.
+
+Com demanda explícita:
 
 > Use https://github.com/francisco-efjr/brain-of-agent como orquestrador (siga o ORCHESTRATOR.md). Demanda: [O QUE QUERO]. Projeto: [CAMINHO OU LINK]. Escopo: [auditar | implementar]. Entrega: [relatórios | correções em branch | ambos].
 

@@ -8,10 +8,10 @@ Autoria própria (MIT). As variáveis aparecem como `[EM_COLCHETES]`.
 Use https://github.com/francisco-efjr/brain-of-agent como orquestrador (siga o ORCHESTRATOR.md da raiz).
 Demanda: [O QUE QUERO]. Projeto: [CAMINHO LOCAL OU LINK]. Escopo: [auditar | implementar].
 Entrega: [relatórios por papel | correções em branch local | ambos]. Restrições: [o que não mexer, prazo, stack].
-Antes de executar, mostre o plano (especialistas, ordem e validadores).
+Mostre o plano (especialistas, ordem e validadores) e siga sem esperar minha aprovação, parando só nos casos do §0 do ORCHESTRATOR.md.
 ```
 
-**Por que funciona.** Aponta o protocolo explicitamente, define escopo e entrega e pede o plano antes de executar. Assim nenhuma permissão é presumida.
+**Por que funciona.** Aponta o protocolo explicitamente, define escopo e entrega e torna o plano visível sem travar a execução. A confirmação continua obrigatória nos casos do §0, então nenhuma permissão é presumida.
 
 ## O-02: revisão completa com relatórios e commit
 
@@ -80,7 +80,8 @@ Como trabalhar:
 1. Leia o ORCHESTRATOR.md e o catálogo em docs/dev-segments/CATALOGO.md. Detecte a stack do projeto e escolha
    só os especialistas que o contexto pede: arquitetura, plataforma, QA, segurança, qualidade de código,
    UX/UI se houver interface, e outros se fizer sentido. Mostre o plano em poucas linhas e siga sem esperar
-   minha aprovação.
+   minha aprovação. Você é o agente principal: conduza com autonomia até o fim e crie cada especialista como
+   subagente a partir do plugin dele, agindo com os fundamentos do plugin (playbook, skills, critérios).
 2. Prepare o projeto:
    - se ele veio por link, clone numa pasta nova;
    - rode git status e, se houver alterações não commitadas, pare e me avise;
@@ -108,6 +109,10 @@ Como trabalhar:
    revertida.
 
 Entregue pronto:
+- ONDE TESTAR AGORA: deixe o sistema rodando e me diga exatamente onde. Pode ser a URL do servidor, só em
+  127.0.0.1, o app instalado e aberto no aparelho ou emulador (nunca desinstale nem limpe dados), ou o comando
+  pronto. Inclua a branch, o relatório HTML dos testes
+  e o caminho do COMO-TESTAR. Se não der para deixar rodando, o motivo em uma linha e o comando exato.
 - A branch local com os commits, sem push e sem deploy.
 - docs/melhorias/[AAAA-MM-DD]/MELHORIAS.md com:
   - resumo;
@@ -123,7 +128,13 @@ Entregue pronto:
   - passos manuais de cada melhoria, com o critério de aceite;
   - o que rodou de verdade e o que não pôde rodar, com o motivo;
   - como desfazer.
-- No chat: resumo em até 10 linhas, lista das melhorias, testes antes × depois e as decisões que ficaram para mim.
+- No chat, só o essencial, nesta ordem:
+  1. onde testar agora;
+  2. o que mudou, uma linha por melhoria;
+  3. testes antes × depois;
+  4. decisões pendentes;
+  5. riscos.
+  Máximo de detalhe útil, mínimo de texto desnecessário, sem narrar o processo.
 
 Regras:
 - Sem minha aprovação, não faça nada disto:

@@ -1,6 +1,6 @@
 # Brain of Agent — desenvolvimento
 
-> **Recebeu este repositório com uma demanda para executar?** Atue como orquestrador seguindo [ORCHESTRATOR.md](ORCHESTRATOR.md): escolha os especialistas em `plugins/` (catálogo em `docs/dev-segments/CATALOGO.md`), despache com validação independente e consolide relatórios. As regras abaixo são para quem desenvolve este repositório.
+> **Recebeu o link deste repositório?** Você é o orquestrador e agente principal, com ou sem demanda escrita. Siga [ORCHESTRATOR.md](ORCHESTRATOR.md) a partir do §0: crie os especialistas dos `plugins/` (catálogo em `docs/dev-segments/CATALOGO.md`), conduza com autonomia, valide de forma independente e entregue rodando, com "Onde testar agora". As regras abaixo valem só para quem desenvolve este repositório.
 
 - Plugins por segmento vivem em `plugins/<slug>/` e são publicados a partir da fábrica dev-segments (`docs/dev-segments/README.md`); verificar com `python3 tools/dev-segments/verify_plugin.py plugins/<slug>`. O marketplace é `.claude-plugin/marketplace.json` (nome `brain-of-agent`).
 - Conhecimento próprio vive em `brains/<segmento>/`; QA começa em `brains/qa/SKILL.md`; desenvolvimento em `brains/fullstack/SKILL.md`.

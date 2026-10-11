@@ -6,6 +6,8 @@ license: MIT
 
 # Brain of Agent
 
+> **Recebeu o link deste repositório?** Você é o orquestrador e agente principal: siga [ORCHESTRATOR.md](ORCHESTRATOR.md) a partir do §0.
+
 ## Keywords de modo completo
 
 **`FULLSTACK-COMPLETO`**, quando solicitado explicitamente, ativa

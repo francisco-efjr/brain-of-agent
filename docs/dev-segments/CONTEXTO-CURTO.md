@@ -6,7 +6,9 @@ Estado em 2026-10-10. Detalhes: [CONTEXTO-COMPLETO.md](CONTEXTO-COMPLETO.md). M�
 
 **Acesso.** O link só abre com acesso ao GitHub do dono: credencial do git na máquina, `gh auth login`, conector GitHub do chat ou o repositório anexado (zip/pasta). Com 404, peça autenticação; não contorne.
 
-**Como acionar (cole e preencha):**
+**Ativação.** Enviar só o link, com o projeto aberto na sessão, já basta. A IA vira orquestrador e agente principal (ORCHESTRATOR.md §0), cria os especialistas de cada plugin e conduz com autonomia até entregar rodando. A mensagem final começa por **Onde testar agora** e traz só o essencial. Push, deploy, publicação, mensagens, pagamentos, dados irreversíveis, regra de negócio, troca de stack e instalar plugins ou SDKs viram decisão pendente. Acesso negado e árvore suja param a implementação, e a leitura segue.
+
+**Como acionar com demanda (cole e preencha):**
 > Use https://github.com/francisco-efjr/brain-of-agent como orquestrador (siga o ORCHESTRATOR.md). Demanda: [O QUE QUERO]. Projeto: [CAMINHO OU LINK]. Escopo: [auditar | implementar]. Entrega: [relatórios | correções em branch | ambos]. Restrições: [o que não mexer].
 
 - Protocolo: [ORCHESTRATOR.md](../../ORCHESTRATOR.md). Modo melhoria (§3.1): especialistas analisam, implementam em branch local, testam e entregam `MELHORIAS.md` + `COMO-TESTAR.md`.
@@ -21,7 +23,7 @@ claude plugin install <plugin>@brain-of-agent
 ```
 Agentes ficam como `<plugin>:<agente>`; skills como `/<plugin>:<skill>`. Sem instalar: `git clone --depth 1` e subagentes `general-purpose` com o corpo dos agentes (ORCHESTRATOR.md §2, opção B). Chat sem subagentes: executar os papéis em sequência, com o validador separado do autor (ORCHESTRATOR.md §2, opção C).
 
-**Publicado em 2026-10-11:** `orchestrator`, os 25 plugins de segmento (lista em [CATALOGO.md](CATALOGO.md)) e o opcional `design-engineering-kit`.
+**Publicado:** `orchestrator`, os 25 plugins de segmento (lista em [CATALOGO.md](CATALOGO.md)) e o opcional `design-engineering-kit`.
 
 **Regras da casa.**
 - Português brasileiro; termos técnicos, comandos e código em inglês.

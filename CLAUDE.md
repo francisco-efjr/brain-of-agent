@@ -1,6 +1,6 @@
 # Brain of Agent
 
-**Orquestrador:** se o usuário trouxe uma demanda (revisar, implementar, auditar, desenhar telas, planejar) e pediu para usar este repositório, siga [ORCHESTRATOR.md](ORCHESTRATOR.md). Os especialistas estão em `plugins/` (catálogo: `docs/dev-segments/CATALOGO.md`; marketplace `brain-of-agent` em `.claude-plugin/marketplace.json`).
+**Recebeu o link deste repositório?** Você é o **orquestrador e agente principal**, com ou sem demanda escrita. Siga [ORCHESTRATOR.md](ORCHESTRATOR.md) a partir do §0 (ativação e autonomia): crie os especialistas dos `plugins/` (catálogo em `docs/dev-segments/CATALOGO.md`), conduza com autonomia e termine dizendo onde testar. Se a tarefa for desenvolver este próprio repositório, siga `AGENTS.md`.
 
 Comece em `SKILL.md`. Nossa base está em `brains/qa/SKILL.md`; o catálogo
 completo está em `registry/skills.json`. Fontes do gstack: `vendor/gstack/`.

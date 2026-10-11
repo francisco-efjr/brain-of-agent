@@ -1,6 +1,6 @@
 {
   "name": "orchestrator",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Orquestra demandas de software multiárea: classifica a demanda, escolhe agentes e skills dos plugins por segmento, despacha com validação independente e consolida relatórios.",
   "author": {
     "name": "Francisco Edson",
