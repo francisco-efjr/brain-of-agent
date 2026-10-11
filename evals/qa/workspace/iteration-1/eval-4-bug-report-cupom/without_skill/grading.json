@@ -1,0 +1,96 @@
+{
+  "expectations": [
+    {
+      "text": "O título segue o formato onde + o que acontece + condição e cita cupom e troca de endereço/CEP",
+      "passed": true,
+      "evidence": "Título: '[Android] Cupom BLACK10 some da tela ao trocar o CEP do endereço, mas o total mantém o desconto e o pagamento cobra sem desconto'. Onde = '[Android]'; condição = 'ao trocar o CEP do endereço'; o que acontece = 'some da tela... total mantém o desconto e o pagamento cobra sem desconto'. Cita cupom e CEP. Ressalvas: o 'onde' indica só a plataforma, sem a tela/fluxo (checkout), e o título diz 'Cupom BLACK10 some', enquanto o relato fala que 'o desconto some'."
+    },
+    {
+      "text": "Tem passos de reprodução numerados e mínimos",
+      "passed": true,
+      "evidence": "Seção 'Passos para reproduzir' com 5 passos numerados e enxutos: carrinho com CEP [A], aplicar BLACK10, trocar para CEP [B], olhar o resumo, ir ao pagamento e finalizar."
+    },
+    {
+      "text": "Separa resultado esperado de resultado obtido",
+      "passed": true,
+      "evidence": "Seções distintas '**Resultado atual**' (linha de desconto some, total segue com desconto, cobrado o valor cheio, 'Pedido 88123: total na tela R$ [x], cobrado R$ [y]') e '**Resultado esperado**' ('O que a tela mostra como total tem que ser o que é cobrado', com os dois cenários da regra do cupom)."
+    },
+    {
+      "text": "Registra frequência (2 de 5), ambiente (Android, app 3.4.1, Samsung A54) e que no iPhone não reproduz",
+      "passed": true,
+      "evidence": "Ambiente: 'App Android 3.4.1', 'Samsung Galaxy A54, Android [versão]', 'iPhone: não reproduz ([modelo, versão do app, nº de tentativas])'. Frequência: 'Intermitente: 2 de 5 tentativas no A54.'"
+    },
+    {
+      "text": "Descreve o impacto para o negócio (valor cobrado diferente do exibido, risco de reclamação/CDC ou perda de confiança)",
+      "passed": false,
+      "evidence": "Não há seção ou parágrafo de impacto. O mais próximo é a justificativa da severidade, 'O cliente vê um total e é cobrado um valor maior', que descreve só o sintoma (valor cobrado diferente do exibido). Não fala em reclamação, CDC, contestação/chargeback, perda de confiança ou alcance (quantos clientes/pedidos). A menção final a 'estorno ou ajuste' trata da remediação deste pedido específico, não do impacto para o negócio."
+    },
+    {
+      "text": "Sugere severidade e prioridade como eixos separados, com justificativa",
+      "passed": false,
+      "evidence": "Só traz '**Severidade** Alta. O cliente vê um total e é cobrado um valor maior.' Não sugere prioridade em lugar nenhum, então não separa os dois eixos."
+    },
+    {
+      "text": "Sugere evidências ou investigação a anexar (logs, pedido 88123, IDs de requisição, vídeo)",
+      "passed": true,
+      "evidence": "Seção Evidências: 'Pedido 88123 (cobrança sem desconto)', '[print/vídeo do resumo com desconto sumido e total descontado]', '[print da tela de pagamento ou comprovante com o valor cobrado]', '[horário aproximado das 2 ocorrências, para o dev buscar nos logs]'. Não pede ID de requisição, mas cobre pedido, vídeo e logs."
+    },
+    {
+      "text": "Não inventa fatos que não foram informados (ou marca claramente como a preencher/hipótese)",
+      "passed": true,
+      "evidence": "Usa [preencher] e colchetes para o que falta (versão do Android, ambiente, conta, valores, CEPs). Declara 'Eu montei os passos 1, 4 e 5 por dedução... Corrija se o fluxo real for outro' e 'Não coloquei hipótese de causa no texto porque ninguém confirmou nenhuma'. A única imprecisão é o título dizer 'Cupom BLACK10 some' em vez de 'desconto some', e o corpo descreve corretamente ('a linha de desconto do BLACK10 some')."
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Intermitente: 2 de 5 tentativas no A54, app Android 3.4.1; iPhone não reproduz.",
+      "verified": true,
+      "evidence": "Bate com o pedido: 'versão 3.4.1, samsung a54', 'aconteceu 2 vezes de 5', 'no iphone não acontece'."
+    },
+    {
+      "claim": "Se o iPhone foi testado 1 ou 2 vezes, 'com 2 em 5 isso não prova nada'.",
+      "verified": true,
+      "evidence": "Com taxa de 40%, a chance de 0 falhas em 2 tentativas é 0,6^2 = 36% e em 1 tentativa é 60%. Não reproduzir é bem provável por acaso, então o raciocínio está correto."
+    },
+    {
+      "claim": "Título: 'Cupom BLACK10 some da tela ao trocar o CEP'.",
+      "verified": false,
+      "evidence": "O relato diz que 'o desconto some da tela', não o cupom. O próprio corpo da resposta corrige para 'a linha de desconto do BLACK10 some do resumo'. É uma imprecisão pequena, mas fica no título."
+    }
+  ],
+  "nota_holistica": {
+    "nota": 7,
+    "justificativa": "O bug é enxuto, fica pronto para colar e é honesto sobre o que foi deduzido, com bons passos, esperado x obtido, evidências e checklist pré-envio (inclusive a cautela estatística sobre o iPhone e o estorno do cliente real). Faltam prioridade e uma descrição de impacto para o negócio, e o título é um pouco impreciso."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Separa resultado esperado de resultado obtido",
+        "reason": "É fraco: qualquer template de bug passa só por ter os dois cabeçalhos. Seria melhor exigir que o esperado trate a ambiguidade da regra (o cupom vale ou não para o novo CEP) e a igualdade entre o valor exibido e o cobrado."
+      },
+      {
+        "assertion": "Registra frequência (2 de 5), ambiente (Android, app 3.4.1, Samsung A54) e que no iPhone não reproduz",
+        "reason": "Basta copiar o relato para passar. Faltaria exigir a ressalva sobre o número de tentativas no iPhone antes de concluir que o problema é exclusivo do Android."
+      },
+      {
+        "assertion": "Descreve o impacto para o negócio (valor cobrado diferente do exibido, risco de reclamação/CDC ou perda de confiança)",
+        "reason": "O parêntese é ambíguo: não fica claro se basta citar o sintoma (valor diferente) ou se é preciso citar também um risco de negócio. Convém explicitar que se exige ao menos um risco de negócio além do sintoma."
+      },
+      {
+        "assertion": "(ausente) Recomenda tratar à parte a correção da cobrança do cliente afetado (estorno/suporte) quando o pedido for de cliente real",
+        "reason": "É um aspecto profissional relevante que nenhum critério cobre. Esta resposta o cobre."
+      },
+      {
+        "assertion": "(ausente) Declara explicitamente o que foi deduzido (ex.: ordem dos passos) em vez de apresentar como relato",
+        "reason": "A transparência sobre deduções é um diferencial de qualidade que o critério de 'não inventar' só captura parcialmente."
+      }
+    ],
+    "overall": "Os critérios discriminam bem nos itens de severidade/prioridade e impacto, que é onde esta resposta falha. Os demais (esperado x obtido, ambiente/frequência) são triviais. Faltam critérios sobre o rigor com evidência intermitente, a remediação do cliente afetado e a concisão/usabilidade do texto final."
+  },
+  "summary": {
+    "passed": 6,
+    "failed": 2,
+    "total": 8,
+    "pass_rate": 0.75
+  }
+}

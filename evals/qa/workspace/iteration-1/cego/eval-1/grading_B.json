@@ -1,0 +1,107 @@
+{
+  "expectations": [
+    {
+      "text": "Inclui o limite diurno nos dois lados: R$ 5.000,00 aceito e R$ 5.000,01 recusado (ou equivalente com centavos)",
+      "passed": true,
+      "evidence": "PIX-DIA-02 '20.000,00 | — | 10:00 | 5.000,00 | Aprovada. Saldo final 15.000,00'; PIX-DIA-03 '5.000,01 | Negada por limite diário excedido (mensagem de limite, não de saldo). Sem débito; saldo 20.000,00'."
+    },
+    {
+      "text": "Inclui o limite noturno nos dois lados: R$ 1.000,00 aceito e R$ 1.000,01 recusado",
+      "passed": true,
+      "evidence": "PIX-NOT-02 '22:00 | 1.000,00 | Aprovada. Saldo final 19.000,00'; PIX-NOT-03 '22:00 | 1.000,01 | Negada por limite noturno excedido'; repetido na madrugada em PIX-NOT-05/06 (03:00)."
+    },
+    {
+      "text": "Testa as fronteiras de horário (por volta de 19:59/20:00 e 05:59/06:00) dizendo qual limite vale em cada uma",
+      "passed": true,
+      "evidence": "PIX-HOR-01 '05:59:59 aplica o limite noturno' (1.500,00 negada); PIX-HOR-02 '06:00:00 aplica o limite diurno' (aprovada, saldo 18.500,00); PIX-HOR-04 '19:59:59 aplica o limite diurno' (aprovada); PIX-HOR-05 '20:00:00 aplica o limite noturno' (negada); mais 06:00:01, 20:00:01 e 00:00:00. Valor R$ 1.500,00 discrimina qual limite vale."
+    },
+    {
+      "text": "Testa o valor mínimo: R$ 0,01 aceito e R$ 0,00 (ou negativo) recusado",
+      "passed": true,
+      "evidence": "PIX-VAL-01 '0,01 | Aprovada. Débito de R$ 0,01 (saldo final 19.999,99)'; PIX-VAL-03 '0,00 | Rejeitada na validação (valor mínimo R$ 0,01). Nenhuma transação criada'; PIX-VAL-04 '-0,01' rejeitado."
+    },
+    {
+      "text": "Cobre o limite acumulado no dia com várias transferências que somadas ultrapassam o limite, não só uma transferência isolada",
+      "passed": true,
+      "evidence": "PIX-DIA-04 (3.000,00 já enviado + 2.000,00 = 5.000,00 aprovada) e PIX-DIA-05 (3.000,00 + 2.000,01 'Negada por limite (total seria 5.000,01)'); PIX-DIA-07 soma entre destinatários diferentes; PIX-DIA-08 duas tentativas em sequência; PIX-NOT-07/08 acumulado noturno; PIX-NOT-09 atravessando a meia-noite. Contas conferidas."
+    },
+    {
+      "text": "Cobre saldo: valor igual ao saldo aceito e valor um centavo acima do saldo recusado",
+      "passed": true,
+      "evidence": "PIX-SAL-01 'Saldo exatamente igual ao valor | 100,00 | ... | 100,00 | Aprovada. Saldo final 0,00'; PIX-SAL-02 'Saldo um centavo abaixo do valor | 99,99 | ... | 100,00 | Negada por saldo insuficiente. Sem débito; saldo 99,99'."
+    },
+    {
+      "text": "Todo caso tem resultado esperado concreto e verificável (nenhum 'funciona corretamente' ou equivalente vago)",
+      "passed": true,
+      "evidence": "Os 46 resultados indicam aprovada/negada, motivo e saldo final ou 'sem débito'. Casos menos fechados ainda são verificáveis: PIX-VAL-06 'Confirmar fica desabilitado ou há erro de validação de campo. Nenhuma transação criada'; PIX-SAL-06 'Negada. Sem débito; saldo 100,00. Mensagem exibida: confirmar qual tem precedência' (marcado [CONFIRMAR]). Nenhum 'funciona corretamente'."
+    },
+    {
+      "text": "Entrega em formato de tabela com colunas de ID, passos/dados e resultado esperado, adequada para importação",
+      "passed": true,
+      "evidence": "Tabela no chat 'ID | Cenário | Saldo (R$) | Já enviado no período (R$) | Horário | Valor (R$) | Resultado esperado | Prio' (dados explícitos; passos genéricos descritos no texto) e CSV casos-pix-limites-xray.csv com 'Summary,Description,Test Type,Priority,Labels,Action,Data,Expected Result' (46 linhas, parse sem erro, passos numerados na coluna Action, ID no início do Summary, idêntico à tabela). Orientação de mapeamento no Xray incluída."
+    },
+    {
+      "text": "Declara suposições ou perguntas sobre pontos ambíguos (ex.: se o limite noturno consome o diário, fuso/relógio de referência, se o limite é por janela ou por dia)",
+      "passed": true,
+      "evidence": "'Premissas que usei' (limites inclusivos; janelas 06:00:00-19:59:59 e 20:00:00-05:59:59; 'Quem decide o horário é o servidor (Brasília), no momento da confirmação'; 'cada janela tem o seu próprio saldo de limite. A noturna é um único período, mesmo cruzando a meia-noite') e 'Preciso que você confirme' com 4 perguntas (a qual janela pertencem 06:00:00/20:00:00; 'Limite por janela ou teto único por dia?'; noturno ao cruzar a meia-noite; precedência de mensagem), com casos [CONFIRMAR] marcados."
+    }
+  ],
+  "claims": [
+    {
+      "claim": "10 de 46 casos estão marcados [CONFIRMAR].",
+      "verified": true,
+      "evidence": "CSV: 10 Summaries contêm '[CONFIRMAR]' (VAL-05, NOT-09, HOR-02, HOR-05, HOR-08, HOR-09, JAN-01, JAN-02, JAN-03, SAL-06)."
+    },
+    {
+      "claim": "Distribuição 6/9/9/9/3/8/2 por eixo e prioridade 26 High, 18 Medium, 2 Low.",
+      "verified": true,
+      "evidence": "CSV: labels PIX_Valor_Minimo 6, Limite_Diurno 9, Limite_Noturno 9, Horario_Fronteira 9, Janelas 3, Saldo 8, Concorrencia 2; Priority High 26, Medium 18, Low 2."
+    },
+    {
+      "claim": "Se o limite for teto único por dia, os casos JAN-01, JAN-02 e JAN-03 invertem o resultado.",
+      "verified": true,
+      "evidence": "Correto em essência: JAN-01 (1.000 após 5.000 diurno) e JAN-03 (5.000 após 1.000 na madrugada) passariam a ser negados. Em JAN-02 só a primeira etapa (1.000,00) inverte; o 0,01 continuaria negado, então 'inverte' é aproximado nesse caso."
+    }
+  ],
+  "nota_holistica": {
+    "nota": 8,
+    "justificativa": "Conjunto correto (todas as contas conferem), muito legível e fácil de revisar graças às colunas de estado (saldo, já enviado, horário), com fronteiras de segundo, meia-noite, janelas independentes, não consumo de limite em recusa e concorrência; fica um pouco atrás por não cobrir idempotência/duplo envio, fuso do cliente e canais (só citados como fora de escopo), por não dar subconjunto smoke ou ordem de execução, e por deixar 3 casos [CONFIRMAR] (VAL-05, HOR-08, HOR-09) sem pergunta correspondente."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Entrega em formato de tabela com colunas de ID, passos/dados e resultado esperado, adequada para importação",
+        "reason": "Fraco: passaria com uma tabela markdown qualquer. Deveria exigir arquivo importável que de fato faz parse (CSV com colunas constantes), ID identificável, mapeamento Action/Data/Expected Result do Xray e consistência entre a tabela mostrada e o arquivo."
+      },
+      {
+        "assertion": "Declara suposições ou perguntas sobre pontos ambíguos (ex.: se o limite noturno consome o diário, fuso/relógio de referência, se o limite é por janela ou por dia)",
+        "reason": "Fraco: uma única suposição genérica já passaria. Deveria exigir que a ambiguidade central (contador por janela vs. teto único por dia, e se o noturno zera à meia-noite) seja tratada explicitamente e que as suposições sejam ligadas aos casos que mudam de resultado."
+      },
+      {
+        "assertion": "Cobre o limite acumulado no dia com várias transferências que somadas ultrapassam o limite, não só uma transferência isolada",
+        "reason": "Ambíguo: não diz se um 'acumulado pré-carregado' na pré-condição conta como 'várias transferências'. Também não exige o caso de soma exatamente igual ao limite (aceito) ao lado do caso que passa por 1 centavo."
+      },
+      {
+        "assertion": "Todo caso tem resultado esperado concreto e verificável (nenhum 'funciona corretamente' ou equivalente vago)",
+        "reason": "Não esclarece como tratar casos que dependem de decisão pendente (ex.: precedência de mensagem saldo vs. limite). Deveria aceitar 'a definir' só quando o caso está marcado como dependente de pergunta e o resto do resultado (sem débito, saldo inalterado) é concreto."
+      },
+      {
+        "assertion": "(novo) Saldos finais e acumulados esperados estão aritmeticamente corretos",
+        "reason": "Nenhum critério confere a conta dos resultados esperados; um erro de centavo no oráculo invalidaria o caso e passaria despercebido."
+      },
+      {
+        "assertion": "(novo) Cobre tentativa recusada não consumir limite e concorrência (duas transferências simultâneas não estouram limite/saldo)",
+        "reason": "São os bugs mais caros em limite de PIX e nenhum critério os cobre; respostas que não pensam em estado/condição de corrida passariam igual."
+      },
+      {
+        "assertion": "(novo) Fixa a referência de relógio (servidor x dispositivo, fuso de Brasília) e a janela noturna atravessando a meia-noite",
+        "reason": "O critério 9 cita fuso só como exemplo; nenhum critério exige caso de teste para meia-noite ou relógio adulterado do aparelho."
+      },
+      {
+        "assertion": "(novo) Diferencia a mensagem/motivo de recusa (limite vs. saldo vs. valor mínimo)",
+        "reason": "Um sistema que recusa tudo com erro genérico passaria nos critérios atuais; o motivo da recusa é o que torna o oráculo verificável."
+      }
+    ],
+    "overall": "Os 9 critérios cobrem bem os valores-limite pedidos, mas são permissivos no formato de importação e nas suposições, e não medem correção aritmética, concorrência, não consumo de limite em recusa nem motivo de recusa. As duas respostas passam em todos; a diferenciação real fica na nota holística."
+  }
+}

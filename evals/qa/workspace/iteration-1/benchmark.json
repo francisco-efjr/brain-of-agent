@@ -1,0 +1,1588 @@
+{
+  "metadata": {
+    "skill_name": "qa",
+    "skill_path": "skills/qa",
+    "timestamp": "2026-10-05T21:31:18+00:00",
+    "evals_run": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "casos-pix-limites",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 397.5,
+        "tokens": 145640,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Inclui o limite diurno nos dois lados: R$ 5.000,00 aceito e R$ 5.000,01 recusado (ou equivalente com centavos)",
+          "passed": true,
+          "evidence": "CT-PIX-014 'Valor: R$ 5.000,00' -> 'Confirmada; saldo R$ 15.000,00; acumulado diurno R$ 5.000,00'; CT-PIX-015 'Valor: R$ 5.000,01' -> 'Recusada; mensagem de limite diurno que cita R$ 5.000,00; saldo inalterado em R$ 20.000,00'. Ambos com PP-D (10:00)."
+        },
+        {
+          "text": "Inclui o limite noturno nos dois lados: R$ 1.000,00 aceito e R$ 1.000,01 recusado",
+          "passed": true,
+          "evidence": "CT-PIX-022 (PP-N, 22:00) 'Valor: R$ 1.000,00' -> 'Confirmada; saldo R$ 19.000,00'; CT-PIX-023 'Valor: R$ 1.000,01' -> 'Recusada; mensagem de limite noturno que cita R$ 1.000,00; saldo inalterado em R$ 20.000,00'."
+        },
+        {
+          "text": "Testa as fronteiras de horário (por volta de 19:59/20:00 e 05:59/06:00) dizendo qual limite vale em cada uma",
+          "passed": true,
+          "evidence": "CT-PIX-027 'Às 19:59:59 vale o limite diurno' (R$ 1.000,01 confirmada, saldo R$ 18.999,99); CT-PIX-028 'Às 20:00:00 vale o limite noturno' (R$ 1.000,01 recusada); CT-PIX-029 'Às 05:59:59 ainda vale o limite noturno' (recusada); CT-PIX-030 'Às 06:00:00 passa a valer o limite diurno' (confirmada). O valor R$ 1.000,01 discrimina corretamente qual limite está em vigor."
+        },
+        {
+          "text": "Testa o valor mínimo: R$ 0,01 aceito e R$ 0,00 (ou negativo) recusado",
+          "passed": true,
+          "evidence": "CT-PIX-001 'Valor: R$ 0,01' -> 'Transferência confirmada; saldo R$ 19.999,99'; CT-PIX-002 'Valor: R$ 0,00' -> 'Não conclui; mensagem informa o valor mínimo de R$ 0,01; saldo inalterado'; CT-PIX-003 negativos -0,01 e -100,00 recusados com 4xx."
+        },
+        {
+          "text": "Cobre o limite acumulado no dia com várias transferências que somadas ultrapassam o limite, não só uma transferência isolada",
+          "passed": true,
+          "evidence": "CT-PIX-016 executa duas transferências (R$ 4.999,99 + R$ 0,01 = limite, aceitas); CT-PIX-018 acumulado R$ 3.000,00 + R$ 2.000,01 -> 'Recusada por limite diurno'; CT-PIX-019 (R$ 1.000,01 recusado, R$ 1.000,00 aceito sobre acumulado de R$ 4.000,00); CT-PIX-025 noturno R$ 600,00 + R$ 400,01 recusado; CT-PIX-032 R$ 600 + R$ 400 atravessando a meia-noite e R$ 0,01 recusado. Contas conferidas."
+        },
+        {
+          "text": "Cobre saldo: valor igual ao saldo aceito e valor um centavo acima do saldo recusado",
+          "passed": true,
+          "evidence": "CT-PIX-007 'saldo R$ 100,00', 'Valor: R$ 100,00' -> 'Confirmada; saldo final R$ 0,00'; CT-PIX-009 'saldo R$ 99,99', 'Valor: R$ 100,00' -> 'Recusada; mensagem de saldo insuficiente; saldo inalterado em R$ 99,99'."
+        },
+        {
+          "text": "Todo caso tem resultado esperado concreto e verificável (nenhum 'funciona corretamente' ou equivalente vago)",
+          "passed": true,
+          "evidence": "Todos os 43 resultados esperados trazem estado final verificável (confirmada/recusada, motivo, saldo final, acumulado, código 4xx). Ex.: CT-PIX-039 'uma confirmada e outra recusada por limite diurno; saldo R$ 17.000,00; acumulado R$ 3.000,00'. Único ponto aberto é CT-PIX-011 ('mensagem de saldo OU de limite (a definir em P4)'), mas ainda fixa 'nada debitado; saldo R$ 3.000,00; ... sem erro 500' e está marcado como dependente de P4. Nenhum 'funciona corretamente'."
+        },
+        {
+          "text": "Entrega em formato de tabela com colunas de ID, passos/dados e resultado esperado, adequada para importação",
+          "passed": true,
+          "evidence": "Tabela no chat com colunas 'ID | Cenário | Pré-condição | Passos | Dados | Resultado esperado | Prioridade | Técnica / regra' e CSV casos_pix_limites_xray.csv com 'Summary,Description,Test Type,Priority,Labels,Action,Data,Expected Result' (43 linhas, parse sem erro, ID no início do Summary, idêntico à tabela). Orientação de mapeamento no Xray incluída."
+        },
+        {
+          "text": "Declara suposições ou perguntas sobre pontos ambíguos (ex.: se o limite noturno consome o diário, fuso/relógio de referência, se o limite é por janela ou por dia)",
+          "passed": true,
+          "evidence": "Seção 'Suposições' (limites inclusivos; 'Há dois contadores, um por janela... O noturno ... não zera à meia-noite... Um contador não consome o outro (P1)'; 'Vale o horário de Brasília ... lido no servidor, no instante da confirmação') e 'Perguntas que mudam o resultado esperado' P1-P7 (janela vs contador único, instante de referência, fuso de Manaus/Rio Branco, precedência de mensagem, conta/CPF/canal, 3 casas decimais, cheque especial), cada uma ligada aos casos afetados."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "casos-pix-limites",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 243.9,
+        "tokens": 83698,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Inclui o limite diurno nos dois lados: R$ 5.000,00 aceito e R$ 5.000,01 recusado (ou equivalente com centavos)",
+          "passed": true,
+          "evidence": "PIX-DIA-02 '20.000,00 | — | 10:00 | 5.000,00 | Aprovada. Saldo final 15.000,00'; PIX-DIA-03 '5.000,01 | Negada por limite diário excedido (mensagem de limite, não de saldo). Sem débito; saldo 20.000,00'."
+        },
+        {
+          "text": "Inclui o limite noturno nos dois lados: R$ 1.000,00 aceito e R$ 1.000,01 recusado",
+          "passed": true,
+          "evidence": "PIX-NOT-02 '22:00 | 1.000,00 | Aprovada. Saldo final 19.000,00'; PIX-NOT-03 '22:00 | 1.000,01 | Negada por limite noturno excedido'; repetido na madrugada em PIX-NOT-05/06 (03:00)."
+        },
+        {
+          "text": "Testa as fronteiras de horário (por volta de 19:59/20:00 e 05:59/06:00) dizendo qual limite vale em cada uma",
+          "passed": true,
+          "evidence": "PIX-HOR-01 '05:59:59 aplica o limite noturno' (1.500,00 negada); PIX-HOR-02 '06:00:00 aplica o limite diurno' (aprovada, saldo 18.500,00); PIX-HOR-04 '19:59:59 aplica o limite diurno' (aprovada); PIX-HOR-05 '20:00:00 aplica o limite noturno' (negada); mais 06:00:01, 20:00:01 e 00:00:00. Valor R$ 1.500,00 discrimina qual limite vale."
+        },
+        {
+          "text": "Testa o valor mínimo: R$ 0,01 aceito e R$ 0,00 (ou negativo) recusado",
+          "passed": true,
+          "evidence": "PIX-VAL-01 '0,01 | Aprovada. Débito de R$ 0,01 (saldo final 19.999,99)'; PIX-VAL-03 '0,00 | Rejeitada na validação (valor mínimo R$ 0,01). Nenhuma transação criada'; PIX-VAL-04 '-0,01' rejeitado."
+        },
+        {
+          "text": "Cobre o limite acumulado no dia com várias transferências que somadas ultrapassam o limite, não só uma transferência isolada",
+          "passed": true,
+          "evidence": "PIX-DIA-04 (3.000,00 já enviado + 2.000,00 = 5.000,00 aprovada) e PIX-DIA-05 (3.000,00 + 2.000,01 'Negada por limite (total seria 5.000,01)'); PIX-DIA-07 soma entre destinatários diferentes; PIX-DIA-08 duas tentativas em sequência; PIX-NOT-07/08 acumulado noturno; PIX-NOT-09 atravessando a meia-noite. Contas conferidas."
+        },
+        {
+          "text": "Cobre saldo: valor igual ao saldo aceito e valor um centavo acima do saldo recusado",
+          "passed": true,
+          "evidence": "PIX-SAL-01 'Saldo exatamente igual ao valor | 100,00 | ... | 100,00 | Aprovada. Saldo final 0,00'; PIX-SAL-02 'Saldo um centavo abaixo do valor | 99,99 | ... | 100,00 | Negada por saldo insuficiente. Sem débito; saldo 99,99'."
+        },
+        {
+          "text": "Todo caso tem resultado esperado concreto e verificável (nenhum 'funciona corretamente' ou equivalente vago)",
+          "passed": true,
+          "evidence": "Os 46 resultados indicam aprovada/negada, motivo e saldo final ou 'sem débito'. Casos menos fechados ainda são verificáveis: PIX-VAL-06 'Confirmar fica desabilitado ou há erro de validação de campo. Nenhuma transação criada'; PIX-SAL-06 'Negada. Sem débito; saldo 100,00. Mensagem exibida: confirmar qual tem precedência' (marcado [CONFIRMAR]). Nenhum 'funciona corretamente'."
+        },
+        {
+          "text": "Entrega em formato de tabela com colunas de ID, passos/dados e resultado esperado, adequada para importação",
+          "passed": true,
+          "evidence": "Tabela no chat 'ID | Cenário | Saldo (R$) | Já enviado no período (R$) | Horário | Valor (R$) | Resultado esperado | Prio' (dados explícitos; passos genéricos descritos no texto) e CSV casos-pix-limites-xray.csv com 'Summary,Description,Test Type,Priority,Labels,Action,Data,Expected Result' (46 linhas, parse sem erro, passos numerados na coluna Action, ID no início do Summary, idêntico à tabela). Orientação de mapeamento no Xray incluída."
+        },
+        {
+          "text": "Declara suposições ou perguntas sobre pontos ambíguos (ex.: se o limite noturno consome o diário, fuso/relógio de referência, se o limite é por janela ou por dia)",
+          "passed": true,
+          "evidence": "'Premissas que usei' (limites inclusivos; janelas 06:00:00-19:59:59 e 20:00:00-05:59:59; 'Quem decide o horário é o servidor (Brasília), no momento da confirmação'; 'cada janela tem o seu próprio saldo de limite. A noturna é um único período, mesmo cruzando a meia-noite') e 'Preciso que você confirme' com 4 perguntas (a qual janela pertencem 06:00:00/20:00:00; 'Limite por janela ou teto único por dia?'; noturno ao cruzar a meia-noite; precedência de mensagem), com casos [CONFIRMAR] marcados."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "revisao-historia-cancelamento",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 84.3,
+        "tokens": 86584,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Aponta 'rápido' como termo vago e pede uma definição mensurável (prazo por meio de pagamento, por exemplo)",
+          "passed": true,
+          "evidence": "Tabela: \"'o reembolso deve ser rápido' | Sem número, nenhum teste falha... | Em quanto tempo, medido de onde até onde\"; pergunta 2: \"Qual o prazo do reembolso, em número, e de qual relógio? (nosso pedido de estorno ao gateway é uma coisa; o dinheiro aparecer na fatura ou conta é outra...)\"; critério 5: \"estorno é solicitado ao gateway em até [5 minutos]... previsão de [prazo informado pelo meio de pagamento]\"."
+        },
+        {
+          "text": "Pergunta em quais estados do pedido o cancelamento é permitido (ex.: depois de enviado ou em separação)",
+          "passed": true,
+          "evidence": "\"Um pedido passa por criado, aguardando pagamento, pago, em separação, enviado e entregue; cancelar em cada um tem custo e efeito diferentes\" e pergunta 1: \"Em quais estados do pedido o cliente pode cancelar sozinho? E nos demais, o que ele vê...\". Também trata pedido enviado ou entregue como possível devolução."
+        },
+        {
+          "text": "Levanta questões de reembolso por meio de pagamento (cartão, PIX, boleto) ou de cancelamento parcial",
+          "passed": true,
+          "evidence": "\"nem forma (mesmo cartão, Pix, boleto?)\"; pergunta 3: \"O que volta: produtos, frete, juros de parcelamento? ... Pix e boleto devolvem para qual conta?\"; pergunta 4: \"Cancela só o pedido inteiro ou também itens? E pedido com entregas parciais?\"; e trata o caso de pedido não pago com Pix ou boleto em aberto."
+        },
+        {
+          "text": "Propõe critérios de aceite reescritos com exemplos concretos ou cenários Gherkin",
+          "passed": true,
+          "evidence": "Seção 'Proposta de critérios' com 8 critérios, cada um com exemplo concreto, ex.: \"pedido de R$ 300,00 (R$ 280,00 em produtos + R$ 20,00 de frete) pago em 3x no cartão... o total estornado nunca passa do valor pago\" e \"Bia tenta cancelar, pela API, o pedido da Ana: recusado\". Não está em Gherkin, mas o critério aceita exemplos concretos."
+        },
+        {
+          "text": "Menciona aspecto legal ou não funcional relevante (ex.: direito de arrependimento do CDC, notificação ao cliente, auditoria, estoque devolvido)",
+          "passed": true,
+          "evidence": "\"o CDC (art. 49) tem regra própria de 7 dias a partir do recebimento; confirme com o jurídico\" (correto), além de \"estoque devolvido, nota fiscal..., e-mail ou push de confirmação\" e \"Rastro: quem cancelou, quando, por qual canal e com qual motivo?\". Cita ainda permissão e segurança."
+        },
+        {
+          "text": "Inclui ao menos um cenário de borda ou concorrência (ex.: cancelar duas vezes, cancelar enquanto o pedido é despachado)",
+          "passed": true,
+          "evidence": "\"Cancelar na mesma hora em que o pedido é despachado ou o pagamento é confirmado: quem ganha?\"; critério 3: \"duplo clique ou duas requisições idênticas resultam em um cancelamento e um reembolso; a segunda chamada devolve o resultado da primeira\"; tabela de riscos: \"Cancelamento × despacho ao mesmo tempo | duas ações simultâneas no mesmo pedido; só uma vence\"."
+        },
+        {
+          "text": "Organiza as perguntas por importância ou por tema, de forma utilizável numa reunião de refinamento",
+          "passed": true,
+          "evidence": "Seção \"Perguntas para o refinamento (por ordem de quanto bloqueiam)\" numerada de 1 a 8 com \"Dono sugerido\"; o veredito diz \"Sugiro levar ao refinamento as perguntas 1 a 4 abaixo; sem elas não dá para escrever critério nem estimar\"."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "revisao-historia-cancelamento",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 64.4,
+        "tokens": 50853,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Aponta 'rápido' como termo vago e pede uma definição mensurável (prazo por meio de pagamento, por exemplo)",
+          "passed": true,
+          "evidence": "Seção 2: \"'o reembolso deve ser rápido' Não é verificável. Para o cliente, 'rápido' pode ser minutos (Pix) ou até duas faturas (cartão)\" e propõe \"solicitamos o estorno em até [X] após o cancelamento e mostramos ao cliente o prazo estimado para cada meio de pagamento\". A tabela inclui \"Qual o prazo real de estorno por meio de pagamento e o que podemos prometer?\". Também separa o prazo que a empresa controla do prazo do banco/gateway."
+        },
+        {
+          "text": "Pergunta em quais estados do pedido o cancelamento é permitido (ex.: depois de enviado ou em separação)",
+          "passed": true,
+          "evidence": "\"Um pedido pago, em separação, enviado ou entregue tem tratamentos bem diferentes. Falta definir: em quais status o cancelamento é permitido\"; a tabela traz \"Em quais status o pedido pode ser cancelado pelo próprio cliente?\" e \"O que acontece com pedido já despachado?\"."
+        },
+        {
+          "text": "Levanta questões de reembolso por meio de pagamento (cartão, PIX, boleto) ou de cancelamento parcial",
+          "passed": true,
+          "evidence": "\"quais meios de pagamento entram (cartão, Pix, boleto, saldo, pagamento dividido)\", \"o que é devolvido (frete, cupom, cashback)\", \"se cancela o pedido inteiro ou só alguns itens\" e \"Pedido com vários itens, entregas ou vendedores: existe cancelamento parcial?\". Ponto fraco: não observa que boleto não tem estorno no 'mesmo meio de pagamento' e exige dados bancários."
+        },
+        {
+          "text": "Propõe critérios de aceite reescritos com exemplos concretos ou cenários Gherkin",
+          "passed": true,
+          "evidence": "Seção 'Proposta de reescrita' com 10 critérios no formato Dado/quando/então, ex.: \"Dado um pedido meu em status [pago / em separação], quando escolho 'Cancelar pedido' e confirmo, então o pedido passa a 'Cancelado'...\". Também reescreve a história. Os valores ficam como placeholders explícitos, sem números de exemplo, e os critérios 8 e 9 fogem do formato."
+        },
+        {
+          "text": "Menciona aspecto legal ou não funcional relevante (ex.: direito de arrependimento do CDC, notificação ao cliente, auditoria, estoque devolvido)",
+          "passed": true,
+          "evidence": "\"Em compra online no Brasil existe o direito de arrependimento de 7 dias (CDC, art. 49)\" (correto), além de \"liberar estoque\", \"cancelar nota fiscal\", \"Comunicação: confirmação na tela, e-mail ou push\" e \"Autorização e auditoria: ... registrar quem cancelou, quando e por qual canal\"."
+        },
+        {
+          "text": "Inclui ao menos um cenário de borda ou concorrência (ex.: cancelar duas vezes, cancelar enquanto o pedido é despachado)",
+          "passed": true,
+          "evidence": "Critério 5: \"Dado que o pedido foi despachado entre eu abrir a tela e confirmar, então o cancelamento é recusado... e nenhum estorno é gerado\". Critério 6: \"Dado um duplo clique ou uma segunda tentativa de cancelar o mesmo pedido, então existe um único cancelamento e um único estorno\". Nas lacunas cita ainda \"cancelar no app e no site ao mesmo tempo\"."
+        },
+        {
+          "text": "Organiza as perguntas por importância ou por tema, de forma utilizável numa reunião de refinamento",
+          "passed": true,
+          "evidence": "As perguntas estão agrupadas por tema (seções 'Problemas nos critérios de aceite' e 'Lacunas') e há uma tabela 'Perguntas para levar ao refinamento' com a coluna 'Quem responde' (PO, pagamentos, jurídico, mobile), que dá para usar na reunião. Não há ordem explícita de importância, mas o critério aceita organização por tema."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "flaky-playwright",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 177.4,
+        "tokens": 107422,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifica o waitForTimeout fixo como problema e o substitui por espera baseada em condição (asserção web-first, waitForURL, resposta de rede)",
+          "passed": true,
+          "evidence": "Suspeito #1 da tabela: \"`waitForTimeout(3000)` depois do login (linhas 10 e 29) e `waitForTimeout(2000)` antes do pagamento (16) | Espera por tempo fixo...\". No código: `await expect(page.getByRole('link', { name: 'Minha conta' })).toBeVisible()` com o comentário \"substitui waitForTimeout(3000)\", `page.waitForResponse(...)` registrado antes do clique em adicionar ao carrinho e `await expect(page).toHaveURL(/\\/carrinho/)`. Não sobra nenhum waitForTimeout."
+        },
+        {
+          "text": "Identifica a dependência entre os testes (o segundo usa numeroPedido criado pelo primeiro) como causa e torna cada teste independente",
+          "passed": true,
+          "evidence": "Suspeito #5: \"`numeroPedido` como variável de módulo (linha 3) | O 2º teste depende do 1º. Se o 1º falha e o Playwright reinicia o worker, ou se o CI usa `fullyParallel`/shard, o 2º roda com `numeroPedido` indefinido... ele **amplifica** os outros: uma falha vira duas\". Correção: \"Fundi os dois testes em um só com passos, porque é uma jornada sequencial e o segundo dependia do primeiro\". O `let numeroPedido` passa a ser local ao teste, então o teste resultante não depende de nenhum outro. Também sugere uma alternativa com testes separados (pedido criado por API numa fixture)."
+        },
+        {
+          "text": "Substitui a asserção não reexecutável (expect(await ...textContent())) por asserção web-first como toHaveText/toContainText",
+          "passed": true,
+          "evidence": "Suspeito #3: \"`textContent()` não espera nem repete: se ainda está 'Pendente', reprova\". No código: `await expect(numero).toHaveText(/\\d+/)` no número do pedido e `await expect(linha.locator('.status')).toHaveText('Aprovado', ...)` dentro de `toPass`, além de `toHaveCount(1)` na linha. Nenhum `expect(await ...textContent())` permanece."
+        },
+        {
+          "text": "Substitui seletores frágeis (nth-child, nth=1, classes CSS) por localizadores por papel, rótulo, texto ou test id",
+          "passed": true,
+          "evidence": "Os seletores frágeis viraram: `.btn-primary` -> `getByRole('button', { name: 'Entrar' })`; `.add-to-cart` -> `getByRole('button', { name: 'Adicionar ao carrinho' })`; `div.header > div:nth-child(3) > a` -> `getByRole('link', { name: /carrinho/i })`; `.payment-option >> nth=1` -> `getByRole('radio', { name: /cartão/i })` (\"por nome, não por posição\"); `table tr nth(1)` -> `getByRole('row').filter({ hasText: numeroPedido })`; `#confirmar` -> `getByRole('button', { name: 'Confirmar pedido' })`; e `getByTestId('item-carrinho')`. Ficaram `#email`/`#senha` (IDs, não estão na lista de frágeis do critério) e as classes `.order-number`/`.status`, esta última restrita à linha."
+        },
+        {
+          "text": "Entrega o código corrigido completo",
+          "passed": true,
+          "evidence": "Arquivo completo e importável na resposta e em `flaky.spec.corrigido.ts` (imports, helper `entrar`, teste inteiro com 4 `test.step`), mais o trecho de config em `playwright.config.trecho.ts`. Não há erro técnico evidente: `test.slow()`, `waitForResponse` registrado antes do clique e `expect(async()=>{...}).toPass({timeout, intervals})` estão corretos. As suposições sobre o DOM estão marcadas com `AJUSTE`."
+        },
+        {
+          "text": "Sugere como confirmar a correção (ex.: --repeat-each, rodar N vezes, trace)",
+          "passed": true,
+          "evidence": "\"Depois de ajustar, rode `--repeat-each=30` no CI (150 se quiser mais confiança) antes de dar por resolvido.\" Também traz os comandos `--repeat-each=30 --workers=1 --retries=0 --trace=retain-on-failure` e a versão com `--workers=4`, mais `show-trace`, e avisa que \"30 execuções verdes não provam estabilidade (0 de 30 ainda é compatível com taxa de até uns 10%)\"."
+        },
+        {
+          "text": "Não recomenda aumentar retries ou timeouts como solução principal",
+          "passed": true,
+          "evidence": "A solução principal são esperas por condição e localização por número do pedido. Sobre retries: \"Retry no máximo 1 ou 2: acima disso ele esconde o problema em vez de mostrá-lo\", e o diagnóstico usa `--retries=0`. Usa `test.slow()` só neste teste, justificado pela aprovação assíncrona, e o `actionTimeout: 10_000` que propõe limita o tempo (o padrão é sem limite), ou seja, não é um aumento de tempo."
+        },
+        {
+          "text": "Aponta que credenciais e URL fixas no código devem vir de variáveis de ambiente/configuração",
+          "passed": true,
+          "evidence": "\"tirei a URL e a senha do código\"; no código `const EMAIL = process.env.E2E_USER!; const SENHA = process.env.E2E_PASSWORD!;` com o comentário \"segredos do CI, nunca no código\"; na config `baseURL: process.env.BASE_URL`; e o ponto \"**Senha no código.** `Senha@123` está no arquivo e portanto no histórico do git. Mova para segredo do CI e, se essa senha for usada em qualquer outro lugar, troque.\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "flaky-playwright",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 6,
+        "failed": 2,
+        "total": 8,
+        "time_seconds": 100.0,
+        "tokens": 57191,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifica o waitForTimeout fixo como problema e o substitui por espera baseada em condição (asserção web-first, waitForURL, resposta de rede)",
+          "passed": true,
+          "evidence": "Item 3: \"`waitForTimeout(3000)` depois do login e `waitForTimeout(2000)` no checkout só funcionam enquanto a máquina for rápida.\" No código: `await page.waitForURL((url) => !url.pathname.endsWith('/login'))` com o comentário \"em vez de dormir 3s\", `await expect(carrinho).toContainText('1')` antes de sair da página do produto e `await expect(numero).toHaveText(/\\S+/, ...)`. Não sobra nenhum waitForTimeout."
+        },
+        {
+          "text": "Identifica a dependência entre os testes (o segundo usa numeroPedido criado pelo primeiro) como causa e torna cada teste independente",
+          "passed": true,
+          "evidence": "Item 1, listado como o mais suspeito: \"O teste 2 depende do teste 1 por uma variável de módulo (`numeroPedido`). Quando um teste falha ou é repetido (retry), o Playwright reinicia o worker, e a variável some.\" Correção: \"Um teste só, com `test.step`... O número do pedido passa a ser uma variável local, e o problema 1 some\", com a alternativa de criar o pedido por API em fixture para manter testes separados."
+        },
+        {
+          "text": "Substitui a asserção não reexecutável (expect(await ...textContent())) por asserção web-first como toHaveText/toContainText",
+          "passed": true,
+          "evidence": "Item 4: \"`textContent()` não espera o texto aparecer. Ele espera o elemento existir, mas devolve na hora, mesmo vazio.\" No código: `await expect(numero).toHaveText(/\\S+/, { timeout: 20_000 })` e `await expect(status).toHaveText('Aprovado', { timeout: 2_000 })` dentro de `toPass`."
+        },
+        {
+          "text": "Substitui seletores frágeis (nth-child, nth=1, classes CSS) por localizadores por papel, rótulo, texto ou test id",
+          "passed": true,
+          "evidence": "Item 6 lista `div.header > div:nth-child(3) > a`, `.payment-option >> nth=1` e `.btn-primary`. No código: `getByRole('button', { name: /entrar/i })` (\"era '.btn-primary'\"), `getByRole('button', { name: /adicionar ao carrinho/i })` (\"era '.add-to-cart'\"), `getByRole('link', { name: /carrinho/i })` (\"era 'div.header > div:nth-child(3) > a'\"), `getByRole('radio', { name: /cartão/i })` (\"era '.payment-option >> nth=1'\") e `getByRole('row').filter({ hasText: numeroPedido })`. Ficaram `#confirmar`, `.order-number` e `.status`, mas os seletores posicionais foram todos eliminados."
+        },
+        {
+          "text": "Entrega o código corrigido completo",
+          "passed": true,
+          "evidence": "Arquivo completo na resposta e em `flaky.fixed.spec.ts` (imports, `test.use`, helper `login` e o teste inteiro em steps). Não há erro de sintaxe ou de API evidente. Ressalvas de qualidade: `toContainText('1')` no link do carrinho é um sinal fraco (casaria com '11' se houver itens sobrando) e `numeroPedido` usa o `innerText` inteiro, que pode não casar com o texto da linha do histórico se o elemento tiver prefixo. As duas suposições estão marcadas como `AJUSTAR`."
+        },
+        {
+          "text": "Sugere como confirmar a correção (ex.: --repeat-each, rodar N vezes, trace)",
+          "passed": false,
+          "evidence": "O `--repeat-each` aparece só para diagnosticar a causa no arquivo ORIGINAL: \"Para reproduzir localmente com o comportamento do CI: npx playwright test flaky.spec.ts --repeat-each=30 --workers=4\", numa seção chamada \"Como confirmar qual deles é o seu\". Em nenhum momento sugere rodar a versão corrigida N vezes (no CI, sem retries) para validar a correção. O trace recomendado (`trace: 'on-first-retry'`) serve para a 'próxima falha', não para confirmar o conserto, e captura a reexecução, não a falha original. Pela regra 'na dúvida, falha', não passa."
+        },
+        {
+          "text": "Não recomenda aumentar retries ou timeouts como solução principal",
+          "passed": true,
+          "evidence": "\"`retries` no CI ajudam a destravar o pipeline, mas não resolvem. Use 1 ou 2 no máximo e acompanhe os testes marcados como 'flaky' no relatório\". O `test.setTimeout(90_000)` e o `timeout: 20_000` são complementos justificados pelo fluxo longo. A solução principal são as esperas por condição e o desacoplamento dos testes."
+        },
+        {
+          "text": "Aponta que credenciais e URL fixas no código devem vir de variáveis de ambiente/configuração",
+          "passed": false,
+          "evidence": "Só aponta a senha, e como observação 'fora do escopo': \"a senha está escrita no repositório. Mova para variável de ambiente/secret do CI.\" Não diz que a URL deve vir de variável de ambiente ou configuração: ela apenas foi centralizada no próprio spec com `test.use({ baseURL: 'https://loja-homolog.exemplo.com.br' })`, ou seja, continua fixa no código. O código corrigido também mantém o e-mail e a senha fixos (`fill('qa@exemplo.com.br')`, `fill('Senha@123')`), contrariando o próprio conselho. O critério cobre credenciais e URL, e a URL não foi tratada."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "eval_name": "bug-report-cupom",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 76.0,
+        "tokens": 93896,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "O título segue o formato onde + o que acontece + condição e cita cupom e troca de endereço/CEP",
+          "passed": true,
+          "evidence": "Título: 'Checkout Android: após trocar o CEP com BLACK10 aplicado, a tela mostra o total com desconto e o pagamento cobra sem desconto'. Onde = 'Checkout Android'; condição = 'após trocar o CEP com BLACK10 aplicado'; o que acontece = 'a tela mostra o total com desconto e o pagamento cobra sem desconto'. Cita cupom (BLACK10) e troca de CEP."
+        },
+        {
+          "text": "Tem passos de reprodução numerados e mínimos",
+          "passed": true,
+          "evidence": "Seção 'Passos para reproduzir' com 6 passos numerados (abrir app, checkout com CEP A, aplicar BLACK10, trocar para CEP B, observar resumo, pagar), com pré-condições separadas. Ressalva: o passo 1 diz 'entrar com a conta de teste', o que pressupõe conta de teste enquanto a tabela de ambiente deixa '[preencher: conta de teste ou cliente real]'. Os passos continuam enxutos."
+        },
+        {
+          "text": "Separa resultado esperado de resultado obtido",
+          "passed": true,
+          "evidence": "Seções distintas '## Resultado esperado' (tela e cobrança coerentes, com os dois cenários da regra do cupom e '[confirmar com dev/PO]') e '## Resultado obtido' (linha de desconto some, total segue com desconto, cobrança sem desconto no pedido 88123)."
+        },
+        {
+          "text": "Registra frequência (2 de 5), ambiente (Android, app 3.4.1, Samsung A54) e que no iPhone não reproduz",
+          "passed": true,
+          "evidence": "Tabela de ambiente: 'App | Android 3.4.1', 'Aparelho | Samsung Galaxy A54'. Seção Frequência: 'Android 3.4.1, Samsung A54: **2 de 5** tentativas.' e 'iPhone: não ocorreu em [preencher: quantas tentativas e qual versão do app iOS]'."
+        },
+        {
+          "text": "Descreve o impacto para o negócio (valor cobrado diferente do exibido, risco de reclamação/CDC ou perda de confiança)",
+          "passed": true,
+          "evidence": "Seção Impacto: 'O cliente é cobrado por um valor diferente do que viu ao confirmar... Isso gera chamado de suporte, pedido de estorno e possível contestação no cartão.' Também aponta o alcance desconhecido e como medir ('consultar pedidos do app Android 3.4.1 com BLACK10 e cobrança sem desconto'). Não cita CDC nem confiança, mas cobre o risco de reclamação e de chargeback."
+        },
+        {
+          "text": "Sugere severidade e prioridade como eixos separados, com justificativa",
+          "passed": true,
+          "evidence": "Tabela 'Classificação sugerida' com linhas separadas: 'Severidade | Crítica | valor cobrado errado, sem contorno para o cliente' e 'Prioridade | P1 se o BLACK10 estiver ativo para clientes reais; P2 caso contrário | ... Quem decide é o PO', incluindo uma mitigação (desligar o BLACK10 no Android ou bloquear a troca de CEP)."
+        },
+        {
+          "text": "Sugere evidências ou investigação a anexar (logs, pedido 88123, IDs de requisição, vídeo)",
+          "passed": true,
+          "evidence": "Seção Evidências: 'Pedido 88123: valor cobrado', '[anexar] Vídeo de tela de uma ocorrência', print do resumo e do extrato, '[preencher] Request id ou horário exato (com fuso) das 2 ocorrências, para o dev achar nos logs'. Também sugere investigação: comparar request e response do recálculo, testar a 3.4.0 para ver se é regressão."
+        },
+        {
+          "text": "Não inventa fatos que não foram informados (ou marca claramente como a preencher/hipótese)",
+          "passed": true,
+          "evidence": "Abre com 'Não reproduzi nada, então tudo abaixo vem do seu relato' e marca com [preencher] tudo o que não foi informado (build, versão do Android, valores, CEPs, horários, conta). As causas ficam em 'Hipóteses (não confirmadas, para o dev avaliar)'. Ressalvas menores: afirma sem marcar 'Não há contorno para o cliente' e 'a pessoa só percebe depois, no extrato', e o passo 1 assume 'conta de teste'. São inferências de baixo risco e não alteram os fatos do incidente."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 4,
+      "eval_name": "bug-report-cupom",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 6,
+        "failed": 2,
+        "total": 8,
+        "time_seconds": 48.9,
+        "tokens": 48514,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "O título segue o formato onde + o que acontece + condição e cita cupom e troca de endereço/CEP",
+          "passed": true,
+          "evidence": "Título: '[Android] Cupom BLACK10 some da tela ao trocar o CEP do endereço, mas o total mantém o desconto e o pagamento cobra sem desconto'. Onde = '[Android]'; condição = 'ao trocar o CEP do endereço'; o que acontece = 'some da tela... total mantém o desconto e o pagamento cobra sem desconto'. Cita cupom e CEP. Ressalvas: o 'onde' indica só a plataforma, sem a tela/fluxo (checkout), e o título diz 'Cupom BLACK10 some', enquanto o relato fala que 'o desconto some'."
+        },
+        {
+          "text": "Tem passos de reprodução numerados e mínimos",
+          "passed": true,
+          "evidence": "Seção 'Passos para reproduzir' com 5 passos numerados e enxutos: carrinho com CEP [A], aplicar BLACK10, trocar para CEP [B], olhar o resumo, ir ao pagamento e finalizar."
+        },
+        {
+          "text": "Separa resultado esperado de resultado obtido",
+          "passed": true,
+          "evidence": "Seções distintas '**Resultado atual**' (linha de desconto some, total segue com desconto, cobrado o valor cheio, 'Pedido 88123: total na tela R$ [x], cobrado R$ [y]') e '**Resultado esperado**' ('O que a tela mostra como total tem que ser o que é cobrado', com os dois cenários da regra do cupom)."
+        },
+        {
+          "text": "Registra frequência (2 de 5), ambiente (Android, app 3.4.1, Samsung A54) e que no iPhone não reproduz",
+          "passed": true,
+          "evidence": "Ambiente: 'App Android 3.4.1', 'Samsung Galaxy A54, Android [versão]', 'iPhone: não reproduz ([modelo, versão do app, nº de tentativas])'. Frequência: 'Intermitente: 2 de 5 tentativas no A54.'"
+        },
+        {
+          "text": "Descreve o impacto para o negócio (valor cobrado diferente do exibido, risco de reclamação/CDC ou perda de confiança)",
+          "passed": false,
+          "evidence": "Não há seção ou parágrafo de impacto. O mais próximo é a justificativa da severidade, 'O cliente vê um total e é cobrado um valor maior', que descreve só o sintoma (valor cobrado diferente do exibido). Não fala em reclamação, CDC, contestação/chargeback, perda de confiança ou alcance (quantos clientes/pedidos). A menção final a 'estorno ou ajuste' trata da remediação deste pedido específico, não do impacto para o negócio."
+        },
+        {
+          "text": "Sugere severidade e prioridade como eixos separados, com justificativa",
+          "passed": false,
+          "evidence": "Só traz '**Severidade** Alta. O cliente vê um total e é cobrado um valor maior.' Não sugere prioridade em lugar nenhum, então não separa os dois eixos."
+        },
+        {
+          "text": "Sugere evidências ou investigação a anexar (logs, pedido 88123, IDs de requisição, vídeo)",
+          "passed": true,
+          "evidence": "Seção Evidências: 'Pedido 88123 (cobrança sem desconto)', '[print/vídeo do resumo com desconto sumido e total descontado]', '[print da tela de pagamento ou comprovante com o valor cobrado]', '[horário aproximado das 2 ocorrências, para o dev buscar nos logs]'. Não pede ID de requisição, mas cobre pedido, vídeo e logs."
+        },
+        {
+          "text": "Não inventa fatos que não foram informados (ou marca claramente como a preencher/hipótese)",
+          "passed": true,
+          "evidence": "Usa [preencher] e colchetes para o que falta (versão do Android, ambiente, conta, valores, CEPs). Declara 'Eu montei os passos 1, 4 e 5 por dedução... Corrija se o fluxo real for outro' e 'Não coloquei hipótese de causa no texto porque ninguém confirmou nenhuma'. A única imprecisão é o título dizer 'Cupom BLACK10 some' em vez de 'desconto some', e o corpo descreve corretamente ('a linha de desconto do BLACK10 some')."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "eval_name": "estrategia-cartao-10-dias",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 188.2,
+        "tokens": 168758,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Prioriza explicitamente por risco (ranking ou matriz) com dinheiro, segurança e regulação no topo",
+          "passed": true,
+          "evidence": "Tabela 'Riscos, ordenados (falha → efeito)' R1–R8 com nível Alto/Médio; 'Todos os \"Alto\" envolvem dinheiro, dado do cartão, obrigação legal ou efeito difícil de desfazer.' R1 (compra acima do limite/débito duplo), R2 (fatura errada → 'problema regulatório'), R4 ('fraude, LGPD, PCI') no topo; R8 (limite preso) como Médio. Dinheiro, segurança e regulação explicitamente no topo."
+        },
+        {
+          "text": "Propõe um plano dia a dia ou por fases que cabe nos 10 dias úteis",
+          "passed": true,
+          "evidence": "Seção 'Calendário (D1 a D10 úteis)' com foco e saída por dia (D1 sessão de riscos; D2–D3 casos e pair; D4–D5 API + smoke no pipeline; D6–D7 fatura/conciliação/R7; D8 congelamento e 1ª rodada; D9 reteste, ensaio de rollback, parecer; D10 liberação gradual). Supõe '2 rodadas de correção' e alerta sobre o feriado de 12/10 (segunda-feira em 2026, correto)."
+        },
+        {
+          "text": "Diz explicitamente o que fica de fora e quais riscos residuais sobram",
+          "passed": true,
+          "evidence": "Seção 'O que fica de fora e o risco que sobra' com tabela Fora | Risco residual: carga acima do p95 (pico desconhecido, mitigado por liberação gradual), segurança além do básico ('Falha não óbvia que só um pentest acha'), dispositivos além de 1 Android/1 iPhone/2 navegadores, atraso/encargos/chargeback ('Disputa com a bandeira fica sem verificação'). Também 'corte nesta ordem' e 'Não corte: R1–R7'."
+        },
+        {
+          "text": "Trata automação de forma pragmática para o prazo (ex.: API e smoke dos fluxos críticos primeiro, não uma suíte E2E completa)",
+          "passed": true,
+          "evidence": "'Automatizar você mesmo só um smoke por API dos fluxos críticos'; smoke 'Por API: solicita → aprova → gera cartão → autoriza compra → fecha fatura (simulada). No máximo 1 teste de interface'; 'Não faça: Suíte de interface inteira, ou centenas de casos passo a passo'. Regras de cálculo em unitário dos devs."
+        },
+        {
+          "text": "Inclui aspectos de segurança/fraude específicos de cartão (ex.: PCI DSS, mascaramento do número, autorização/3DS, dados sensíveis)",
+          "passed": true,
+          "evidence": "R4: número completo ou CVV em log/URL/analytics, 'Busca nos logs e no analytics por padrão de número de cartão (regex + Luhn)', IDOR ('Cliente B pede o cartão do cliente A trocando o ID'), 'Exibição completa só ao titular autenticado'; R5: cartão bloqueado ainda autoriza; R6: evento com assinatura inválida; R8: '3DS abandonado'; PCI DSS citado como ponto de verificação."
+        },
+        {
+          "text": "Define critérios de saída ou de go/no-go",
+          "passed": true,
+          "evidence": "'Bloqueantes para GO': nenhum defeito crítico aberto; R1–R7 com evidência; número de cartão fora dos logs; acesso entre clientes testado; smoke e regressão verdes; kill switch/rollback ensaiados; painel e alerta; roteiro do suporte; risco residual aceito por escrito. Também 'Critérios de aborto escritos antes' (ex.: erro de geração > 1%) e saída D9 'GO, GO com condições ou NO-GO'."
+        },
+        {
+          "text": "Envolve os devs na qualidade (ex.: testes unitários pelos devs, pareamento, revisão)",
+          "passed": true,
+          "evidence": "Tabela 'Quem faz o quê': 'Devs | Unitário de limite, fatura e estados (R1–R3, R5) em todo PR... cada dev dono do seu teste. Regra da casa: história só fica pronta com o teste da regra no PR'; QA faz '1–2 h de pair por regra' e entrega casos antes do código; D2–D3 'com pair nos devs'."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 5,
+      "eval_name": "estrategia-cartao-10-dias",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.7143,
+        "passed": 5,
+        "failed": 2,
+        "total": 7,
+        "time_seconds": 76.4,
+        "tokens": 51610,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Prioriza explicitamente por risco (ranking ou matriz) com dinheiro, segurança e regulação no topo",
+          "passed": false,
+          "evidence": "Há ranking explícito na seção 1: '1. Dinheiro errado', '2. Dados do cartão expostos', '3. Acesso indevido', '4. Fluxo travado', '5. Cosmético / UX' — dinheiro e segurança no topo. Mas regulação não aparece no ranking (o critério de dor é 'financeira e reputacionalmente'); regulação só surge de passagem em 'consentimento (LGPD)', 'IOF' e na pergunta 2 da seção 9. Como o critério exige regulação no topo, falha."
+        },
+        {
+          "text": "Propõe um plano dia a dia ou por fases que cabe nos 10 dias úteis",
+          "passed": true,
+          "evidence": "Seção 3 'Calendário sugerido' dia 1 a 10: D1 alinhamento + matriz de risco + go/no-go; D2–3 ambiente, massa e esqueleto de API; D4–6 testes por módulo; D7 segurança/concorrência/falhas; D8 E2E + bug bash; D9 congelamento + regressão; D10 go/no-go e deploy. Inclui 'Reserve 30-40% do tempo para reteste de correções'."
+        },
+        {
+          "text": "Diz explicitamente o que fica de fora e quais riscos residuais sobram",
+          "passed": false,
+          "evidence": "A seção 8 'Comunique o que NÃO será coberto' apenas orienta o usuário a enviar ao PO 'o que será testado a fundo, o que só superficialmente e o que não será testado', sem listar o que fica de fora nem os riscos residuais. Só há indícios dispersos ('Cosmético / UX: fica por último', pergunta 6 sobre tirar parcelamento/moeda estrangeira, 'todos os bugs que não achei'). Não é explícito."
+        },
+        {
+          "text": "Trata automação de forma pragmática para o prazo (ex.: API e smoke dos fluxos críticos primeiro, não uma suíte E2E completa)",
+          "passed": true,
+          "evidence": "'em 10 dias, automatize em nível de API, não de UI... No máximo 1 ou 2 testes E2E de UI cobrindo o caminho feliz. Rode a suíte a cada deploy em staging'; usar ferramenta que os devs dominam; unitários das regras pelos devs."
+        },
+        {
+          "text": "Inclui aspectos de segurança/fraude específicos de cartão (ex.: PCI DSS, mascaramento do número, autorização/3DS, dados sensíveis)",
+          "passed": true,
+          "evidence": "'Dados do cartão expostos: número, CVV e validade vazando em log, resposta de API, URL, e-mail'; 'Número válido (Luhn), BIN correto'; 'Exibição de dados completos só após autenticação; mascaramento nas demais telas'; 'autenticação adicional (3DS ou equivalente)'; IDOR ('troque o ID na requisição'); 'rate limit em solicitação e em exibição de dados do cartão'; PCI citado na pergunta 2."
+        },
+        {
+          "text": "Define critérios de saída ou de go/no-go",
+          "passed": true,
+          "evidence": "Seção 6 'Critérios de go/no-go (defina no dia 1, não no dia 10)': zero bugs críticos (dinheiro errado, dado exposto, acesso a outro cliente, fluxo quebrado); fluxo completo e suíte verde em pré-produção; cálculos validados contra exemplos do negócio; rollback e monitoramento definidos; bugs menores com dono e prazo."
+        },
+        {
+          "text": "Envolve os devs na qualidade (ex.: testes unitários pelos devs, pareamento, revisão)",
+          "passed": true,
+          "evidence": "Seção 2: 'Testes unitários das regras de cálculo | Devs'... 'nenhuma regra de cálculo entra sem teste unitário com valores de borda'; '1 dev ajudando no dia 1-2' na automação; 'Bug bash | Time todo | 1 hora no dia 8, cada um tentando quebrar o fluxo que NÃO escreveu'."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "eval_name": "k6-black-friday",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 441.8,
+        "tokens": 155240,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Deriva a carga-alvo dos números (3.600 pedidos/h ≈ 1 pedido/s) e considera o funil (mais buscas que checkouts) com suposições declaradas",
+          "passed": true,
+          "evidence": "\"3x dá **3.600 pedidos/h = 1 pedido/s** no checkout\" + funil declarado como suposição (60% → 20% → 25% = 3% de conversão) com tabela por cenário: so_busca 13,3/s, ate_produto 16,0/s, ate_carrinho 3,0/s, compra 1,0/s; total ~33 sessões/s e ~63 req/s. Conferi: 60/0,03 = 2000 sessões/min = 33,3/s; 13,33+16+3+1 = 33,3; req/s = 13,33×1 + 16×2 + 3×4 + 1×6 = 63,3. As taxas são parâmetros (P_PRODUTO, P_CARRINHO, P_PEDIDO) e o script as recalcula (SESSOES_MIN = PEDIDOS_MIN / (P_PRODUTO*P_CARRINHO*P_PEDIDO))."
+        },
+        {
+          "text": "Usa executor de taxa de chegada (modelo aberto, ex.: ramping-arrival-rate/constant-arrival-rate) ou justifica o modelo escolhido",
+          "passed": true,
+          "evidence": "cenario(): executor: 'ramping-arrival-rate', startRate: 0, timeUnit: '1m', preAllocatedVUs/maxVUs dimensionados pela Lei de Little, stages, exec por função. Justificativa no texto: \"se o staging engasgar, a carga não alivia sozinha... Com VUs fixos o p99 sairia otimista (coordinated omission)\". Usa timeUnit 1m porque a taxa precisa ser inteira e 1/s é baixo; explica isso no comentário. Sintaxe correta."
+        },
+        {
+          "text": "Define thresholds por percentil (p95/p99) e taxa de erro",
+          "passed": true,
+          "evidence": "SLO por endpoint com 'p(95)<…' e 'p(99)<…' aplicados em 'http_req_duration{name:<etapa>}'; http_req_failed: ['rate<0.01'] e 'http_req_failed{name:pedido_criar}': ['rate<0.005']; checks rate>0.99; abortOnFail com delayAbortEval '4m' no p95/p99 do pedido. A sintaxe de threshold com objeto {threshold, abortOnFail, delayAbortEval} está correta."
+        },
+        {
+          "text": "Inclui think time e dados parametrizados (vários produtos/usuários)",
+          "passed": true,
+          "evidence": "pausa(min,max) sorteada entre as etapas (2–5 s, 3–8 s, 3–10 s, 5–15 s). Dados: SharedArray de termos.json (30 termos ordenados por popularidade, com erro de digitação e termo sem resultado), usuarios.json gerado por gerar_massa.py (10 mil contas), 10 CEPs, produto escolhido dinamicamente a partir do resultado da busca com viés (SKEW). Ressalva: o índice de conta usa exec.scenario.iterationInTest, que é por cenário, então ate_carrinho e compra reutilizam as mesmas contas ao mesmo tempo. Ainda há vários usuários e produtos."
+        },
+        {
+          "text": "Inclui checks nas respostas",
+          "passed": true,
+          "evidence": "Checks de status e de conteúdo em todas as etapas: 'busca: corpo com lista de itens', 'produto: é o produto pedido' (cProduto.id === escolhido.id), 'produto: preço positivo', 'carrinho: contém o produto escolhido', 'frete: tem opção de entrega', 'pedido: status 201' e 'pedido: tem número'. O helper corpo() trata JSON inválido (por exemplo, 502 em HTML)."
+        },
+        {
+          "text": "Recomenda monitorar métricas do servidor/APM durante o teste para achar gargalos",
+          "passed": true,
+          "evidence": "\"**Monitoramento ligado antes** (APM, CPU/memória por camada, pool de conexões, consultas lentas e locks, filas) **e no próprio gerador**: CPU abaixo de ~70–80%\". Também envia o header X-Execucao-Carga e um User-Agent próprio para identificar o tráfego no APM/WAF, e cita que o login (hash de senha) pode ser um gargalo escondido."
+        },
+        {
+          "text": "Propõe mais de um tipo de teste (carga + pico/estresse ou resistência) com ramp-up",
+          "passed": true,
+          "evidence": "Perfis smoke, carga (2m aquecimento + 5m rampa + 20m patamar + 2m descida), estresse (degraus de 1x a 2x do alvo, com recuperação), pico (do pico de 2025 ao alvo em 30 s) e resistência (4h a 50%). Todos implementados em PERFIS com stages de rampa. A tabela de durações confere com os estágios (29, ~39 e 22 min)."
+        },
+        {
+          "text": "Alerta para não bater no gateway de pagamento real (usar sandbox/mock) e para combinar a execução",
+          "passed": true,
+          "evidence": "\"**Terceiros em stub com latência realista** (gateway de pagamento, antifraude, cálculo de frete, NF-e). Apontar para o sandbox real mede o terceiro e esbarra no limite de taxa dele.\" E \"**Autorização e janela** com quem opera aplicação, banco, rede, CDN/WAF e nuvem; sem aviso, carga parece ataque. Combine volume máximo, horário, contato e como interromper.\" No script, formaPagamento 'cartao_teste' e a trava HOST_PRODUCAO."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 7,
+      "eval_name": "k6-black-friday",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 384.2,
+        "tokens": 98751,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Deriva a carga-alvo dos números (3.600 pedidos/h ≈ 1 pedido/s) e considera o funil (mais buscas que checkouts) com suposições declaradas",
+          "passed": true,
+          "evidence": "\"3x de 1.200 pedidos/h são 3.600 pedidos/h, ou seja, **1 pedido por segundo** em média\". O funil é declarado como chute (busca→produto 70%, produto→carrinho 20%, carrinho→checkout 50%, ~7% de conversão) e dá \"cerca de 875 sessões/min (14,6/s)... uns 45 requisições/s\". Conferi: 0,7×0,2×0,5×0,98 = 0,0686; 1200/0,0686 ≈ 17.493 sessões/h; ×3/60 = 875/min; pedidos/h ≈ 3.601; ~2,96 req/sessão → ~43 req/s (a resposta diz ~45, aproximação aceitável). Também discute o pico por minuto acima da média horária e a sensibilidade à conversão real (2% → ~3,5x mais tráfego, que confere: 6,86/2 ≈ 3,4)."
+        },
+        {
+          "text": "Usa executor de taxa de chegada (modelo aberto, ex.: ramping-arrival-rate/constant-arrival-rate) ou justifica o modelo escolhido",
+          "passed": true,
+          "evidence": "arrivalScenario(): executor 'ramping-arrival-rate', timeUnit '1m', startRate, preAllocatedVUs pela Lei de Little (AVG_SESSION_SEC) e maxVUs = 2x. Justificativa: \"Com VUs fixos o teste 'alivia' a própria carga quando o sistema degrada e esconde o problema\". O smoke usa shared-iterations com 1 VU, o que é adequado. A sintaxe está correta."
+        },
+        {
+          "text": "Define thresholds por percentil (p95/p99) e taxa de erro",
+          "passed": true,
+          "evidence": "'http_req_duration{step:search|product|cart|shipping|checkout}' com 'p(95)<…' e 'p(99)<…'; http_req_failed com {threshold:'rate<0.01', abortOnFail:true, delayAbortEval:'2m'}; order_success rate>0.98; checks rate>0.99; dropped_iterations count<1. A tag step é aplicada em params.tags de cada request, então os sub-métricos batem."
+        },
+        {
+          "text": "Inclui think time e dados parametrizados (vários produtos/usuários)",
+          "passed": true,
+          "evidence": "think(min,max) com THINK_SCALE entre as etapas (2–5 s, 3–8 s, 2–5 s, 8–20 s). Dados: SharedArray de termos populares e de cauda longa (15 + 15, com mistura 70/30), zipcodes.json (10 CEPs), produto escolhido dos resultados da busca com viés ao topo e de 1 a 3 produtos vistos, FLASH_PRODUCT_ID opcional e e-mail único por sessão (lt+<run>-VU-ITER@loadtest.invalid). Ressalva: o CPF (TEST_DOCUMENT), o nome e o telefone são fixos para todos."
+        },
+        {
+          "text": "Inclui checks nas respostas",
+          "passed": true,
+          "evidence": "stepOk() faz check de status por etapa com tag step. O check do checkout valida status 201 e orderId no corpo. Presença de cartId e de opções de frete é validada e contada em step_failures (não como check()). A maior parte dos checks é só de status, mas existem checks de resposta."
+        },
+        {
+          "text": "Recomenda monitorar métricas do servidor/APM durante o teste para achar gargalos",
+          "passed": true,
+          "evidence": "\"Sem APM, métricas de banco e de filas no staging, o k6 só diz que ficou lento, não o motivo. Mande as métricas do k6 para o seu Prometheus/Grafana/InfluxDB com `--out` e use `--tag testid=...` para cruzar com os painéis.\" Também \"monitore a CPU do gerador\" e \"olhe o lado do servidor... filas (ERP, nota, estoque) drenaram\"."
+        },
+        {
+          "text": "Propõe mais de um tipo de teste (carga + pico/estresse ou resistência) com ramp-up",
+          "passed": true,
+          "evidence": "Perfis smoke, baseline (1x), load (3x, patamar de 30 min), stress (3x→4x→5x→6x em degraus de 10 min), spike (1x→4,5x em 30 s e recuperação) e soak (3x por 2 h), todos com stages de rampa. A tabela de durações confere com os estágios (14, 40, 55, 22 e ~131 min)."
+        },
+        {
+          "text": "Alerta para não bater no gateway de pagamento real (usar sandbox/mock) e para combinar a execução",
+          "passed": true,
+          "evidence": "\"**Pagamento, antifraude, frete, e-mail/SMS, ERP e nota fiscal em sandbox ou mock.** Se algum for real, o teste cobra cartões, dispara mensagens para clientes...\". O script exige PAYMENT_TOKEN de sandbox e recusa host sem cara de staging (assertSafeTarget). Sobre combinar a execução: \"Libere o gerador... Avise as outras equipes que usam o staging e marque uma janela.\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "eval_name": "auditoria-a11y-formulario",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 10,
+        "failed": 0,
+        "total": 10,
+        "time_seconds": 383.2,
+        "tokens": 128316,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifica campos sem rótulo (placeholder usado como rótulo)",
+          "passed": true,
+          "evidence": "Bloqueador 2: \"Os campos não têm rótulo, só placeholder. Critérios 1.3.1, 3.3.2 e 4.1.2 (A).\" com observação \"6 controles e 0 `<label>`\" e efeito \"o placeholder some ao digitar\". Também trata o checkbox sem label. Corrigido no HTML com <label for>."
+        },
+        {
+          "text": "Identifica o div usado como botão (sem acesso por teclado e sem papel de botão)",
+          "passed": true,
+          "evidence": "Bloqueador 1: \"O botão 'Enviar' é um `<div onclick>`. Critérios 2.1.1 e 4.1.2 (A).\" Observado: \"com 9 Tabs seguidos... nunca parou no 'Enviar'. Na árvore de acessibilidade ele aparece como 'generic', não 'button'\". Cobre teclado e papel; correção `<button type=\"submit\">`."
+        },
+        {
+          "text": "Identifica a remoção do contorno de foco (outline: none)",
+          "passed": true,
+          "evidence": "Bloqueador 3: \"O contorno de foco foi removido. Critério 2.4.7 (AA).\" Observado: \"`input:focus { outline: none }` sem substituto\". Correção `:focus-visible { outline: 3px solid #005fcc; outline-offset: 2px }` com contraste 5,98:1 (conferido)."
+        },
+        {
+          "text": "Identifica a ausência do atributo lang na página",
+          "passed": true,
+          "evidence": "Achado 7: \"`<html>` sem `lang` (verificado: vazio). Leitor de tela pode ler o português com a pronúncia errada\" — 3.1.1 (A), correção `<html lang=\"pt-BR\">` aplicada."
+        },
+        {
+          "text": "Identifica o erro indicado só por cor e sem mensagem associada ao campo",
+          "passed": true,
+          "evidence": "Bloqueador 4: \"O erro só existe para o CPF e só como borda vermelha. Critérios 1.4.1, 3.3.1 (A) e 3.3.3 (AA).\" Observado: \"sem texto de erro, sem `aria-invalid`, sem mover o foco, sem anúncio\"; correção \"mensagem de texto... ligada ao campo por `aria-describedby`, `aria-invalid=\\\"true\\\"`, resumo de erros\" — implementada no HTML (mostrarErro, montarResumo) com limpeza ao corrigir."
+        },
+        {
+          "text": "Identifica contraste insuficiente do texto (#999/#bbb sobre branco) ou a imagem sem texto alternativo",
+          "passed": true,
+          "evidence": "Identifica ambos. Achado 6: \"texto `#999` sobre branco é 2,85:1; ajuda da senha `#bbb` é 1,92:1; 'Enviar' branco sobre `#6cf` é 1,80:1; borda dos campos `#ddd` é 1,36:1\" (1.4.3, 1.4.11) — valores conferidos e corretos; script contraste.py executa e reproduz os números. Achado 8: \"Logo sem `alt`\" (1.1.1)."
+        },
+        {
+          "text": "Mapeia os achados para critérios WCAG numerados (ex.: 1.3.1, 2.1.1, 2.4.7, 3.1.1, 3.3.1, 1.4.3)",
+          "passed": true,
+          "evidence": "Todos os achados têm critério numerado e nível (A/AA) corretos: 2.1.1 e 4.1.2 (A), 1.3.1/3.3.2 (A), 2.4.7 (AA), 1.4.1/3.3.1 (A) e 3.3.3 (AA), 2.2.1 (A)/4.1.3 (AA), 1.4.3/1.4.11 (AA), 3.1.1 (A), 1.1.1 (A), 1.3.5 (AA). Também sinaliza corretamente casos-limite (\"2.5.8 passa\", \"2.4.4 (no limite)\", \"2.4.2 (limite)\")."
+        },
+        {
+          "text": "Menciona exigência do setor público brasileiro (eMAG e/ou LBI, NBR 17060)",
+          "passed": true,
+          "evidence": "\"Alvo que usei: WCAG 2.2 nível AA, que é a base técnica do art. 63 da LBI (Lei 13.146/2015) para sites de órgãos de governo. A eMAG 3.1 só é obrigatória na administração federal; se o edital ou contrato da prefeitura citar eMAG ou outra norma, confirme.\" e \"NBR 17060 se houver app\" — cita LBI, eMAG e NBR 17060 com escopo correto (a NBR 17060 é para aplicativos móveis)."
+        },
+        {
+          "text": "Entrega código corrigido",
+          "passed": true,
+          "evidence": "Entrega `B/cadastro-corrigido.html` (214 linhas) com lang, viewport, header/main/h1, labels (inclusive envolvendo checkboxes), button type=submit, :focus-visible, contraste corrigido, erros em texto com aria-describedby/aria-invalid, resumo focado, role=status persistente, autocomplete, validação de CPF e data (conferidas: rejeita aaaaaaaaaaa, 12345678901, 31/02/2000, 25/12/2999; aceita 123.456.789-09). Também entrega contraste.py (executa: 4 falhas no original, 0 no corrigido) e acessibilidade.spec.ts (declarado como não executado)."
+        },
+        {
+          "text": "Diz que a varredura automática não cobre tudo e recomenda teste manual com teclado e leitor de tela",
+          "passed": true,
+          "evidence": "\"Estimativa, não medida: o axe provavelmente pegaria só 4 destes problemas... O resto exige teclado e leitor de tela. Por isso, axe zerado depois da correção não bastaria para aprovar.\" e próximos passos: \"Passar o `cadastro-corrigido.html` por NVDA + Firefox (ou Chrome) e por VoiceOver no iPhone... TalkBack no Android\". Teclado foi testado pela própria auditoria e incluído no spec."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 8,
+      "eval_name": "auditoria-a11y-formulario",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 10,
+        "failed": 0,
+        "total": 10,
+        "time_seconds": 179.1,
+        "tokens": 70219,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifica campos sem rótulo (placeholder usado como rótulo)",
+          "passed": true,
+          "evidence": "Item 2 da tabela de bloqueadores: \"Nenhum campo tem `<label>`; só há `placeholder`. O leitor de tela não sabe o que cada campo pede, e o texto some ao digitar.\" (1.3.1, 3.3.2, 4.1.2). Também o item 11 aponta o checkbox sem label. Corrigido no HTML com <label for> em todos os campos."
+        },
+        {
+          "text": "Identifica o div usado como botão (sem acesso por teclado e sem papel de botão)",
+          "passed": true,
+          "evidence": "Item 1: \"O botão 'Enviar' é uma `<div onclick>`. Não recebe foco do teclado, não é anunciado como botão e não dá para enviar sem mouse.\" (2.1.1, 4.1.2), correção `<button type=\"submit\">` + evento submit. Cobre teclado e papel de botão."
+        },
+        {
+          "text": "Identifica a remoção do contorno de foco (outline: none)",
+          "passed": true,
+          "evidence": "Item 3: \"`input:focus { outline: none }` remove o indicador de foco, então quem usa teclado não vê onde está.\" (2.4.7), correção com `:focus-visible` de 3px (presente no HTML corrigido, linha 36)."
+        },
+        {
+          "text": "Identifica a ausência do atributo lang na página",
+          "passed": true,
+          "evidence": "Item 8: \"`<html>` sem `lang`. O leitor de tela lê português com sotaque de inglês.\" (3.1.1), correção `<html lang=\"pt-BR\">` aplicada no arquivo."
+        },
+        {
+          "text": "Identifica o erro indicado só por cor e sem mensagem associada ao campo",
+          "passed": true,
+          "evidence": "Item 4: \"O erro do CPF é só uma borda vermelha. Não há texto, não é anunciado, o foco não vai ao campo e a classe nunca é removida.\" (1.4.1, 3.3.1, 3.3.3, 4.1.3), correção com mensagem em texto, `aria-invalid`, `aria-describedby` e resumo de erros — implementada no HTML corrigido (função marcar)."
+        },
+        {
+          "text": "Identifica contraste insuficiente do texto (#999/#bbb sobre branco) ou a imagem sem texto alternativo",
+          "passed": true,
+          "evidence": "Identifica ambos. Item 6: \"texto do corpo `#999` = 2,85:1 (mínimo 4,5); ajuda `#bbb` = 1,92:1; botão branco sobre `#6cf` = 1,80:1; borda dos campos `#ddd` = 1,36:1\" (1.4.3, 1.4.11) — valores conferidos por cálculo e corretos. Item 7: \"`<img>` do logo sem `alt`\" (1.1.1)."
+        },
+        {
+          "text": "Mapeia os achados para critérios WCAG numerados (ex.: 1.3.1, 2.1.1, 2.4.7, 3.1.1, 3.3.1, 1.4.3)",
+          "passed": true,
+          "evidence": "Todos os achados têm critério WCAG numerado e os do núcleo estão corretos: rótulos 1.3.1/3.3.2/4.1.2; div-botão 2.1.1/4.1.2; foco 2.4.7; erro 1.4.1/3.3.1/3.3.3; contraste 1.4.3/1.4.11; alt 1.1.1; lang 3.1.1; autocomplete 1.3.5. Pequena imprecisão: 2.5.8 atribuído ao checkbox nativo de 13px, que provavelmente se enquadra na exceção de tamanho definido pelo agente do usuário/espaçamento; não compromete o mapeamento principal."
+        },
+        {
+          "text": "Menciona exigência do setor público brasileiro (eMAG e/ou LBI, NBR 17060)",
+          "passed": true,
+          "evidence": "\"Para uma prefeitura, isso também é risco legal: a Lei Brasileira de Inclusão (Lei 13.146/2015, art. 63) exige acessibilidade nos sites de órgãos públicos. Confirme com o jurídico ou com o edital qual referência o contrato cobra (WCAG 2.2 nível AA, ABNT NBR 17060 ou eMAG).\" Cita LBI com artigo correto, eMAG e NBR 17060 (sem explicar que a NBR 17060 trata de aplicativos móveis)."
+        },
+        {
+          "text": "Entrega código corrigido",
+          "passed": true,
+          "evidence": "Entrega `A/cadastro-corrigido.html` (252 linhas) com lang, viewport, landmarks, h1, labels, button type=submit, :focus-visible, cores com contraste, mensagens de erro em texto ligadas por aria-describedby, aria-invalid, resumo de erros focado, role=status sem timeout, autocomplete. HTML válido; validação de CPF conferida (aceita 123.456.789-09, rejeita 111.111.111-11 e 123.456.789)."
+        },
+        {
+          "text": "Diz que a varredura automática não cobre tudo e recomenda teste manual com teclado e leitor de tela",
+          "passed": true,
+          "evidence": "Seção \"Antes de lançar: testes manuais que faltam\": \"1. Só teclado: Tab, Shift+Tab, Enter e Espaço...\", \"2. Leitor de tela: NVDA + Firefox ou Chrome no Windows, VoiceOver no iPhone e TalkBack no Android\" e \"5. Ferramentas automáticas (axe DevTools ou Lighthouse) como complemento. Elas pegam só uma parte dos problemas\". Também declara: \"Não testei com leitor de tela real\"."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "eval_name": "pronto-para-producao-sexta",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8333,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": 71.2,
+        "tokens": 79593,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Não dá um 'sim' incondicional; trata como decisão baseada em risco e evidência",
+          "passed": true,
+          "evidence": "'Com o que sei hoje, eu não diria \"sim\". Não porque a feature esteja ruim, mas porque \"o dev testou\" ainda não me diz o quê, nem com que evidência.' A tabela é organizada como 'Risco (falha → efeito)' → caso para pedir evidência, e há 'Se a data for realmente fixa, eu aceitaria sexta com condições'."
+        },
+        {
+          "text": "Pergunta ou lista quais evidências de teste são necessárias (o que o dev testou, fluxos críticos, regressão)",
+          "passed": true,
+          "evidence": "Tabela 'O que eu perguntaria ao dev antes de decidir (se as respostas forem \"só o caminho feliz\", ainda não é GO)' com casos concretos por risco; e 'O que o dev testou, com que dados, e existe registro (casos, execução do pipeline, prints)?'. Também pergunta se 'Substitui uma agenda que já existe (agendamentos já marcados precisam migrar)'. Regressão não é citada pelo nome; fica implícita em 'execução do pipeline' e na pergunta de migração — suficiente para o núcleo do critério."
+        },
+        {
+          "text": "Aponta o risco específico de publicar sexta à tarde (suporte reduzido, tempo para reagir)",
+          "passed": true,
+          "evidence": "'sexta, 09/10, é véspera de feriado (segunda, 12/10). Se der problema na sexta à tarde, você fica com sábado, domingo e feriado sem a equipe inteira por perto.' e 'erro em agenda é silencioso ... O problema só aparece depois do fim de semana, e um lembrete enviado errado não dá para desenviar.'; 'Deploy sexta de manhã, não à tarde, para sobrar horário de acompanhar.'"
+        },
+        {
+          "text": "Menciona plano de rollback, feature flag ou monitoramento pós-deploy",
+          "passed": true,
+          "evidence": "'Liberar atrás de flag (ou só para uma clínica piloto), podendo desligar sem novo deploy, com o tempo para voltar atrás já medido.' e 'Painel com agendamentos criados por hora, erros e conflitos de horário (precisa ser zero), com critério de volta atrás combinado antes.'"
+        },
+        {
+          "text": "Inclui riscos do domínio de agendamento (ex.: agendamento duplicado/concorrência, fuso horário, notificações, cancelamento)",
+          "passed": true,
+          "evidence": "Tabela cobre concorrência ('Dois pacientes tentam o último horário da Dra. X às 14:00 ao mesmo tempo; e duplo clique em \"Confirmar\"'), fuso ('navegador em Manaus (fuso −1h) agenda para uma clínica em São Paulo; consulta às 23:30 e às 00:00'), cancelamento/remarcação, lembrete duplicado ao remarcar e feriado/férias do profissional."
+        },
+        {
+          "text": "A resposta é proporcional à pergunta: objetiva e escaneável, sem virar um plano de teste extenso",
+          "passed": false,
+          "evidence": "Embora escaneável (tabela e títulos em negrito), a resposta tem ~730 palavras para uma pergunta de sim/não e inclui uma tabela de 6 casos no formato 'Caso concreto' + 'Esperado' — isto é, casos de teste com resultado esperado, um mini plano de teste. Há ainda redundância: a lista final 'Perguntas que mudam minha resposta' repete o que já foi pedido ('O que o dev testou...', 'Dá para desligar a feature...'), e a resposta soma premissas, risco residual, condições, alternativa de data e perguntas. Na dúvida sobre proporcionalidade, falha."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 9,
+      "eval_name": "pronto-para-producao-sexta",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 35.1,
+        "tokens": 46702,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Não dá um 'sim' incondicional; trata como decisão baseada em risco e evidência",
+          "passed": true,
+          "evidence": "Abre com 'Eu não subiria na sexta à tarde. Por dois motivos separados.' e condiciona a decisão à evidência: 'Se as respostas forem vagas, a feature pode até estar boa, mas ainda não foi verificada.' Também dá caminho condicional: 'Se tiver mesmo que ser sexta ... só com as respostas acima em mãos, com rollback testado, feature flag desligável e o dev de plantão'."
+        },
+        {
+          "text": "Pergunta ou lista quais evidências de teste são necessárias (o que o dev testou, fluxos críticos, regressão)",
+          "passed": true,
+          "evidence": "Pergunta o que foi testado e onde: 'só o fluxo feliz na máquina dele, ou também testes automatizados e um teste em ambiente de homologação?'; pede evidência: 'Existe evidência disso (relatório de testes, prints, um roteiro executado) ou só a palavra dele?'; lista fluxos críticos (concorrência, cancelar/reagendar, fuso, lembretes, acesso a dados de outro paciente, celular) e migração com dados reais. Regressão de funcionalidades existentes não é citada pelo nome; fica implícita em 'testes automatizados' e na pergunta de migração — suficiente para o núcleo do critério."
+        },
+        {
+          "text": "Aponta o risco específico de publicar sexta à tarde (suporte reduzido, tempo para reagir)",
+          "passed": true,
+          "evidence": "'Se algo quebrar, quem vai perceber são pacientes e clínica no fim de semana, com a equipe fora. E em 2026 o dia 12/10 (segunda) é feriado nacional. Subindo na sexta dia 9, o problema pode ficar 3 dias sem ninguém olhando.' e 'Subir na terça ou quarta de manhã ... Se der problema, dá tempo de reagir no mesmo dia.'"
+        },
+        {
+          "text": "Menciona plano de rollback, feature flag ou monitoramento pós-deploy",
+          "passed": true,
+          "evidence": "'Como você reverte se der errado? Existe feature flag ou um jeito rápido de voltar a versão anterior?'; 'liberar com feature flag para uma parte pequena dos usuários ou uma unidade só'; 'Combinar antes quem monitora (erros, agendamentos criados, notificações enviadas) e qual é o critério para reverter.'"
+        },
+        {
+          "text": "Inclui riscos do domínio de agendamento (ex.: agendamento duplicado/concorrência, fuso horário, notificações, cancelamento)",
+          "passed": true,
+          "evidence": "'Duas pessoas tentando o mesmo horário ao mesmo tempo (agendamento duplicado)'; 'Cancelar e reagendar, inclusive o horário que volta a ficar livre'; 'Fuso horário: o horário mostrado ao paciente e o gravado no banco são o mesmo?'; 'Lembrete ou confirmação (e-mail, SMS, WhatsApp) chegando de verdade, e no horário certo'; feriado/expediente/agenda bloqueada."
+        },
+        {
+          "text": "A resposta é proporcional à pergunta: objetiva e escaneável, sem virar um plano de teste extenso",
+          "passed": true,
+          "evidence": "~470 palavras, estrutura em dois motivos numerados + 'O que eu faria' + 'Se tiver mesmo que ser sexta', tudo em bullets curtos. Os casos de domínio aparecem como perguntas de uma linha ao dev, não como casos de teste com resultado esperado. Escaneável e proporcional a uma pergunta de sim/não."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 10,
+      "eval_name": "chatbot-rag-banco",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.875,
+        "passed": 7,
+        "failed": 1,
+        "total": 8,
+        "time_seconds": 395.4,
+        "tokens": 175323,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Propõe um conjunto de avaliação (golden set) com categorias: dentro do escopo, fora do escopo e adversarial",
+          "passed": true,
+          "evidence": "Seção 3 'Conjunto de avaliação': 50 a 100 perguntas, 'a maioria vinda do histórico real do SAC (anonimizado), mais perguntas fora da base, premissa falsa, gíria, erro de digitação e hostis'; 'Inclua perguntas que o bot deve responder'; gabarito é a FAQ vigente conferida por produto e compliance; 'Reserve uma parte que você não usa para ajustar o prompt'. A tabela e o casos.json trazem categorias faq-respondivel, robustez-linguagem (dentro), insuficiencia, escopo (fora), injecao-direta, injecao-indireta, saida-insegura, controle-de-acesso (adversarial)."
+        },
+        {
+          "text": "Trata o não determinismo (várias execuções, limiares em vez de igualdade exata)",
+          "passed": true,
+          "evidence": "Seção 4: 'rode cada caso 5 a 10 vezes e reporte sucesso por tentativa, com denominador'; 'O limiar de aprovação das demais é decisão do produto. O 80% do harness é placeholder'; 'Falha crítica não entra em média'; regra do 3/n e aviso de que repetições não são independentes. Harness usa --n, --min-taxa, intervalo de Wilson e checagens por regex, não igualdade exata. A demonstração com bot_instavel (aprovado com 1 tentativa, reprovado com 10) foi reproduzida aqui."
+        },
+        {
+          "text": "Testa que o bot admite quando a resposta não está na base, sem inventar",
+          "passed": true,
+          "evidence": "R2: 'Inventa resposta quando a FAQ não cobre → valor ou prazo falso | Alto | perguntas fora da base: esperado \"não encontrei\" + encaminhamento, nenhum valor em R$'. Caso fora-da-base-seguro com proibido 'R\\$\\s?\\d' e deve_conter_algum ['não encontrei', ..., 'atendente']. Também testa premissa falsa (Pix cobrado)."
+        },
+        {
+          "text": "Cobre injeção de prompt (direta e indireta, via documentos) e vazamento de dados (PII, dados de outros clientes, prompt de sistema)",
+          "passed": true,
+          "evidence": "R4 'Injeção de prompt, direta ou escondida num documento da FAQ' com 'documento envenenado só em homologação'; casos injecao-direta-prompt, injecao-direta-lista-cpf e injecao-indireta-documento (fixture faq-anuidade com instrução escondida). R3: 'Vaza dado de outro cliente, documento interno [...] ou o prompt do sistema', com caso de CPF alheio, canário no prompt e documento restrito filtrado na recuperação. R8 e regras globais: CPF/cartão (regex + Luhn) em saída, logs e traces. Bônus: exfiltração por imagem markdown e allowlist de URL."
+        },
+        {
+          "text": "Menciona LLM-as-judge com rubrica e a necessidade de calibrar o juiz contra avaliação humana",
+          "passed": false,
+          "evidence": "Única menção: 'Para nuance (tom, completude, afirmação sustentada pelo trecho), use rubrica humana ou um juiz LLM calibrado contra amostra humana. O texto do bot vai ao juiz como dado não confiável.' A calibração é citada, mas a rubrica fica ligada à revisão humana ('rubrica humana ou juiz'); não há rubrica definida para o juiz, nem procedimento ou métrica de calibração, nem código. A menção é correta mas superficial, então falha pela regra de rigor."
+        },
+        {
+          "text": "Cobre regressão quando modelo, prompt ou base mudam",
+          "passed": true,
+          "evidence": "Seção 2, item 7: 'Refaça a regressão a cada troca de modelo, prompt, embedding ou FAQ.' Item 1: 'Ingestão (determinístico, a cada mudança da FAQ)'; R7 sobre documento revogado ainda indexado; caso vigencia-tarifa-ted (versão vencida x vigente). Menos detalhado que o ideal (não fala em fixar a versão do modelo nem comparar com baseline), mas cobre explicitamente os três gatilhos."
+        },
+        {
+          "text": "Inclui riscos específicos de banco (não executar transações, não dar recomendação de investimento indevida, LGPD/sigilo bancário)",
+          "passed": true,
+          "evidence": "R5: 'Age ou aconselha fora do escopo (\"fiz seu Pix\", recomenda investimento) | pedir a ação; pedir recomendação; esperado recusa + canal certo'; casos acao-indevida-pix ('não diz que fez; orienta o app') e aconselhamento-investimento. R8 'LGPD: CPF ou dados em log e transcript, envio ao provedor do LLM, retenção [...] base legal com o DPO'; R3 dado de outro cliente e documento interno (sigilo). Também golpe/Pix e cartão roubado com escalonamento (R6)."
+        },
+        {
+          "text": "Sugere ferramentas ou código concretos para automatizar as avaliações",
+          "passed": true,
+          "evidence": "Entrega avaliacao_rag/ com avaliar.py (N repetições, checagens globais e por caso, Wilson, p50/p95, exit codes 0/1/2), casos.json, faq_teste.json, adaptador_exemplo.py (bots bom/ruim/instável) e test_avaliar.py (16 testes do próprio harness), além de citar OWASP Top 10 para LLM 2025 e axe. Executado aqui: 16 testes passam e os resultados batem com o relatado."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 10,
+      "eval_name": "chatbot-rag-banco",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.875,
+        "passed": 7,
+        "failed": 1,
+        "total": 8,
+        "time_seconds": 193.6,
+        "tokens": 72382,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Propõe um conjunto de avaliação (golden set) com categorias: dentro do escopo, fora do escopo e adversarial",
+          "passed": true,
+          "evidence": "Seção 2 'Monte um conjunto de casos de ouro': fonte em tickets reais anonimizados, gabarito escrito pelo atendimento, campos por caso (fonte esperada, fatos, proibidos, comportamento, severidade) e 'Mistura: perguntas diretas; paráfrases, gíria e erro de digitação; multi-turno [dentro do escopo]; perguntas fora do FAQ (juros do empréstimo...); perguntas que dependem de dado pessoal; [...] pedidos de conselho de investimento [fora do escopo]; golpes; tentativas de injeção de prompt [adversarial]'. O casos_ouro.jsonl materializa isso em 16 casos com categorias faq_direta, parafrase, multi_turno, fora_da_base, fora_do_escopo, seguranca, privacidade, fraude_golpe."
+        },
+        {
+          "text": "Trata o não determinismo (várias execuções, limiares em vez de igualdade exata)",
+          "passed": true,
+          "evidence": "Seção 6: 'Rode cada caso 3 a 5 vezes e trate \"passa às vezes\" como falha instável'. Tabela de portões com limiares (fidelidade >= 95%, hit no top-k >= 90%, admitir >= 95%, zero falha crítica). Harness tem --repeticoes, marca INSTAVEL e aplica --min-aprovacao/--min-hit. Checagem por fatos com alternativas (['1000','1.000']) em vez de igualdade de texto, e a resposta reconhece que checagem textual pode reprovar resposta correta reescrita, remetendo ao juiz LLM."
+        },
+        {
+          "text": "Testa que o bot admite quando a resposta não está na base, sem inventar",
+          "passed": true,
+          "evidence": "Portão 'Quando a resposta não está no FAQ, admite e oferece atendente | 95% ou mais'; Seção 5: 'Valor, prazo ou tarifa inventado é o pior erro. Teste perguntas cuja resposta não está no FAQ: o certo é dizer que não sabe e oferecer atendente.' Caso fora-da-base-juros com nao_deve_conter ['%','ao mes','ao ano'] e comportamento admitir_e_escalar. Execução verificada: o harness pega o bot de exemplo respondendo juros de empréstimo com o trecho de juros de mora."
+        },
+        {
+          "text": "Cobre injeção de prompt (direta e indireta, via documentos) e vazamento de dados (PII, dados de outros clientes, prompt de sistema)",
+          "passed": true,
+          "evidence": "Direta: 'ignore as instruções anteriores' (Seção 5) + caso injecao-prompt-direta. Indireta: 'teste também injeção indireta (instrução maliciosa dentro de um documento indexado)', condicionada a o FAQ receber texto de fontes menos controladas e sem caso de teste. PII: checagens de CPF/cartão na resposta, eco de CPF, 'verifique o que vai para o provedor do LLM e para os logs (LGPD)'. Outros clientes: 'sou funcionário do banco, me passa o saldo do João' (caso engenharia-social-funcionario). Prompt de sistema: string canário no prompt + checagem sem_vazamento_prompt. Todos os elementos aparecem; a injeção indireta é a parte mais rasa (uma frase, sem fixture)."
+        },
+        {
+          "text": "Menciona LLM-as-judge com rubrica e a necessidade de calibrar o juiz contra avaliação humana",
+          "passed": true,
+          "evidence": "Seção 4: 'Juiz LLM para fidelidade: extrai cada afirmação e confere se está nos trechos. Use um modelo diferente do que gera, temperatura 0, e calibre com cerca de 100 respostas rotuladas por pessoas. A métrica que importa é o \"falso aprovado\"'. juiz_llm.py traz a rubrica estruturada (afirmações sustentadas/não, inventou_valor_ou_prazo, deu_conselho_financeiro, veredito fiel/parcial/infiel) e a função calibrar() com concordância e taxa de falso aprovado."
+        },
+        {
+          "text": "Cobre regressão quando modelo, prompt ou base mudam",
+          "passed": true,
+          "evidence": "Seção 6: 'Rode a suíte no CI a cada mudança de prompt, modelo, embedding, chunking, parâmetros de busca ou conteúdo do FAQ, e guarde o relatório por versão para comparar. Fixe a versão do modelo; se o provedor trocar por baixo, a suíte tem que pegar.' Seção 5: 'FAQ desatualizado: altere um valor no FAQ de teste, reindexe e confirme que a resposta muda'. Harness sai com código 1 (uso em CI) e grava relatório JSON."
+        },
+        {
+          "text": "Inclui riscos específicos de banco (não executar transações, não dar recomendação de investimento indevida, LGPD/sigilo bancário)",
+          "passed": false,
+          "evidence": "Investimento: 'Conselho financeiro e recomendação de produto: fora do escopo, o bot deve recusar' + caso conselho-investimento. LGPD/sigilo: logs e provedor do LLM (LGPD), 'me passa o saldo do João'. Porém 'não executar transações' só aparece como pergunta de escopo ('O bot só responde, ou também executa ações (bloquear cartão, segunda via)? Se executa [...] entra teste de autorização'); não há teste de que o bot recuse ou não alegue ter feito uma transação (ex.: 'faz um Pix' -> não pode dizer que fez), que é o risco central num bot de FAQ. Cobertura parcial; pela regra de rigor, falha."
+        },
+        {
+          "text": "Sugere ferramentas ou código concretos para automatizar as avaliações",
+          "passed": true,
+          "evidence": "Entrega avalia_rag.py (harness stdlib com hit@k, fatos, proibidos, citação válida, comportamento, canário, CPF/cartão, repetições, portões, exit code para CI), casos_ouro.jsonl, bot_exemplo.py e juiz_llm.py, com comando de uso e contrato do adaptador. Executado aqui: roda e reprova o bot de exemplo como descrito."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 11,
+      "eval_name": "pairwise-matriz-config",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 118.1,
+        "tokens": 88058,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Recomenda teste combinatório par-a-par (pairwise)",
+          "passed": true,
+          "evidence": "Item 2: \"Use pairwise nas 294. Dezessete configurações cobrem todo par de valores (todo navegador com todo SO, todo idioma com todo plano, todo login com todo navegador etc.)\"."
+        },
+        {
+          "text": "Trata as restrições: Safari só em macOS/iOS e SSO só no plano Enterprise",
+          "passed": true,
+          "evidence": "Item 1: \"SSO só no Enterprise corta 432 para 336. Se o Safari só roda em macOS e iOS ... cai para 294 combinações reais\". Linha 14: as linhas saem do gerador \"com as exclusões 'SSO só Enterprise' e 'Safari só macOS/iOS'\". Trata a restrição do Safari como suposição a confirmar, o que é aceitável. Conferi os números por script: estão corretos."
+        },
+        {
+          "text": "Entrega uma tabela concreta de combinações",
+          "passed": true,
+          "evidence": "Tabela \"As 20 configurações\" com 17 linhas de pairwise mais E1 a E3, todas com navegador, SO, idioma, plano e login preenchidos (linhas 16 a 37)."
+        },
+        {
+          "text": "Informa quantas combinações resultaram (na ordem de 15 a 25) contra as 432 do produto cartesiano",
+          "passed": true,
+          "evidence": "\"Não teste as 432\"; \"cai para 294 combinações reais\"; \"Dezessete configurações cobrem todo par ... Acrescente 3 por risco: 20 configurações no total\"."
+        },
+        {
+          "text": "Todas as combinações da tabela respeitam as restrições (nenhuma linha com Safari em Windows/Android ou SSO fora do Enterprise)",
+          "passed": true,
+          "evidence": "Conferi linha a linha e por script as 20 linhas: Safari só em iOS (2, 11, 13) e macOS (16, E1, E2); SSO só com Enterprise (1, 9, 13, 14, 15, E2, E3). Nenhuma linha inválida. O script também confirmou que as 17 linhas de pairwise cobrem os 111 pares válidos."
+        },
+        {
+          "text": "Explica a limitação do pairwise (interações de 3+ fatores) e sugere acrescentar combinações por risco/uso real (ex.: analytics)",
+          "passed": true,
+          "evidence": "\"Pairwise garante pares, não trios ... Das 42 combinações possíveis de navegador × SO × login, as 17 linhas cobrem 17 ... escolhi as duas de maior risco ... e Chrome no Android com SSO, a mais provável de ser usada em volume\"; \"Se tiver incidente ou chamado de login em outra combinação, troque as extras por ela\"; \"Defeito que exija três ou mais fatores ... pode passar\"; pede \"participação de cada navegador e SO nos últimos 90 dias\" e propõe a regressão completa \"na configuração mais usada nos seus dados de acesso\"."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 11,
+      "eval_name": "pairwise-matriz-config",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 89.5,
+        "tokens": 54185,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Recomenda teste combinatório par-a-par (pairwise)",
+          "passed": true,
+          "evidence": "Linha 1: \"Use teste combinatório do tipo pairwise (\\\"todos os pares\\\") com restrições\"; seção 2 explica a premissa (bugs disparados por 1 ou 2 fatores, estudos do NIST) e o critério \"cada par de valores válidos ... aparece ao menos uma vez\"."
+        },
+        {
+          "text": "Trata as restrições: Safari só em macOS/iOS e SSO só no plano Enterprise",
+          "passed": true,
+          "evidence": "Seção 1: \"SSO só existe no Enterprise. Então plano x login tem 7 combinações válidas ... derruba para 336\" e \"Safari só roda em macOS e iOS ... navegador x SO tem 14 pares válidos\" -> \"294 configurações\". As restrições também aparecem no modelo PICT: \"IF [Login] = \\\"SSO\\\" THEN [Plano] = \\\"Enterprise\\\";\" e \"IF [Navegador] = \\\"Safari\\\" THEN [SO] IN {\\\"macOS\\\", \\\"iOS\\\"};\". Conferi com script: 432 -> 336 -> 294 está correto."
+        },
+        {
+          "text": "Entrega uma tabela concreta de combinações",
+          "passed": true,
+          "evidence": "Tabela de 16 linhas (Navegador, SO, Idioma, Plano, Login), linhas 16 a 33 da resposta, mais 3 triplas de risco nomeadas no item 3.1 (Edge+Windows+SSO, Safari+macOS+SSO, Chrome+iOS+Google). As triplas extras ficam só no texto, sem idioma e plano definidos, mas a tabela principal é concreta."
+        },
+        {
+          "text": "Informa quantas combinações resultaram (na ordem de 15 a 25) contra as 432 do produto cartesiano",
+          "passed": true,
+          "evidence": "\"Dá para sair de 432 combinações para uns 16 a 19 ambientes\"; \"Isso dá 16 execuções do roteiro em vez de 294 (ou 432)\"; \"Com isso você fica em 19 ambientes\"."
+        },
+        {
+          "text": "Todas as combinações da tabela respeitam as restrições (nenhuma linha com Safari em Windows/Android ou SSO fora do Enterprise)",
+          "passed": true,
+          "evidence": "Conferi linha a linha e por script: Safari só nas linhas 11, 12 (iOS) e 16 (macOS); SSO só nas linhas 1, 7, 9, 11 e 14, todas Enterprise. Nenhuma linha inválida. O script também confirmou que as 16 linhas cobrem os 111 pares válidos, sem faltar nenhum. As triplas extras citadas (Edge+Windows+SSO, Safari+macOS+SSO, Chrome+iOS+Google) também são válidas."
+        },
+        {
+          "text": "Explica a limitação do pairwise (interações de 3+ fatores) e sugere acrescentar combinações por risco/uso real (ex.: analytics)",
+          "passed": true,
+          "evidence": "Seção 5: \"Falhas que dependem de 3 ou mais fatores ao mesmo tempo podem passar. Por isso as triplas de risco do item 3.\" Item 3.1: \"Pairwise não garante combinações de 3 fatores ... Eu acrescentaria pelo menos: Edge + Windows + SSO ...\". Item 3.5: \"Pegue no analytics as combinações navegador x SO que concentram uns 80% dos usuários e fixe essas no conjunto.\""
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 12,
+      "eval_name": "revisao-suite-falso-verde",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 286.1,
+        "tokens": 126648,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifica test_cancelar_pedido como teste sem asserção (falso verde)",
+          "passed": true,
+          "evidence": "1.2: \"`test_cancelar_pedido` (40-43) não tem asserção, só `print`. (verificado) Passou com a API devolvendo 500 e com `pedido_id` igual a `None`... Só falharia se a resposta não fosse JSON ou a conexão caísse.\" Confirmado em saida_demonstracao.txt (reexecutado, saída idêntica)."
+        },
+        {
+          "text": "Identifica que o try/except Exception em test_pedido_sem_estoque engole o próprio AssertionError e o teste nunca falha",
+          "passed": true,
+          "evidence": "1.1: \"nunca falha. O `assert False` está dentro do `try`, e `AssertionError` é um `Exception`, então o `except Exception: pass` engole a própria falha do teste. (verificado)\", com a correção usando `pytest.raises(EstoqueInsuficiente)`."
+        },
+        {
+          "text": "Identifica que test_total_com_desconto faz patch da própria função testada (mock da unidade sob teste)",
+          "passed": true,
+          "evidence": "1.5: \"faz patch na própria função testada. É um anti-padrão\". Explica corretamente que o patch não tem efeito por causa do import da linha 6 e que, se alguém refatorar, o teste vira tautologia (verificado na variante da demo)."
+        },
+        {
+          "text": "Identifica test_total_varios_itens como oráculo circular (compara a função com ela mesma)",
+          "passed": true,
+          "evidence": "1.3: \"compara a função com ela mesma. O esperado é o próprio `calcular_total(...)`, então passa com qualquer implementação determinística.\" A correção usa oráculo à mão: \"10,10 x 3 = 30,30; + 0,20 = 30,50\"."
+        },
+        {
+          "text": "Identifica a dependência de ordem/estado global (pedido_id) e o time.sleep",
+          "passed": true,
+          "evidence": "Seção 2: \"`pedido_id` é global (linha 10): consultar e cancelar só funcionam se criar rodou antes e passou. Com pytest -k, --lf, -n ou ordem aleatória, o ID vira None\" e \"`time.sleep(5)` (linha 22): espera fixa... a espera deve ser por condição, com prazo\"."
+        },
+        {
+          "text": "Identifica o token fixo no código como problema de segurança",
+          "passed": true,
+          "evidence": "Seção 3: \"Token de admin no código (linha 9)... Credencial no repositório: se for válida, trate como vazada e rotacione; apagar o commit não revoga nada.\" Também diz que o token expira, que rodar como admin cega para falhas de autorização, e não repete o valor."
+        },
+        {
+          "text": "Ordena os achados por dano, com os falsos verdes primeiro",
+          "passed": true,
+          "evidence": "Título \"Achados, do mais grave ao menos grave\". Seção 1 \"Falsos verdes\" (1.1 estoque, 1.2 cancelar, 1.3 oráculo circular, 1.4 só status, 1.5 patch), depois 2 intermitência/ordem, 3 token, 4 lacunas. Dentro dos falsos verdes, a ordem também segue impacto (o patch, que hoje funciona por acidente, fica por último)."
+        },
+        {
+          "text": "Entrega código corrigido para os testes",
+          "passed": true,
+          "evidence": "test_pedidos_regras.py e test_pedidos_api.py (sintaxe válida, verificada com ast.parse). Têm oráculos à mão, cupom parametrizado com vários itens e arredondamento, `pytest.raises`, fixture que cria e cancela o pedido, `esperar_ate` com prazo, `timeout`, dois clientes não-admin com teste de isolamento, 401, cancelamento duplo com polling e tokens via ambiente. A demo roda a suíte corrigida contra 7 mutantes. Ressalva: o default `ErroSemEstoque = Exception` repete em parte o anti-padrão de exceção genérica (aceita TypeError), embora isso esteja sinalizado como AJUSTE e quantificado na demo."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 12,
+      "eval_name": "revisao-suite-falso-verde",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 129.6,
+        "tokens": 62395,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Identifica test_cancelar_pedido como teste sem asserção (falso verde)",
+          "passed": true,
+          "evidence": "Tabela: \"`test_cancelar_pedido` | Só tem `print(r.json())`. Sem assert no status nem no estado do pedido. Com a API devolvendo 500 + JSON, fica verde. | Não, nunca falha\". A demo (saida_demo.txt, reexecutada e idêntica) mostra VERDE com 500 e pedido_id=None. Pequeno exagero: o teste falharia com resposta não-JSON ou erro de conexão."
+        },
+        {
+          "text": "Identifica que o try/except Exception em test_pedido_sem_estoque engole o próprio AssertionError e o teste nunca falha",
+          "passed": true,
+          "evidence": "\"`assert False` está dentro do `try`, e o `except Exception` engole o `AssertionError`. Passa se `criar_pedido` não levantar nada, e também se levantar qualquer erro (`TypeError`, falha de conexão...). | Não, nunca falha\". Confirmado na demo (sem_checagem_estoque e quebrado: VERDE)."
+        },
+        {
+          "text": "Identifica que test_total_com_desconto faz patch da própria função testada (mock da unidade sob teste)",
+          "passed": true,
+          "evidence": "Item 2: \"Se alguém 'arrumar' o patch, o teste vira tautologia: mocka a função e depois confere o valor que o próprio mock devolveu. Mocke dependências (banco, API de cupom), nunca a função sob teste.\" Também explica corretamente que o patch hoje não tem efeito porque o nome foi importado com `from ... import`. O enquadramento principal é \"alvo errado\", mas o anti-padrão de mockar a unidade sob teste está dito de forma explícita."
+        },
+        {
+          "text": "Identifica test_total_varios_itens como oráculo circular (compara a função com ela mesma)",
+          "passed": true,
+          "evidence": "\"Compara `calcular_total(x)` com `calcular_total(x)`. O esperado é a própria função. | Não, nunca falha\". A correção proposta é \"comparar o total com um valor calculado à mão\" (e o código revisado usa 30.5 como esperado)."
+        },
+        {
+          "text": "Identifica a dependência de ordem/estado global (pedido_id) e o time.sleep",
+          "passed": true,
+          "evidence": "Item 3: \"Encadeamento por variável global. Criar, consultar e cancelar só funcionam na ordem do arquivo. Com pytest-xdist, pytest-randomly, -k ou re-run... passam contra /pedidos/None\". Item 6: \"`time.sleep(5)`. Lento quando está tudo bem e flaky quando a API demora mais. Troque por polling com prazo\"."
+        },
+        {
+          "text": "Identifica o token fixo no código como problema de segurança",
+          "passed": true,
+          "evidence": "Item 7: \"O token JWT está no código. Decodificado, é `sub: qa-admin`. Se for um token real, está vazado no repositório: revogue e passe por variável de ambiente.\" Acrescenta que testar sempre como admin esconde bugs de autorização. Não repete o valor do token."
+        },
+        {
+          "text": "Ordena os achados por dano, com os falsos verdes primeiro",
+          "passed": true,
+          "evidence": "Seção \"Principais problemas, por prioridade\": 1. \"Três testes que não podem falhar\", depois 2. patch, 3. estado global, 4. só caminho feliz, 5. float, 6. sleep, 7. higiene/segurança. A tabela inicial também começa pelos 3 que nunca falham. Ressalva: o patch (que a própria resposta diz estar funcionando por acidente) fica acima de ordem/global, e o token admin fica em último como \"higiene\", o que é discutível."
+        },
+        {
+          "text": "Entrega código corrigido para os testes",
+          "passed": true,
+          "evidence": "Arquivo test_pedidos_revisado.py (sintaxe válida, verificada com ast.parse): testes parametrizados com esperado calculado à mão, `pytest.raises(EstoqueInsuficiente)`, fixture `pedido` com limpeza, `esperar_ate` no lugar do sleep, token via variável de ambiente, `timeout`, marcador integration, testes de 401 e cancelamento duplo. Limitações: o teste de autorização entre usuários ficou só como TODO; `test_cancelar_pedido_muda_status` consulta o status logo após cancelar, sem polling, o que contradiz a hipótese de consistência eventual usada no teste de consulta."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 13,
+      "eval_name": "unitarios-desconto-bugs",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 154.3,
+        "tokens": 98093,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Usa parametrize com valores de limite em cada fronteira (ex.: 99,99 / 100,00 / 499,99 / 500,00)",
+          "passed": true,
+          "evidence": "test_abaixo_de_100_nao_tem_desconto parametriza 99.99; test_faixa_de_5_por_cento parametriza 100.00, 100.01 e 499.99; test_faixa_de_10_por_cento_comeca_em_500_inclusive parametriza 500.00 e 500.01; VIP repete 100.00/499.99/500.00/500.01; teto parametriza 1500.00 (não VIP) e 1250.00 (VIP). Todas as fronteiras cobertas via pytest.param."
+        },
+        {
+          "text": "Detecta o defeito no limite de R$ 500,00 (o código usa > em vez de >=, então 500,00 recebe 5% em vez de 10%)",
+          "passed": true,
+          "evidence": "Tabela 'Defeitos encontrados': '\"a partir de R$ 500,00: 10%\" | usa `subtotal > 500` em vez de `>= 500` | subtotal R$ 500,00, não VIP | R$ 50,00 | R$ 25,00'. Confirmado ao executar: o caso 500.00->50.00 falha no código atual (obtém 25.00)."
+        },
+        {
+          "text": "Detecta que cliente VIP abaixo de R$ 100,00 recebe 2% de desconto, contrariando a regra 'em qualquer faixa com desconto'",
+          "passed": true,
+          "evidence": "Defeito 2: 'VIP ganha +2 pontos \"em qualquer faixa com desconto\" | soma os 2 pontos até na faixa abaixo de R$ 100 (0% + 2%) | subtotal R$ 99,99, VIP | R$ 0,00 | R$ 2,00'. test_vip_abaixo_de_100_continua_sem_desconto falha para 50.00 e 99.99 no código atual (verificado). Ainda pede confirmação ao Produto sobre a interpretação."
+        },
+        {
+          "text": "Usa Decimal (não float) nos valores esperados",
+          "passed": true,
+          "evidence": "Helper `D(valor: str) -> Decimal` ('Sempre a partir de string: Decimal(100.1) carregaria o erro do float'); todos os esperados são D(\"...\"), ex.: pytest.param(D(\"100.10\"), False, D(\"5.01\"))."
+        },
+        {
+          "text": "Testa o teto de R$ 150,00 (perto e acima do teto)",
+          "passed": true,
+          "evidence": "test_teto_de_150_nao_vip: 1400.00->140.00 (abaixo), 1500.00->150.00 (no teto), 1600.00->150.00 (acima: 160 sem teto), 10000.00; test_teto_de_150_vip: 1249.00->149.88 (logo abaixo), 1250.00->150.00, 1300.00->150.00. Os valores 'acima' de fato discriminam remoção do teto (mutante 'sem teto' morto: 5 falhas)."
+        },
+        {
+          "text": "Testa entrada inválida (subtotal negativo levanta ValueError)",
+          "passed": true,
+          "evidence": "test_subtotal_negativo_levanta_value_error parametrizado com -0.01, -1, -100.00, -10000 x VIP/não VIP, usando pytest.raises(ValueError); a resposta também afirma 'Zero é válido e não lança' (coberto pelo caso 0.00)."
+        },
+        {
+          "text": "Testa o arredondamento half-up com um valor que caia em meio centavo",
+          "passed": true,
+          "evidence": "test_arredonda_para_centavos_meio_para_cima: '5%: 5,005 -> 5,01 (half-even daria 5,00)' (100.10), 100.50->5.03, 500.05->50.01, VIP 101.50->7.11 (7,105). Conferido: half-up 5.01 vs half-even 5.00; mutante HALF_EVEN morto (4 falhas)."
+        },
+        {
+          "text": "Os valores esperados vêm da regra documentada, não copiados da saída da função",
+          "passed": true,
+          "evidence": "Docstring do teste: 'Todos os valores esperados abaixo foram calculados à mão a partir dessas regras, NUNCA chamando a própria função', com a conta em comentário (ex.: '# 24,9995 -> 25,00'). Prova prática: 5 casos falham no código atual nos pontos do defeito; todos os esperados batem com um oráculo independente que implementei a partir da docstring (0 divergências de 0 a 2000 em passos de 0,01)."
+        },
+        {
+          "text": "Os nomes dos testes descrevem o comportamento",
+          "passed": true,
+          "evidence": "Nomes como test_faixa_de_10_por_cento_comeca_em_500_inclusive, test_vip_abaixo_de_100_continua_sem_desconto, test_vip_ganha_2_pontos_percentuais_nas_faixas_com_desconto, test_arredonda_para_centavos_meio_para_cima, test_subtotal_negativo_levanta_value_error, mais ids legíveis ('500.00->50.00 limite: R$ 500,00 exato ja e 10%')."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 13,
+      "eval_name": "unitarios-desconto-bugs",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 83.9,
+        "tokens": 56708,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Usa parametrize com valores de limite em cada fronteira (ex.: 99,99 / 100,00 / 499,99 / 500,00)",
+          "passed": true,
+          "evidence": "test_abaixo_de_100_nao_tem_desconto parametriza 99.98 e 99.99; test_faixa_de_5_por_cento parametriza 100.00, 100.01, 499.98, 499.99; test_faixa_de_10_por_cento parametriza 500.00 e 500.01; teto parametriza 1499.00/1500.00/1500.01 e 1250.00/1250.01 (VIP)."
+        },
+        {
+          "text": "Detecta o defeito no limite de R$ 500,00 (o código usa > em vez de >=, então 500,00 recebe 5% em vez de 10%)",
+          "passed": true,
+          "evidence": "'1. O limite de R$ 500,00 está exclusivo. A docstring diz \"a partir de R$ 500,00: 10%\", mas o código usa `subtotal > Decimal(\"500\")`. Um pedido de exatamente R$ 500,00 recebe 5% (R$ 25,00) em vez de 10% (R$ 50,00).' Verificado: test_faixa_de_10_por_cento[500.00], test_salto_entre_faixas_no_limite_de_500 e test_vip_faixa_de_10_por_cento_vira_12[500.00] falham no código atual."
+        },
+        {
+          "text": "Detecta que cliente VIP abaixo de R$ 100,00 recebe 2% de desconto, contrariando a regra 'em qualquer faixa com desconto'",
+          "passed": true,
+          "evidence": "'2. O VIP ganha desconto na faixa que não tem desconto. A regra é \"+2 pontos em qualquer faixa com desconto\". O código soma os 2% sempre, então um VIP com subtotal de R$ 99,99 recebe R$ 2,00 e deveria receber R$ 0,00.' Verificado: test_vip_abaixo_de_100_continua_sem_desconto falha para 50.00 e 99.99."
+        },
+        {
+          "text": "Usa Decimal (não float) nos valores esperados",
+          "passed": true,
+          "evidence": "`D = Decimal` e esperados construídos de string: `assert calcular_desconto(D(subtotal)) == D(esperado)` com esperado '5.00', '50.00' etc.; nenhum float."
+        },
+        {
+          "text": "Testa o teto de R$ 150,00 (perto e acima do teto)",
+          "passed": true,
+          "evidence": "test_teto_de_150_reais: 1499.00->149.90 (logo abaixo), 1500.00->150.00 (exato), 1500.01, 10000.00->150.00 (bem acima); VIP 1200.00->144.00, 1250.00->150.00, 1250.01, 100000.00; mais test_desconto_nunca_passa_de_150. Obs.: 1500.01 e 1250.01 não discriminam remoção do teto (arredondam para 150,00 de qualquer forma), mas 10000/100000 sim (mutante 'sem teto' morto)."
+        },
+        {
+          "text": "Testa entrada inválida (subtotal negativo levanta ValueError)",
+          "passed": true,
+          "evidence": "test_subtotal_negativo_levanta_value_error parametrizado com -0.01, -1, -100.00, -99999 x VIP, usando `pytest.raises(ValueError, match=\"negativo\")`; test_subtotal_zero_e_valido cobre o zero."
+        },
+        {
+          "text": "Testa o arredondamento half-up com um valor que caia em meio centavo",
+          "passed": true,
+          "evidence": "test_arredondamento_half_up_faixa_5: '(\"100.10\", \"5.01\"),   # 5.005  -> 5.01 (half-even daria 5.00)' e 100.50->5.03; também 500.05->50.01. Conferido; mutante HALF_EVEN morto (3 falhas)."
+        },
+        {
+          "text": "Os valores esperados vêm da regra documentada, não copiados da saída da função",
+          "passed": true,
+          "evidence": "Docstring: 'Os testes seguem a REGRA DE NEGÓCIO descrita na docstring da função, não o comportamento atual do código.' Esperados literais com conta comentada; 5 falham no código atual e todos conferem com um oráculo independente derivado da docstring."
+        },
+        {
+          "text": "Os nomes dos testes descrevem o comportamento",
+          "passed": true,
+          "evidence": "test_vip_abaixo_de_100_continua_sem_desconto, test_vip_faixa_de_5_por_cento_vira_7, test_vip_faixa_de_10_por_cento_vira_12, test_salto_entre_faixas_no_limite_de_500, test_subtotal_zero_e_valido. Ressalva: test_arredondamento_ocorre_antes_do_teto_nao_estoura_150 descreve uma ordem (arredondar antes do teto) oposta à do código (min antes de quantize) e o caso testado (149,9988) nem aciona o teto; test_faixa_de_10_por_cento não indica o limite inclusivo no nome. No conjunto, os nomes descrevem comportamento."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 14,
+      "eval_name": "plano-mobile-delivery",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 6,
+        "failed": 2,
+        "total": 8,
+        "time_seconds": 141.9,
+        "tokens": 102045,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Cobre permissões de localização em segundo plano (Android 'permitir o tempo todo' / iOS 'sempre') e os caminhos de negação",
+          "passed": true,
+          "evidence": "Linha 23: 'Permissão: primeira solicitação, \"só durante o uso\" (o app avisa que em segundo plano não funciona...), \"o tempo todo\", recusa, localização aproximada no lugar da precisa, e revogar nas configurações com a corrida em andamento. Esperado: aviso claro, sem crash, e o backend sabe que o rastreio está degradado.' Cobre os níveis de permissão de segundo plano e os caminhos de negação/rebaixamento com resultado esperado. Ressalva: genérico entre plataformas; não menciona o pedido separado no Android 10+, o redirecionamento obrigatório às Configurações no Android 11+ nem o upgrade para 'Sempre' no iOS — limita-se a 'Confirme na versão-alvo' (linha 62)."
+        },
+        {
+          "text": "Cobre interrupções durante uma entrega ativa (ligação, notificação, app em segundo plano, morte do processo)",
+          "passed": true,
+          "evidence": "Linha 24: 'ir para Home, bloquear a tela por 30 min, tirar dos recentes, forçar parada, reiniciar o aparelho, ligar a economia de bateria, abrir o app de navegação e voltar'; linha 39: 'App morto enquanto a câmera está aberta (aparelho com pouca memória, ligação recebida): ao voltar, a corrida e o estado da entrega estão preservados.' Cobre segundo plano, morte do processo e ligação. Lacuna: notificação como interrupção da entrega não aparece (a linha 35 trata push de oferta, não interrupção)."
+        },
+        {
+          "text": "Cobre perda de rede/offline com sincronização posterior do comprovante",
+          "passed": true,
+          "evidence": "Linha 40: 'Upload: sem rede ao concluir, rede cai no meio, reiniciar o app e o aparelho com a foto na fila. Esperado: a foto não se perde, sobe uma vez só, vai para a corrida certa (teste com duas corridas seguidas) e o arquivo no servidor tem o mesmo tamanho e hash do original.' Oráculo concreto e verificável; também cobre buffer offline de pontos GPS (linha 26)."
+        },
+        {
+          "text": "Cobre economia de bateria/otimizações do fabricante matando o GPS em segundo plano",
+          "passed": true,
+          "evidence": "R1 (linha 11): 'O rastreio em segundo plano para (permissão rebaixada, SO ou fabricante matando o processo, economia de bateria)'; linha 24: 'ligar a economia de bateria'; linha 59: aparelho físico obrigatório para 'comportamento de bateria do fabricante'; linha 61: matriz com 'um de fabricante com gerenciamento agressivo de bateria'. Ressalva: não cita Doze, serviço em primeiro plano nem fabricantes específicos."
+        },
+        {
+          "text": "Cobre permissão de câmera e falha/retentativa de upload da foto",
+          "passed": true,
+          "evidence": "Linha 38: 'Câmera: primeira solicitação, recusa, \"não perguntar de novo\" (leva às configurações e volta ao fluxo), cancelar a captura sem perder a corrida.' Linha 40: upload sem rede, rede caindo no meio, foto na fila após reiniciar, 'sobe uma vez só' (retentativa idempotente). Linha 32 também trata resposta perdida após o servidor processar."
+        },
+        {
+          "text": "Propõe matriz de dispositivos com critério (fragmentação Android, mercado brasileiro, versões de SO)",
+          "passed": false,
+          "evidence": "Linha 61: 'Matriz mínima: Android na versão mínima suportada e numa versão atual da base; um aparelho de entrada (pouca RAM) e um de fabricante com gerenciamento agressivo de bateria; iOS na mínima suportada e numa atual... Escolha os modelos pela sua base real'. Há critério de versão de SO e uso da base real, mas a fragmentação Android fica reduzida a dois aparelhos sem nenhum fabricante nomeado, e não há qualquer referência ao mercado brasileiro (fabricantes predominantes como Samsung/Motorola/Xiaomi, aparelhos de entrada típicos). Abstrato demais para o critério."
+        },
+        {
+          "text": "Cita ferramentas de automação adequadas a React Native (Detox, Maestro ou Appium)",
+          "passed": false,
+          "evidence": "Nenhuma ferramenta é nomeada. Linha 60: 'Use a ferramenta de E2E que o projeto já tem; confirme se ela alcança diálogos de permissão do sistema antes de depender dela.' Não cita Detox, Maestro nem Appium."
+        },
+        {
+          "text": "Prioriza por risco",
+          "passed": true,
+          "evidence": "Seção 1 (linhas 5-18): tabela de riscos R1-R8 com probabilidade × impacto e nível (Alto/Médio); cada bloco de casos é amarrado aos riscos ('GPS em segundo plano (R1, R5, R8)'); linha 59: 'Aparelho físico (obrigatório para R1, R2 e R6)'; seção 5 explicita o risco residual do que fica de fora. Priorização por risco explícita e rastreável."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 14,
+      "eval_name": "plano-mobile-delivery",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 77.9,
+        "tokens": 51781,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Cobre permissões de localização em segundo plano (Android 'permitir o tempo todo' / iOS 'sempre') e os caminhos de negação",
+          "passed": true,
+          "evidence": "Linha 9: estados 'Nunca perguntado, negado, negado com \"não perguntar de novo\", só \"durante o uso\", \"sempre\", aproximada em vez de precisa (Android 12+ e iOS 14+)'. Linha 15: 'Android 10+: localização em segundo plano é pedida separadamente. No Android 11+ o usuário é mandado às Configurações para escolher \"Permitir o tempo todo\"... incluindo a tela explicativa que a Google Play exige'. Linha 16: 'iOS: o \"Sempre\" costuma aparecer só depois, como upgrade. Se o entregador ficar em \"Durante o uso\"...'. Linha 14: revogar nas Configurações com o app aberto ou em segundo plano. Específico e tecnicamente correto."
+        },
+        {
+          "text": "Cobre interrupções durante uma entrega ativa (ligação, notificação, app em segundo plano, morte do processo)",
+          "passed": true,
+          "evidence": "Linha 35: 'Interrupções com a câmera aberta: ligação, notificação, app indo para segundo plano, bloqueio de tela. Em Android com pouca memória o processo pode ser morto enquanto a câmera nativa está aberta...'. Linha 25: 'App morto: deslizar o app da lista de recentes, o sistema matar por falta de memória, o aparelho reiniciar no meio da corrida'. Linha 58: ligação recebida, outro app de navegação, tela dividida, alarme, atualização no meio do turno. Cobre os quatro itens."
+        },
+        {
+          "text": "Cobre perda de rede/offline com sincronização posterior do comprovante",
+          "passed": true,
+          "evidence": "Linha 38: 'Envio: rede fraca ou caindo no meio do upload, retentativa, retomada, foto enviada em duplicidade, foto presa na fila quando o app é fechado, comportamento ao reabrir.' Linha 53: 'Definir e testar o que fica em fila local (pontos de GPS, foto, mudança de status), por quanto tempo e como sincroniza na volta, sem duplicar nem perder.'"
+        },
+        {
+          "text": "Cobre economia de bateria/otimizações do fabricante matando o GPS em segundo plano",
+          "passed": true,
+          "evidence": "Linha 23: 'Android: serviço em primeiro plano com notificação visível (obrigatório), tipo de serviço de localização declarado (Android 14+), Doze e economia de bateria. Teste em fabricantes que matam apps de forma agressiva (Xiaomi, Samsung, Motorola, Huawei/Honor) e com \"otimização de bateria\" ativa.' Linha 24: iOS com Atualização em Segundo Plano desligada e Modo de Pouca Energia. Linha 1: emulador não reproduz economia de bateria."
+        },
+        {
+          "text": "Cobre permissão de câmera e falha/retentativa de upload da foto",
+          "passed": true,
+          "evidence": "Linha 10: Câmera 'Nunca perguntado, negada, negada em definitivo'. Linha 38: 'rede fraca ou caindo no meio do upload, retentativa, retomada, foto enviada em duplicidade, foto presa na fila'. Linha 36: câmera ocupada por outro app, sem armazenamento."
+        },
+        {
+          "text": "Propõe matriz de dispositivos com critério (fragmentação Android, mercado brasileiro, versões de SO)",
+          "passed": true,
+          "evidence": "Linha 74: '2 a 3 versões de Android (incluindo 14 ou superior e uma mais antiga que você ainda suporta), 3 a 4 fabricantes, pelo menos um aparelho simples; no iOS, as duas ou três últimas versões e um iPhone mais antigo. Priorize pelos dados reais de uso dos seus entregadores.' Fabricantes nomeados na linha 23 (Xiaomi, Samsung, Motorola — relevantes no Brasil) e linha 63: 'Aparelhos de entrada com pouca RAM, que é o que muito entregador usa'. Ressalva: o mercado brasileiro é tratado só implicitamente (não cita participação de mercado nem o Brasil), e Huawei/Honor tem pouca relevância no país."
+        },
+        {
+          "text": "Cita ferramentas de automação adequadas a React Native (Detox, Maestro ou Appium)",
+          "passed": true,
+          "evidence": "Linha 78: 'Automatizar: ... fluxos de tela com Maestro ou Detox, regressão em nuvem de aparelhos.' Ambas são adequadas a React Native, e a resposta separa corretamente o que fica manual (permissões do sistema, GPS em segundo plano, app morto)."
+        },
+        {
+          "text": "Prioriza por risco",
+          "passed": true,
+          "evidence": "Linha 20: 'GPS em segundo plano (o risco nº 1)'; linhas 82-88: 'Se o tempo for curto, priorize' com lista ordenada de 5 itens começando pelo rastreio contínuo; linha 1 justifica o foco no que costuma falhar em produção. Priorização explícita, embora sem critério formal de probabilidade × impacto."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9583,
+        "stddev": 0.0833,
+        "min": 0.75,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 224.2615,
+        "stddev": 137.5838,
+        "min": 71.2,
+        "max": 441.8
+      },
+      "tokens": {
+        "mean": 119662.7692,
+        "stddev": 32737.1948,
+        "min": 79593,
+        "max": 175323
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.9299,
+        "stddev": 0.1149,
+        "min": 0.7143,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 131.2692,
+        "stddev": 97.5386,
+        "min": 35.1,
+        "max": 384.2
+      },
+      "tokens": {
+        "mean": 61922.2308,
+        "stddev": 15442.3582,
+        "min": 46702,
+        "max": 98751
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.03",
+      "time_seconds": "+92.99",
+      "tokens": "+57740.54"
+    }
+  },
+  "notes": []
+}

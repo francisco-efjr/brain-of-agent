@@ -27,7 +27,8 @@ Detalhes de cada modo: [fluxo](references/modo-fluxo.md), [revisar plano](refere
 1. **Descubra o que já existe**, sem perguntar: `Glob` e `Grep` por `DESIGN.md`, `tokens.json`/`*.tokens.json`, variáveis CSS (`--color-`, `@theme`), tema Tailwind, `.storybook/`, guia de voz, pasta de componentes. Se existem, valem mais que qualquer gosto deste plugin: o plano segue a marca e a revisão contra o genérico vira checagem de consistência.
 2. **Classifique a superfície**: Persuade (marketing), Operate (app de trabalho), Read (documentação), Experience (portfólio, campanha). Superfície híbrida classifica por seção. Operate tolera tipografia sans neutra se o DESIGN.md disser; Persuade e Experience pedem mais personalidade.
 3. **Plataforma-alvo**: web, iOS, Android ou desktop. Em iOS, iPadOS e macOS use as convenções de [apple-e-plataformas](${CLAUDE_PLUGIN_ROOT}/skills/playbook/references/apple-e-plataformas.md); Material 3 é lacuna conhecida do plugin (não afirme números de Material).
-4. **Construtor disponível?** Verifique se `web-frontend:design-ui` aparece entre as skills disponíveis. Isso define a entrega no passo 5.
+4. **Direção de estilo** (só sem sistema no projeto ou com pedido de nova direção): pergunte com o roteiro de [direcoes-de-estilo](${CLAUDE_PLUGIN_ROOT}/skills/playbook/references/direcoes-de-estilo.md) (casa ou D1 a D10 recomendadas para a superfície, aparência, intensidade de movimento). A direção escolhida dá o ponto de partida de cores, tipo, raio, sombra e movimento do plano; contraste continua calculado no passo 2.
+5. **Construtor disponível?** Verifique se `web-frontend:design-ui` aparece entre as skills disponíveis. Isso define a entrega no passo 5 do modo `plano`.
 
 Critério de saída: você sabe o que já é decidido (marca, tokens), a superfície e a plataforma. Se algo bloquear uma decisão, pergunte uma coisa por vez; o resto vira Suposição registrada.
 

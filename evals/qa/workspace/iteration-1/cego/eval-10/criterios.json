@@ -1,0 +1,14 @@
+{
+  "pedido": "vamos colocar um chatbot com LLM no atendimento do nosso banco digital, ele responde dúvidas usando nossa base de FAQ (RAG). como eu testo isso?",
+  "arquivos_de_entrada": [],
+  "criterios": [
+    "Propõe um conjunto de avaliação (golden set) com categorias: dentro do escopo, fora do escopo e adversarial",
+    "Trata o não determinismo (várias execuções, limiares em vez de igualdade exata)",
+    "Testa que o bot admite quando a resposta não está na base, sem inventar",
+    "Cobre injeção de prompt (direta e indireta, via documentos) e vazamento de dados (PII, dados de outros clientes, prompt de sistema)",
+    "Menciona LLM-as-judge com rubrica e a necessidade de calibrar o juiz contra avaliação humana",
+    "Cobre regressão quando modelo, prompt ou base mudam",
+    "Inclui riscos específicos de banco (não executar transações, não dar recomendação de investimento indevida, LGPD/sigilo bancário)",
+    "Sugere ferramentas ou código concretos para automatizar as avaliações"
+  ]
+}

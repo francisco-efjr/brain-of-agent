@@ -1,6 +1,6 @@
 {
   "name": "ux-ui-design",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Direção visual, auditoria de UI, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários para trabalhar com Claude, com skills, agentes avaliadores somente leitura, prompts curados e evals.",
   "author": {
     "name": "Francisco Edson",

@@ -1,6 +1,6 @@
 # ux-ui-design — UX, UI e design systems
 
-Plugin do Claude Code para direção visual, auditoria de interface, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários. Parte da fábrica `dev-segments` (um plugin por segmento de desenvolvimento). Versão 0.1.0, conteúdo validado em 2026-10-10, licença MIT.
+Plugin do Claude Code para direção visual, auditoria de interface, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários. Parte da fábrica `dev-segments` (um plugin por segmento de desenvolvimento). Versão 0.2.0, conteúdo validado em 2026-10-10 (direções de estilo e padrão de componente em 2026-10-11), licença MIT.
 
 A ideia central: levar o trabalho do contexto (usuário, tarefa, produto) até uma decisão de design **verificável**, com evidência, sem tratar a opinião de um modelo como validação com usuários e sem instalar nem executar nada de terceiros.
 
@@ -9,12 +9,17 @@ A ideia central: levar o trabalho do contexto (usuário, tarefa, produto) até u
 - **Processo** de contexto até entrega: brief de uma linha, plano antes de código, revisão contra o visual genérico, estados e dados extremos, verificação com evidência, crítica independente, relatório com rótulos Verificado, Inferido, Suposição e Não verificável.
 - **Skills de tarefa** para direção visual, auditoria de UI em dez categorias, avaliação heurística (Nielsen, severidade 0 a 4), checklist de acessibilidade WCAG 2.2 AA, microcopy, tokens em três camadas e plano de pesquisa.
 - **Agentes somente leitura** (avaliador cético, revisor de acessibilidade, pesquisador, auditor de design system) e um agente de design com escrita limitada ao que o usuário indicar.
-- **Base de conhecimento** em 13 referências (checklist completo, padrões e anti-padrões, decisões, regras prontas de CLAUDE.md, ferramentas desativadas com riscos, bibliografia, WCAG, plataformas Apple, tokens, pesquisa, UX writing, avaliação por LLM, design system da casa) e 13 templates (incluindo a estrutura recomendada de um design system).
+- **Base de conhecimento** em 15 referências (checklist completo, padrões e anti-padrões, decisões, regras prontas de CLAUDE.md, ferramentas desativadas com riscos, bibliografia, WCAG, plataformas Apple, tokens, pesquisa, UX writing, avaliação por LLM, design system da casa, direções de estilo, padrão de componente) e 14 templates (incluindo a estrutura recomendada de um design system e a página de doc de componente).
 - **Biblioteca de prompts** curados (37 prompts em cinco temas: começar e dirigir, auditoria, acessibilidade e plataforma, pesquisa e escrita, design system; distribuídos em três arquivos de `skills/prompts/references/`) e 12 casos de eval.
 
 ## Design system da casa (Mo baile)
 
 O Mo baile Design System é o design system de referência do autor (macOS 27, Liquid Glass). O plugin incorpora as **boas práticas dele**, com evidência por arquivo, em `skills/playbook/references/design-system-da-casa.md` e a estrutura reutilizável em `skills/playbook/assets/templates/design-system-bundle.md`: tokens em camadas por aparência (claro, escuro, alto contraste), fallbacks de acessibilidade como tokens, contrato por componente, lint de aderência, fundamentos de conteúdo e rastreabilidade. Ele só é usado **quando você pede** ("aplica o design system que já temos") e nunca como padrão universal: a estética macOS vale em app macOS; em outro produto ou plataforma o plugin herda a estrutura, não a identidade. O bundle fica em `design-systems/mo-baile/` do repositório publicado e não faz parte deste plugin.
+
+## Direções de estilo e padrão de componente
+
+- **Direções de estilo** (`skills/playbook/references/direcoes-de-estilo.md`): quando o produto não tem design system, ou você pede uma nova direção, o `ui-designer` e o `design-brief` **perguntam qual estilo seguir** antes de desenhar. As opções são o design system da casa e dez direções nomeadas, filtradas de pesquisa técnica no cult-ui, na Skiper UI e no OriginKit: D1 Halo fosco, D2 Tátil, D3 Ledger limpo, D4 Detalhe obsessivo, D5 Vidro Apple, D6 Editorial, D7 Estúdio escuro, D8 Cinemático, D9 Generativo e D10 Lúdico. Cada uma traz "parece com", valores de partida, técnicas assinatura, presets de movimento e o custo em acessibilidade e desempenho. Também há eixos de aparência, intensidade de movimento e densidade, recomendação por superfície e as licenças de cada fonte. Projeto com sistema próprio não recebe o menu.
+- **Padrão de componente** (`skills/playbook/references/padrao-componente-cult-ui.md` + template `doc-componente.md`): todo componente dos seus sistemas segue a documentação do cult-ui no nível de componente. São três arquivos (`x.tsx`, `x-demo.tsx`, `x.mdx`), item de registro shadcn, as regras de anatomia C-01 a C-18 (props nativas, `className` por último, `data-slot`, composto com contexto, estado controlável, movimento reduzido obrigatório, tokens em vez de cor crua) e página de doc com Installation, Usage, API Reference e Accessibility obrigatória. A CI valida o registro. As falhas observadas no próprio cult-ui estão listadas para não serem copiadas.
 
 ## Quando usar
 
@@ -99,6 +104,8 @@ Lista completa, com URL, licença e data, em `skills/playbook/references/fontes.
 | 8 | ARIA APG: diálogo modal (W3C) | A |
 | 9 | W3C DTCG: formato de design tokens 2025.10 (relatório de comunidade, não padrão W3C) | A |
 | 10 | Agent Skills best practices (Anthropic) | A |
+| 11 | cult-ui (Nolly Studio, MIT): contrato de componente e de doc | B |
+| 12 | Skiper UI e OriginKit: só estéticas, valores de movimento e taxonomia (sem código; licenças restritivas) | B |
 
 ## Créditos e licenças
 

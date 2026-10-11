@@ -1,0 +1,19 @@
+--- /Users/francisco.junior/novo projeto/brain-of-agent/evals/qa/workspace/iteration-1/eval-13-unitarios-desconto-bugs/with_skill/outputs/desconto.py	2026-10-05 10:10:52
++++ /Users/francisco.junior/novo projeto/brain-of-agent/evals/qa/workspace/iteration-1/eval-13-unitarios-desconto-bugs/with_skill/outputs/desconto_corrigido.py	2026-10-05 10:10:52
+@@ -16,14 +16,14 @@
+     if subtotal < 0:
+         raise ValueError("subtotal negativo")
+ 
+-    if subtotal > Decimal("500"):
++    if subtotal >= Decimal("500"):
+         percentual = Decimal("0.10")
+     elif subtotal >= Decimal("100"):
+         percentual = Decimal("0.05")
+     else:
+         percentual = Decimal("0")
+ 
+-    if cliente_vip:
++    if cliente_vip and percentual > 0:
+         percentual += Decimal("0.02")
+ 
+     desconto = subtotal * percentual

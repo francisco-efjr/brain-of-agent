@@ -147,7 +147,7 @@ Este modo segue a autonomia do §0: mostre o plano e siga. Duas regras valem sem
 5. **Implementar, uma melhoria por vez.** Nunca dois agentes editam a mesma árvore ao mesmo tempo.
    - O especialista dono da área define a mudança e o critério de aceite.
    - Quase todos os agentes dos plugins são somente leitura. Por isso, quem escreve o código é um subagente `general-purpose` (ou o próprio orquestrador) seguindo o playbook e as skills do especialista. Os agentes que escrevem (por exemplo `qa-testing:test-writer`, `mobile-apps:mobile-test-engineer`) ficam com a parte deles.
-   - Em interface, o designer (`ux-ui-design`) especifica com o design system: o do projeto ou, se não houver, o da casa em `design-systems/mo-baile/`, adaptado à plataforma. O implementador segue a especificação.
+   - Em interface, o designer (`ux-ui-design`) especifica com o design system: o do projeto ou, se não houver, pergunta o estilo (o da casa em `design-systems/mo-baile/`, adaptado à plataforma, ou uma direção de `plugins/ux-ui-design/skills/playbook/references/direcoes-de-estilo.md`); sem interação, usa o da casa. Componentes seguem o padrão cult-ui (`padrao-componente-cult-ui.md`). O implementador segue a especificação.
    - Em bug, o QA escreve antes o teste que falha e passa depois da correção.
    - Antes de refatorar código que produz saída (parsers, geradores, formatadores), escreva um teste de caracterização que fixe a saída atual.
    - **Um commit por melhoria**, com o ID na mensagem. Antes de cada commit, confira com `git diff --cached` que não entrou segredo, dado pessoal real nem arquivo gerado.

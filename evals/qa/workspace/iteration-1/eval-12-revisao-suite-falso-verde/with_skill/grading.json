@@ -1,0 +1,96 @@
+{
+  "expectations": [
+    {
+      "text": "Identifica test_cancelar_pedido como teste sem asserção (falso verde)",
+      "passed": true,
+      "evidence": "1.2: \"`test_cancelar_pedido` (40-43) não tem asserção, só `print`. (verificado) Passou com a API devolvendo 500 e com `pedido_id` igual a `None`... Só falharia se a resposta não fosse JSON ou a conexão caísse.\" Confirmado em saida_demonstracao.txt (reexecutado, saída idêntica)."
+    },
+    {
+      "text": "Identifica que o try/except Exception em test_pedido_sem_estoque engole o próprio AssertionError e o teste nunca falha",
+      "passed": true,
+      "evidence": "1.1: \"nunca falha. O `assert False` está dentro do `try`, e `AssertionError` é um `Exception`, então o `except Exception: pass` engole a própria falha do teste. (verificado)\", com a correção usando `pytest.raises(EstoqueInsuficiente)`."
+    },
+    {
+      "text": "Identifica que test_total_com_desconto faz patch da própria função testada (mock da unidade sob teste)",
+      "passed": true,
+      "evidence": "1.5: \"faz patch na própria função testada. É um anti-padrão\". Explica corretamente que o patch não tem efeito por causa do import da linha 6 e que, se alguém refatorar, o teste vira tautologia (verificado na variante da demo)."
+    },
+    {
+      "text": "Identifica test_total_varios_itens como oráculo circular (compara a função com ela mesma)",
+      "passed": true,
+      "evidence": "1.3: \"compara a função com ela mesma. O esperado é o próprio `calcular_total(...)`, então passa com qualquer implementação determinística.\" A correção usa oráculo à mão: \"10,10 x 3 = 30,30; + 0,20 = 30,50\"."
+    },
+    {
+      "text": "Identifica a dependência de ordem/estado global (pedido_id) e o time.sleep",
+      "passed": true,
+      "evidence": "Seção 2: \"`pedido_id` é global (linha 10): consultar e cancelar só funcionam se criar rodou antes e passou. Com pytest -k, --lf, -n ou ordem aleatória, o ID vira None\" e \"`time.sleep(5)` (linha 22): espera fixa... a espera deve ser por condição, com prazo\"."
+    },
+    {
+      "text": "Identifica o token fixo no código como problema de segurança",
+      "passed": true,
+      "evidence": "Seção 3: \"Token de admin no código (linha 9)... Credencial no repositório: se for válida, trate como vazada e rotacione; apagar o commit não revoga nada.\" Também diz que o token expira, que rodar como admin cega para falhas de autorização, e não repete o valor."
+    },
+    {
+      "text": "Ordena os achados por dano, com os falsos verdes primeiro",
+      "passed": true,
+      "evidence": "Título \"Achados, do mais grave ao menos grave\". Seção 1 \"Falsos verdes\" (1.1 estoque, 1.2 cancelar, 1.3 oráculo circular, 1.4 só status, 1.5 patch), depois 2 intermitência/ordem, 3 token, 4 lacunas. Dentro dos falsos verdes, a ordem também segue impacto (o patch, que hoje funciona por acidente, fica por último)."
+    },
+    {
+      "text": "Entrega código corrigido para os testes",
+      "passed": true,
+      "evidence": "test_pedidos_regras.py e test_pedidos_api.py (sintaxe válida, verificada com ast.parse). Têm oráculos à mão, cupom parametrizado com vários itens e arredondamento, `pytest.raises`, fixture que cria e cancela o pedido, `esperar_ate` com prazo, `timeout`, dois clientes não-admin com teste de isolamento, 401, cancelamento duplo com polling e tokens via ambiente. A demo roda a suíte corrigida contra 7 mutantes. Ressalva: o default `ErroSemEstoque = Exception` repete em parte o anti-padrão de exceção genérica (aceita TypeError), embora isso esteja sinalizado como AJUSTE e quantificado na demo."
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Com 7 defeitos plantados, os 3 testes de lógica originais detectam só 2 (cupom ignorado e desconto de 20%), e o arquivo novo detecta 6 de 7 como entregue e 7 de 7 com a exceção ajustada.",
+      "verified": true,
+      "evidence": "Reexecutei demonstracao_falso_verde.py com PYTHONDONTWRITEBYTECODE=1. A saída é idêntica a saida_demonstracao.txt: seção 1 com FALHOU só em cupom ignorado/20%, seção 5 com 0 falhas em (a) e 1 em (b) para o TypeError."
+    },
+    {
+      "claim": "O patch não tem efeito porque o teste chama o nome importado na linha 6, e chamando via `loja.pedidos.calcular_total` o teste vira tautologia.",
+      "verified": true,
+      "evidence": "Correto pela semântica de import. A demo mostra o original FALHOU com cupom ignorado e a variante \"passou <- vira tautologia\"."
+    },
+    {
+      "claim": "As regras do ruff PT015 (assert False) e S110 (try/except/pass) cobrem os casos do item 1.1, e `10.1*3 + 0.2` em float dá `30.499999999999996`.",
+      "verified": true,
+      "evidence": "PT015 sinaliza assert sempre falso, e S110 sinaliza try-except-pass com Exception genérica (a resposta pede para confirmar na versão). O valor do float foi confirmado com python3: 30.499999999999996."
+    }
+  ],
+  "nota_holistica": {
+    "nota": 9,
+    "justificativa": "Revisão mais completa e rigorosa: separa o que foi verificado do que foi inferido, cita linhas, prova os falsos verdes e a eficácia da suíte nova contra mutantes, e entrega código que cobre autorização entre clientes e arredondamento. Também fecha com perguntas que de fato mudariam a priorização. Perde um ponto pelo default `Exception` no código entregue e pela extensão, um pouco acima do necessário."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Entrega código corrigido para os testes",
+        "reason": "Binário demais: não distingue código que só troca o try/except de código que traz fixtures, oráculos independentes, polling, timeout e testes de autorização. Também não penaliza manter `pytest.raises(Exception)` genérico."
+      },
+      {
+        "assertion": "Identifica que test_total_com_desconto faz patch da própria função testada (mock da unidade sob teste)",
+        "reason": "Não premia perceber que o patch é inócuo por causa do `from ... import`, que é o ponto tecnicamente correto. Uma resposta que diga erroneamente \"o teste sempre passa por causa do mock\" passaria igual."
+      },
+      {
+        "assertion": "Ordena os achados por dano, com os falsos verdes primeiro",
+        "reason": "Subjetivo e permissivo. Seria melhor fixar expectativas (ex.: falsos verdes > ordem/global e flakiness > segurança > lacunas) ou exigir justificativa explícita do critério de dano."
+      },
+      {
+        "assertion": "(ausente) Aponta asserções fracas (só status_code) e que rodar como admin esconde bugs de autorização",
+        "reason": "São causas plausíveis de bug em produção que nenhum critério cobre. B as cobre, o que fica invisível na nota por critério."
+      },
+      {
+        "assertion": "(ausente) Distingue o que foi verificado do que é inferido e não afirma ter executado o que não executou",
+        "reason": "Honestidade epistêmica é central para QA e hoje não é medida."
+      }
+    ],
+    "overall": "Os critérios capturam os anti-padrões óbvios do arquivo, mas as duas respostas passam em todos, então eles não discriminam qualidade. Faltam critérios sobre a qualidade do código entregue, a precisão técnica do diagnóstico do patch, asserções fracas, autorização/admin, float em dinheiro, timeout e transparência sobre o que foi verificado."
+  },
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "pass_rate": 1.0
+  }
+}

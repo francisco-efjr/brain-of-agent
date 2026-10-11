@@ -75,6 +75,9 @@ Bibliografia validada. Classe A = oficial (Anthropic, mantenedor da tecnologia, 
 | V-22 | Style Dictionary | https://styledictionary.com/ | B | não declarada na página; só referência | 2026-10-10 |
 | V-23 | design.md (google-labs-code), formato alpha | https://github.com/google-labs-code/design.md | A | Apache-2.0 (API) | 2026-10-10 |
 | V-32 | design-system-ops | https://github.com/murphytrueman/design-system-ops | B | MIT | 2026-10-10 |
+| V-40 | cult-ui (Nolly Studio): registro shadcn, 134 páginas MDX, `check-registry.mts`, 141 componentes; base do contrato de componente e de doc | https://github.com/nolly-studio/cult-ui · https://www.cult-ui.com | B | MIT (© Jordan Gilliam) | 2026-10-11 (branch `main`, push de 2026-10-01) |
+| V-41 | Skiper UI (Gurvinder Singh): 107 componentes, registro `https://skiper-ui.com/r/{name}.json`, CSS compilado do site; estéticas D4 a D6 e D10 e presets de movimento | https://skiper-ui.com | B | free com atribuição obrigatória; Pro pago; sem repositório público: só valores e ideias, sem código copiado | 2026-10-11 |
+| V-42 | OriginKit (Lander Studio): 593 componentes, 58 seções, `tweakSchema`, presets, CLI e MCP; estética D7 e D8 e filtros de direção | https://www.originkit.dev · https://www.originkit.dev/docs/licensing | B | proprietária (só a CLI `originkit` no npm é MIT); proíbe uso em design system ou UI kit: só taxonomia e processo, sem código | 2026-10-11 |
 
 ## Repositórios e práticas B
 
@@ -117,4 +120,5 @@ Bibliografia validada. Classe A = oficial (Anthropic, mantenedor da tecnologia, 
 | design.md | alpha | README do repositório |
 | Claude Code | CLI local da fábrica: 2.1.128; `claude plugin eval` exige 2.1.269 ou superior; `/output-style` e estilo Concise exigem versões recentes (V-07) | `claude --version` e https://code.claude.com/docs |
 | Modelo-alvo | guias medidos em modelos Claude 4.x e 5.x | docs de prompting da Anthropic |
+| cult-ui, Skiper UI, OriginKit | consulta de 2026-10-11; catálogos, preços e licenças mudam | V-40 a V-42; `direcoes-de-estilo.md` seção 8 |
 | axe-core | `web-frontend` registra 4.14.0; o brain cita 4.10.2 em script de QA | `npm ls axe-core` no projeto ou a página do pacote, na data do uso |

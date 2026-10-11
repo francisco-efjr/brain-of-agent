@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "text": "Aponta 'rápido' como termo vago e pede uma definição mensurável (prazo por meio de pagamento, por exemplo)",
+      "passed": true,
+      "evidence": "Seção 2: \"'o reembolso deve ser rápido' Não é verificável. Para o cliente, 'rápido' pode ser minutos (Pix) ou até duas faturas (cartão)\" e propõe \"solicitamos o estorno em até [X] após o cancelamento e mostramos ao cliente o prazo estimado para cada meio de pagamento\". A tabela inclui \"Qual o prazo real de estorno por meio de pagamento e o que podemos prometer?\". Também separa o prazo que a empresa controla do prazo do banco/gateway."
+    },
+    {
+      "text": "Pergunta em quais estados do pedido o cancelamento é permitido (ex.: depois de enviado ou em separação)",
+      "passed": true,
+      "evidence": "\"Um pedido pago, em separação, enviado ou entregue tem tratamentos bem diferentes. Falta definir: em quais status o cancelamento é permitido\"; a tabela traz \"Em quais status o pedido pode ser cancelado pelo próprio cliente?\" e \"O que acontece com pedido já despachado?\"."
+    },
+    {
+      "text": "Levanta questões de reembolso por meio de pagamento (cartão, PIX, boleto) ou de cancelamento parcial",
+      "passed": true,
+      "evidence": "\"quais meios de pagamento entram (cartão, Pix, boleto, saldo, pagamento dividido)\", \"o que é devolvido (frete, cupom, cashback)\", \"se cancela o pedido inteiro ou só alguns itens\" e \"Pedido com vários itens, entregas ou vendedores: existe cancelamento parcial?\". Ponto fraco: não observa que boleto não tem estorno no 'mesmo meio de pagamento' e exige dados bancários."
+    },
+    {
+      "text": "Propõe critérios de aceite reescritos com exemplos concretos ou cenários Gherkin",
+      "passed": true,
+      "evidence": "Seção 'Proposta de reescrita' com 10 critérios no formato Dado/quando/então, ex.: \"Dado um pedido meu em status [pago / em separação], quando escolho 'Cancelar pedido' e confirmo, então o pedido passa a 'Cancelado'...\". Também reescreve a história. Os valores ficam como placeholders explícitos, sem números de exemplo, e os critérios 8 e 9 fogem do formato."
+    },
+    {
+      "text": "Menciona aspecto legal ou não funcional relevante (ex.: direito de arrependimento do CDC, notificação ao cliente, auditoria, estoque devolvido)",
+      "passed": true,
+      "evidence": "\"Em compra online no Brasil existe o direito de arrependimento de 7 dias (CDC, art. 49)\" (correto), além de \"liberar estoque\", \"cancelar nota fiscal\", \"Comunicação: confirmação na tela, e-mail ou push\" e \"Autorização e auditoria: ... registrar quem cancelou, quando e por qual canal\"."
+    },
+    {
+      "text": "Inclui ao menos um cenário de borda ou concorrência (ex.: cancelar duas vezes, cancelar enquanto o pedido é despachado)",
+      "passed": true,
+      "evidence": "Critério 5: \"Dado que o pedido foi despachado entre eu abrir a tela e confirmar, então o cancelamento é recusado... e nenhum estorno é gerado\". Critério 6: \"Dado um duplo clique ou uma segunda tentativa de cancelar o mesmo pedido, então existe um único cancelamento e um único estorno\". Nas lacunas cita ainda \"cancelar no app e no site ao mesmo tempo\"."
+    },
+    {
+      "text": "Organiza as perguntas por importância ou por tema, de forma utilizável numa reunião de refinamento",
+      "passed": true,
+      "evidence": "As perguntas estão agrupadas por tema (seções 'Problemas nos critérios de aceite' e 'Lacunas') e há uma tabela 'Perguntas para levar ao refinamento' com a coluna 'Quem responde' (PO, pagamentos, jurídico, mobile), que dá para usar na reunião. Não há ordem explícita de importância, mas o critério aceita organização por tema."
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Em compra online no Brasil existe o direito de arrependimento de 7 dias (CDC, art. 49).",
+      "verified": true,
+      "evidence": "O art. 49 do CDC prevê desistência em 7 dias, contados da assinatura ou do recebimento, para contratação fora do estabelecimento comercial, o que inclui compra online."
+    },
+    {
+      "claim": "O reembolso pode levar minutos no Pix ou até duas faturas no cartão.",
+      "verified": true,
+      "evidence": "A devolução de Pix é praticamente imediata. O estorno no cartão depende do emissor e costuma aparecer na fatura seguinte ou na outra. A ordem de grandeza está correta."
+    },
+    {
+      "claim": "Parte do prazo de reembolso depende do banco ou do gateway, fora do controle da empresa.",
+      "verified": true,
+      "evidence": "Correto: a empresa controla quando pede o estorno, mas o crédito ao cliente depende do adquirente e do emissor ou banco."
+    }
+  ],
+  "nota_holistica": {
+    "nota": 8,
+    "justificativa": "Revisão correta, completa e bem estruturada, com fatiamento vertical útil, critérios Dado/quando/então que cobrem concorrência, falha de estorno, autorização e paridade, e CDC citado corretamente. Perde pontos porque não prioriza as perguntas pelo que bloqueia a estimativa, porque os critérios só têm placeholders (sem exemplo numérico concreto), porque não trata pedido ainda não pago nem o caso de boleto, que não tem estorno no mesmo meio, e porque não dá orientação de teste (níveis API ou integração)."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Menciona aspecto legal ou não funcional relevante (ex.: direito de arrependimento do CDC, notificação ao cliente, auditoria, estoque devolvido)",
+        "reason": "Critério amplo demais: qualquer menção isolada a 'notificação' ou 'estoque' já passa. Seria mais discriminante exigir o aspecto legal (CDC art. 49) citado corretamente e distinguido de cancelamento antes do envio."
+      },
+      {
+        "assertion": "Organiza as perguntas por importância ou por tema, de forma utilizável numa reunião de refinamento",
+        "reason": "O 'ou por tema' torna o critério fácil: quase qualquer resposta com cabeçalhos passa. Exigir priorização explícita (o que bloqueia a estimativa) e dono sugerido por pergunta diferenciaria melhor."
+      },
+      {
+        "assertion": "Propõe critérios de aceite reescritos com exemplos concretos ou cenários Gherkin",
+        "reason": "Não exige que os critérios reescritos sejam de fato testáveis (valores ou placeholders explícitos, caminho negativo). Uma reescrita em Gherkin ainda vaga passaria."
+      },
+      {
+        "assertion": "(novo) Trata falha no estorno e idempotência (retentativa sem gerar reembolso duplicado)",
+        "reason": "É o defeito mais caro desta história e nenhum critério cobre falha do gateway nem o risco de reembolso em dobro na retentativa."
+      },
+      {
+        "assertion": "(novo) Cobre cancelamento de pedido ainda não pago (Pix/boleto em aberto) e autorização (só o titular cancela)",
+        "reason": "Casos relevantes e testáveis que nenhum critério exige; a autorização é um risco de segurança (IDOR)."
+      },
+      {
+        "assertion": "(novo) Dá veredito de prontidão e sugere divisão da história, sem inventar números como se fossem regra",
+        "reason": "É o que mais ajuda num refinamento e não é avaliado; também premiaria a honestidade de marcar hipóteses e prazos a confirmar."
+      }
+    ],
+    "overall": "A resposta passa em todos os critérios, mas alguns deles (5 e 7) são permissivos o bastante para aprovar respostas bem mais fracas. Faltam critérios para tratamento de falha e idempotência do estorno, pedido não pago, autorização e veredito ou divisão da história, que são o que separa uma revisão boa de uma excelente."
+  }
+}

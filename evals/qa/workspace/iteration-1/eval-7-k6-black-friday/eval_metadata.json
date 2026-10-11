@@ -1,0 +1,16 @@
+{
+  "eval_id": 7,
+  "eval_name": "k6-black-friday",
+  "prompt": "Black Friday chegando. Nosso e-commerce teve pico de 1.200 pedidos por hora ano passado e o comercial espera 3x esse ano. Quero um teste de carga em k6 do fluxo busca → produto → carrinho → checkout. Temos um ambiente de staging igual ao de produção.",
+  "files": [],
+  "assertions": [
+    "Deriva a carga-alvo dos números (3.600 pedidos/h ≈ 1 pedido/s) e considera o funil (mais buscas que checkouts) com suposições declaradas",
+    "Usa executor de taxa de chegada (modelo aberto, ex.: ramping-arrival-rate/constant-arrival-rate) ou justifica o modelo escolhido",
+    "Define thresholds por percentil (p95/p99) e taxa de erro",
+    "Inclui think time e dados parametrizados (vários produtos/usuários)",
+    "Inclui checks nas respostas",
+    "Recomenda monitorar métricas do servidor/APM durante o teste para achar gargalos",
+    "Propõe mais de um tipo de teste (carga + pico/estresse ou resistência) com ramp-up",
+    "Alerta para não bater no gateway de pagamento real (usar sandbox/mock) e para combinar a execução"
+  ]
+}

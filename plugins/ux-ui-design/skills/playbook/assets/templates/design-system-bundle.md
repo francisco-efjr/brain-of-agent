@@ -14,6 +14,8 @@ Template T-13. Uso: `design-init` (modo bundle) e `design-brief` (modo `brief-ds
   styles.css            só @import dos tokens e do CSS dos componentes
   tokens/               colors, typography, spacing, shape, materials, motion (+ fonts)
   components/<grupo>/   X.<ext> + X.d.ts (ou tipos) + X.prompt.md; <grupo>.card.html
+                        (React/shadcn: trio x.tsx + x-demo.tsx + x.mdx e item de registro, ver
+                        references/padrao-componente-cult-ui.md e templates/doc-componente.md)
   guidelines/           um card por decisão (cor, contraste, tipo, espaço, raio, material, movimento)
   ui_kits/<plataforma>/ protótipo + README "o que mudou em cada tela, e por quê"
   _adherence.<lint>     regras de aderência derivadas do contrato

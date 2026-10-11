@@ -1,0 +1,106 @@
+{
+  "expectations": [
+    {
+      "text": "Identifica campos sem rótulo (placeholder usado como rótulo)",
+      "passed": true,
+      "evidence": "Item 2 da tabela de bloqueadores: \"Nenhum campo tem `<label>`; só há `placeholder`. O leitor de tela não sabe o que cada campo pede, e o texto some ao digitar.\" (1.3.1, 3.3.2, 4.1.2). Também o item 11 aponta o checkbox sem label. Corrigido no HTML com <label for> em todos os campos."
+    },
+    {
+      "text": "Identifica o div usado como botão (sem acesso por teclado e sem papel de botão)",
+      "passed": true,
+      "evidence": "Item 1: \"O botão 'Enviar' é uma `<div onclick>`. Não recebe foco do teclado, não é anunciado como botão e não dá para enviar sem mouse.\" (2.1.1, 4.1.2), correção `<button type=\"submit\">` + evento submit. Cobre teclado e papel de botão."
+    },
+    {
+      "text": "Identifica a remoção do contorno de foco (outline: none)",
+      "passed": true,
+      "evidence": "Item 3: \"`input:focus { outline: none }` remove o indicador de foco, então quem usa teclado não vê onde está.\" (2.4.7), correção com `:focus-visible` de 3px (presente no HTML corrigido, linha 36)."
+    },
+    {
+      "text": "Identifica a ausência do atributo lang na página",
+      "passed": true,
+      "evidence": "Item 8: \"`<html>` sem `lang`. O leitor de tela lê português com sotaque de inglês.\" (3.1.1), correção `<html lang=\"pt-BR\">` aplicada no arquivo."
+    },
+    {
+      "text": "Identifica o erro indicado só por cor e sem mensagem associada ao campo",
+      "passed": true,
+      "evidence": "Item 4: \"O erro do CPF é só uma borda vermelha. Não há texto, não é anunciado, o foco não vai ao campo e a classe nunca é removida.\" (1.4.1, 3.3.1, 3.3.3, 4.1.3), correção com mensagem em texto, `aria-invalid`, `aria-describedby` e resumo de erros — implementada no HTML corrigido (função marcar)."
+    },
+    {
+      "text": "Identifica contraste insuficiente do texto (#999/#bbb sobre branco) ou a imagem sem texto alternativo",
+      "passed": true,
+      "evidence": "Identifica ambos. Item 6: \"texto do corpo `#999` = 2,85:1 (mínimo 4,5); ajuda `#bbb` = 1,92:1; botão branco sobre `#6cf` = 1,80:1; borda dos campos `#ddd` = 1,36:1\" (1.4.3, 1.4.11) — valores conferidos por cálculo e corretos. Item 7: \"`<img>` do logo sem `alt`\" (1.1.1)."
+    },
+    {
+      "text": "Mapeia os achados para critérios WCAG numerados (ex.: 1.3.1, 2.1.1, 2.4.7, 3.1.1, 3.3.1, 1.4.3)",
+      "passed": true,
+      "evidence": "Todos os achados têm critério WCAG numerado e os do núcleo estão corretos: rótulos 1.3.1/3.3.2/4.1.2; div-botão 2.1.1/4.1.2; foco 2.4.7; erro 1.4.1/3.3.1/3.3.3; contraste 1.4.3/1.4.11; alt 1.1.1; lang 3.1.1; autocomplete 1.3.5. Pequena imprecisão: 2.5.8 atribuído ao checkbox nativo de 13px, que provavelmente se enquadra na exceção de tamanho definido pelo agente do usuário/espaçamento; não compromete o mapeamento principal."
+    },
+    {
+      "text": "Menciona exigência do setor público brasileiro (eMAG e/ou LBI, NBR 17060)",
+      "passed": true,
+      "evidence": "\"Para uma prefeitura, isso também é risco legal: a Lei Brasileira de Inclusão (Lei 13.146/2015, art. 63) exige acessibilidade nos sites de órgãos públicos. Confirme com o jurídico ou com o edital qual referência o contrato cobra (WCAG 2.2 nível AA, ABNT NBR 17060 ou eMAG).\" Cita LBI com artigo correto, eMAG e NBR 17060 (sem explicar que a NBR 17060 trata de aplicativos móveis)."
+    },
+    {
+      "text": "Entrega código corrigido",
+      "passed": true,
+      "evidence": "Entrega `A/cadastro-corrigido.html` (252 linhas) com lang, viewport, landmarks, h1, labels, button type=submit, :focus-visible, cores com contraste, mensagens de erro em texto ligadas por aria-describedby, aria-invalid, resumo de erros focado, role=status sem timeout, autocomplete. HTML válido; validação de CPF conferida (aceita 123.456.789-09, rejeita 111.111.111-11 e 123.456.789)."
+    },
+    {
+      "text": "Diz que a varredura automática não cobre tudo e recomenda teste manual com teclado e leitor de tela",
+      "passed": true,
+      "evidence": "Seção \"Antes de lançar: testes manuais que faltam\": \"1. Só teclado: Tab, Shift+Tab, Enter e Espaço...\", \"2. Leitor de tela: NVDA + Firefox ou Chrome no Windows, VoiceOver no iPhone e TalkBack no Android\" e \"5. Ferramentas automáticas (axe DevTools ou Lighthouse) como complemento. Elas pegam só uma parte dos problemas\". Também declara: \"Não testei com leitor de tela real\"."
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Contrastes sobre branco: #999 = 2,85:1, #bbb = 1,92:1, branco sobre #6cf = 1,80:1, #ddd = 1,36:1; correções #1f1f1f 16,5:1, #595959 7:1, #767676 4,5:1, #0b4f8a 8,4:1.",
+      "verified": true,
+      "evidence": "Recalculado pela fórmula de luminância relativa WCAG: 2.85, 1.92, 1.80, 1.36, 16.48, 7.00, 4.54, 8.40 — todos corretos."
+    },
+    {
+      "claim": "`maxlength=\"11\"` corta `123.456.789-09` em `123.456.789`, que tem 11 caracteres e passa na validação original.",
+      "verified": true,
+      "evidence": "'123.456.789'.length === 11 e o script original só testa `cpf.value.length != 11`, logo mostraria 'Cadastro realizado!'."
+    },
+    {
+      "claim": "O checkbox de 13px falha o critério 2.5.8 (tamanho de alvo).",
+      "verified": false,
+      "evidence": "O checkbox original é nativo e sem estilização; o 2.5.8 isenta alvos cujo tamanho é determinado pelo agente do usuário (e há exceção de espaçamento). É boa prática aumentar, mas não é reprovação clara do 2.5.8."
+    }
+  ],
+  "nota_holistica": {
+    "nota": 8,
+    "justificativa": "Auditoria correta, bem priorizada (bloqueadores x importantes), com contrastes medidos, base legal (LBI art. 63), código corrigido válido e testes manuais recomendados; perde um pouco por imprecisões pontuais (2.5.8 no checkbox nativo, afirmação categórica sobre leitura com 'sotaque de inglês', 2.4.1 forçado) e por não indicar nível A/AA nem distinguir o que foi observado do que foi inferido."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Identifica contraste insuficiente do texto (#999/#bbb sobre branco) ou a imagem sem texto alternativo",
+        "reason": "O 'ou' junta dois problemas distintos; uma resposta que só cite a imagem sem alt passa sem perceber o contraste (o problema mais impactante visualmente). Separar em dois critérios e exigir números de contraste corretos."
+      },
+      {
+        "assertion": "Entrega código corrigido",
+        "reason": "Passa com qualquer trecho de código, mesmo inválido ou que deixa de corrigir bloqueadores. Exigir que o código corrigido resolva pelo menos label, botão nativo, foco visível, lang e erro em texto associado."
+      },
+      {
+        "assertion": "Menciona exigência do setor público brasileiro (eMAG e/ou LBI, NBR 17060)",
+        "reason": "Menção superficial passa; não verifica correção (ex.: NBR 17060 é norma para aplicativos móveis; eMAG é obrigatória por portaria na administração federal). Exigir enquadramento correto."
+      },
+      {
+        "assertion": "(ausente) Identifica que a mensagem de sucesso some em 2 s e não é anunciada (2.2.1 / 4.1.3)",
+        "reason": "Problema real do arquivo que nenhum critério cobre."
+      },
+      {
+        "assertion": "(ausente) Prioriza achados por severidade e declara o que foi e o que não foi testado",
+        "reason": "Diferencia uma auditoria útil de uma lista; nenhum critério mede priorização ou transparência sobre a cobertura."
+      }
+    ],
+    "overall": "Os critérios cobrem bem os defeitos plantados, mas são fáceis de passar por menção; não medem correção técnica (números de contraste, nível A/AA, enquadramento legal), qualidade do código corrigido, nem achados adicionais relevantes (timeout da mensagem, checkbox sem label, autocomplete, truncamento do CPF por maxlength)."
+  },
+  "summary": {
+    "passed": 10,
+    "failed": 0,
+    "total": 10,
+    "pass_rate": 1.0
+  }
+}

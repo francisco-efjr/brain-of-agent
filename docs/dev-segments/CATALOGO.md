@@ -408,7 +408,7 @@ Instalar: `/plugin install code-quality-refactoring@brain-of-agent` · Playbook:
 | `code-quality-refactoring:finding-validator` (`plugins/code-quality-refactoring/agents/finding-validator.md`) | Cético somente leitura que tenta refutar achados de revisão de código lendo o código (reabre o trecho, procura guarda, teste ou chamada que torne o achado falso) e decide CONFIRMADO, REFUTADO ou INCONCLUSIVO com a linha… | Read, Grep, Glob |
 | `code-quality-refactoring:refactor-planner` (`plugins/code-quality-refactoring/agents/refactor-planner.md`) | Planejador somente leitura de refatoração segura. | Read, Grep, Glob |
 
-## ux-ui-design (`ux-ui-design` 0.1.0)
+## ux-ui-design (`ux-ui-design` 0.2.0)
 
 Direção visual, auditoria de UI, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários para trabalhar com Claude, com skills, agentes avaliadores somente leitura, prompts curados e evals.
 

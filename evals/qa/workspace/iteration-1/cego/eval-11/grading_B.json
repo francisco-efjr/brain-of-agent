@@ -1,0 +1,76 @@
+{
+  "expectations": [
+    {
+      "text": "Recomenda teste combinatório par-a-par (pairwise)",
+      "passed": true,
+      "evidence": "Item 2: \"Use pairwise nas 294. Dezessete configurações cobrem todo par de valores (todo navegador com todo SO, todo idioma com todo plano, todo login com todo navegador etc.)\"."
+    },
+    {
+      "text": "Trata as restrições: Safari só em macOS/iOS e SSO só no plano Enterprise",
+      "passed": true,
+      "evidence": "Item 1: \"SSO só no Enterprise corta 432 para 336. Se o Safari só roda em macOS e iOS ... cai para 294 combinações reais\". Linha 14: as linhas saem do gerador \"com as exclusões 'SSO só Enterprise' e 'Safari só macOS/iOS'\". Trata a restrição do Safari como suposição a confirmar, o que é aceitável. Conferi os números por script: estão corretos."
+    },
+    {
+      "text": "Entrega uma tabela concreta de combinações",
+      "passed": true,
+      "evidence": "Tabela \"As 20 configurações\" com 17 linhas de pairwise mais E1 a E3, todas com navegador, SO, idioma, plano e login preenchidos (linhas 16 a 37)."
+    },
+    {
+      "text": "Informa quantas combinações resultaram (na ordem de 15 a 25) contra as 432 do produto cartesiano",
+      "passed": true,
+      "evidence": "\"Não teste as 432\"; \"cai para 294 combinações reais\"; \"Dezessete configurações cobrem todo par ... Acrescente 3 por risco: 20 configurações no total\"."
+    },
+    {
+      "text": "Todas as combinações da tabela respeitam as restrições (nenhuma linha com Safari em Windows/Android ou SSO fora do Enterprise)",
+      "passed": true,
+      "evidence": "Conferi linha a linha e por script as 20 linhas: Safari só em iOS (2, 11, 13) e macOS (16, E1, E2); SSO só com Enterprise (1, 9, 13, 14, 15, E2, E3). Nenhuma linha inválida. O script também confirmou que as 17 linhas de pairwise cobrem os 111 pares válidos."
+    },
+    {
+      "text": "Explica a limitação do pairwise (interações de 3+ fatores) e sugere acrescentar combinações por risco/uso real (ex.: analytics)",
+      "passed": true,
+      "evidence": "\"Pairwise garante pares, não trios ... Das 42 combinações possíveis de navegador × SO × login, as 17 linhas cobrem 17 ... escolhi as duas de maior risco ... e Chrome no Android com SSO, a mais provável de ser usada em volume\"; \"Se tiver incidente ou chamado de login em outra combinação, troque as extras por ela\"; \"Defeito que exija três ou mais fatores ... pode passar\"; pede \"participação de cada navegador e SO nos últimos 90 dias\" e propõe a regressão completa \"na configuração mais usada nos seus dados de acesso\"."
+    }
+  ],
+  "claims": [
+    {
+      "claim": "As 17 linhas cobrem os 111 pares possíveis, sem nenhuma combinação proibida.",
+      "verified": true,
+      "evidence": "Script de força bruta: as 17 linhas cobrem os 111 pares válidos, sem faltar nenhum e sem linha que viole as restrições; as 20 linhas também são todas válidas."
+    },
+    {
+      "claim": "Das 42 combinações válidas de navegador × SO × login, as 17 linhas cobrem 17 (sobram 25), e E1 a E3 estão entre as que ficaram de fora.",
+      "verified": true,
+      "evidence": "Script: existem 42 triplas válidas (14 navegador x SO x 3 logins); as 17 linhas têm 17 triplas distintas; (Safari, macOS, Google), (Safari, macOS, SSO) e (Chrome, Android, SSO) não estão nas 17 linhas."
+    },
+    {
+      "claim": "Firefox no Android com SSO continua descoberto mesmo com os trios extras.",
+      "verified": true,
+      "evidence": "Script: (Firefox, Android, SSO) não aparece em nenhuma das 20 linhas."
+    }
+  ],
+  "nota_holistica": {
+    "nota": 9,
+    "justificativa": "A resposta está correta e foi verificada: 294 combinações reais, 17 linhas cobrindo os 111 pares, 20 linhas válidas e trios extras justificados por contagem. Traz plano de execução por cadência (PR, noturno, release), tabela de decisão plano x login com casos negativos e de segurança, risco residual explícito e perguntas que mudam o resultado. Só não nomeia a ferramenta nem dá o modelo do gerador para reproduzir a matriz, e a frase \"20 linhas ... nos três motores\" fica ambígua."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Todas as combinações da tabela respeitam as restrições (nenhuma linha com Safari em Windows/Android ou SSO fora do Enterprise)",
+        "reason": "Não exige a cobertura de todos os pares válidos. Uma resposta com linhas válidas mas pares faltando passaria. Sugiro um critério verificável por script: \"as linhas de pairwise cobrem todos os 111 pares válidos\"."
+      },
+      {
+        "assertion": "Explica a limitação do pairwise (interações de 3+ fatores) e sugere acrescentar combinações por risco/uso real (ex.: analytics)",
+        "reason": "O critério junta duas coisas (limitação e reforço por risco/uso) e o \"/\" permite passar só com risco. Separar em dois critérios deixaria claro se a resposta usa dados reais de uso."
+      },
+      {
+        "assertion": "(ausente) Indica como gerar/regenerar a matriz com ferramenta e restrições codificadas",
+        "reason": "Esta resposta diz \"saem do gerador de pairwise\" sem nomear a ferramenta nem dar o modelo. Nenhum critério penaliza a falta de reprodutibilidade."
+      },
+      {
+        "assertion": "(ausente) Testa plano x login fora da matriz, com casos negativos (Free/Pro forçando SSO)",
+        "reason": "Este é um diferencial importante para QA, e nenhum critério o cobre."
+      }
+    ],
+    "overall": "Os critérios são adequados ao núcleo do pedido e a resposta passa em todos com folga. Eles não distinguem bem uma tabela que só é plausível de uma que cobre todos os pares, e não cobrem aspectos práticos de alto valor: ferramenta e modelo reproduzível, execução em dispositivo real versus emulação, cadência de execução e testes negativos de acesso por plano."
+  }
+}

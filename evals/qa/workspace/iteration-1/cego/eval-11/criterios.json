@@ -1,0 +1,12 @@
+{
+  "pedido": "Nosso app web roda em Chrome, Firefox, Safari e Edge; em Windows, macOS, Android e iOS; nos idiomas pt-BR, en e es; nos planos Free, Pro e Enterprise; e com login por senha, Google ou SSO (SSO só existe no Enterprise). Não dá pra testar 432 combinações. O que eu faço?",
+  "arquivos_de_entrada": [],
+  "criterios": [
+    "Recomenda teste combinatório par-a-par (pairwise)",
+    "Trata as restrições: Safari só em macOS/iOS e SSO só no plano Enterprise",
+    "Entrega uma tabela concreta de combinações",
+    "Informa quantas combinações resultaram (na ordem de 15 a 25) contra as 432 do produto cartesiano",
+    "Todas as combinações da tabela respeitam as restrições (nenhuma linha com Safari em Windows/Android ou SSO fora do Enterprise)",
+    "Explica a limitação do pairwise (interações de 3+ fatores) e sugere acrescentar combinações por risco/uso real (ex.: analytics)"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "expectations": [
+    {
+      "text": "Prioriza explicitamente por risco (ranking ou matriz) com dinheiro, segurança e regulação no topo",
+      "passed": false,
+      "evidence": "Há ranking explícito na seção 1: '1. Dinheiro errado', '2. Dados do cartão expostos', '3. Acesso indevido', '4. Fluxo travado', '5. Cosmético / UX' — dinheiro e segurança no topo. Mas regulação não aparece no ranking (o critério de dor é 'financeira e reputacionalmente'); regulação só surge de passagem em 'consentimento (LGPD)', 'IOF' e na pergunta 2 da seção 9. Como o critério exige regulação no topo, falha."
+    },
+    {
+      "text": "Propõe um plano dia a dia ou por fases que cabe nos 10 dias úteis",
+      "passed": true,
+      "evidence": "Seção 3 'Calendário sugerido' dia 1 a 10: D1 alinhamento + matriz de risco + go/no-go; D2–3 ambiente, massa e esqueleto de API; D4–6 testes por módulo; D7 segurança/concorrência/falhas; D8 E2E + bug bash; D9 congelamento + regressão; D10 go/no-go e deploy. Inclui 'Reserve 30-40% do tempo para reteste de correções'."
+    },
+    {
+      "text": "Diz explicitamente o que fica de fora e quais riscos residuais sobram",
+      "passed": false,
+      "evidence": "A seção 8 'Comunique o que NÃO será coberto' apenas orienta o usuário a enviar ao PO 'o que será testado a fundo, o que só superficialmente e o que não será testado', sem listar o que fica de fora nem os riscos residuais. Só há indícios dispersos ('Cosmético / UX: fica por último', pergunta 6 sobre tirar parcelamento/moeda estrangeira, 'todos os bugs que não achei'). Não é explícito."
+    },
+    {
+      "text": "Trata automação de forma pragmática para o prazo (ex.: API e smoke dos fluxos críticos primeiro, não uma suíte E2E completa)",
+      "passed": true,
+      "evidence": "'em 10 dias, automatize em nível de API, não de UI... No máximo 1 ou 2 testes E2E de UI cobrindo o caminho feliz. Rode a suíte a cada deploy em staging'; usar ferramenta que os devs dominam; unitários das regras pelos devs."
+    },
+    {
+      "text": "Inclui aspectos de segurança/fraude específicos de cartão (ex.: PCI DSS, mascaramento do número, autorização/3DS, dados sensíveis)",
+      "passed": true,
+      "evidence": "'Dados do cartão expostos: número, CVV e validade vazando em log, resposta de API, URL, e-mail'; 'Número válido (Luhn), BIN correto'; 'Exibição de dados completos só após autenticação; mascaramento nas demais telas'; 'autenticação adicional (3DS ou equivalente)'; IDOR ('troque o ID na requisição'); 'rate limit em solicitação e em exibição de dados do cartão'; PCI citado na pergunta 2."
+    },
+    {
+      "text": "Define critérios de saída ou de go/no-go",
+      "passed": true,
+      "evidence": "Seção 6 'Critérios de go/no-go (defina no dia 1, não no dia 10)': zero bugs críticos (dinheiro errado, dado exposto, acesso a outro cliente, fluxo quebrado); fluxo completo e suíte verde em pré-produção; cálculos validados contra exemplos do negócio; rollback e monitoramento definidos; bugs menores com dono e prazo."
+    },
+    {
+      "text": "Envolve os devs na qualidade (ex.: testes unitários pelos devs, pareamento, revisão)",
+      "passed": true,
+      "evidence": "Seção 2: 'Testes unitários das regras de cálculo | Devs'... 'nenhuma regra de cálculo entra sem teste unitário com valores de borda'; '1 dev ajudando no dia 1-2' na automação; 'Bug bash | Time todo | 1 hora no dia 8, cada um tentando quebrar o fluxo que NÃO escreveu'."
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Dinheiro deve ser tratado como decimal, nunca float",
+      "verified": true,
+      "evidence": "Ponto flutuante binário não representa centavos exatamente (ex.: 0.1+0.2 != 0.3); boa prática é decimal ou inteiro em centavos."
+    },
+    {
+      "claim": "Playwright pode ser usado em modo API para automação de testes de API",
+      "verified": true,
+      "evidence": "Playwright oferece APIRequestContext (fixture 'request') para testes de API sem navegador."
+    },
+    {
+      "claim": "Número de cartão gerado deve ser válido por Luhn e ter BIN correto",
+      "verified": true,
+      "evidence": "PANs usam dígito verificador Luhn e os primeiros 6–8 dígitos (BIN/IIN) identificam emissor/produto."
+    }
+  ],
+  "nota_holistica": {
+    "nota": 7,
+    "justificativa": "Plano sólido e tecnicamente correto, com boa divisão de trabalho, automação por API, lista rica de casos por etapa (incluindo concorrência, idempotência, borda de limite, fatura), go/no-go e liberação gradual; porém não lista o que fica de fora nem os riscos residuais (só manda o usuário comunicar), não põe regulação na priorização, e a lista extensa de casos nos dias 4–6 é pouco priorizada para um QA solo em 10 dias."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Prioriza explicitamente por risco (ranking ou matriz) com dinheiro, segurança e regulação no topo",
+        "reason": "Junta três dimensões num só critério; uma resposta com bom ranking de dinheiro/segurança falha só por não nomear regulação. Separar em 'ranking explícito' e 'considera regulação (BACEN/PCI/LGPD)'."
+      },
+      {
+        "assertion": "Diz explicitamente o que fica de fora e quais riscos residuais sobram",
+        "reason": "Bom critério discriminante: aqui distinguiu 'listar o que fica de fora' de 'mandar o usuário comunicar o que fica de fora'. Manter e deixar claro que a orientação genérica não basta."
+      },
+      {
+        "assertion": "(novo) Os casos/atividades propostos são proporcionais à capacidade de 1 QA em 10 dias (há corte ou ordem de corte explícita)",
+        "reason": "Respostas com lista extensa de casos por módulo passam em todos os critérios mesmo sendo inexequíveis no prazo; falta um critério de viabilidade/ordem de corte."
+      },
+      {
+        "assertion": "(novo) Cobre concorrência/idempotência no consumo de limite e falha fechada de dependências",
+        "reason": "Riscos característicos de cartão que não são exigidos por nenhum critério."
+      }
+    ],
+    "overall": "Os critérios capturam bem estrutura de plano e go/no-go, mas não avaliam viabilidade no prazo nem profundidade técnica dos riscos de cartão (concorrência, idempotência, conciliação, falha fechada). O critério 1 mistura três dimensões e o 5 pode passar com menção genérica."
+  },
+  "summary": {
+    "passed": 5,
+    "failed": 2,
+    "total": 7,
+    "pass_rate": 0.7143
+  }
+}

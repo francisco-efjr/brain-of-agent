@@ -1,0 +1,100 @@
+{
+  "expectations": [
+    {
+      "text": "Identifica campos sem rótulo (placeholder usado como rótulo)",
+      "passed": true,
+      "evidence": "Bloqueador 2: \"Os campos não têm rótulo, só placeholder. Critérios 1.3.1, 3.3.2 e 4.1.2 (A).\" com observação \"6 controles e 0 `<label>`\" e efeito \"o placeholder some ao digitar\". Também trata o checkbox sem label. Corrigido no HTML com <label for>."
+    },
+    {
+      "text": "Identifica o div usado como botão (sem acesso por teclado e sem papel de botão)",
+      "passed": true,
+      "evidence": "Bloqueador 1: \"O botão 'Enviar' é um `<div onclick>`. Critérios 2.1.1 e 4.1.2 (A).\" Observado: \"com 9 Tabs seguidos... nunca parou no 'Enviar'. Na árvore de acessibilidade ele aparece como 'generic', não 'button'\". Cobre teclado e papel; correção `<button type=\"submit\">`."
+    },
+    {
+      "text": "Identifica a remoção do contorno de foco (outline: none)",
+      "passed": true,
+      "evidence": "Bloqueador 3: \"O contorno de foco foi removido. Critério 2.4.7 (AA).\" Observado: \"`input:focus { outline: none }` sem substituto\". Correção `:focus-visible { outline: 3px solid #005fcc; outline-offset: 2px }` com contraste 5,98:1 (conferido)."
+    },
+    {
+      "text": "Identifica a ausência do atributo lang na página",
+      "passed": true,
+      "evidence": "Achado 7: \"`<html>` sem `lang` (verificado: vazio). Leitor de tela pode ler o português com a pronúncia errada\" — 3.1.1 (A), correção `<html lang=\"pt-BR\">` aplicada."
+    },
+    {
+      "text": "Identifica o erro indicado só por cor e sem mensagem associada ao campo",
+      "passed": true,
+      "evidence": "Bloqueador 4: \"O erro só existe para o CPF e só como borda vermelha. Critérios 1.4.1, 3.3.1 (A) e 3.3.3 (AA).\" Observado: \"sem texto de erro, sem `aria-invalid`, sem mover o foco, sem anúncio\"; correção \"mensagem de texto... ligada ao campo por `aria-describedby`, `aria-invalid=\\\"true\\\"`, resumo de erros\" — implementada no HTML (mostrarErro, montarResumo) com limpeza ao corrigir."
+    },
+    {
+      "text": "Identifica contraste insuficiente do texto (#999/#bbb sobre branco) ou a imagem sem texto alternativo",
+      "passed": true,
+      "evidence": "Identifica ambos. Achado 6: \"texto `#999` sobre branco é 2,85:1; ajuda da senha `#bbb` é 1,92:1; 'Enviar' branco sobre `#6cf` é 1,80:1; borda dos campos `#ddd` é 1,36:1\" (1.4.3, 1.4.11) — valores conferidos e corretos; script contraste.py executa e reproduz os números. Achado 8: \"Logo sem `alt`\" (1.1.1)."
+    },
+    {
+      "text": "Mapeia os achados para critérios WCAG numerados (ex.: 1.3.1, 2.1.1, 2.4.7, 3.1.1, 3.3.1, 1.4.3)",
+      "passed": true,
+      "evidence": "Todos os achados têm critério numerado e nível (A/AA) corretos: 2.1.1 e 4.1.2 (A), 1.3.1/3.3.2 (A), 2.4.7 (AA), 1.4.1/3.3.1 (A) e 3.3.3 (AA), 2.2.1 (A)/4.1.3 (AA), 1.4.3/1.4.11 (AA), 3.1.1 (A), 1.1.1 (A), 1.3.5 (AA). Também sinaliza corretamente casos-limite (\"2.5.8 passa\", \"2.4.4 (no limite)\", \"2.4.2 (limite)\")."
+    },
+    {
+      "text": "Menciona exigência do setor público brasileiro (eMAG e/ou LBI, NBR 17060)",
+      "passed": true,
+      "evidence": "\"Alvo que usei: WCAG 2.2 nível AA, que é a base técnica do art. 63 da LBI (Lei 13.146/2015) para sites de órgãos de governo. A eMAG 3.1 só é obrigatória na administração federal; se o edital ou contrato da prefeitura citar eMAG ou outra norma, confirme.\" e \"NBR 17060 se houver app\" — cita LBI, eMAG e NBR 17060 com escopo correto (a NBR 17060 é para aplicativos móveis)."
+    },
+    {
+      "text": "Entrega código corrigido",
+      "passed": true,
+      "evidence": "Entrega `B/cadastro-corrigido.html` (214 linhas) com lang, viewport, header/main/h1, labels (inclusive envolvendo checkboxes), button type=submit, :focus-visible, contraste corrigido, erros em texto com aria-describedby/aria-invalid, resumo focado, role=status persistente, autocomplete, validação de CPF e data (conferidas: rejeita aaaaaaaaaaa, 12345678901, 31/02/2000, 25/12/2999; aceita 123.456.789-09). Também entrega contraste.py (executa: 4 falhas no original, 0 no corrigido) e acessibilidade.spec.ts (declarado como não executado)."
+    },
+    {
+      "text": "Diz que a varredura automática não cobre tudo e recomenda teste manual com teclado e leitor de tela",
+      "passed": true,
+      "evidence": "\"Estimativa, não medida: o axe provavelmente pegaria só 4 destes problemas... O resto exige teclado e leitor de tela. Por isso, axe zerado depois da correção não bastaria para aprovar.\" e próximos passos: \"Passar o `cadastro-corrigido.html` por NVDA + Firefox (ou Chrome) e por VoiceOver no iPhone... TalkBack no Android\". Teclado foi testado pela própria auditoria e incluído no spec."
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Contrastes: #999 2,85:1, #bbb 1,92:1, branco/#6cf 1,80:1, #ddd 1,36:1; corrigidos #595959 7,0:1, #767676 4,54:1, branco/#00539b 7,75:1, foco #005fcc 5,98:1; mensagem verde original 5,14:1.",
+      "verified": true,
+      "evidence": "Recalculado de forma independente e executado contraste.py: todos os valores batem (2.85, 1.92, 1.80, 1.36, 7.00, 4.54, 7.75, 5.98, 5.14)."
+    },
+    {
+      "claim": "O axe pegaria só cerca de 4 problemas (html-has-lang, image-alt, color-contrast e o checkbox sem rótulo); o resto exige teclado e leitor de tela.",
+      "verified": true,
+      "evidence": "Consistente com as regras do axe-core: a regra `label` aceita placeholder não vazio como nome (não flagra os campos de texto), o axe não detecta div com onclick, não mede contraste de borda (1.4.11) nem timeout de mensagem. Apresentado corretamente como estimativa."
+    },
+    {
+      "claim": "A validação corrigida recusa `aaaaaaaaaaa`, `12345678901`, `31/02/2000` e `25/12/2999` e aceita `123.456.789-09`.",
+      "verified": true,
+      "evidence": "Executei as funções cpfValido e dataValida do B/cadastro-corrigido.html em Node: resultados exatamente como descritos."
+    }
+  ],
+  "nota_holistica": {
+    "nota": 9,
+    "justificativa": "Auditoria tecnicamente precisa e verificável (níveis A/AA corretos, casos-limite sinalizados, contrastes conferidos, separação entre observado/inferido/não executado), com enquadramento legal correto, código corrigido válido, script de contraste e spec de regressão; pequenos senões são o volume extenso e o `#msg:empty {display:none}` que contradiz o comentário de manter a região de status no DOM desde o carregamento."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Identifica contraste insuficiente do texto (#999/#bbb sobre branco) ou a imagem sem texto alternativo",
+        "reason": "O 'ou' permite passar cobrindo só um dos dois problemas; separar e exigir valores de contraste corretos."
+      },
+      {
+        "assertion": "Mapeia os achados para critérios WCAG numerados (ex.: 1.3.1, 2.1.1, 2.4.7, 3.1.1, 3.3.1, 1.4.3)",
+        "reason": "Não exige que o mapeamento esteja correto nem que traga o nível (A/AA); uma resposta com números errados ainda tende a passar por 'mencionar números'."
+      },
+      {
+        "assertion": "Diz que a varredura automática não cobre tudo e recomenda teste manual com teclado e leitor de tela",
+        "reason": "Não distingue quem só recomenda de quem efetivamente executou e relatou o teste de teclado; poderia premiar evidência observada."
+      },
+      {
+        "assertion": "(ausente) Aponta o bug funcional de validação (maxlength=11 trunca CPF com máscara; só o tamanho do CPF é validado)",
+        "reason": "Ambas as respostas acharam, mas nenhum critério mede achados funcionais que afetam o mesmo público."
+      },
+      {
+        "assertion": "(ausente) O código corrigido não introduz novos problemas (ex.: região live com display:none, link dentro de label)",
+        "reason": "Nenhum critério avalia a qualidade do código entregue além da existência."
+      }
+    ],
+    "overall": "Critérios adequados para detectar os defeitos plantados, mas permissivos: medem presença, não correção. Faltam critérios de priorização/severidade, transparência sobre o que foi testado, correção do enquadramento legal e qualidade do código corrigido."
+  }
+}

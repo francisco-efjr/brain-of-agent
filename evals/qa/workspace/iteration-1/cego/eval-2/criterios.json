@@ -1,0 +1,13 @@
+{
+  "pedido": "Revisa essa história antes do refinamento de amanhã:\n\n\"Como cliente, quero cancelar meu pedido para não pagar por algo que não quero mais.\nCritérios de aceite:\n- o cliente pode cancelar o pedido\n- o reembolso deve ser rápido\n- deve funcionar no app e no site\"",
+  "arquivos_de_entrada": [],
+  "criterios": [
+    "Aponta 'rápido' como termo vago e pede uma definição mensurável (prazo por meio de pagamento, por exemplo)",
+    "Pergunta em quais estados do pedido o cancelamento é permitido (ex.: depois de enviado ou em separação)",
+    "Levanta questões de reembolso por meio de pagamento (cartão, PIX, boleto) ou de cancelamento parcial",
+    "Propõe critérios de aceite reescritos com exemplos concretos ou cenários Gherkin",
+    "Menciona aspecto legal ou não funcional relevante (ex.: direito de arrependimento do CDC, notificação ao cliente, auditoria, estoque devolvido)",
+    "Inclui ao menos um cenário de borda ou concorrência (ex.: cancelar duas vezes, cancelar enquanto o pedido é despachado)",
+    "Organiza as perguntas por importância ou por tema, de forma utilizável numa reunião de refinamento"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "expectations": [
+    {
+      "text": "Prioriza explicitamente por risco (ranking ou matriz) com dinheiro, segurança e regulação no topo",
+      "passed": true,
+      "evidence": "Tabela 'Riscos, ordenados (falha → efeito)' R1–R8 com nível Alto/Médio; 'Todos os \"Alto\" envolvem dinheiro, dado do cartão, obrigação legal ou efeito difícil de desfazer.' R1 (compra acima do limite/débito duplo), R2 (fatura errada → 'problema regulatório'), R4 ('fraude, LGPD, PCI') no topo; R8 (limite preso) como Médio. Dinheiro, segurança e regulação explicitamente no topo."
+    },
+    {
+      "text": "Propõe um plano dia a dia ou por fases que cabe nos 10 dias úteis",
+      "passed": true,
+      "evidence": "Seção 'Calendário (D1 a D10 úteis)' com foco e saída por dia (D1 sessão de riscos; D2–D3 casos e pair; D4–D5 API + smoke no pipeline; D6–D7 fatura/conciliação/R7; D8 congelamento e 1ª rodada; D9 reteste, ensaio de rollback, parecer; D10 liberação gradual). Supõe '2 rodadas de correção' e alerta sobre o feriado de 12/10 (segunda-feira em 2026, correto)."
+    },
+    {
+      "text": "Diz explicitamente o que fica de fora e quais riscos residuais sobram",
+      "passed": true,
+      "evidence": "Seção 'O que fica de fora e o risco que sobra' com tabela Fora | Risco residual: carga acima do p95 (pico desconhecido, mitigado por liberação gradual), segurança além do básico ('Falha não óbvia que só um pentest acha'), dispositivos além de 1 Android/1 iPhone/2 navegadores, atraso/encargos/chargeback ('Disputa com a bandeira fica sem verificação'). Também 'corte nesta ordem' e 'Não corte: R1–R7'."
+    },
+    {
+      "text": "Trata automação de forma pragmática para o prazo (ex.: API e smoke dos fluxos críticos primeiro, não uma suíte E2E completa)",
+      "passed": true,
+      "evidence": "'Automatizar você mesmo só um smoke por API dos fluxos críticos'; smoke 'Por API: solicita → aprova → gera cartão → autoriza compra → fecha fatura (simulada). No máximo 1 teste de interface'; 'Não faça: Suíte de interface inteira, ou centenas de casos passo a passo'. Regras de cálculo em unitário dos devs."
+    },
+    {
+      "text": "Inclui aspectos de segurança/fraude específicos de cartão (ex.: PCI DSS, mascaramento do número, autorização/3DS, dados sensíveis)",
+      "passed": true,
+      "evidence": "R4: número completo ou CVV em log/URL/analytics, 'Busca nos logs e no analytics por padrão de número de cartão (regex + Luhn)', IDOR ('Cliente B pede o cartão do cliente A trocando o ID'), 'Exibição completa só ao titular autenticado'; R5: cartão bloqueado ainda autoriza; R6: evento com assinatura inválida; R8: '3DS abandonado'; PCI DSS citado como ponto de verificação."
+    },
+    {
+      "text": "Define critérios de saída ou de go/no-go",
+      "passed": true,
+      "evidence": "'Bloqueantes para GO': nenhum defeito crítico aberto; R1–R7 com evidência; número de cartão fora dos logs; acesso entre clientes testado; smoke e regressão verdes; kill switch/rollback ensaiados; painel e alerta; roteiro do suporte; risco residual aceito por escrito. Também 'Critérios de aborto escritos antes' (ex.: erro de geração > 1%) e saída D9 'GO, GO com condições ou NO-GO'."
+    },
+    {
+      "text": "Envolve os devs na qualidade (ex.: testes unitários pelos devs, pareamento, revisão)",
+      "passed": true,
+      "evidence": "Tabela 'Quem faz o quê': 'Devs | Unitário de limite, fatura e estados (R1–R3, R5) em todo PR... cada dev dono do seu teste. Regra da casa: história só fica pronta com o teste da regra no PR'; QA faz '1–2 h de pair por regra' e entrega casos antes do código; D2–D3 'com pair nos devs'."
+    }
+  ],
+  "claims": [
+    {
+      "claim": "R$ 100,00 em 3 parcelas → 33,34 + 33,33 + 33,33, somando exatamente o total",
+      "verified": true,
+      "evidence": "Soma em Decimal = 100,00; a resposta ainda ressalva 'ou a regra escrita'."
+    },
+    {
+      "claim": "A segunda-feira 12/10 é feriado nacional que pode cair no intervalo de 10 dias úteis",
+      "verified": true,
+      "evidence": "Em 2026, 12/10 é segunda-feira (cal 10 2026) e é feriado nacional de Nossa Senhora Aparecida; com hoje em 05/10/2026, o intervalo de fato o cruza."
+    },
+    {
+      "claim": "Para achar número de cartão vazado em logs, usar regex + verificação Luhn",
+      "verified": true,
+      "evidence": "PANs válidos satisfazem o dígito verificador de Luhn; regex + Luhn é técnica padrão para reduzir falsos positivos em varredura de PAN."
+    }
+  ],
+  "nota_holistica": {
+    "nota": 9,
+    "justificativa": "Plano enxuto e altamente priorizado: riscos R1–R8 com caso-chave concreto e camada de teste, divisão clara QA/devs, calendário com saídas e buffer de 2 rodadas, ordem de corte, risco residual explícito, go/no-go mensurável e liberação gradual com kill switch e limite baixo — tecnicamente correto (borda de limite, concorrência, idempotência, falha fechada) e proporcional a um QA solo em 10 dias; perde um pouco por densidade alta e por cobrir menos casos de validação da solicitação/pagamento da fatura."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Propõe um plano dia a dia ou por fases que cabe nos 10 dias úteis",
+        "reason": "Fraco: qualquer tabela D1–D10 passa. Exigir buffer explícito para rodadas de correção/reteste e data de congelamento antes do D10."
+      },
+      {
+        "assertion": "Inclui aspectos de segurança/fraude específicos de cartão (ex.: PCI DSS, mascaramento do número, autorização/3DS, dados sensíveis)",
+        "reason": "Passaria com menção genérica a 'dados sensíveis'. Exigir ao menos um teste concreto (busca de PAN/CVV em logs, IDOR trocando ID, cartão bloqueado não autoriza)."
+      },
+      {
+        "assertion": "(novo) Cobre concorrência/idempotência no consumo de limite e conciliação com a processadora",
+        "reason": "É o risco financeiro mais característico de cartão (duas compras simultâneas, evento duplicado) e nenhum critério o exige."
+      },
+      {
+        "assertion": "(novo) Propõe mitigação de lançamento (liberação gradual, kill switch, limite inicial baixo, monitoramento com métrica de negócio)",
+        "reason": "Com prazo curto, reduzir impacto do risco residual é parte central da estratégia e não está coberto."
+      }
+    ],
+    "overall": "Critérios capturam o essencial, mas o 1 junta três dimensões (dinheiro, segurança, regulação) e os critérios 2 e 5 são fáceis de passar superficialmente. Faltam critérios sobre concorrência/idempotência, falha fechada de dependências e liberação gradual, que diferenciam um plano de fintech de um plano genérico."
+  }
+}

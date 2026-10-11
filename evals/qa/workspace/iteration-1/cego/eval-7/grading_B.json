@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "Deriva a carga-alvo dos números (3.600 pedidos/h ≈ 1 pedido/s) e considera o funil (mais buscas que checkouts) com suposições declaradas",
+      "passed": true,
+      "evidence": "\"3x de 1.200 pedidos/h são 3.600 pedidos/h, ou seja, **1 pedido por segundo** em média\". O funil é declarado como chute (busca→produto 70%, produto→carrinho 20%, carrinho→checkout 50%, ~7% de conversão) e dá \"cerca de 875 sessões/min (14,6/s)... uns 45 requisições/s\". Conferi: 0,7×0,2×0,5×0,98 = 0,0686; 1200/0,0686 ≈ 17.493 sessões/h; ×3/60 = 875/min; pedidos/h ≈ 3.601; ~2,96 req/sessão → ~43 req/s (a resposta diz ~45, aproximação aceitável). Também discute o pico por minuto acima da média horária e a sensibilidade à conversão real (2% → ~3,5x mais tráfego, que confere: 6,86/2 ≈ 3,4)."
+    },
+    {
+      "text": "Usa executor de taxa de chegada (modelo aberto, ex.: ramping-arrival-rate/constant-arrival-rate) ou justifica o modelo escolhido",
+      "passed": true,
+      "evidence": "arrivalScenario(): executor 'ramping-arrival-rate', timeUnit '1m', startRate, preAllocatedVUs pela Lei de Little (AVG_SESSION_SEC) e maxVUs = 2x. Justificativa: \"Com VUs fixos o teste 'alivia' a própria carga quando o sistema degrada e esconde o problema\". O smoke usa shared-iterations com 1 VU, o que é adequado. A sintaxe está correta."
+    },
+    {
+      "text": "Define thresholds por percentil (p95/p99) e taxa de erro",
+      "passed": true,
+      "evidence": "'http_req_duration{step:search|product|cart|shipping|checkout}' com 'p(95)<…' e 'p(99)<…'; http_req_failed com {threshold:'rate<0.01', abortOnFail:true, delayAbortEval:'2m'}; order_success rate>0.98; checks rate>0.99; dropped_iterations count<1. A tag step é aplicada em params.tags de cada request, então os sub-métricos batem."
+    },
+    {
+      "text": "Inclui think time e dados parametrizados (vários produtos/usuários)",
+      "passed": true,
+      "evidence": "think(min,max) com THINK_SCALE entre as etapas (2–5 s, 3–8 s, 2–5 s, 8–20 s). Dados: SharedArray de termos populares e de cauda longa (15 + 15, com mistura 70/30), zipcodes.json (10 CEPs), produto escolhido dos resultados da busca com viés ao topo e de 1 a 3 produtos vistos, FLASH_PRODUCT_ID opcional e e-mail único por sessão (lt+<run>-VU-ITER@loadtest.invalid). Ressalva: o CPF (TEST_DOCUMENT), o nome e o telefone são fixos para todos."
+    },
+    {
+      "text": "Inclui checks nas respostas",
+      "passed": true,
+      "evidence": "stepOk() faz check de status por etapa com tag step. O check do checkout valida status 201 e orderId no corpo. Presença de cartId e de opções de frete é validada e contada em step_failures (não como check()). A maior parte dos checks é só de status, mas existem checks de resposta."
+    },
+    {
+      "text": "Recomenda monitorar métricas do servidor/APM durante o teste para achar gargalos",
+      "passed": true,
+      "evidence": "\"Sem APM, métricas de banco e de filas no staging, o k6 só diz que ficou lento, não o motivo. Mande as métricas do k6 para o seu Prometheus/Grafana/InfluxDB com `--out` e use `--tag testid=...` para cruzar com os painéis.\" Também \"monitore a CPU do gerador\" e \"olhe o lado do servidor... filas (ERP, nota, estoque) drenaram\"."
+    },
+    {
+      "text": "Propõe mais de um tipo de teste (carga + pico/estresse ou resistência) com ramp-up",
+      "passed": true,
+      "evidence": "Perfis smoke, baseline (1x), load (3x, patamar de 30 min), stress (3x→4x→5x→6x em degraus de 10 min), spike (1x→4,5x em 30 s e recuperação) e soak (3x por 2 h), todos com stages de rampa. A tabela de durações confere com os estágios (14, 40, 55, 22 e ~131 min)."
+    },
+    {
+      "text": "Alerta para não bater no gateway de pagamento real (usar sandbox/mock) e para combinar a execução",
+      "passed": true,
+      "evidence": "\"**Pagamento, antifraude, frete, e-mail/SMS, ERP e nota fiscal em sandbox ou mock.** Se algum for real, o teste cobra cartões, dispara mensagens para clientes...\". O script exige PAYMENT_TOKEN de sandbox e recusa host sem cara de staging (assertSafeTarget). Sobre combinar a execução: \"Libere o gerador... Avise as outras equipes que usam o staging e marque uma janela.\""
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Com os padrões do funil, o patamar de 3x dá cerca de 875 sessões/min (14,6/s) e uns 3.600 pedidos/h",
+      "verified": true,
+      "evidence": "Recalculei: 1200/(0,7×0,2×0,5×0,98) = 17.492,7 sessões/h; round(17.492,7×3/60) = 875/min = 14,58/s; 875×60×0,0686 ≈ 3.601 pedidos/h."
+    },
+    {
+      "claim": "A Black Friday cai em 27/11, daqui a cerca de 7 semanas (com hoje em 05/10/2026)",
+      "verified": true,
+      "evidence": "Em 2026 o Thanksgiving é quinta, 26/11, então a Black Friday é sexta, 27/11 (conferido com date). De 05/10 a 27/11 são 53 dias, cerca de 7,5 semanas."
+    },
+    {
+      "claim": "Na Black Friday a conversão costuma cair, então busca e produto crescem mais que 3x",
+      "verified": false,
+      "evidence": "Generalização sem fonte e discutível: relatórios de varejo costumam mostrar taxa de conversão igual ou maior na Black Friday, pela intenção de compra. A conclusão prática (dimensionar o topo do funil com folga) é prudente, mas a premissa factual não está demonstrada."
+    }
+  ],
+  "nota_holistica": {
+    "nota": 8,
+    "justificativa": "O modelo de carga está correto, com boa leitura de negócio (pico por minuto, margem de 1,5x, baseline 1x para validar a paridade do staging, prazo até a BF). O script k6 é válido, com seis perfis, métricas de funil, tratamento de 409/429 e trava contra produção. Fica um pouco abaixo pelos checks quase só de status, pelo fluxo sem login (reconhecido), por não alertar sobre o limite de taxa do sandbox real do gateway e por uma premissa de conversão discutível."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Inclui checks nas respostas",
+        "reason": "Um check só de status já passa. Para diferenciar qualidade, exigir pelo menos uma validação de conteúdo/correlação (id do produto, item no carrinho, número do pedido)."
+      },
+      {
+        "assertion": "Alerta para não bater no gateway de pagamento real (usar sandbox/mock) e para combinar a execução",
+        "reason": "Junta duas coisas num critério só, e 'sandbox' passa mesmo sem notar que o sandbox real do gateway tem limite de taxa e mede o terceiro. Vale separar e pedir mock com latência realista para carga."
+      },
+      {
+        "assertion": "(ausente) Valida a paridade do staging com a produção (baseline 1x comparado com a latência real de produção)",
+        "reason": "O pedido afirma que o staging é 'igual à produção'. Questionar e verificar isso é uma prática importante, e nenhum critério cobre."
+      },
+      {
+        "assertion": "(ausente) Garante que a carga declarada foi entregue (dropped_iterations, VUs suficientes, CPU do gerador)",
+        "reason": "Sem isso o resultado pode ser falso verde. Nenhum critério verifica esse ponto."
+      }
+    ],
+    "overall": "Os critérios cobrem os elementos básicos, mas são binários e permissivos: ambas as respostas passam em todos, e o eval não distingue profundidade (checks de conteúdo, correlação, validação da carga entregue, paridade do ambiente, pós-teste no banco)."
+  }
+}

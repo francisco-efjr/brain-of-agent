@@ -1,0 +1,18 @@
+{
+  "eval_id": 3,
+  "eval_name": "flaky-playwright",
+  "prompt": "esse teste passa local e falha umas 3 em cada 10 vezes no CI. me ajuda? o arquivo é evals/qa/files/flaky.spec.ts",
+  "files": [
+    "evals/qa/files/flaky.spec.ts"
+  ],
+  "assertions": [
+    "Identifica o waitForTimeout fixo como problema e o substitui por espera baseada em condição (asserção web-first, waitForURL, resposta de rede)",
+    "Identifica a dependência entre os testes (o segundo usa numeroPedido criado pelo primeiro) como causa e torna cada teste independente",
+    "Substitui a asserção não reexecutável (expect(await ...textContent())) por asserção web-first como toHaveText/toContainText",
+    "Substitui seletores frágeis (nth-child, nth=1, classes CSS) por localizadores por papel, rótulo, texto ou test id",
+    "Entrega o código corrigido completo",
+    "Sugere como confirmar a correção (ex.: --repeat-each, rodar N vezes, trace)",
+    "Não recomenda aumentar retries ou timeouts como solução principal",
+    "Aponta que credenciais e URL fixas no código devem vir de variáveis de ambiente/configuração"
+  ]
+}

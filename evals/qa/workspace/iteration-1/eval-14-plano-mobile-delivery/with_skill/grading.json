@@ -1,0 +1,100 @@
+{
+  "expectations": [
+    {
+      "text": "Cobre permissões de localização em segundo plano (Android 'permitir o tempo todo' / iOS 'sempre') e os caminhos de negação",
+      "passed": true,
+      "evidence": "Linha 23: 'Permissão: primeira solicitação, \"só durante o uso\" (o app avisa que em segundo plano não funciona...), \"o tempo todo\", recusa, localização aproximada no lugar da precisa, e revogar nas configurações com a corrida em andamento. Esperado: aviso claro, sem crash, e o backend sabe que o rastreio está degradado.' Cobre os níveis de permissão de segundo plano e os caminhos de negação/rebaixamento com resultado esperado. Ressalva: genérico entre plataformas; não menciona o pedido separado no Android 10+, o redirecionamento obrigatório às Configurações no Android 11+ nem o upgrade para 'Sempre' no iOS — limita-se a 'Confirme na versão-alvo' (linha 62)."
+    },
+    {
+      "text": "Cobre interrupções durante uma entrega ativa (ligação, notificação, app em segundo plano, morte do processo)",
+      "passed": true,
+      "evidence": "Linha 24: 'ir para Home, bloquear a tela por 30 min, tirar dos recentes, forçar parada, reiniciar o aparelho, ligar a economia de bateria, abrir o app de navegação e voltar'; linha 39: 'App morto enquanto a câmera está aberta (aparelho com pouca memória, ligação recebida): ao voltar, a corrida e o estado da entrega estão preservados.' Cobre segundo plano, morte do processo e ligação. Lacuna: notificação como interrupção da entrega não aparece (a linha 35 trata push de oferta, não interrupção)."
+    },
+    {
+      "text": "Cobre perda de rede/offline com sincronização posterior do comprovante",
+      "passed": true,
+      "evidence": "Linha 40: 'Upload: sem rede ao concluir, rede cai no meio, reiniciar o app e o aparelho com a foto na fila. Esperado: a foto não se perde, sobe uma vez só, vai para a corrida certa (teste com duas corridas seguidas) e o arquivo no servidor tem o mesmo tamanho e hash do original.' Oráculo concreto e verificável; também cobre buffer offline de pontos GPS (linha 26)."
+    },
+    {
+      "text": "Cobre economia de bateria/otimizações do fabricante matando o GPS em segundo plano",
+      "passed": true,
+      "evidence": "R1 (linha 11): 'O rastreio em segundo plano para (permissão rebaixada, SO ou fabricante matando o processo, economia de bateria)'; linha 24: 'ligar a economia de bateria'; linha 59: aparelho físico obrigatório para 'comportamento de bateria do fabricante'; linha 61: matriz com 'um de fabricante com gerenciamento agressivo de bateria'. Ressalva: não cita Doze, serviço em primeiro plano nem fabricantes específicos."
+    },
+    {
+      "text": "Cobre permissão de câmera e falha/retentativa de upload da foto",
+      "passed": true,
+      "evidence": "Linha 38: 'Câmera: primeira solicitação, recusa, \"não perguntar de novo\" (leva às configurações e volta ao fluxo), cancelar a captura sem perder a corrida.' Linha 40: upload sem rede, rede caindo no meio, foto na fila após reiniciar, 'sobe uma vez só' (retentativa idempotente). Linha 32 também trata resposta perdida após o servidor processar."
+    },
+    {
+      "text": "Propõe matriz de dispositivos com critério (fragmentação Android, mercado brasileiro, versões de SO)",
+      "passed": false,
+      "evidence": "Linha 61: 'Matriz mínima: Android na versão mínima suportada e numa versão atual da base; um aparelho de entrada (pouca RAM) e um de fabricante com gerenciamento agressivo de bateria; iOS na mínima suportada e numa atual... Escolha os modelos pela sua base real'. Há critério de versão de SO e uso da base real, mas a fragmentação Android fica reduzida a dois aparelhos sem nenhum fabricante nomeado, e não há qualquer referência ao mercado brasileiro (fabricantes predominantes como Samsung/Motorola/Xiaomi, aparelhos de entrada típicos). Abstrato demais para o critério."
+    },
+    {
+      "text": "Cita ferramentas de automação adequadas a React Native (Detox, Maestro ou Appium)",
+      "passed": false,
+      "evidence": "Nenhuma ferramenta é nomeada. Linha 60: 'Use a ferramenta de E2E que o projeto já tem; confirme se ela alcança diálogos de permissão do sistema antes de depender dela.' Não cita Detox, Maestro nem Appium."
+    },
+    {
+      "text": "Prioriza por risco",
+      "passed": true,
+      "evidence": "Seção 1 (linhas 5-18): tabela de riscos R1-R8 com probabilidade × impacto e nível (Alto/Médio); cada bloco de casos é amarrado aos riscos ('GPS em segundo plano (R1, R5, R8)'); linha 59: 'Aparelho físico (obrigatório para R1, R2 e R6)'; seção 5 explicita o risco residual do que fica de fora. Priorização por risco explícita e rastreável."
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Arquivo GPX no emulador/simulador serve para regressão de rota.",
+      "verified": true,
+      "evidence": "O simulador do Xcode aceita GPX para simular localização, e os controles estendidos do emulador Android importam rotas GPX/KML."
+    },
+    {
+      "claim": "Localização aproximada no lugar da precisa é um estado de permissão a testar.",
+      "verified": true,
+      "evidence": "Existe no Android 12+ (ACCESS_COARSE_LOCATION oferecida no diálogo) e no iOS 14+ (Precise Location desligável). A resposta não cita as versões, mas o estado é real."
+    },
+    {
+      "claim": "Textos de permissão e declaração de uso de localização em segundo plano são revisados pelas lojas e podem reprovar a versão.",
+      "verified": true,
+      "evidence": "O Google Play exige declaração de localização em segundo plano e divulgação em destaque; a App Store revisa as strings de propósito (NSLocationAlwaysAndWhenInUseUsageDescription) e o uso do modo de segundo plano de localização."
+    }
+  ],
+  "nota_holistica": {
+    "nota": 7,
+    "justificativa": "Excelente rigor de QA (matriz P×I, oráculos mensuráveis como lacuna máxima entre pontos e hash da foto, idempotência do aceite, autorização na API, rollout com limiar de aborto, risco residual), mas deixa de lado os detalhes específicos de plataforma que mais quebram nesse tipo de app (fluxo Android 10/11 de 'permitir o tempo todo', upgrade para 'Sempre' no iOS, serviço em primeiro plano, Doze, permissão de notificação, JS suspenso no RN), não nomeia ferramenta de automação para RN e propõe uma matriz de dispositivos abstrata."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "Propõe matriz de dispositivos com critério (fragmentação Android, mercado brasileiro, versões de SO)",
+        "reason": "Ambíguo: não fica claro se 'mercado brasileiro' exige menção explícita ao Brasil ou se basta nomear fabricantes/aparelhos de entrada predominantes ou mandar usar a base real. Melhor especificar, por exemplo: 'nomeia fabricantes relevantes (ex.: Samsung, Motorola, Xiaomi) e inclui aparelho de entrada'."
+      },
+      {
+        "assertion": "Cobre permissões de localização em segundo plano (Android 'permitir o tempo todo' / iOS 'sempre') e os caminhos de negação",
+        "reason": "Passa com uma lista genérica de estados. Para separar resposta mediana de excelente, exigir o fluxo específico: pedido separado no Android 10+/redirecionamento às Configurações no Android 11+ e upgrade provisório para 'Sempre' no iOS."
+      },
+      {
+        "assertion": "Prioriza por risco",
+        "reason": "Fraco: uma lista ordenada 'se tiver pouco tempo' passa igual a uma análise P×I. Exigir critério explícito (probabilidade/impacto ou justificativa por risco)."
+      },
+      {
+        "assertion": "(ausente) Cobre concorrência e idempotência no aceite da corrida (dois entregadores, toque duplo, resposta perdida após o servidor processar)",
+        "reason": "Risco central de app de despacho que nenhum critério cobre; esta resposta trata bem disso."
+      },
+      {
+        "assertion": "(ausente) Verifica o rastreio no servidor (oráculo independente) e o início/fim do rastreio restrito à corrida (LGPD)",
+        "reason": "Diferencia um plano que só observa a UI de um que mede o dado real; também é questão de privacidade."
+      },
+      {
+        "assertion": "(ausente) Cobre localização falsa (mock location) e build de release vs. debug",
+        "reason": "Fraude por GPS falso e diferenças de build em React Native são falhas recorrentes de produção."
+      }
+    ],
+    "overall": "Os critérios cobrem bem o núcleo mobile (permissões, interrupções, offline, bateria, câmera), mas são permissivos com respostas genéricas e não cobrem riscos de backend/negócio (concorrência no aceite, idempotência, autorização entre entregadores, fraude de GPS, oráculo no servidor, liberação gradual), justamente onde esta resposta é mais forte."
+  },
+  "summary": {
+    "passed": 6,
+    "failed": 2,
+    "total": 8,
+    "pass_rate": 0.75
+  }
+}

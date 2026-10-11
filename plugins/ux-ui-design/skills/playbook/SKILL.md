@@ -70,11 +70,13 @@ Leia sob demanda; arquivos com mais de 100 linhas têm sumário. Caminhos relati
 | Apple HIG, tamanhos de alvo, matriz de componente, Material 3 como lacuna | [apple-e-plataformas.md](references/apple-e-plataformas.md) |
 | Tokens em três camadas, DTCG, DESIGN.md, drift e release | [design-tokens.md](references/design-tokens.md) |
 | Design system da casa (Mo baile do usuário): boas práticas com evidência, tokens, componentes e como aplicar em outro produto | [design-system-da-casa.md](references/design-system-da-casa.md) |
+| Direções de estilo D1 a D10 (Halo fosco, Tátil, Ledger limpo, Detalhe obsessivo, Vidro Apple, Editorial, Estúdio escuro, Cinemático, Generativo, Lúdico), roteiro de perguntas, presets de movimento e licenças das fontes (cult-ui, Skiper UI, OriginKit) | [direcoes-de-estilo.md](references/direcoes-de-estilo.md) |
+| Padrão de componente (base cult-ui): arquivos, registro shadcn, anatomia C-01 a C-18, página de doc, CI do registro | [padrao-componente-cult-ui.md](references/padrao-componente-cult-ui.md) |
 | Heurísticas, entrevista, teste de usabilidade, crítica, card sorting e tree testing | [pesquisa-e-heuristicas.md](references/pesquisa-e-heuristicas.md) |
 | Microcopy, mensagens de erro, estado vazio, voz | [ux-writing.md](references/ux-writing.md) |
 | Avaliador cético, crítico adversarial, detector vs julgamento, calibração | [avaliacao-visual-por-llm.md](references/avaliacao-visual-por-llm.md) |
 
-Templates em `assets/templates/`: `plano-de-design.md`, `relatorio-auditoria-ui.md`, `relatorio-avaliacao-heuristica.md`, `design-md-esqueleto.md`, `tokens-3-camadas.md`, `spec-componente-handoff.md`, `plano-de-pesquisa-e-guia.md`, `checklist-a11y-por-tela.md`, `achado-a11y.md`, `brief-design-system.md`, `checkpoint-handoff.md`, `fluxo-de-tela.md`, `design-system-bundle.md` (estrutura recomendada de um design system).
+Templates em `assets/templates/`: `plano-de-design.md`, `relatorio-auditoria-ui.md`, `relatorio-avaliacao-heuristica.md`, `design-md-esqueleto.md`, `tokens-3-camadas.md`, `spec-componente-handoff.md`, `plano-de-pesquisa-e-guia.md`, `checklist-a11y-por-tela.md`, `achado-a11y.md`, `brief-design-system.md`, `checkpoint-handoff.md`, `fluxo-de-tela.md`, `design-system-bundle.md` (estrutura recomendada de um design system), `doc-componente.md` (página de documentação de componente no padrão cult-ui).
 
 ## Intenção → skill ou agente
 
@@ -88,6 +90,8 @@ Templates em `assets/templates/`: `plano-de-design.md`, `relatorio-auditoria-ui.
 | "tokens", "design system", "cores em variáveis", "dark mode", "drift", "renomear token" / "design tokens", "theme", "DTCG" | skill `design-tokens` (e agente `design-system-auditor`) |
 | "plano de pesquisa", "roteiro de entrevista", "teste de usabilidade", "card sorting" / "interview guide", "usability test plan" | skill `user-research-plan` (e agente `ux-researcher`) |
 | "aplica o design system da casa", "usa o design system que já temos", "no padrão do Mo baile" / "use our house design system" | ler [design-system-da-casa](references/design-system-da-casa.md), confirmar com o usuário qual design system está ativo e rotear para `design-brief` ou o agente `ui-designer` (spec com tokens e componentes do sistema) e `design-system-auditor` (aderência); a estética macOS só vale em app macOS |
+| "qual estilo seguir", "nova direção visual", "quero opções de estilo", "redesign sem cara de template" / "style direction", "visual options" | ler [direcoes-de-estilo](references/direcoes-de-estilo.md) e perguntar com o roteiro da seção 2; depois `design-brief` ou `ui-designer` |
+| "cria/documenta o componente X", "doc do componente", "padrão de componente" / "component docs", "registry item" | [padrao-componente-cult-ui](references/padrao-componente-cult-ui.md) + template `doc-componente.md`; agente `ui-designer` para a spec, `design-system-auditor` para conferir |
 | "criar o DESIGN.md do projeto" | `/ux-ui-design:design-init`, só por comando explícito do usuário (a skill não é acionável pelo modelo; oriente o usuário a digitar o comando) |
 | "qual prompt uso para…", "me dá um prompt de…" | skill `prompts` |
 | "UXUI-COMPLETO" na mensagem do usuário | modo completo, abaixo |
@@ -149,7 +153,7 @@ Lista prevista, não observada em uso real; substitua por falhas com data e orig
 | --- | --- |
 | 1 | `checklist-completo.md` + `padroes-e-antipadroes.md` |
 | 2 | `wcag-aa.md` + `apple-e-plataformas.md` |
-| 3 | `design-tokens.md` + `design-system-da-casa.md` + `avaliacao-visual-por-llm.md` |
+| 3 | `design-tokens.md` + `design-system-da-casa.md` + `direcoes-de-estilo.md` + `padrao-componente-cult-ui.md` + `avaliacao-visual-por-llm.md` |
 | 4 | `pesquisa-e-heuristicas.md` + `ux-writing.md` |
 | 5 | `decisoes-e-tradeoffs.md` + `claude-md-snippets.md` + `ferramentas-e-mcp.md` + `fontes.md` |
 

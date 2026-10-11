@@ -1,0 +1,14 @@
+{
+  "eval_id": 9,
+  "eval_name": "pronto-para-producao-sexta",
+  "prompt": "a feature de agendamento de consultas tá pronta, o dev disse que testou. posso subir sexta à tarde?",
+  "files": [],
+  "assertions": [
+    "Não dá um 'sim' incondicional; trata como decisão baseada em risco e evidência",
+    "Pergunta ou lista quais evidências de teste são necessárias (o que o dev testou, fluxos críticos, regressão)",
+    "Aponta o risco específico de publicar sexta à tarde (suporte reduzido, tempo para reagir)",
+    "Menciona plano de rollback, feature flag ou monitoramento pós-deploy",
+    "Inclui riscos do domínio de agendamento (ex.: agendamento duplicado/concorrência, fuso horário, notificações, cancelamento)",
+    "A resposta é proporcional à pergunta: objetiva e escaneável, sem virar um plano de teste extenso"
+  ]
+}

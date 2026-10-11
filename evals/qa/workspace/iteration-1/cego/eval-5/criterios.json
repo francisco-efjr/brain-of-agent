@@ -1,0 +1,13 @@
+{
+  "pedido": "Sou o único QA de uma fintech pequena. Vamos lançar o cartão de crédito virtual (solicitação, aprovação de limite, geração do cartão, compra online e fatura) daqui a 10 dias úteis. Tenho 4 devs no time. Não tem nada automatizado ainda. Como eu organizo os testes?",
+  "arquivos_de_entrada": [],
+  "criterios": [
+    "Prioriza explicitamente por risco (ranking ou matriz) com dinheiro, segurança e regulação no topo",
+    "Propõe um plano dia a dia ou por fases que cabe nos 10 dias úteis",
+    "Diz explicitamente o que fica de fora e quais riscos residuais sobram",
+    "Trata automação de forma pragmática para o prazo (ex.: API e smoke dos fluxos críticos primeiro, não uma suíte E2E completa)",
+    "Inclui aspectos de segurança/fraude específicos de cartão (ex.: PCI DSS, mascaramento do número, autorização/3DS, dados sensíveis)",
+    "Define critérios de saída ou de go/no-go",
+    "Envolve os devs na qualidade (ex.: testes unitários pelos devs, pareamento, revisão)"
+  ]
+}
