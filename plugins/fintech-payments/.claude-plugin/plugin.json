@@ -1,0 +1,23 @@
+{
+  "name": "fintech-payments",
+  "version": "0.1.0",
+  "description": "Construa, revise e teste sistemas de pagamentos (Pix, boleto, cartão) com idempotência, webhooks verificados, dinheiro e ledger corretos, conciliação, estornos e chargebacks, 3DS, segurança e LGPD, sempre com evidência e sem executar pagamentos reais.",
+  "author": { "name": "Francisco Edson", "url": "https://github.com/francisco-efjr" },
+  "license": "MIT",
+  "keywords": [
+    "fintech",
+    "payments",
+    "pagamentos",
+    "pix",
+    "boleto",
+    "idempotency",
+    "webhooks",
+    "ledger",
+    "double-entry",
+    "reconciliation",
+    "chargeback",
+    "3ds",
+    "pci-dss",
+    "lgpd"
+  ]
+}

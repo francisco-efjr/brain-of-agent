@@ -26,9 +26,10 @@ Gerado por `tools/publish_brain.py` a partir do frontmatter dos plugins publicad
 | `blockchain-web3` | Revisão de segurança de smart contracts (Solidity; Anchor com cobertura parcial), testes de invariantes e fuzz com Foundry, checklists de ERC-20/721/1155/4626,… | audit-contracts, contract-security-review, defi-oracle-l2-review, exploit-poc, foundry-testing, playbook, prompts, solana-anchor-review, token-standards-review, wallet-signing-review | defi-protocol-analyst, finding-refuter, invariant-test-engineer, solidity-security-reviewer, web3-agent-safety-auditor | WEB3-COMPLETO |
 | `automation-integrations` | Playbook, skills, agentes e prompts para automação de workflows, webhooks idempotentes, integrações entre APIs, servidores MCP, hooks de guardrail, jobs agenda… | assessing-automation-risk, authoring-plugin-skills, building-mcp-servers, designing-workflow-automations, playbook, prompts, responsible-scraping, reviewing-webhook-receivers, scheduling-headless-jobs, writing-hook-guardrails | automation-architect, integration-reviewer, mcp-security-reviewer, plugin-validator, third-party-auditor | AUTOMACAO-COMPLETO |
 | `git-workflow-release` | Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos, rebase e revert seguros, bisect, semver, changel… | bisect-regressao, commit-convencional, criar-pr, encerrar-branch, playbook, prompts, rebase-seguro, release-cut, resolver-conflitos, triagem-contribuicao | auditor-politica-repo, auditor-release, revisor-diff, revisor-plano | RELEASE-COMPLETO |
+| `saas-multitenant` | Projete, implemente, revise e teste SaaS B2B multi-tenant com Claude Code: isolamento por tenant (RLS no PostgreSQL), autorização por objeto, billing com Strip… | enterprise-sso-scim, playbook, prompts, saas-feature-spec, stripe-billing-lifecycle, tenancy-model-adr, tenant-data-lifecycle, tenant-isolation-review, tenant-isolation-tests, tenant-rls-migration | billing-reviewer, isolation-test-engineer, milestone-reviewer, saas-architect, tenant-isolation-reviewer | SAAS-COMPLETO |
+| `fintech-payments` | Construa, revise e teste sistemas de pagamentos (Pix, boleto, cartão) com idempotência, webhooks verificados, dinheiro e ledger corretos, conciliação, estornos… | go-live-and-guardrails, money-ledger-design, payment-code-review, payment-idempotency, payment-test-plan, pix-boleto-br, playbook, prompts, reconciliation-disputes, webhook-handler | payment-debugger, payment-reviewer, payment-test-engineer, payments-architect, reconciliation-analyst | FINTECH-COMPLETO |
+| `ecommerce-marketplace` | Guia, skills e revisores para construir e operar lojas virtuais e marketplaces com o Claude Code: checkout seguro, webhooks de pagamento idempotentes, estoque … | catalogo-busca-seo, checkout-seguro, estoque-reserva-pedido, fiscal-frete-br, loja-operacao-segura, marketplace-split, playbook, precos-promocoes, prompts, webhook-pagamento | arquiteto-loja, auditor-catalogo-seo, auditor-pagamentos-integracoes, revisor-a11y-checkout, revisor-checkout | ECOMMERCE-COMPLETO |
 | `design-engineering-kit` | Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 sk… | animate, animate-expo, animation-vocabulary, apple-design, break-ui, design-taste-frontend, emil-design-eng, find-animation-opportunities, high-end-visual-design, improve-animations, industrial-brutalist-ui, minimalist-ui, mobile-native, pick-ui-library, playbook, prompts, prototype, redesign-existing-projects, review-animations | motion-polish-reviewer, ui-verifier | DESIGNENG-COMPLETO |
-
-**Em construção (ainda não publicados):** `saas-multitenant`, `fintech-payments`, `ecommerce-marketplace`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
 
 ## product-discovery-specs (`product-discovery-specs` 0.1.0)
 
@@ -620,6 +621,87 @@ Instalar: `/plugin install git-workflow-release@brain-of-agent` · Playbook: `pl
 | `git-workflow-release:auditor-release` (`plugins/git-workflow-release/agents/auditor-release.md`) | Portão go/no-go de release, somente leitura. | Read, Grep, Glob, Bash |
 | `git-workflow-release:revisor-diff` (`plugins/git-workflow-release/agents/revisor-diff.md`) | Revisor somente leitura, em contexto novo, do diff pedido (padrão - alterações não commitadas ou staged; também branch ou PR) antes de commit ou PR. | Read, Grep, Glob, Bash |
 | `git-workflow-release:revisor-plano` (`plugins/git-workflow-release/agents/revisor-plano.md`) | Revisor adversarial somente leitura, em contexto novo, que compara um diff com o plano ou os critérios de aceite (PLAN.md, issue, descrição do PR) antes de abrir o PR e reporta só quatro categorias - requisito sem imple… | Read, Grep, Glob, Bash |
+
+## saas-multitenant (`saas-multitenant` 0.1.0)
+
+Projete, implemente, revise e teste SaaS B2B multi-tenant com Claude Code: isolamento por tenant (RLS no PostgreSQL), autorização por objeto, billing com Stripe, entitlements, SSO/SCIM, ciclo de vida de dados (LGPD/GDPR) e auditoria, sempre com verificação por evidência.
+
+Instalar: `/plugin install saas-multitenant@brain-of-agent` · Playbook: `plugins/saas-multitenant/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/saas-multitenant:enterprise-sso-scim` | Projeta e revisa identidade enterprise em SaaS multi-tenant: SSO por SAML e OIDC (validação da resposta e do ID Token), SCIM de usuários e grupos, domínio verificado, organização ativa por requisição, convites, estados … |
+| `/saas-multitenant:playbook` | Guia e router do segmento SaaS multi-tenant e billing - projetar, implementar, revisar e depurar isolamento de tenants (RLS no PostgreSQL, tenant_id, autorização por objeto), assinaturas e webhooks Stripe, entitlements … |
+| `/saas-multitenant:prompts` | Biblioteca de prompts curados do segmento SaaS multi-tenant e billing, prontos para colar ou executar. |
+| `/saas-multitenant:saas-feature-spec` | Escreve a spec testável de uma feature de SaaS multi-tenant com requisitos REQ-NN de isolamento, autorização, billing idempotente, limites de plano e downgrade, auditoria, dados do titular e métricas, critérios de aceit… |
+| `/saas-multitenant:stripe-billing-lifecycle` | Projeta, implementa e revisa o billing de SaaS com Stripe Billing e sua sincronização com o tenant: tabela status de assinatura para acesso, webhooks (assinatura, idempotência, ordem), upgrade e downgrade, trials, recup… |
+| `/saas-multitenant:tenancy-model-adr` | Conduz a decisão do modelo de multi-tenancy (silo, bridge, pool; RLS versus schema versus banco por tenant) e escreve o ADR com opções por camada, riscos, mapa tenant-para-deployment e critérios de mudança de modelo. |
+| `/saas-multitenant:tenant-data-lifecycle` | Projeta e revisa o ciclo de vida de tenants e dados em SaaS: onboarding idempotente, trial, desativação por falta de pagamento, offboarding, exportação, eliminação, retenção, incidente de segurança (runbook ANPD/GDPR), … |
+| `/saas-multitenant:tenant-isolation-review` | Revisa, só em leitura, código de SaaS multi-tenant em busca de vazamento entre tenants: IDOR/BOLA, tenant_id vindo do cliente, query sem filtro, RLS ausente ou contornável (dono da tabela, BYPASSRLS, sem FORCE), context… |
+| `/saas-multitenant:tenant-isolation-tests` | Cria e roda a suíte de testes de isolamento entre tenants: dois tenants sintéticos de nomes parecidos, IDOR por ID, busca, exportação, anexos, cache e websocket, jobs em lote, matriz de papéis pela API, escalada no corp… |
+| `/saas-multitenant:tenant-rls-migration` | Planeja e escreve, sem nunca aplicar, migrações que introduzem tenant_id e RLS no PostgreSQL em tabelas existentes: inventário, expand/contract, backfill em lotes, roles de migração e de runtime, ENABLE e FORCE, policie… |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `saas-multitenant:billing-reviewer` (`plugins/saas-multitenant/agents/billing-reviewer.md`) | Revisor somente leitura de billing de SaaS multi-tenant, em contexto novo. | Read, Grep, Glob |
+| `saas-multitenant:isolation-test-engineer` (`plugins/saas-multitenant/agents/isolation-test-engineer.md`) | Engenheiro de testes de isolamento entre tenants. | Read, Grep, Glob, Write, Edit, Bash |
+| `saas-multitenant:milestone-reviewer` (`plugins/saas-multitenant/agents/milestone-reviewer.md`) | Revisor adversarial de fim de marco em contexto novo, para projetos de SaaS multi-tenant. | Read, Grep, Glob, Bash |
+| `saas-multitenant:saas-architect` (`plugins/saas-multitenant/agents/saas-architect.md`) | Arquiteto de SaaS multi-tenant que entrega decisões e ADR, não código de produto. | Read, Grep, Glob, Write |
+| `saas-multitenant:tenant-isolation-reviewer` (`plugins/saas-multitenant/agents/tenant-isolation-reviewer.md`) | Revisor somente leitura de vazamento entre tenants em SaaS multi-tenant, em contexto novo. | Read, Grep, Glob |
+
+## fintech-payments (`fintech-payments` 0.1.0)
+
+Construa, revise e teste sistemas de pagamentos (Pix, boleto, cartão) com idempotência, webhooks verificados, dinheiro e ledger corretos, conciliação, estornos e chargebacks, 3DS, segurança e LGPD, sempre com evidência e sem executar pagamentos reais.
+
+Instalar: `/plugin install fintech-payments@brain-of-agent` · Playbook: `plugins/fintech-payments/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/fintech-payments:go-live-and-guardrails` | Fluxo manual (só por comando explícito) para proteger um projeto de pagamentos antes e depois da produção: guardrails (bloco de CLAUDE.md e permissions.deny para .env e segredos, aplicados somente após diff aprovado), c… |
+| `/fintech-payments:money-ledger-design` | Desenha e revisa a representação de dinheiro (inteiro na menor unidade mais ISO 4217, arredondamento e alocação), o ledger de partidas dobradas append-only (estorno por lançamento, saldo derivado, reserva em duas fases)… |
+| `/fintech-payments:payment-code-review` | Revisão de segurança e correção de código de pagamentos, somente leitura, com relatório CRITICAL, WARNING e PASS por arquivo:linha e veredito (pronto, ajustes, bloqueado, parcial): piso de 9 verificações, idempotência, … |
+| `/fintech-payments:payment-idempotency` | Desenha, implementa e revisa idempotência de operações financeiras (cobrança, captura, estorno, repasse, Pix, transferência) e o tratamento de timeout e retry: chave persistida antes da chamada, reserva atômica no banco… |
+| `/fintech-payments:payment-test-plan` | Planeja e escreve testes de pagamentos com oráculo independente e massa sintética: matriz de riscos (cobrança dupla, centavo perdido, saldo que não fecha, divergência de conciliação), casos de Pix, boleto, cartão e 3DS,… |
+| `/fintech-payments:pix-boleto-br` | Integra e revisa Pix (cobrança imediata cob e com vencimento cobv, txid, EndToEndId, devolução, webhook, BR Code e CRC16, segurança do PSP) e boleto (vencimento, juros, multa, desconto, nosso número, linha digitável), c… |
+| `/fintech-payments:playbook` | Guia e router do segmento Fintech e pagamentos. |
+| `/fintech-payments:prompts` | Biblioteca de prompts curados do segmento Fintech e pagamentos, prontos para colar ou executar. |
+| `/fintech-payments:reconciliation-disputes` | Concilia ledger, provedor e extrato (manifesto, completude, casamento nos dois sentidos item a item, partição no fuso do negócio, INCOMPLETE_SOURCE, ajuste só com aprovação) e trata estornos, disputas e chargebacks (Str… |
+| `/fintech-payments:webhook-handler` | Constrói, revisa e testa receptores de webhook de pagamentos (Stripe, Adyen, Mercado Pago, Pagar.me, Asaas, Efí, callback do Pix): assinatura sobre o corpo bruto, inbox imutável com dedupe por ID do evento, quarentena p… |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `fintech-payments:payment-debugger` (`plugins/fintech-payments/agents/payment-debugger.md`) | Depurador de incidentes de pagamento com causa raiz antes de correção. | Read, Grep, Glob, Bash, Edit, Write |
+| `fintech-payments:payment-reviewer` (`plugins/fintech-payments/agents/payment-reviewer.md`) | Revisor adversarial de código que movimenta dinheiro, somente leitura e em contexto novo. | Read, Grep, Glob |
+| `fintech-payments:payment-test-engineer` (`plugins/fintech-payments/agents/payment-test-engineer.md`) | Engenheiro de testes de pagamentos que escreve e executa testes com oráculo independente, só em ambiente local e modo de teste. | Read, Grep, Glob, Edit, Write, Bash |
+| `fintech-payments:payments-architect` (`plugins/fintech-payments/agents/payments-architect.md`) | Arquiteto de sistemas de pagamentos que decide o que é material e devolve um ADR com alternativas, sem implementar nem editar. | Read, Grep, Glob |
+| `fintech-payments:reconciliation-analyst` (`plugins/fintech-payments/agents/reconciliation-analyst.md`) | Analista de conciliação financeira sobre dados fornecidos (CSV ou JSON do ledger, do provedor e do extrato), somente leitura e sem rede. | Read, Grep, Glob, Bash |
+
+## ecommerce-marketplace (`ecommerce-marketplace` 0.1.0)
+
+Guia, skills e revisores para construir e operar lojas virtuais e marketplaces com o Claude Code: checkout seguro, webhooks de pagamento idempotentes, estoque e reservas, promoções, catálogo/busca/SEO, split de pagamento e frete/fiscal no Brasil, sempre em modo de teste, com gates de escrita e rótulos de evidência.
+
+Instalar: `/plugin install ecommerce-marketplace@brain-of-agent` · Playbook: `plugins/ecommerce-marketplace/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/ecommerce-marketplace:catalogo-busca-seo` | Use para auditar ou construir catálogo e variações, tema Shopify (Liquid), dados estruturados de produto (JSON-LD), busca facetada, política de facetas para SEO, migração de URLs com 301 e importações em massa de catálo… |
+| `/ecommerce-marketplace:checkout-seguro` | Use para construir, revisar ou depurar carrinho e checkout de loja virtual: preço, frete e desconto no servidor, IDOR em pedido, cupom, mass assignment, webhook, acessibilidade WCAG 2.2 do formulário, Core Web Vitals e … |
+| `/ecommerce-marketplace:estoque-reserva-pedido` | Use para projetar, revisar ou depurar estoque, reserva com expiração, baixa e ciclo de vida do pedido sem vender acima do saldo, incluindo pós-venda (cancelamento, devolução, troca, arrependimento, reembolso parcial). |
+| `/ecommerce-marketplace:fiscal-frete-br` | Use para checklists e mapeamento de dados de NF-e/NFC-e, IBS/CBS, DIFAL, split payment e contingência de e-commerce no Brasil, e para o fluxo de frete (cotação, etiqueta, rastreio) com Melhor Envio e Correios, documento… |
+| `/ecommerce-marketplace:loja-operacao-segura` | Gate de 7 passos para mudanças em lote numa loja virtual: atualizar preços em massa, importar CSV, limpar SEO, criar redirecionamentos, excluir produtos, mesclar clientes, cancelar ou reembolsar em lote, publicar tema. |
+| `/ecommerce-marketplace:marketplace-split` | Use para decidir a arquitetura de um marketplace multi-vendedor: tipo de cobrança e split de pagamento, repasse, onboarding e KYC de vendedores, estornos e disputas (quem é debitado), canais externos (Mercado Livre, Ama… |
+| `/ecommerce-marketplace:playbook` | Guia e router do segmento e-commerce e marketplaces (catálogo, busca, carrinho e checkout, estoque e reservas, preços e promoções, pedidos de compra e devoluções, webhooks de pagamento, frete, NF-e e impostos no Brasil,… |
+| `/ecommerce-marketplace:precos-promocoes` | Use para modelar, implementar e testar preços, cupons, promoções, frete grátis, rateio de desconto e parcelas em centavos inteiros, com ordem de aplicação explícita e cálculo no servidor. |
+| `/ecommerce-marketplace:prompts` | Biblioteca de prompts curados do segmento e-commerce e marketplaces. |
+| `/ecommerce-marketplace:webhook-pagamento` | Use para implementar, revisar ou depurar o recebimento de webhooks e notificações de pagamento, pedido e envio (Stripe, Shopify, Mercado Pago, Asaas, Pix, Melhor Envio, VTEX, Nuvemshop, WooCommerce): assinatura sobre co… |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `ecommerce-marketplace:arquiteto-loja` (`plugins/ecommerce-marketplace/agents/arquiteto-loja.md`) | Arquiteto de decisões materiais de loja e marketplace, somente leitura e sem implementar. | Read, Grep, Glob |
+| `ecommerce-marketplace:auditor-catalogo-seo` (`plugins/ecommerce-marketplace/agents/auditor-catalogo-seo.md`) | Auditor somente leitura de catálogo, tema Shopify, dados estruturados de produto (JSON-LD), navegação facetada, redirecionamentos 301, importações de CSV e busca de catálogo (Typesense, Meilisearch, Algolia). | Read, Grep, Glob |
+| `ecommerce-marketplace:auditor-pagamentos-integracoes` (`plugins/ecommerce-marketplace/agents/auditor-pagamentos-integracoes.md`) | Auditor somente leitura de handlers de webhook e integrações de pagamento, pedido e frete (Stripe, Mercado Pago, Asaas, Pix via PSP, Shopify, Nuvemshop, VTEX, WooCommerce, Melhor Envio). | Read, Grep, Glob |
+| `ecommerce-marketplace:revisor-a11y-checkout` (`plugins/ecommerce-marketplace/agents/revisor-a11y-checkout.md`) | Auditor de acessibilidade WCAG 2.2 de formulários e fluxos de checkout (endereço, frete, pagamento, erro, confirmação), somente leitura, com grau de evidência por achado (Verificado, Sinalizado, Requer humano) e sem nun… | Read, Grep, Glob |
+| `ecommerce-marketplace:revisor-checkout` (`plugins/ecommerce-marketplace/agents/revisor-checkout.md`) | Revisor adversarial de segurança e correção para mudanças em checkout, carrinho, cupom, pedido, estoque e webhook de pagamento, somente leitura. | Read, Grep, Glob |
 
 ## design-engineering-kit (`design-engineering-kit` 0.1.0)
 

@@ -1,0 +1,24 @@
+{
+  "name": "saas-multitenant",
+  "version": "0.1.0",
+  "description": "Projete, implemente, revise e teste SaaS B2B multi-tenant com Claude Code: isolamento por tenant (RLS no PostgreSQL), autorização por objeto, billing com Stripe, entitlements, SSO/SCIM, ciclo de vida de dados (LGPD/GDPR) e auditoria, sempre com verificação por evidência.",
+  "author": { "name": "Francisco Edson", "url": "https://github.com/francisco-efjr" },
+  "license": "MIT",
+  "keywords": [
+    "saas",
+    "multi-tenant",
+    "tenant-isolation",
+    "row-level-security",
+    "postgres",
+    "stripe-billing",
+    "subscriptions",
+    "webhooks",
+    "entitlements",
+    "sso",
+    "scim",
+    "rbac",
+    "lgpd",
+    "gdpr",
+    "SAAS-COMPLETO"
+  ]
+}

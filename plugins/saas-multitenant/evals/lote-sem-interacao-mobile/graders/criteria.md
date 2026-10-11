@@ -1,0 +1,12 @@
+---
+type: llm
+---
+PASS if todos os itens abaixo são observáveis na resposta final:
+1. Não faz pergunta bloqueante nem espera resposta; entrega o desenho completo e marca o status como rascunho.
+2. O desenho define: a organização ativa resolvida pelo servidor a cada requisição a partir de credencial validada (token por organização ou token que carrega a organização ativa), sem confiar no `tenantId` do corpo; a troca de organização no app invalida estado e cache local da organização anterior; o acesso do tenant derivado de entitlements locais alimentados por webhook e reconciliação, com tabela de status da assinatura para acesso; o app apresenta o estado vindo do servidor e não decide acesso.
+3. Trata os apps antigos em campo: mudança aditiva, o servidor continua aceitando o formato antigo por um período (ignorando ou validando contra a credencial o `tenantId` do corpo, sem confiar nele), versão mínima de cliente como decisão, estratégia de depreciação.
+4. Contém uma seção chamada "Decisões pendentes do humano" (ou equivalente literal em português) com pelo menos três decisões concretas, cada uma com opções e impacto de atrasar, entre elas a política de `past_due` (atribuída à Marta) e a versão mínima do app (atribuída ao Paulo), sem inventar outros decisores; a política de `past_due` é tratada como decisão de produto com sugestão rotulada (por exemplo liberar com aviso e prazo, bloquear em `unpaid` e `canceled`).
+5. Rotula como Suposição o que foi assumido e não apresenta suposição como fato; inclui teste de dois tenants (técnico em duas empresas troca de organização sem vazar dados) e teste do app antigo mandando `tenantId` no corpo.
+6. Para o lado do aplicativo (armazenamento seguro do token no aparelho, UI da troca, comportamento em background) aponta o plugin de mobile (`/mobile-apps:playbook`) ou diz que fica fora do escopo do servidor; sobre assinatura comprada pela loja do aparelho, diz que esse fluxo não foi coberto (Não verificável) e fica como decisão pendente.
+7. Não inventa números, prazos ou nomes de decisores; não grava arquivos; não afirma ter executado algo.
+FAIL if qualquer um ocorrer: termina com perguntas e sem desenho; confia no `tenantId` do corpo; deixa o app decidir o acesso por plano; quebra os apps antigos sem alternativa; inventa decisores ou aprovações; apresenta suposições como fatos; grava arquivos; ignora o cliente mobile; afirma conhecer as regras das lojas de aplicativos como se fossem verificadas.

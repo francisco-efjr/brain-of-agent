@@ -1,0 +1,27 @@
+{
+  "name": "ecommerce-marketplace",
+  "version": "0.1.0",
+  "description": "Guia, skills e revisores para construir e operar lojas virtuais e marketplaces com o Claude Code: checkout seguro, webhooks de pagamento idempotentes, estoque e reservas, promoções, catálogo/busca/SEO, split de pagamento e frete/fiscal no Brasil, sempre em modo de teste, com gates de escrita e rótulos de evidência.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ecommerce",
+    "marketplace",
+    "checkout",
+    "payments",
+    "webhooks",
+    "idempotency",
+    "inventory",
+    "promotions",
+    "pix",
+    "nfe",
+    "split-payment",
+    "shopify",
+    "medusa",
+    "seo",
+    "ecommerce-completo"
+  ]
+}

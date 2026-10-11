@@ -2018,6 +2018,284 @@
       ]
     },
     {
+      "plugin": "saas-multitenant",
+      "displayName": "saas-multitenant",
+      "version": "0.1.0",
+      "description": "Projete, implemente, revise e teste SaaS B2B multi-tenant com Claude Code: isolamento por tenant (RLS no PostgreSQL), autorização por objeto, billing com Stripe, entitlements, SSO/SCIM, ciclo de vida de dados (LGPD/GDPR) e auditoria, sempre com verificação por evidência.",
+      "keywords": [
+        "saas",
+        "multi-tenant",
+        "tenant-isolation",
+        "row-level-security",
+        "postgres",
+        "stripe-billing",
+        "subscriptions",
+        "webhooks",
+        "entitlements",
+        "sso",
+        "scim",
+        "rbac",
+        "lgpd",
+        "gdpr",
+        "SAAS-COMPLETO"
+      ],
+      "mode_keyword": "SAAS-COMPLETO",
+      "skills": [
+        {
+          "name": "enterprise-sso-scim",
+          "description": "Projeta e revisa identidade enterprise em SaaS multi-tenant: SSO por SAML e OIDC (validação da resposta e do ID Token), SCIM de usuários e grupos, domínio verificado, organização ativa por requisição, convites, estados de membro, JIT e desativação sem apagar. Use ao implementar ou revisar login corporativo e provisionamento. Gatilhos: SAML, OIDC, ID Token, SSO, SCIM, Okta, Entra, IdP, domínio verificado, convite, desativar usuário, org switcher, enterprise SSO, user provisioning, JIT, login corporativo."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento SaaS multi-tenant e billing - projetar, implementar, revisar e depurar isolamento de tenants (RLS no PostgreSQL, tenant_id, autorização por objeto), assinaturas e webhooks Stripe, entitlements e limites de plano, SSO/SAML/OIDC/SCIM, ciclo de vida de tenant e dados (LGPD/GDPR), auditoria e métricas SaaS. Use quando o pedido citar multi-tenant, isolamento de tenant, vazamento entre clientes, tenant_id, RLS, row level security, assinatura, cobrança recorrente, webhook Stripe, trial, downgrade, past_due, entitlements, noisy neighbor, SCIM, SSO, exclusão de dados do cliente, Asaas, NFS-e, incidente ANPD / tenant isolation, cross-tenant leak, billing lifecycle, subscription webhooks, IDOR, BOLA. Também ativa o modo SAAS-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados do segmento SaaS multi-tenant e billing, prontos para colar ou executar. Use quando o usuário pedir prompt, template ou mensagem inicial pronta para revisão de isolamento entre tenants, RLS e migração, contexto de tenant com pool, ADR de tenancy, spec de feature SaaS, webhook Stripe ou de PSP, troca de plano, trial, entitlements, metering, SSO SAML ou OIDC, SCIM, LGPD e GDPR, trilha de auditoria, métricas SaaS, risco de IA com dados de tenant, ou um prompt de sistema/CLAUDE.md para projeto SaaS. Triggers PT-BR - prompt pronto, template de prompt, mensagem inicial, prompt de revisão. EN - ready-made prompt, prompt template for tenant isolation review, SaaS system prompt."
+        },
+        {
+          "name": "saas-feature-spec",
+          "description": "Escreve a spec testável de uma feature de SaaS multi-tenant com requisitos REQ-NN de isolamento, autorização, billing idempotente, limites de plano e downgrade, auditoria, dados do titular e métricas, critérios de aceite Given/When/Then com dois tenants e um gate de aprovação antes de codar. Use antes de implementar convites, planos, limites, billing, exportação ou telas de admin. Gatilhos: spec de feature SaaS, PRD multi-tenant, requisitos de plano, limites por plano, saas feature spec, acceptance criteria two tenants, escreva a spec."
+        },
+        {
+          "name": "stripe-billing-lifecycle",
+          "description": "Projeta, implementa e revisa o billing de SaaS com Stripe Billing e sua sincronização com o tenant: tabela status de assinatura para acesso, webhooks (assinatura, idempotência, ordem), upgrade e downgrade, trials, recuperação de cobrança, entitlements, metering e Customer por tenant; inclui PSP brasileiro (Asaas, Pix Automático). Use ao implementar ou revisar cobrança recorrente. Gatilhos: webhook Stripe, assinatura, past_due, trial, downgrade, upgrade, proration, entitlements, metering, subscription lifecycle, billing webhook, idempotency key, Asaas, Pix Automático."
+        },
+        {
+          "name": "tenancy-model-adr",
+          "description": "Conduz a decisão do modelo de multi-tenancy (silo, bridge, pool; RLS versus schema versus banco por tenant) e escreve o ADR com opções por camada, riscos, mapa tenant-para-deployment e critérios de mudança de modelo. Use ao começar um SaaS, ao receber exigência de isolamento físico, residência de dados ou chave própria, ou ao planejar escala. Gatilhos: modelo de tenancy, schema por tenant, banco por tenant, RLS ou schema, silo pool bridge, multi-tenant architecture, tenancy model ADR, isolamento por plano enterprise."
+        },
+        {
+          "name": "tenant-data-lifecycle",
+          "description": "Projeta e revisa o ciclo de vida de tenants e dados em SaaS: onboarding idempotente, trial, desativação por falta de pagamento, offboarding, exportação, eliminação, retenção, incidente de segurança (runbook ANPD/GDPR), registro de operações e trilha de auditoria por tenant, com LGPD e GDPR e NFS-e como parâmetro. Use ao planejar offboarding, pedido de exclusão ou exportação, retenção, resposta a incidente ou trilha de auditoria. Não é orientação jurídica. Gatilhos: exclusão de dados do cliente, LGPD, GDPR, DPA, portabilidade, retenção, offboarding, cancelamento, trilha de auditoria, audit log, data deletion, tenant offboarding, incidente ANPD, incidente de vazamento entre tenants (comunicação e prazos)."
+        },
+        {
+          "name": "tenant-isolation-review",
+          "description": "Revisa, só em leitura, código de SaaS multi-tenant em busca de vazamento entre tenants: IDOR/BOLA, tenant_id vindo do cliente, query sem filtro, RLS ausente ou contornável (dono da tabela, BYPASSRLS, sem FORCE), contexto de tenant perdido em pool ou job, cache sem tenant na chave, URL assinada sem checagem, acesso de suporte sem trilha, webhook sem verificação. Use ao revisar PR, handler, repositório, migração ou antes de subir uma feature. Gatilhos: revise isolamento, vazamento entre clientes, IDOR, BOLA, tenant leak, review tenant isolation, cross-tenant, esse endpoint é seguro?"
+        },
+        {
+          "name": "tenant-isolation-tests",
+          "description": "Cria e roda a suíte de testes de isolamento entre tenants: dois tenants sintéticos de nomes parecidos, IDOR por ID, busca, exportação, anexos, cache e websocket, jobs em lote, matriz de papéis pela API, escalada no corpo, limites de plano e downgrade, RLS com a role da aplicação, falha fechada sem contexto e pool de tamanho 1, webhook duplicado e fora de ordem. Use ao implementar ou revisar isolamento ou antes de ligar RLS. Gatilhos: teste de isolamento, dois tenants, matriz de testes multi-tenant, test tenant isolation, cross-tenant test, RLS test, pool de tamanho 1."
+        },
+        {
+          "name": "tenant-rls-migration",
+          "description": "Planeja e escreve, sem nunca aplicar, migrações que introduzem tenant_id e RLS no PostgreSQL em tabelas existentes: inventário, expand/contract, backfill em lotes, roles de migração e de runtime, ENABLE e FORCE, policies com USING e WITH CHECK, FKs que não cruzam tenants, índices, contexto por transação e plano de reversão. Uso explícito por /saas-multitenant:tenant-rls-migration. Gatilhos: ativar RLS, backfill de tenant_id, migração multi-tenant, enable row level security, row level security migration."
+        }
+      ],
+      "agents": [
+        {
+          "name": "billing-reviewer",
+          "description": "Revisor somente leitura de billing de SaaS multi-tenant, em contexto novo. Use proactively depois de mudança em webhooks de cobrança, assinatura, planos, trial, upgrade e downgrade, entitlements, metering ou integração com PSP brasileiro (Asaas), e quando a skill stripe-billing-lifecycle pedir revisão. Cobre corpo bruto e assinatura, deduplicação por id de evento, ordem, tabela status para acesso, chave de idempotência, troca de preço, trial offers, Smart Retries e entitlements locais. Devolve relatório com severidade e arquivo:linha sem alterar nada. Ledger, Pix, boleto e conciliação bancária ficam em fintech-payments.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "isolation-test-engineer",
+          "description": "Engenheiro de testes de isolamento entre tenants. Use quando for criar ou reforçar a suíte de dois tenants (IDOR, busca, exportação, anexos, cache, jobs, papéis por API, limites de plano), testar RLS com a role da aplicação e pool de tamanho 1, ou testar webhook de billing duplicado e fora de ordem. Escreve apenas arquivos de teste, roda só em banco de teste descartável, confirma que o teste falha pelo motivo certo antes do verde e cola a saída. Sem execução possível entrega os testes com o comando e o rótulo Não executado. Para estratégia geral de QA aponte o plugin qa-testing.",
+          "tools": "Read, Grep, Glob, Write, Edit, Bash"
+        },
+        {
+          "name": "milestone-reviewer",
+          "description": "Revisor adversarial de fim de marco em contexto novo, para projetos de SaaS multi-tenant. Use proactively ao concluir um marco, PR grande ou conjunto de commits contra PLAN.md ou a spec, antes de dizer que está pronto ou de fazer merge. Confere se cada requisito tem implementação e cada caso de borda tem teste, inclusive isolamento entre dois tenants, idempotência de billing e reversão, e se a evidência de verificação existe. Reporta só lacunas de correção e requisito, com arquivo e linha, sem estilo. Somente leitura; Bash apenas para git diff, git log, git show e testes já existentes.",
+          "tools": "Read, Grep, Glob, Bash"
+        },
+        {
+          "name": "saas-architect",
+          "description": "Arquiteto de SaaS multi-tenant que entrega decisões e ADR, não código de produto. Use quando houver novo SaaS ou serviço, escolha entre pool com RLS, schema por tenant e banco por tenant (silo, bridge, pool), exigência de isolamento físico ou residência de dados, mapa tenant para deployment, política de past_due, máquina de estados do tenant, limites por plano ou noisy neighbor. Grava somente nos caminhos que o pedido indicar (docs/adr, docs/specs); sem caminho, devolve o documento completo com o caminho sugerido. Para ADR geral, C4 e DDD aponte architecture-design.",
+          "tools": "Read, Grep, Glob, Write"
+        },
+        {
+          "name": "tenant-isolation-reviewer",
+          "description": "Revisor somente leitura de vazamento entre tenants em SaaS multi-tenant, em contexto novo. Use proactively depois de mudança em schema, migração de RLS, repositórios, endpoints, jobs, filas, cache, URLs assinadas, webhooks ou acesso de suporte, antes do merge, quando a skill tenant-isolation-review delegar e pelo comando /saas-multitenant:tenant-audit. Cobre tenant vindo do cliente, IDOR e BOLA, RLS sem FORCE ou WITH CHECK, role com BYPASSRLS, contexto de tenant sem transação, cache sem tenant e log com dado real. Devolve relatório com severidade, confiança e arquivo:linha sem alterar nada. Para AppSec geral aponte o plugin security-appsec.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
+      "plugin": "fintech-payments",
+      "displayName": "fintech-payments",
+      "version": "0.1.0",
+      "description": "Construa, revise e teste sistemas de pagamentos (Pix, boleto, cartão) com idempotência, webhooks verificados, dinheiro e ledger corretos, conciliação, estornos e chargebacks, 3DS, segurança e LGPD, sempre com evidência e sem executar pagamentos reais.",
+      "keywords": [
+        "fintech",
+        "payments",
+        "pagamentos",
+        "pix",
+        "boleto",
+        "idempotency",
+        "webhooks",
+        "ledger",
+        "double-entry",
+        "reconciliation",
+        "chargeback",
+        "3ds",
+        "pci-dss",
+        "lgpd"
+      ],
+      "mode_keyword": "FINTECH-COMPLETO",
+      "skills": [
+        {
+          "name": "go-live-and-guardrails",
+          "description": "Fluxo manual (só por comando explícito) para proteger um projeto de pagamentos antes e depois da produção: guardrails (bloco de CLAUDE.md e permissions.deny para .env e segredos, aplicados somente após diff aprovado), checklist de go-live com o provedor (chaves, webhooks, sandbox fora do deploy, conciliação, CSP, reversão, versão de especificação) e runbook de incidente de dados (chave ou PAN vazado, comunicação à ANPD em 3 dias úteis, rotação de chave). Gatilhos para lembrar o comando: 'go-live de pagamentos', 'configurar guardrails de pagamento', 'rotacionar chave', 'vazou chave', 'incidente de dados' / 'payments go-live', 'set up payment guardrails', 'rotate API key', 'data incident runbook'. Não executa nada em produção; não é aconselhamento jurídico."
+        },
+        {
+          "name": "money-ledger-design",
+          "description": "Desenha e revisa a representação de dinheiro (inteiro na menor unidade mais ISO 4217, arredondamento e alocação), o ledger de partidas dobradas append-only (estorno por lançamento, saldo derivado, reserva em duas fases) e a máquina de estados do pagamento com precedência de evidências. Rótulo Inferido para o que não tem fonte de fabricante. Use para 'como guardar valores', 'float em dinheiro', 'arredondamento', 'rateio', 'ledger', 'partida dobrada', 'saldo', 'estorno parcial', 'máquina de estados do pagamento', 'pagamento preso em pendente' / 'money type', 'minor units', 'double-entry ledger', 'balance', 'partial refund', 'payment state machine'. Propõe esquema e ADR; migração só proposta, testada em banco de teste."
+        },
+        {
+          "name": "payment-code-review",
+          "description": "Revisão de segurança e correção de código de pagamentos, somente leitura, com relatório CRITICAL, WARNING e PASS por arquivo:linha e veredito (pronto, ajustes, bloqueado, parcial): piso de 9 verificações, idempotência, webhook, dinheiro, ledger, conciliação, segredos e logs, autorização, abuso e rate limiting, escopo PCI (SAQ A versus A-EP) e LGPD. Delega ao agente payment-reviewer em contexto limpo. Use para 'revisar pagamentos', 'revisar PR de cobrança', 'tem PAN no log?', 'segurança do checkout', 'vazamento de chave', 'webhook sem assinatura', 'IDOR em estorno' / 'review payment code', 'payment security review', 'PAN in logs', 'checkout security', 'missing webhook signature'. Não edita nem executa nada."
+        },
+        {
+          "name": "payment-idempotency",
+          "description": "Desenha, implementa e revisa idempotência de operações financeiras (cobrança, captura, estorno, repasse, Pix, transferência) e o tratamento de timeout e retry: chave persistida antes da chamada, reserva atômica no banco, fingerprint do corpo, quatro desfechos, retenção por provedor, teste que conta linhas. Use para 'cobrança duplicada', 'cobrei duas vezes', 'chave de idempotência do pagamento/estorno', 'retry de pagamento', 'timeout no gateway/PSP', 'duplo clique em pagar', 'reenviar cobrança' / 'double charge', 'payment idempotency key', 'payment retry', 'payment gateway timeout', 'duplicate payment', 'safe retry of charge/refund'. Só com dinheiro envolvido; idempotência de API genérica fica com backend-api. Não chama APIs reais."
+        },
+        {
+          "name": "payment-test-plan",
+          "description": "Planeja e escreve testes de pagamentos com oráculo independente e massa sintética: matriz de riscos (cobrança dupla, centavo perdido, saldo que não fecha, divergência de conciliação), casos de Pix, boleto, cartão e 3DS, webhook hostil, estorno, chargeback, limites e virada de dia no fuso do negócio, mais geração de CPF e CNPJ (numérico e alfanumérico) de teste. Use para 'plano de testes de pagamento', 'casos de teste Pix', 'teste de webhook', 'massa de teste CPF CNPJ', 'teste de conciliação', 'cenários de cartão' / 'payment test plan', 'payment test cases', 'synthetic test data', 'webhook tests', 'CNPJ alfanumérico'. Só ambiente local e modo de teste do provedor; nunca dados reais."
+        },
+        {
+          "name": "pix-boleto-br",
+          "description": "Integra e revisa Pix (cobrança imediata cob e com vencimento cobv, txid, EndToEndId, devolução, webhook, BR Code e CRC16, segurança do PSP) e boleto (vencimento, juros, multa, desconto, nosso número, linha digitável), com o checklist de 8 itens do Pix e a regra de que limites, MED, Pix Automático e norma de boleto são Não verificados até ler a norma vigente. Use para 'integrar Pix', 'cobrança Pix', 'txid', 'EndToEndId', 'devolução Pix', 'QR code Pix', 'copia e cola', 'Pix Automático', 'boleto', 'linha digitável', 'nosso número', 'juros e multa do boleto' / 'Pix integration', 'Pix charge', 'Pix refund', 'Brazilian boleto', 'PSP webhook mTLS'. Não chama PSP real; testa com stubs e dados sintéticos."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Fintech e pagamentos. Use quando o pedido envolver construir, revisar, testar ou depurar integração e backend que movimenta dinheiro (Pix, boleto, cartão, Stripe, Adyen, Mercado Pago, Pagar.me), como idempotência de cobrança, webhooks de PSP, representação de dinheiro, ledger de partidas dobradas, máquina de estados de pagamento, conciliação, estorno e chargeback, 3DS e antifraude, PCI-DSS, LGPD em dados financeiros; ou quando o usuário disser \"pagamento\", \"cobrança duplicada\", \"webhook do Stripe/PSP\", \"ledger\", \"conciliação\", \"estorno\", \"chargeback\", \"Pix\", \"boleto\", \"payment\", \"refund\", \"double-entry\", \"PCI\". Não use para idempotência, webhooks ou filas sem dinheiro envolvido (backend-api, automation-integrations). Também ativa o modo FINTECH-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados do segmento Fintech e pagamentos, prontos para colar ou executar. Use quando o usuário pedir prompt, template ou mensagem inicial pronta para pagamentos - idempotência de cobrança, receptor de webhook de PSP, Pix, boleto, dinheiro e arredondamento, ledger, máquina de estados, conciliação, disputas e 3DS, revisão de segurança de código de pagamentos, testes hostis, diagnóstico de cobrança duplicada, runbook de incidente LGPD, go-live com provedor, handoff, ou um prompt de sistema/CLAUDE.md para projeto de pagamentos. Triggers PT-BR - \"me dê um prompt para\", \"prompt pronto\", \"template de prompt\", \"mensagem inicial\", \"prompt de revisão de pagamentos\". EN - \"ready-made prompt\", \"prompt for payment code review\", \"prompt template for webhook handler\"."
+        },
+        {
+          "name": "reconciliation-disputes",
+          "description": "Concilia ledger, provedor e extrato (manifesto, completude, casamento nos dois sentidos item a item, partição no fuso do negócio, INCOMPLETE_SOURCE, ajuste só com aprovação) e trata estornos, disputas e chargebacks (Stripe, Adyen, Mercado Pago), 3D Secure sem prometer liability shift e mapa antifraude. Use para 'conciliação', 'payout não bate', 'divergência de extrato', 'fechamento diário', 'chargeback', 'disputa', 'contestação', 'estorno', '3DS', 'antifraude', 'liability shift' / 'reconciliation', 'payout mismatch', 'chargeback', 'dispute evidence', '3D Secure', 'fraud rules'. Trabalha sobre dados fornecidos e sintéticos; nunca cria lançamento automático de balanceamento."
+        },
+        {
+          "name": "webhook-handler",
+          "description": "Constrói, revisa e testa receptores de webhook de pagamentos (Stripe, Adyen, Mercado Pago, Pagar.me, Asaas, Efí, callback do Pix): assinatura sobre o corpo bruto, inbox imutável com dedupe por ID do evento, quarentena por digest divergente, 2xx rápido, fila, releitura do recurso antes de agir, ordem e replay, tabela de autenticação por provedor. Use para 'receber webhook de pagamento/do PSP', 'validar assinatura do webhook do Stripe/Adyen/Mercado Pago/Pagar.me', 'webhook de pagamento duplicado', 'evento de pagamento fora de ordem', 'callback do PSP', 'callback do Pix', 'notificação de pagamento', 'x-signature' / 'payment webhook handler', 'verify Stripe/Adyen webhook signature', 'duplicate payment event', 'out-of-order payment events'. Testa com assinaturas geradas localmente; nunca envia evento a provedor real."
+        }
+      ],
+      "agents": [
+        {
+          "name": "payment-debugger",
+          "description": "Depurador de incidentes de pagamento com causa raiz antes de correção. Use proactively diante de \"cobrei duas vezes\", \"cobrança duplicada\", \"o webhook não chegou\", \"pagamento preso em pendente\", \"o saldo não bate\", \"Pix pago mas pedido não liberou\", \"estorno não aparece no ledger\" ou teste de pagamento vermelho. Reproduz em ambiente local com dados sintéticos, monta a linha do tempo por ID de correlação, classifica o estado por precedência de evidências, testa uma hipótese por vez, escreve o teste que falha antes e propõe (ou aplica, se o pedido autorizar) a correção mínima. Nunca atua em produção e nunca altera dado financeiro - corrigir dado é propor lançamento de estorno ou ajuste para aprovação humana.",
+          "tools": "Read, Grep, Glob, Bash, Edit, Write"
+        },
+        {
+          "name": "payment-reviewer",
+          "description": "Revisor adversarial de código que movimenta dinheiro, somente leitura e em contexto novo. Use proactively depois de mudança ou antes de mergear PR que toque cobrança, captura, estorno, repasse, Pix, boleto, cartão, webhook de PSP, saldo, ledger ou conciliação, e quando a skill payment-code-review delegar. Procura idempotência, webhook, dinheiro, ledger, segredos e PAN em log, autorização, abuso de endpoint e escopo PCI/LGPD; devolve achados CRITICAL, WARNING e PASS com arquivo:linha, itens não verificados e veredito, sem alterar nada. Para threat modeling amplo ou SAST/DAST, aponte o plugin security-appsec.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "payment-test-engineer",
+          "description": "Engenheiro de testes de pagamentos que escreve e executa testes com oráculo independente, só em ambiente local e modo de teste. Use quando pedirem \"escreva testes para o fluxo de pagamento\", \"teste hostil de webhook\", \"teste de concorrência de saldo\", \"testes de idempotência com contagem de linhas\", \"casos de borda do Pix ou do boleto\", \"massa de teste CPF/CNPJ\", \"vetores de arredondamento\", ou quando as skills payment-test-plan e webhook-handler delegarem. Escreve apenas arquivos de teste, vê o teste falhar pelo motivo certo antes do verde, prova que ele detecta o defeito removendo a proteção e cola a saída. Para estratégia geral de QA, E2E ou carga, aponte o plugin qa-testing.",
+          "tools": "Read, Grep, Glob, Edit, Write, Bash"
+        },
+        {
+          "name": "payments-architect",
+          "description": "Arquiteto de sistemas de pagamentos que decide o que é material e devolve um ADR com alternativas, sem implementar nem editar. Use quando pedirem \"ledger próprio ou serviço?\", \"como modelar os estados do pagamento\", \"estratégia de idempotência ou de conciliação\", \"txid do Pix próprio ou do PSP\", \"cobrança imediata ou com vencimento\", \"marketplace - tipo de conta e risco de fraude\", \"estado atual ou snapshot do evento\", ou antes de uma funcionalidade que mexa em dinheiro, estados e conciliação ao mesmo tempo. Devolve ADR, diagrama de estados em texto e lista Não verificado. Para system design amplo, DDD ou CQRS, aponte o plugin architecture-design.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "reconciliation-analyst",
+          "description": "Analista de conciliação financeira sobre dados fornecidos (CSV ou JSON do ledger, do provedor e do extrato), somente leitura e sem rede. Use quando pedirem \"concilie estes arquivos\", \"o payout não bate\", \"fechamento do dia\", \"divergência entre ledger e extrato\", \"a soma bate mas tem diferença\", \"chargeback sem lançamento\", ou quando a skill reconciliation-disputes delegar. Monta o manifesto das fontes, verifica completude (INCOMPLETE_SOURCE), casa item a item nos dois sentidos por partição, classifica diferenças e propõe ajustes sem aplicar. Devolve o relatório completo como texto, com o caminho sugerido para o agente principal gravar. Para pipelines, dbt e warehouse, aponte o plugin data-engineering.",
+          "tools": "Read, Grep, Glob, Bash"
+        }
+      ]
+    },
+    {
+      "plugin": "ecommerce-marketplace",
+      "displayName": "ecommerce-marketplace",
+      "version": "0.1.0",
+      "description": "Guia, skills e revisores para construir e operar lojas virtuais e marketplaces com o Claude Code: checkout seguro, webhooks de pagamento idempotentes, estoque e reservas, promoções, catálogo/busca/SEO, split de pagamento e frete/fiscal no Brasil, sempre em modo de teste, com gates de escrita e rótulos de evidência.",
+      "keywords": [
+        "ecommerce",
+        "marketplace",
+        "checkout",
+        "payments",
+        "webhooks",
+        "idempotency",
+        "inventory",
+        "promotions",
+        "pix",
+        "nfe",
+        "split-payment",
+        "shopify",
+        "medusa",
+        "seo",
+        "ecommerce-completo"
+      ],
+      "mode_keyword": "ECOMMERCE-COMPLETO",
+      "skills": [
+        {
+          "name": "catalogo-busca-seo",
+          "description": "Use para auditar ou construir catálogo e variações, tema Shopify (Liquid), dados estruturados de produto (JSON-LD), busca facetada, política de facetas para SEO, migração de URLs com 301 e importações em massa de catálogo. Gatilhos: 'catálogo', 'variantes', 'SKU', 'tema Shopify', 'Liquid', 'JSON-LD', 'rich results', 'busca facetada', 'filtros', 'redirect 301', 'importar CSV', 'Matrixify', 'SEO de produto' / product schema, faceted search, merchant listing, URL migration. Auditoria é somente leitura por padrão; nunca publica tema nem altera a loja (isso é a skill manual loja-operacao-segura)."
+        },
+        {
+          "name": "checkout-seguro",
+          "description": "Use para construir, revisar ou depurar carrinho e checkout de loja virtual: preço, frete e desconto no servidor, IDOR em pedido, cupom, mass assignment, webhook, acessibilidade WCAG 2.2 do formulário, Core Web Vitals e conformidade BR (Decreto 7.962, LGPD). Gatilhos: 'revise meu checkout', 'o checkout é seguro?', 'finalizar compra', 'carrinho', 'cupom no checkout', 'IDOR em pedido', 'teste E2E de checkout' / cart or checkout review, payment form, order access control, checkout accessibility. Lê código e roda só testes locais; nunca cria compra, cobrança ou pedido reais."
+        },
+        {
+          "name": "estoque-reserva-pedido",
+          "description": "Use para projetar, revisar ou depurar estoque, reserva com expiração, baixa e ciclo de vida do pedido sem vender acima do saldo, incluindo pós-venda (cancelamento, devolução, troca, arrependimento, reembolso parcial). Gatilhos: 'reservar estoque', 'vendi a mais', 'oversell', 'última unidade', 'Pix expirou', 'cancelamento libera estoque', 'devolução', 'troca', 'reembolso parcial', 'arrependimento', Medusa inventory, Shopify InventoryLevel, Nuvemshop restock / inventory reservation, stock lock, order state machine, fulfillment. Projeta e testa; não cancela pedido nem emite reembolso reais."
+        },
+        {
+          "name": "fiscal-frete-br",
+          "description": "Use para checklists e mapeamento de dados de NF-e/NFC-e, IBS/CBS, DIFAL, split payment e contingência de e-commerce no Brasil, e para o fluxo de frete (cotação, etiqueta, rastreio) com Melhor Envio e Correios, documentos brasileiros (CPF, CNPJ alfanumérico, CEP, chave de acesso) e prazos com feriados e fusos. Gatilhos: 'NF-e', 'NFC-e', 'DANFE', 'CFOP', 'NCM', 'IBS', 'CBS', 'reforma tributária', 'nota técnica', 'DIFAL', 'frete', 'cotação', 'etiqueta', 'rastreio', 'Melhor Envio', 'Correios', 'CEP' / Brazil tax invoice, shipping label. Nunca emite documento fiscal real; emissão só em homologação; todo dado fiscal é Não verificável sem fonte primária datada e Requer revisão fiscal."
+        },
+        {
+          "name": "loja-operacao-segura",
+          "description": "Gate de 7 passos para mudanças em lote numa loja virtual: atualizar preços em massa, importar CSV, limpar SEO, criar redirecionamentos, excluir produtos, mesclar clientes, cancelar ou reembolsar em lote, publicar tema. Invocação manual: /ecommerce-marketplace:loja-operacao-segura. Gatilhos: 'bulk update', 'mass edit', 'atualizar preços em massa', 'importar produtos', 'excluir produtos', 'publicar tema', 'mesclar clientes' / batch changes to a live store. Planeja e prepara a prévia; cada escrita passa por confirmação humana; produção bloqueada por padrão; o agente nunca recebe o segredo."
+        },
+        {
+          "name": "marketplace-split",
+          "description": "Use para decidir a arquitetura de um marketplace multi-vendedor: tipo de cobrança e split de pagamento, repasse, onboarding e KYC de vendedores, estornos e disputas (quem é debitado), canais externos (Mercado Livre, Amazon, Mirakl) e papel fiscal da plataforma. Gatilhos: 'marketplace', 'multi-vendedor', 'split de pagamento', 'repasse', 'comissão', 'onboarding de vendedor', 'KYC', 'Stripe Connect', 'Mercado Pago split', seller onboarding, payout, platform fee. Entrega ADRs e matriz de decisão com 'Não verificado' explícito; nunca cria conta conectada, cobrança, transferência nem reembolso reais."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento e-commerce e marketplaces (catálogo, busca, carrinho e checkout, estoque e reservas, preços e promoções, pedidos de compra e devoluções, webhooks de pagamento, frete, NF-e e impostos no Brasil, split de pagamento, SEO, Shopify/VTEX/WooCommerce/Medusa). Use quando o trabalho envolver loja virtual ou marketplace — projetar, implementar, revisar, depurar ou testar — com termos como checkout, carrinho, pedido de compra, cupom, estoque, reserva de estoque, webhook de pagamento, Pix, boleto, split, NF-e, frete, SKU, storefront, cart, order, inventory, fulfillment. Não use para pedidos/requests genéricos sem contexto de loja, cobrança de assinatura SaaS ou core bancário. Também ativa o modo ECOMMERCE-COMPLETO quando o usuário pedir explicitamente."
+        },
+        {
+          "name": "precos-promocoes",
+          "description": "Use para modelar, implementar e testar preços, cupons, promoções, frete grátis, rateio de desconto e parcelas em centavos inteiros, com ordem de aplicação explícita e cálculo no servidor. Gatilhos: 'cupom', 'promoção', 'desconto em lote', 'frete grátis', 'rateio', 'arredondar parcelas', '10% e R$ 20 cumulativos', Shopify Functions, Medusa promotion, discount, coupon, price rule, rounding, installments. Produz SPEC (EARS e Gherkin) e testes com oráculo independente; não altera preços em loja real (isso é a skill manual loja-operacao-segura)."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de prompts curados do segmento e-commerce e marketplaces. Use quando pedirem prompt, template, modelo de CLAUDE.md ou \"mensagem inicial\" prontos para tarefas de loja virtual ou marketplace - especificar feature de preço ou promoção, revisar PR de checkout, auditar webhook de pagamento (Stripe, Mercado Pago, Asaas, Pix), reserva de estoque, split de pagamento, SEO de produto e JSON-LD, tema Shopify, busca facetada, NF-e e frete no Brasil, devolução e arrependimento, incidente de dados, testes E2E de checkout, prompt de sistema da loja. Triggers - me dê um prompt para, prompt pronto, template de prompt, system prompt da loja, prompt for ecommerce review, checkout review prompt, webhook audit prompt, starter message. Não use quando a pessoa quer a tarefa feita agora sem pedir prompt; nesse caso vale a skill de tarefa do plugin."
+        },
+        {
+          "name": "webhook-pagamento",
+          "description": "Use para implementar, revisar ou depurar o recebimento de webhooks e notificações de pagamento, pedido e envio (Stripe, Shopify, Mercado Pago, Asaas, Pix, Melhor Envio, VTEX, Nuvemshop, WooCommerce): assinatura sobre corpo bruto, dedupe por event_id, 2xx rápido com fila, reconciliação por API e criação segura de pedido. Gatilhos: 'webhook', 'notificação de pagamento', 'Pix confirmou', 'pedido duplicado', 'idempotency key', 'Stripe-Signature', 'x-signature', 'asaas-access-token', 'X-Shopify-Hmac-Sha256', 'X-ME-Signature' / payment webhook, signature verification, retries, duplicate orders. Nunca cria cobrança real; usa modo de teste e dados sintéticos."
+        }
+      ],
+      "agents": [
+        {
+          "name": "arquiteto-loja",
+          "description": "Arquiteto de decisões materiais de loja e marketplace, somente leitura e sem implementar. Produz ADRs e planos com premissas desafiadas, alternativas (incluindo a mais simples), riscos e itens Não verificados para tipo de cobrança e split de pagamento, onboarding e KYC de vendedor, reserva de estoque com expiração, papel fiscal da plataforma (substituto tributário ou NF-e do vendedor), integração de canais (Mercado Livre, Amazon) e escolha entre plataforma pronta e código próprio. Use antes de implementar qualquer decisão que muda dinheiro, estoque ou obrigação fiscal; também para \"qual cobrança uso no meu marketplace?\", \"como evito vender a mais?\", \"quem emite a nota?\", \"marketplace architecture decision\", \"split payment design\", \"stock reservation design\". Implementação e revisão de código ficam com as skills de tarefa e com revisor-checkout.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "auditor-catalogo-seo",
+          "description": "Auditor somente leitura de catálogo, tema Shopify, dados estruturados de produto (JSON-LD), navegação facetada, redirecionamentos 301, importações de CSV e busca de catálogo (Typesense, Meilisearch, Algolia). Aplica o checklist de 12 itens de tema, as regras de merchant listing do Google, as seis armadilhas de dados de catálogo e a política de facetas e migração de URLs, declara o que não foi examinado e nunca altera a loja. Use proactively em auditoria de tema, catálogo ou SEO de produto e antes de importar CSV, limpar SEO em massa ou migrar URLs; também para \"SEO do produto\", \"JSON-LD duplicado\", \"variantes no Google\", \"facetas indexando\", \"redirect 301 da migração\", \"Shopify theme review\", \"product schema audit\". Mudanças em lote na loja são da skill loja-operacao-segura, nunca deste agente.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "auditor-pagamentos-integracoes",
+          "description": "Auditor somente leitura de handlers de webhook e integrações de pagamento, pedido e frete (Stripe, Mercado Pago, Asaas, Pix via PSP, Shopify, Nuvemshop, VTEX, WooCommerce, Melhor Envio). Confere assinatura sobre o corpo bruto, dedupe por ID de evento com restrição única, resposta 2xx rápida com fila, reconciliação por API, idempotência de saída, retenção de pedido por divergência de valor, segredos por ambiente e bloqueio de produção, e devolve uma tabela provedor por item (OK, Falha, Não verificado) com evidência arquivo:linha. Use proactively ao criar ou alterar integração de pagamento ou frete e para \"pedido duplicado\", \"Pix confirmou mas o pedido não mudou\", \"revise meu webhook\", \"payment webhook audit\", \"idempotency key\". Reconciliação bancária e ledger ficam com fintech-payments; segurança geral do checkout, com revisor-checkout.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "revisor-a11y-checkout",
+          "description": "Auditor de acessibilidade WCAG 2.2 de formulários e fluxos de checkout (endereço, frete, pagamento, erro, confirmação), somente leitura, com grau de evidência por achado (Verificado, Sinalizado, Requer humano) e sem nunca afirmar conformidade por varredura limpa. Cobre rótulo, erro, revisão antes de pagar, entrada redundante (3.3.7), autenticação sem teste cognitivo (3.3.8), autofill (1.3.5), foco visível, alvo mínimo de 24 px, contraste e reflow em 320 px. Use proactively ao mudar UI de endereço, pagamento ou mensagens de erro, antes de release e para \"o checkout é acessível?\", \"WCAG do formulário de pagamento\", \"checkout accessibility audit\", \"erro de validação acessível\". Segurança do checkout fica com revisor-checkout; implementação de componentes e acessibilidade geral de páginas, com o plugin web-frontend.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "revisor-checkout",
+          "description": "Revisor adversarial de segurança e correção para mudanças em checkout, carrinho, cupom, pedido, estoque e webhook de pagamento, somente leitura. Procura preço, frete ou desconto vindo do cliente, IDOR em pedido, endereço e reembolso, mass assignment, injeção em cupom e busca, webhook sem assinatura sobre o corpo bruto, corrida em estoque e cupom, falha de pagamento que libera pedido, segredo e PII em log, e devolve achados com severidade, confiança, arquivo:linha e correção mínima. Use proactively antes de concluir qualquer diff nesses módulos e para \"revise meu checkout\", \"o checkout é seguro?\", \"review my cart code\", \"cupom pode ser abusado?\", \"IDOR no pedido\". Revisão de acessibilidade do formulário fica com revisor-a11y-checkout; handlers de webhook em profundidade, com auditor-pagamentos-integracoes.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
       "plugin": "design-engineering-kit",
       "displayName": "design-engineering-kit",
       "version": "0.1.0",
@@ -2131,9 +2409,5 @@
       ]
     }
   ],
-  "pending": [
-    "saas-multitenant",
-    "fintech-payments",
-    "ecommerce-marketplace"
-  ]
+  "pending": []
 }

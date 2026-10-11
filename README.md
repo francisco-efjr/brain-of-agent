@@ -20,7 +20,7 @@ claude plugin install orchestrator@brain-of-agent
 claude plugin install architecture-design@brain-of-agent   # e os demais do catálogo
 ```
 
-Plugins publicados: orchestrator e 22 segmentos (architecture-design, qa-testing, code-quality-refactoring, security-appsec, ux-ui-design, mobile-apps, web-frontend, backend-api, database-data-modeling, devops-cloud-infra, llm-ai-agents, product-discovery-specs, git-workflow-release, technical-writing-docs, sre-observability, data-engineering, data-science-ml, automation-integrations, cli-desktop-tooling, game-development, systems-embedded-iot, blockchain-web3). Há também o opcional `design-engineering-kit`, com skills de motion e gosto de Emil Kowalski e taste-skill, mais o fluxo com os plugins oficiais do Figma MCP e do Playwright MCP. Outros segmentos estão em construção (ver catálogo). Para saber como foram pesquisados, validados e construídos, veja [docs/dev-segments/README.md](docs/dev-segments/README.md).
+Plugins publicados: orchestrator e os 25 segmentos (ver [catálogo](docs/dev-segments/CATALOGO.md)), além do opcional `design-engineering-kit`, com skills de motion e gosto de Emil Kowalski e taste-skill e o fluxo com os plugins oficiais do Figma MCP e do Playwright MCP. Para usar este conhecimento num chat novo, cole o [contexto curto](docs/dev-segments/CONTEXTO-CURTO.md). O processo completo está em [contexto completo](docs/dev-segments/CONTEXTO-COMPLETO.md) e o método em [método de pesquisa](docs/dev-segments/METODO-PESQUISA.md). Para saber como foram pesquisados, validados e construídos, veja [docs/dev-segments/README.md](docs/dev-segments/README.md).
 
 ---
 

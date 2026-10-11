@@ -477,6 +477,71 @@
       ]
     },
     {
+      "name": "saas-multitenant",
+      "source": "./plugins/saas-multitenant",
+      "description": "Projete, implemente, revise e teste SaaS B2B multi-tenant com Claude Code: isolamento por tenant (RLS no PostgreSQL), autorização por objeto, billing com Stripe, entitlements, SSO/SCIM, ciclo de vida de dados (LGPD/GDPR) e auditoria, sempre com verificação por evidência.",
+      "keywords": [
+        "saas",
+        "multi-tenant",
+        "tenant-isolation",
+        "row-level-security",
+        "postgres",
+        "stripe-billing",
+        "subscriptions",
+        "webhooks",
+        "entitlements",
+        "sso",
+        "scim",
+        "rbac",
+        "lgpd",
+        "gdpr",
+        "SAAS-COMPLETO"
+      ]
+    },
+    {
+      "name": "fintech-payments",
+      "source": "./plugins/fintech-payments",
+      "description": "Construa, revise e teste sistemas de pagamentos (Pix, boleto, cartão) com idempotência, webhooks verificados, dinheiro e ledger corretos, conciliação, estornos e chargebacks, 3DS, segurança e LGPD, sempre com evidência e sem executar pagamentos reais.",
+      "keywords": [
+        "fintech",
+        "payments",
+        "pagamentos",
+        "pix",
+        "boleto",
+        "idempotency",
+        "webhooks",
+        "ledger",
+        "double-entry",
+        "reconciliation",
+        "chargeback",
+        "3ds",
+        "pci-dss",
+        "lgpd"
+      ]
+    },
+    {
+      "name": "ecommerce-marketplace",
+      "source": "./plugins/ecommerce-marketplace",
+      "description": "Guia, skills e revisores para construir e operar lojas virtuais e marketplaces com o Claude Code: checkout seguro, webhooks de pagamento idempotentes, estoque e reservas, promoções, catálogo/busca/SEO, split de pagamento e frete/fiscal no Brasil, sempre em modo de teste, com gates de escrita e rótulos de evidência.",
+      "keywords": [
+        "ecommerce",
+        "marketplace",
+        "checkout",
+        "payments",
+        "webhooks",
+        "idempotency",
+        "inventory",
+        "promotions",
+        "pix",
+        "nfe",
+        "split-payment",
+        "shopify",
+        "medusa",
+        "seo",
+        "ecommerce-completo"
+      ]
+    },
+    {
       "name": "design-engineering-kit",
       "source": "./plugins/design-engineering-kit",
       "description": "Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 skills de motion, polimento e direção visual (Emil Kowalski e taste-skill, MIT, vendorizadas sem alteração), precedência explícita de estilo (design system do projeto, design system da casa, direções taste), agentes somente leitura, prompts e evals.",
