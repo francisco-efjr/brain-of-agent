@@ -1,5 +1,0 @@
-# Python 3.10 ou superior
-pytest>=8
-requests>=2.31
-pydantic>=2.5
-tzdata  # base de fusos horários (necessária em Windows e containers mínimos)
