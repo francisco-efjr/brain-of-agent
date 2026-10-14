@@ -32,9 +32,8 @@ Gerado por `tools/publish_brain.py` a partir do frontmatter dos plugins publicad
 | `design-engineering-kit` | Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 sk… | animate, animate-expo, animation-vocabulary, apple-design, break-ui, design-taste-frontend, emil-design-eng, find-animation-opportunities, high-end-visual-design, improve-animations, industrial-brutalist-ui, minimalist-ui, mobile-native, pick-ui-library, playbook, prompts, prototype, redesign-existing-projects, review-animations | motion-polish-reviewer, ui-verifier | DESIGNENG-COMPLETO |
 | `engineering-lifecycle` | Ciclo de vida de engenharia com disciplina de agente, do agent-skills de Addy Osmani (MIT): DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP. | api-and-interface-design, browser-testing-with-devtools, ci-cd-and-automation, code-review-and-quality, code-simplification, constraint-driven-development, context-engineering, debugging-and-error-recovery, deprecation-and-migration, documentation-and-adrs, doubt-driven-development, frontend-ui-engineering, git-workflow-and-versioning, idea-refine, incremental-implementation, interview-me, observability-and-instrumentation, performance-optimization, planning-and-task-breakdown, playbook, prompts, security-and-hardening, shipping-and-launch, source-driven-development, spec-driven-development, test-driven-development, using-agent-skills | code-reviewer, fresh-context-doubter, quality-bar-guardian, security-auditor, test-engineer, web-performance-auditor | LIFECYCLE-COMPLETO |
 | `qa-playwright` | Validação funcional funcionalidade por funcionalidade com Playwright: inventário F-NN, exploração com a CLI da versão fixada, specs que asseram o efeito, gate … | api-and-network, evidence-report, explore-feature, failure-triage, feature-inventory, harness-setup, non-web-systems, playbook, prompts, visual-a11y-responsive, write-specs | failure-triager, feature-explorer, matrix-auditor, spec-reviewer, spec-writer | PLAYWRIGHT-COMPLETO |
+| `video-hyperframes` | Camada em PT-BR de orquestração, segurança e qualidade por cima das skills oficiais do HyperFrames: vídeos explicativos de software (arquitetura, fluxos, códig… | playbook, prompts, software-explainer-storyboard, video-brief-interview, video-design-system, video-env-preflight, video-frame-review, video-render-deliver, video-source-script, video-toolchain-setup | composition-reviewer, execution-security-auditor, fact-privacy-checker, frame-reviewer, storyboard-reviewer | VIDEO-COMPLETO |
 | `web-research-apify` | Extra opcional: ensina agentes do Claude Code a usar o Apify MCP como ferramenta de pesquisa web profunda (Reddit, X, YouTube, SERP, crawl de documentação, pág… | auditoria-de-custo, conectar-apify, consultar-docs-apify, dataset-para-itens, diagnosticar-apify, escolher-actor, pesquisa-com-orcamento, playbook, prompts | apify-cost-auditor, apify-researcher, apify-source-verifier | APIFY-COMPLETO |
-
-**Em construção (ainda não publicados):** `video-hyperframes`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
 
 ## product-discovery-specs (`product-discovery-specs` 0.1.0)
 
@@ -813,6 +812,33 @@ Instalar: `/plugin install qa-playwright@brain-of-agent` · Playbook: `plugins/q
 | `qa-playwright:matrix-auditor` (`plugins/qa-playwright/agents/matrix-auditor.md`) | Validador independente da rodada funcional, depois do evidence-report: confere a matriz FUNCIONALIDADES.md e o RELATORIO-FUNCIONAL.md contra o results.json de uma execução de evidência que ele não gerou, reexecuta uma v… | Read, Glob, Grep, Bash |
 | `qa-playwright:spec-reviewer` (`plugins/qa-playwright/agents/spec-reviewer.md`) | Revisa em contexto limpo e somente leitura, num só lote por rodada, todos os specs Playwright da rodada contra o checklist de revisão (C-S, C-G) e a lista de segurança, e devolve achados ordenados por dano com arquivo:l… | Read, Glob, Grep |
 | `qa-playwright:spec-writer` (`plugins/qa-playwright/agents/spec-writer.md`) | Transforma a nota de exploração de uma funcionalidade em spec Playwright e2e/F-NN-<slug>.spec.ts (caminho feliz mais negativo ou borda, asserção do efeito, locators por papel, dado único por teste, sem espera por tempo)… | Read, Glob, Grep, Bash, Write, Edit |
+
+## video-hyperframes (`video-hyperframes` 0.1.0)
+
+Camada em PT-BR de orquestração, segurança e qualidade por cima das skills oficiais do HyperFrames: vídeos explicativos de software (arquitetura, fluxos, código, números verificados), motion graphics e changelogs em vídeo no Claude Code, com política de privacidade do roteiro, toolchain Windows sem instalações globais, gates humanos antes do render e revisão de quadros por contact sheet.
+
+Instalar: `/plugin install video-hyperframes@brain-of-agent` · Playbook: `plugins/video-hyperframes/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/video-hyperframes:playbook` | Guia e router do segmento Produção de vídeo com HyperFrames: vídeo explicativo de software (arquitetura, fluxos, código, números verificados), explicativo de produto ou PR, motion graphic e changelog em vídeo, feitos em… |
+| `/video-hyperframes:prompts` | Biblioteca de 32 prompts curados para produzir vídeo com HyperFrames em PT-BR: pedido de vídeo explicativo de sistema de software, prompt de sistema para projetos de vídeo, mensagem inicial no estilo brain-of-agent, ent… |
+| `/video-hyperframes:software-explainer-storyboard` | Projeta o storyboard de um vídeo explicativo de sistema de software: tese em uma frase, gancho, estrutura, 3 a 12 quadros num palco único com um fio persistente atravessando as camadas, revelações no ritmo da cena, diag… |
+| `/video-hyperframes:video-brief-interview` | Conduz a entrevista de especificação de um vídeo, cria o projeto com confirmação e grava DECISOES.md e BRIEF.md: roteiro oficial do HyperFrames (angle, length, destination, VO_MODE, regime storyboard e fluxo) mais as ad… |
+| `/video-hyperframes:video-design-system` | Converte um design system, DESIGN.md ou marca do usuário (ou um dos 13 presets do HyperFrames) em tokens.json e frame.md para vídeo: cor e família estritas, escala web para vídeo, fontes embutidas fora da lista de defau… |
+| `/video-hyperframes:video-env-preflight` | Diagnostica a máquina Windows e a sessão antes de produzir vídeo com HyperFrames, sem instalar: Node, FFmpeg e ffprobe, Chrome do sistema para render, Python/venv, nomes de credenciais de nuvem, .env nas pastas acima, s… |
+| `/video-hyperframes:video-frame-review` | Revisa os quadros de um vídeo HyperFrames antes do preview e do render: roda check como gate (browserSkipped não conta), gera snapshots e contact sheet, e confere cada quadro contra STORYBOARD.md, frame.md e a doutrina … |
+| `/video-hyperframes:video-render-deliver` | Renderiza o MP4 final de um vídeo HyperFrames e entrega: confere pré-condições (check sem erro e sem browserSkipped, contact sheet inspecionado, preview desta versão já mostrado ao usuário, Chrome e FFmpeg por caminho e… |
+| `/video-hyperframes:video-source-script` | Prepara a matéria-prima do vídeo: transforma documentos, código ou notas do sistema em TEXTO-FONTE.md aprovado e fonte-dos-fatos.md (afirmação, origem, status), define o que pode e não pode aparecer (caminhos de máquina… |
+| `/video-hyperframes:video-toolchain-setup` | Instala, com confirmação item a item, o que falta para produzir vídeo com HyperFrames no Windows sem tocar no sistema: invólucro de sessão hf.ps1, FFmpeg e ffprobe portáteis com SHA-256 conferido, CLI fixado em hyperfra… |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `video-hyperframes:composition-reviewer` (`plugins/video-hyperframes/agents/composition-reviewer.md`) | Revisor somente leitura do HTML das composições HyperFrames. | Read, Grep, Glob |
+| `video-hyperframes:execution-security-auditor` (`plugins/video-hyperframes/agents/execution-security-auditor.md`) | Auditor somente leitura da execução de um projeto de vídeo. | Read, Grep, Glob |
+| `video-hyperframes:fact-privacy-checker` (`plugins/video-hyperframes/agents/fact-privacy-checker.md`) | Verificador somente leitura de fatos e privacidade de um vídeo. | Read, Grep, Glob |
+| `video-hyperframes:frame-reviewer` (`plugins/video-hyperframes/agents/frame-reviewer.md`) | Revisor visual somente leitura de quadros de vídeo HyperFrames. | Read, Grep, Glob |
+| `video-hyperframes:storyboard-reviewer` (`plugins/video-hyperframes/agents/storyboard-reviewer.md`) | Revisor de storyboard somente leitura para vídeo explicativo de software. | Read, Grep, Glob |
 
 ## web-research-apify (`web-research-apify` 0.1.0)
 

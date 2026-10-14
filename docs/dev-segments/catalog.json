@@ -2683,6 +2683,94 @@
       ]
     },
     {
+      "plugin": "video-hyperframes",
+      "displayName": "video-hyperframes",
+      "version": "0.1.0",
+      "description": "Camada em PT-BR de orquestração, segurança e qualidade por cima das skills oficiais do HyperFrames: vídeos explicativos de software (arquitetura, fluxos, código, números verificados), motion graphics e changelogs em vídeo no Claude Code, com política de privacidade do roteiro, toolchain Windows sem instalações globais, gates humanos antes do render e revisão de quadros por contact sheet.",
+      "keywords": [
+        "hyperframes",
+        "video explicativo",
+        "explainer video",
+        "motion graphics",
+        "storyboard de video",
+        "faceless-explainer",
+        "pr-to-video",
+        "renderizar mp4",
+        "contact sheet",
+        "video-completo"
+      ],
+      "mode_keyword": "VIDEO-COMPLETO",
+      "skills": [
+        {
+          "name": "playbook",
+          "description": "Guia e router do segmento Produção de vídeo com HyperFrames: vídeo explicativo de software (arquitetura, fluxos, código, números verificados), explicativo de produto ou PR, motion graphic e changelog em vídeo, feitos em HTML com as skills oficiais do HyperFrames, com política de privacidade, Windows sem instalações globais e gates humanos antes do render. Use quando o usuário pedir vídeo explicativo, 'faça um vídeo sobre meu sistema', storyboard, motion graphic, vídeo de PR ou de changelog, renderizar MP4, narração local em PT-BR, preview ou contact sheet, FFmpeg ou Chrome para render. Gatilhos: HyperFrames, explainer video, motion graphics, video from PR, render video. Também ativa o modo VIDEO-COMPLETO (leitura e aplicação do protocolo; não autoriza render) quando o usuário pedir explicitamente. Não use para editar vídeo gravado (recut, legendas sobre vídeo existente), animação de interface (CSS/Framer), documentação escrita nem design de UI."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de 32 prompts curados para produzir vídeo com HyperFrames em PT-BR: pedido de vídeo explicativo de sistema de software, prompt de sistema para projetos de vídeo, mensagem inicial no estilo brain-of-agent, entrevista de especificação, storyboard, cenas de arquitetura, números e código, roteiro para TTS local, revisão de quadros, gate de render e entrega. Use quando pedirem 'me dá um prompt para vídeo', 'template de pedido de vídeo', 'prompt de storyboard', 'mensagem inicial VIDEO-COMPLETO', video prompt template. Não use para executar a produção (playbook)."
+        },
+        {
+          "name": "software-explainer-storyboard",
+          "description": "Projeta o storyboard de um vídeo explicativo de sistema de software: tese em uma frase, gancho, estrutura, 3 a 12 quadros num palco único com um fio persistente atravessando as camadas, revelações no ritmo da cena, diagramas de arquitetura em SVG/CSS, cenas de números e de código, e o STORYBOARD.md com tabela para aprovação. Use para 'storyboard do vídeo', 'quadros do vídeo', 'explicar arquitetura em vídeo', software explainer storyboard. Não renderiza e não escreve o HTML dos quadros."
+        },
+        {
+          "name": "video-brief-interview",
+          "description": "Conduz a entrevista de especificação de um vídeo, cria o projeto com confirmação e grava DECISOES.md e BRIEF.md: roteiro oficial do HyperFrames (angle, length, destination, VO_MODE, regime storyboard e fluxo) mais as adições do plugin (fonte dos fatos, privacidade do roteiro, voz e tom em PT-BR, design system). Use para 'quero um vídeo sobre', 'especificar o vídeo', 'brief do vídeo', 'qual rota usar', video brief. Pula perguntas já respondidas ou quando BRIEF.md existe. Não escreve roteiro nem storyboard."
+        },
+        {
+          "name": "video-design-system",
+          "description": "Converte um design system, DESIGN.md ou marca do usuário (ou um dos 13 presets do HyperFrames) em tokens.json e frame.md para vídeo: cor e família estritas, escala web para vídeo, fontes embutidas fora da lista de defaults de LLM, um acento por quadro, contraste verificado. Use para 'design system do vídeo', 'frame.md', 'aplicar minha marca no vídeo', 'preset', 'fontes do vídeo', video design tokens. Não cria nem audita design system de produto (ux-ui-design)."
+        },
+        {
+          "name": "video-env-preflight",
+          "description": "Diagnostica a máquina Windows e a sessão antes de produzir vídeo com HyperFrames, sem instalar: Node, FFmpeg e ffprobe, Chrome do sistema para render, Python/venv, nomes de credenciais de nuvem, .env nas pastas acima, skills oficiais disponíveis e checks nomeados do doctor. Devolve numa mensagem o bloco de variáveis de sessão e os downloads pendentes para confirmação. Use antes do primeiro preview ou render e em 'render baixa Chrome', 'FFmpeg não encontrado', 'preflight', 'ambiente de vídeo'. Não instala nada (video-toolchain-setup) e não renderiza."
+        },
+        {
+          "name": "video-frame-review",
+          "description": "Revisa os quadros de um vídeo HyperFrames antes do preview e do render: roda check como gate (browserSkipped não conta), gera snapshots e contact sheet, e confere cada quadro contra STORYBOARD.md, frame.md e a doutrina de motion da rota, com texto, números e cores literais; delega leitura visual e fatos (e, com sintoma, o contrato de composição) a agentes somente leitura. Use para 'revisar os quadros', 'contact sheet', 'check do vídeo', 'está pronto para renderizar?', video QA. Não altera o produto e não renderiza."
+        },
+        {
+          "name": "video-render-deliver",
+          "description": "Renderiza o MP4 final de um vídeo HyperFrames e entrega: confere pré-condições (check sem erro e sem browserSkipped, contact sheet inspecionado, preview desta versão já mostrado ao usuário, Chrome e FFmpeg por caminho explícito, rede para jsdelivr), roda o render com --output explícito, valida com ffprobe (duração, resolução, fps, áudio) e escreve COMO-RENDERIZAR.md e o bloco 'Onde ver agora'. Só por /video-hyperframes:video-render-deliver. Nunca publica nem envia o projeto."
+        },
+        {
+          "name": "video-source-script",
+          "description": "Prepara a matéria-prima do vídeo: transforma documentos, código ou notas do sistema em TEXTO-FONTE.md aprovado e fonte-dos-fatos.md (afirmação, origem, status), define o que pode e não pode aparecer (caminhos de máquina, e-mails, segredos, nomes internos) e, se houver narração, escreve o SCRIPT.md para TTS local em PT-BR. Use para 'texto-fonte do vídeo', 'checar fatos', 'o que posso mostrar', 'roteiro de narração', source text, TTS script. Não decide a estrutura visual (software-explainer-storyboard)."
+        },
+        {
+          "name": "video-toolchain-setup",
+          "description": "Instala, com confirmação item a item, o que falta para produzir vídeo com HyperFrames no Windows sem tocar no sistema: invólucro de sessão hf.ps1, FFmpeg e ffprobe portáteis com SHA-256 conferido, CLI fixado em hyperframes@0.8.154, venv dedicado e modelo Kokoro para narração local, Parakeet para tempos de legenda. Só por /video-hyperframes:video-toolchain-setup. Baixa arquivos e grava em pastas do usuário; nunca usa winget, setx, pip ou npm globais."
+        }
+      ],
+      "agents": [
+        {
+          "name": "composition-reviewer",
+          "description": "Revisor somente leitura do HTML das composições HyperFrames. Use quando o render congela, some elemento ou fica mudo, ou quando um erro do check persiste depois da primeira correção: confere data-composition-id, timeline registrada, janelas de data-start e data-duration, referências relativas silenciosas, mídia sem id, GSAP em seek frio, transições CSS e banidos da rota. Devolve achados com arquivo:linha.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "execution-security-auditor",
+          "description": "Auditor somente leitura da execução de um projeto de vídeo. Use antes de gerar voz e depois do render: confere, pelas saídas que o chamador cola (só nomes e tamanhos), credenciais de nuvem ausentes, .env vazio e voz local, e lê o registro .hf-log.txt e o log de áudio contra a política (usage, publish, cloud, auth, skills, feedback, provedor de voz). Não roda comandos e nunca imprime valores de variáveis.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "fact-privacy-checker",
+          "description": "Verificador somente leitura de fatos e privacidade de um vídeo. Use antes do preview e do render: compara cada número, nome e afirmação do STORYBOARD.md, do SCRIPT.md e dos quadros com fonte-dos-fatos.md e procura o que não pode aparecer (caminhos de máquina, e-mails, segredos, nomes internos). Cita arquivo:linha e a classe do achado, nunca o valor sensível.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "frame-reviewer",
+          "description": "Revisor visual somente leitura de quadros de vídeo HyperFrames. Use depois do snapshot: lê o contact sheet e os PNG e confere cada quadro contra STORYBOARD.md e frame.md (texto literal, números, cores, tamanhos mínimos, zona da legenda, fio, doutrina de motion da rota). Devolve achados por quadro; não altera nada e não julga movimento.",
+          "tools": "Read, Grep, Glob"
+        },
+        {
+          "name": "storyboard-reviewer",
+          "description": "Revisor de storyboard somente leitura para vídeo explicativo de software. Use quando houver rascunho de STORYBOARD.md ou da tabela de quadros, sobretudo acima de 8 quadros ou em vídeo sem voz: confere tese, estrutura, palco único, fio persistente, transições, orçamento de leitura e números do ledger, e propõe cortes. Devolve veredito, tabela corrigida e cortes; não escreve arquivos nem roda comandos.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
       "plugin": "web-research-apify",
       "displayName": "web-research-apify",
       "version": "0.1.0",
@@ -2760,7 +2848,5 @@
       ]
     }
   ],
-  "pending": [
-    "video-hyperframes"
-  ]
+  "pending": []
 }

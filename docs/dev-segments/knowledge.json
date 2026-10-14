@@ -3200,25 +3200,86 @@
     {
       "tag": "video-edicao",
       "label": "Edição e produção de vídeo com código (HyperFrames)",
-      "description": "Criar, editar e renderizar vídeos por código: roteiro, cenas, animação, legendas, narração e render local, seguindo o playbook do HyperFrames. Entrega o vídeo renderizado ou o projeto pronto para renderizar, com o toolchain conferido.",
+      "description": "Criar, editar e renderizar vídeos por código com as skills oficiais do HyperFrames: vídeo explicativo de software (arquitetura, fluxos, código, números verificados), motion graphics e changelog em vídeo. Entrega storyboard aprovado, quadros revisados por contact sheet e o MP4 renderizado localmente depois do gate humano, com a toolchain conferida e a privacidade do roteiro protegida.",
       "triggers": [
         "edição de vídeo",
         "editar vídeo",
-        "editar um vídeo",
         "montar um vídeo",
         "criar um vídeo",
         "produzir um vídeo",
         "renderizar vídeo",
         "vídeo explicativo",
+        "vídeo explicando o sistema",
         "vídeo demo do produto",
         "motion graphics",
-        "animação em vídeo",
-        "legendas e cortes",
+        "storyboard de vídeo",
         "video editing",
-        "edit a video",
         "render a video",
         "explainer video",
-        "hyperframes"
+        "hyperframes",
+        "video-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "video-hyperframes",
+          "skills": [
+            "playbook",
+            "software-explainer-storyboard",
+            "video-frame-review"
+          ],
+          "agents": [
+            "storyboard-reviewer",
+            "frame-reviewer",
+            "fact-privacy-checker"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "ux-ui-design",
+          "skills": [
+            "design-brief"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "technical-writing-docs",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "video-hyperframes:frame-reviewer",
+        "video-hyperframes:fact-privacy-checker"
+      ],
+      "sources": [
+        "docs/dev-segments/research/video-hyperframes/VALIDATED.md"
+      ],
+      "notes": "Fora da v1: edição de vídeo gravado (recut, legendas sobre filmagem existente); o playbook explica e encaminha para os workflows oficiais com confirmação. Render local exige Node 22+, FFmpeg portátil e o Chrome do sistema via HYPERFRAMES_BROWSER_PATH; instalações, login HeyGen, narração em nuvem, publish e cloud render só com confirmação do usuário. Ajustada em 2026-10-14 pela sessão do item 30 (critério do crítico: validador de vídeo no lugar do revisor de motion de UI).",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "video-hyperframes",
+      "label": "Camada em PT-BR de orquestração, segurança e qualidade por cima das skills oficiais do HyperFrames: vídeos ex…",
+      "description": "Camada em PT-BR de orquestração, segurança e qualidade por cima das skills oficiais do HyperFrames: vídeos explicativos de software (arquitetura, fluxos, código, números verificados), motion graphics e changelogs em víd…",
+      "triggers": [
+        "hyperframes",
+        "video explicativo",
+        "explainer video",
+        "motion graphics",
+        "storyboard de video",
+        "faceless-explainer",
+        "pr-to-video",
+        "renderizar mp4",
+        "contact sheet",
+        "video-completo"
       ],
       "routes": [
         {
@@ -3226,45 +3287,23 @@
           "skills": [
             "playbook"
           ],
-          "agents": [],
+          "agents": [
+            "composition-reviewer",
+            "execution-security-auditor",
+            "fact-privacy-checker",
+            "frame-reviewer",
+            "storyboard-reviewer"
+          ],
           "role": "lider",
-          "status": "em construção"
-        },
-        {
-          "plugin": "design-engineering-kit",
-          "skills": [
-            "animate",
-            "animation-vocabulary",
-            "review-animations"
-          ],
-          "agents": [
-            "motion-polish-reviewer"
-          ],
-          "role": "apoio",
-          "status": "publicado"
-        },
-        {
-          "plugin": "ux-ui-design",
-          "skills": [
-            "design-brief",
-            "ux-writing"
-          ],
-          "agents": [
-            "design-evaluator"
-          ],
-          "role": "apoio",
           "status": "publicado"
         }
       ],
-      "validators": [
-        "design-engineering-kit:motion-polish-reviewer"
-      ],
+      "validators": [],
       "sources": [
         "docs/dev-segments/research/video-hyperframes/VALIDATED.md"
       ],
-      "notes": "Plugin em construção por outra sessão (item 30 do plano da fábrica). Render local exige Node 22+ e FFmpeg; instalação só com confirmação do usuário. O status desta tag muda sozinho quando o plugin for publicado.",
-      "origin": "curada",
-      "status": "em construção"
+      "origin": "automatica",
+      "status": "publicado"
     },
     {
       "tag": "web-frontend",
