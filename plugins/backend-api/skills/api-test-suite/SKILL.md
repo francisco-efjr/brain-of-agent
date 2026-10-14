@@ -95,6 +95,7 @@ Arquivos de teste; plano (`plano-de-testes-api.md`) e matriz endpoint x aspectos
 - Agente `api-test-engineer` para escrever ou reforçar a suíte em volume, ou estabilizar testes flaky.
 - `idempotency-and-resilience` para o desenho que os testes validam; `api-security-review` para achados de segurança que viram teste de regressão.
 - `qa-testing` para estratégia de teste geral, E2E, performance e plano de QA.
+- API como parte da matriz de funcionalidades do sistema (Playwright `request`, híbrido API + UI, N/A e executor): `qa-playwright:api-and-network`. Contrato, schema e fuzz continuam aqui.
 
 ## Referências
 

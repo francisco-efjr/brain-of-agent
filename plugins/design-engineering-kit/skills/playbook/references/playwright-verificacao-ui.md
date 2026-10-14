@@ -27,7 +27,7 @@ Mostre comando e efeito e espere o "sim" desta conversa.
 | Forma | Comando | Observação |
 | --- | --- | --- |
 | Plugin oficial | `claude plugin install playwright@claude-plugins-official` | Usa `npx @playwright/mcp@latest`: sem versão fixa. |
-| Manual com versão fixada | `claude mcp add playwright -- npx @playwright/mcp@0.0.83` | Recomendado quando a cadeia de suprimentos importa. |
+| Manual com versão fixada | `claude mcp add playwright -- npx @playwright/mcp@0.0.83` | Recomendado quando a cadeia de suprimentos importa. Prefira `npx playwright mcp` do `@playwright/test` fixado no projeto; `@playwright/mcp@0.0.83` depende de Playwright alpha. |
 | Manual com restrições | `claude mcp add playwright -- npx @playwright/mcp@0.0.83 --isolated --allowed-origins "http://localhost:[PORTA]"` | Flags Verificadas no README (F-03); a combinação com `claude mcp add` é Inferida, não executada. |
 
 O README mostra `claude mcp add playwright npx @playwright/mcp@latest` (F-03); a variante com `--` e versão é a forma do kit. Não instale as duas formas: gera servidor duplicado e ferramentas com nomes diferentes. O download de navegadores acontece na primeira execução, se faltarem: avise o usuário.

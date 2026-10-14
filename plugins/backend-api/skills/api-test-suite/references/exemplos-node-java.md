@@ -56,6 +56,8 @@ test('If-Match desatualizado retorna 412 e preserva a alteração anterior', asy
 });
 ```
 
+O Playwright não cobre contrato, schema OpenAPI nem carga; use Pact, Schemathesis ou k6 conforme esta skill.
+
 ## Exemplo: REST Assured (Java)
 
 Dependências `io.rest-assured:rest-assured` e

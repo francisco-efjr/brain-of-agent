@@ -31,9 +31,10 @@ Gerado por `tools/publish_brain.py` a partir do frontmatter dos plugins publicad
 | `ecommerce-marketplace` | Guia, skills e revisores para construir e operar lojas virtuais e marketplaces com o Claude Code: checkout seguro, webhooks de pagamento idempotentes, estoque … | catalogo-busca-seo, checkout-seguro, estoque-reserva-pedido, fiscal-frete-br, loja-operacao-segura, marketplace-split, playbook, precos-promocoes, prompts, webhook-pagamento | arquiteto-loja, auditor-catalogo-seo, auditor-pagamentos-integracoes, revisor-a11y-checkout, revisor-checkout | ECOMMERCE-COMPLETO |
 | `design-engineering-kit` | Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 sk… | animate, animate-expo, animation-vocabulary, apple-design, break-ui, design-taste-frontend, emil-design-eng, find-animation-opportunities, high-end-visual-design, improve-animations, industrial-brutalist-ui, minimalist-ui, mobile-native, pick-ui-library, playbook, prompts, prototype, redesign-existing-projects, review-animations | motion-polish-reviewer, ui-verifier | DESIGNENG-COMPLETO |
 | `engineering-lifecycle` | Ciclo de vida de engenharia com disciplina de agente, do agent-skills de Addy Osmani (MIT): DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP. | api-and-interface-design, browser-testing-with-devtools, ci-cd-and-automation, code-review-and-quality, code-simplification, constraint-driven-development, context-engineering, debugging-and-error-recovery, deprecation-and-migration, documentation-and-adrs, doubt-driven-development, frontend-ui-engineering, git-workflow-and-versioning, idea-refine, incremental-implementation, interview-me, observability-and-instrumentation, performance-optimization, planning-and-task-breakdown, playbook, prompts, security-and-hardening, shipping-and-launch, source-driven-development, spec-driven-development, test-driven-development, using-agent-skills | code-reviewer, fresh-context-doubter, quality-bar-guardian, security-auditor, test-engineer, web-performance-auditor | LIFECYCLE-COMPLETO |
+| `qa-playwright` | Validação funcional funcionalidade por funcionalidade com Playwright: inventário F-NN, exploração com a CLI da versão fixada, specs que asseram o efeito, gate … | api-and-network, evidence-report, explore-feature, failure-triage, feature-inventory, harness-setup, non-web-systems, playbook, prompts, visual-a11y-responsive, write-specs | failure-triager, feature-explorer, matrix-auditor, spec-reviewer, spec-writer | PLAYWRIGHT-COMPLETO |
 | `web-research-apify` | Extra opcional: ensina agentes do Claude Code a usar o Apify MCP como ferramenta de pesquisa web profunda (Reddit, X, YouTube, SERP, crawl de documentação, pág… | auditoria-de-custo, conectar-apify, consultar-docs-apify, dataset-para-itens, diagnosticar-apify, escolher-actor, pesquisa-com-orcamento, playbook, prompts | apify-cost-auditor, apify-researcher, apify-source-verifier | APIFY-COMPLETO |
 
-**Em construção (ainda não publicados):** `qa-playwright`, `video-hyperframes`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
+**Em construção (ainda não publicados):** `video-hyperframes`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
 
 ## product-discovery-specs (`product-discovery-specs` 0.1.0)
 
@@ -89,7 +90,7 @@ Instalar: `/plugin install architecture-design@brain-of-agent` · Playbook: `plu
 | `architecture-design:boundary-mapper` (`plugins/architecture-design/agents/boundary-mapper.md`) | Mapeador de fronteiras somente leitura que levanta módulos, camadas e bounded contexts reais de um código, extrai as dependências efetivas por busca de imports, compara com a regra declarada, aponta violações com arquiv… | Read, Grep, Glob |
 | `architecture-design:skeptic-architect` (`plugins/architecture-design/agents/skeptic-architect.md`) | Arquiteto cético somente leitura que desafia as premissas de uma proposta, mostra a opção mais simples que atende aos requisitos, diz o que não construir e faz um pré-mortem de 12 meses, sem decidir pelo humano. | Read, Grep, Glob |
 
-## web-frontend (`web-frontend` 0.1.0)
+## web-frontend (`web-frontend` 0.1.1)
 
 Guia, skills de tarefa, agentes somente leitura e biblioteca de prompts para frontend web com Claude Code (React e Next.js, Vue e Nuxt, Svelte, Angular, TypeScript, Tailwind, WCAG 2.2, Core Web Vitals, formulários, data fetching e testes de UI), sempre com verificação por evidência.
 
@@ -116,7 +117,7 @@ Instalar: `/plugin install web-frontend@brain-of-agent` · Playbook: `plugins/we
 | `web-frontend:frontend-security-auditor` (`plugins/web-frontend/agents/frontend-security-auditor.md`) | Auditor de segurança do lado do cliente web, somente leitura. | Read, Grep, Glob |
 | `web-frontend:ui-evaluator` (`plugins/web-frontend/agents/ui-evaluator.md`) | Avaliador independente e cético de tela de produto web a partir de capturas em mobile e desktop e do brief ou plano de UI, com nota de 0 a 10 em design, originalidade, craft e funcionalidade, e veredito de aprovação. | Read, Grep, Glob |
 
-## backend-api (`backend-api` 0.1.0)
+## backend-api (`backend-api` 0.1.1)
 
 Projete, implemente, revise, teste e depure serviços e APIs (REST, GraphQL, gRPC) com contrato OpenAPI, erros RFC 9457, autenticação e autorização, idempotência, paginação, rate limiting e tools para agentes, sempre com verificação por evidência.
 
@@ -143,7 +144,7 @@ Instalar: `/plugin install backend-api@brain-of-agent` · Playbook: `plugins/bac
 | `backend-api:backend-architect` (`plugins/backend-api/agents/backend-architect.md`) | Arquiteto de serviço backend que entrega decisões, contratos esboçados e ADR, não código. | Read, Grep, Glob |
 | `backend-api:backend-debugger` (`plugins/backend-api/agents/backend-debugger.md`) | Depurador de causa raiz para backend e APIs, com correção mínima e teste de regressão. | Read, Grep, Glob, Bash, Edit, Write |
 
-## mobile-apps (`mobile-apps` 0.1.0)
+## mobile-apps (`mobile-apps` 0.1.1)
 
 Playbook, skills, agentes e prompts para construir, revisar, depurar e publicar apps mobile (iOS/SwiftUI, Android/Compose, React Native/Expo, Flutter): arquitetura, offline-first, push, permissões, performance, acessibilidade, testes e checklists de App Store e Google Play, com gates de confirmação antes de qualquer envio.
 
@@ -359,7 +360,7 @@ Instalar: `/plugin install security-appsec@brain-of-agent` · Playbook: `plugins
 | `security-appsec:security-reviewer` (`plugins/security-appsec/agents/security-reviewer.md`) | Revisor de segurança de aplicações somente leitura e em contexto novo. | Read, Glob, Grep |
 | `security-appsec:threat-modeler` (`plugins/security-appsec/agents/threat-modeler.md`) | Analista de modelagem de ameaças somente leitura. | Read, Glob, Grep |
 
-## qa-testing (`qa-testing` 0.1.0)
+## qa-testing (`qa-testing` 0.1.1)
 
 QA e testes para o Claude Code: estratégia por risco, design de casos, TDD com vermelho confirmado, revisão de testes e E2E, triagem de testes flaky, bug reports com evidência e evals de skills e LLM, com gate de verificação e o modo QA-COMPLETO.
 
@@ -707,7 +708,7 @@ Instalar: `/plugin install ecommerce-marketplace@brain-of-agent` · Playbook: `p
 | `ecommerce-marketplace:revisor-a11y-checkout` (`plugins/ecommerce-marketplace/agents/revisor-a11y-checkout.md`) | Auditor de acessibilidade WCAG 2.2 de formulários e fluxos de checkout (endereço, frete, pagamento, erro, confirmação), somente leitura, com grau de evidência por achado (Verificado, Sinalizado, Requer humano) e sem nun… | Read, Grep, Glob |
 | `ecommerce-marketplace:revisor-checkout` (`plugins/ecommerce-marketplace/agents/revisor-checkout.md`) | Revisor adversarial de segurança e correção para mudanças em checkout, carrinho, cupom, pedido, estoque e webhook de pagamento, somente leitura. | Read, Grep, Glob |
 
-## design-engineering-kit (`design-engineering-kit` 0.1.0)
+## design-engineering-kit (`design-engineering-kit` 0.1.1)
 
 Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 skills de motion, polimento e direção visual (Emil Kowalski e taste-skill, MIT, vendorizadas sem alteração), precedência explícita de estilo (design system do projeto, design system da casa, direções taste), agentes somente leitura, prompts e evals.
 
@@ -784,6 +785,34 @@ Instalar: `/plugin install engineering-lifecycle@brain-of-agent` · Playbook: `p
 | `engineering-lifecycle:security-auditor` (`plugins/engineering-lifecycle/agents/security-auditor.md`) | Security engineer focused on vulnerability detection, threat modeling, and secure coding practices. | (herda) |
 | `engineering-lifecycle:test-engineer` (`plugins/engineering-lifecycle/agents/test-engineer.md`) | QA engineer specialized in test strategy, test writing, and coverage analysis. | (herda) |
 | `engineering-lifecycle:web-performance-auditor` (`plugins/engineering-lifecycle/agents/web-performance-auditor.md`) | Web performance engineer focused on Core Web Vitals, loading, rendering, and network optimization. | (herda) |
+
+## qa-playwright (`qa-playwright` 0.1.0)
+
+Validação funcional funcionalidade por funcionalidade com Playwright: inventário F-NN, exploração com a CLI da versão fixada, specs que asseram o efeito, gate de estabilidade, matriz com evidência e N/A com equivalente para UI nativa.
+
+Instalar: `/plugin install qa-playwright@brain-of-agent` · Playbook: `plugins/qa-playwright/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/qa-playwright:api-and-network` | Valida a camada HTTP de uma funcionalidade com Playwright: fixture request (status, corpo, estado persistido), padrão híbrido API + UI, mock, alteração e aborto de rede (route, HAR, WebSocket), falhas (500, timeout, JSO… |
+| `/qa-playwright:evidence-report` | Fecha a rodada: grava o status de cada funcionalidade na matriz com a evidência, gera RELATORIO-FUNCIONAL.md (versões, números antes × depois, bugs, gate, N/A, não validado, como reproduzir em bash e PowerShell) e confe… |
+| `/qa-playwright:explore-feature` | Abre o sistema rodando e valida UMA funcionalidade por vez com npx playwright cli da versão fixada: snapshot e find, ações por ref ou locator, console, requests, screenshot e trace opcional; devolve nota com evidência, … |
+| `/qa-playwright:failure-triage` | Classifica falha de spec como falha de teste ou bug de produto, lê trace, console e rede pela CLI (npx playwright trace), diagnostica timeout e actionability e PROPÕE o patch (healer seguro): nunca troca o esperado pelo… |
+| `/qa-playwright:feature-inventory` | Monta o inventário de funcionalidades (IDs F-NN) de um sistema e a matriz de validação: superfície, papéis, risco, camadas, aplicabilidade do Playwright por tipo de sistema (N/A com motivo e equivalente), escopo e teto … |
+| `/qa-playwright:harness-setup` | Prepara o Playwright para a rodada: registra versões, usa ou instala @playwright/test com versão exata (commit separado), cria o harness e2e-playwright/ em projeto não-JS, escolhe Chrome/Edge instalado ou Chromium, sobe… |
+| `/qa-playwright:non-web-systems` | Decide e registra a aplicabilidade do Playwright em sistemas que não são web simples: Electron e Android Chrome/WebView (experimentais), extensão Chrome, PWA e WebSocket. |
+| `/qa-playwright:playbook` | Guia e router do plugin de validação funcional com Playwright - inventário de funcionalidades (F-NN), aplicabilidade por tipo de sistema, exploração do app rodando com `npx playwright cli`, specs que asseram o efeito, g… |
+| `/qa-playwright:prompts` | Biblioteca de 22 prompts curados para validação funcional com Playwright, prontos para colar, com variáveis e fontes. |
+| `/qa-playwright:visual-a11y-responsive` | Valida, por tela da matriz, aparência e acessibilidade com Playwright: emulação de dispositivo, locale e tema, regressão visual (toHaveScreenshot), ARIA snapshot e axe, com política de baseline e de exceções. |
+| `/qa-playwright:write-specs` | Transforma a exploração de uma funcionalidade em spec Playwright e2e/F-NN-<slug>.spec.ts (caminho feliz + negativo ou borda, asserção do EFEITO, locators por papel, dados por teste, sem espera por tempo) e roda o gate d… |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `qa-playwright:failure-triager` (`plugins/qa-playwright/agents/failure-triager.md`) | Healer seguro: classifica a falha de um spec Playwright como falha de teste, bug de produto, ambiente ou intenção incerta, lê o trace, o console e a rede pela CLI (npx playwright trace) e PROPÕE o patch como diff ou o B… | Read, Glob, Grep, Bash |
+| `qa-playwright:feature-explorer` (`plugins/qa-playwright/agents/feature-explorer.md`) | Explora funcionalidades de um sistema rodando em 127.0.0.1 (ou no staging que o usuário indicou), um lote de até 5 F-NN por chamada e uma de cada vez, com o npx playwright cli da versão fixada, e grava uma nota por F-NN… | Read, Glob, Grep, Bash, Write |
+| `qa-playwright:matrix-auditor` (`plugins/qa-playwright/agents/matrix-auditor.md`) | Validador independente da rodada funcional, depois do evidence-report: confere a matriz FUNCIONALIDADES.md e o RELATORIO-FUNCIONAL.md contra o results.json de uma execução de evidência que ele não gerou, reexecuta uma v… | Read, Glob, Grep, Bash |
+| `qa-playwright:spec-reviewer` (`plugins/qa-playwright/agents/spec-reviewer.md`) | Revisa em contexto limpo e somente leitura, num só lote por rodada, todos os specs Playwright da rodada contra o checklist de revisão (C-S, C-G) e a lista de segurança, e devolve achados ordenados por dano com arquivo:l… | Read, Glob, Grep |
+| `qa-playwright:spec-writer` (`plugins/qa-playwright/agents/spec-writer.md`) | Transforma a nota de exploração de uma funcionalidade em spec Playwright e2e/F-NN-<slug>.spec.ts (caminho feliz mais negativo ou borda, asserção do efeito, locators por papel, dado único por teste, sem espera por tempo)… | Read, Glob, Grep, Bash, Write, Edit |
 
 ## web-research-apify (`web-research-apify` 0.1.0)
 

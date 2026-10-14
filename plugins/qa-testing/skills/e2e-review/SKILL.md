@@ -33,7 +33,7 @@ Credenciais: nunca peça senha no chat. O usuário as fornece por variável de a
 2. **Aplique o checklist** abaixo a cada teste, anotando `arquivo:linha`. Para localizar candidatos rapidamente use as buscas do [checklist detalhado](references/playwright-cypress-checklist.md#buscas-rápidas).
 3. **Ordene os achados por dano:** falso verde > intermitência > lacuna de risco > lentidão > manutenção > estilo. Falso verde é teste que passa sem verificar o que o nome promete.
 4. **Para cada achado:** trecho, consequência concreta, correção. Sem comentário de estilo avulso.
-5. **Escrever E2E novo:** reconhecimento em 5 passos (navegar; esperar rede ociosa; capturar screenshot e lista de elementos interativos; escolher seletores; agir e conferir o resultado) em ambiente local/staging. Leia o código de qualquer helper antes de executá-lo; não use `with_server.py --server "<cmd>"` nem scripts de terceiros sem ler (executam shell arbitrário; K14, V-11). Screenshots vão para a pasta de trabalho do projeto.
+5. **Escrever E2E novo:** reconhecimento em 5 passos (navegar; esperar um elemento esperado da página (não `networkidle`, desencorajado pela documentação do Playwright); capturar screenshot e lista de elementos interativos; escolher seletores; agir e conferir o resultado) em ambiente local/staging. Leia o código de qualquer helper antes de executá-lo; não use `with_server.py --server "<cmd>"` nem scripts de terceiros sem ler (executam shell arbitrário; K14, V-11). Screenshots vão para a pasta de trabalho do projeto.
 6. **Healer ou auto-correção (inclui os agentes do Playwright):** corrija o teste **apenas** se a funcionalidade está correta; se parece quebrada, registre falha de produto e não toque na asserção; aceite a correção só depois de revisar o diff. O healer pode entregar "teste pulado" quando julga a funcionalidade quebrada, o que mascara regressão (V-20, K4).
 7. **Diff grande ou teste novo:** delegue a `qa-testing:test-reviewer` (contexto limpo, somente leitura) e declare que é revisão do mesmo modelo.
 8. **Execução opcional.** Se rodar o teste, cole comando, saída e código de saída; se não rodou, diga "não executei" (skill `verification-gate`).
@@ -50,7 +50,7 @@ Credenciais: nunca peça senha no chat. O usuário as fornece por variável de a
 | E-06 | Login programático ou estado reaproveitado (`storageState`, projeto de setup, `cy.session`), não pela UI em todo teste | Média |
 | E-07 | Limpeza em `beforeEach`, não só em `after`/`afterAll` (pode nunca rodar) | Alta |
 | E-08 | Locator voltado ao usuário: papel, rótulo, texto; `data-*` por último; sem XPath absoluto nem classes geradas (`.btn.btn-lg.btn-success`) | Média |
-| E-09 | Trace/vídeo no retry (`trace: 'on-first-retry'`); retries do CI no máximo 1 como sinal | Média |
+| E-09 | Trace/vídeo no retry (`trace: 'on-first-retry'`); retries do CI no máximo 1 como sinal; com `retries: 0`, `trace: 'on-first-retry'` não grava nada, use `retain-on-failure` | Média |
 | E-10 | Sem segredo no código; URL base e dados por configuração/ambiente | Crítica se houver credencial real |
 | E-11 | Sem `test.only`, `fit`, `.skip` esquecidos | Alta (suíte inteira silenciada) |
 | E-12 | E2E só para jornada de valor; regra de cálculo desce para unitário/integração | Baixa (custo) |
@@ -104,6 +104,7 @@ Se nada relevante for encontrado, diga "sem lacunas relevantes" e liste o que n�
 - Revisão independente do diff de testes: `qa-testing:test-reviewer`.
 - Escrever os specs: `qa-testing:test-writer`; testes que falham de forma intermitente: skill `flaky-triage`.
 - Explorar o app e relatar sem corrigir: `qa-testing:qa-reporter`.
+- Validar funcionalidade por funcionalidade no app rodando (exploração com `npx playwright cli`, specs F-NN, matriz e gate de estabilidade): `qa-playwright:playbook`.
 - Teste de componente escrito junto com o componente (Testing Library/Vitest no mesmo PR) é do segmento de frontend; revisão de suíte, E2E e flaky ficam aqui.
 
 ## Referências

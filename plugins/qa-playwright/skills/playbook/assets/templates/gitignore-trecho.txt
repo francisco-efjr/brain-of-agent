@@ -1,0 +1,8 @@
+# Trecho de .gitignore do plugin qa-playwright. Cole no .gitignore do projeto (ou da pasta e2e-playwright/).
+# Nunca commite estas pastas: guardam trace, screenshot, relatório e sessão (V-23, V-24, X-15).
+node_modules/
+test-results/
+playwright-report/
+blob-report/
+.playwright-cli/
+playwright/.auth/

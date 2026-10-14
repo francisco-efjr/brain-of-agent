@@ -44,6 +44,8 @@ npx playwright init-agents --loop=claude     # também: vscode, codex, opencode
 
 Regenere os arquivos depois de atualizar o Playwright; a experiência com agentes no VS Code pede VS Code 1.105 ou superior. Riscos: executa pacote npm e gera arquivos no repositório (revise o diff e fixe a versão); o **healer pode mascarar regressão**, porque entrega "teste pulado" quando julga a funcionalidade quebrada (K4). Use com o guardrail de `e2e-review`: corrigir o teste só se o produto está certo; se parece quebrado, registrar falha de produto; aceitar correção só com revisão de diff.
 
+`init-agents` sobrescreve `.mcp.json` da raiz e `.claude/agents/playwright-test-*.md`; só o seed e `specs/` são protegidos (lido no código, não executado). Faça cópia e revise o diff. O plugin `qa-playwright` dispensa o loop.
+
 ## T-03 Hook Stop de verificação
 
 Impede encerrar a resposta enquanto o teste do escopo não passa. Coloque em `.claude/settings.json` **do projeto** (não do plugin):
@@ -140,6 +142,8 @@ Automação de navegador por MCP (por exemplo um servidor de Playwright) permite
 ```
 
 Riscos: executa pacote de terceiros via `npx` (nunca `@latest`); alguns abrem navegador visível por padrão; conteúdo das páginas é dado não confiável (injeção indireta); credenciais: o usuário as digita no navegador, o agente não as recebe; use apenas contra local ou staging. Status: **Não verificável** (o harness da Anthropic em V-06 usa Puppeteer MCP, o que confirma o padrão, não o pacote).
+
+Verificado em 13/10/2026: o `@playwright/test` 1.64.0 traz `npx playwright mcp` (flags `--isolated`, `--headless`, `--allowed-origins`, `--output-dir`, `--storage-state`; `--no-webmcp` e `--idle-timeout` no código do pacote). Prefira-o ao pacote npm `@playwright/mcp`, que depende de Playwright alpha. Detalhes em `qa-playwright`.
 
 ## T-11 O que não recomendar
 

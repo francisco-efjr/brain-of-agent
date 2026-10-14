@@ -1,6 +1,6 @@
 {
   "name": "qa-testing",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "QA e testes para o Claude Code: estratégia por risco, design de casos, TDD com vermelho confirmado, revisão de testes e E2E, triagem de testes flaky, bug reports com evidência e evals de skills e LLM, com gate de verificação e o modo QA-COMPLETO.",
   "author": {
     "name": "Francisco Edson",

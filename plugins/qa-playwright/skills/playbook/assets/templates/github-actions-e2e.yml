@@ -1,0 +1,36 @@
+# Workflow opcional do plugin qa-playwright. Só a pedido do usuário (V-48, G-11).
+# ANTES DE USAR: troque cada <versão-atual> pela versão atual da action e fixe por SHA conforme a política do projeto.
+# Os exemplos oficiais divergem entre páginas (checkout e setup-node em v6, upload-artifact em v4 e v5): confira a versão atual.
+# Playwright: Microsoft Playwright, Apache-2.0 (estrutura adaptada de ci-intro.md).
+name: e2e-playwright
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: e2e-playwright        # remova se o Playwright está na raiz do repositório
+    env:
+      CI: '1'
+      PW_CHANNEL: chromium                        # na CI instala-se o Chromium; chrome e msedge são para a máquina local
+      E2E_USER: ${{ secrets.E2E_USER }}           # conta de TESTE; nunca credencial real
+      E2E_PASSWORD: ${{ secrets.E2E_PASSWORD }}
+    steps:
+      - uses: actions/checkout@<versão-atual>
+      - uses: actions/setup-node@<versão-atual>
+        with:
+          node-version: 22                        # mínimo técnico 20; suportado 22, 24 ou 26 (V-04)
+      - run: npm ci
+      # --with-deps instala bibliotecas do sistema com sudo NO RUNNER Linux efêmero da CI, nunca na máquina do usuário.
+      # Criar este workflow a pedido do usuário cobre isso; localmente, --with-deps continua exigindo confirmação (G-12).
+      - run: npx playwright install chromium --with-deps   # só o navegador necessário (V-48)
+      - run: npx playwright test --fail-on-flaky-tests     # sem --reporter: ele substituiria os reporters da config (X-16)
+      - uses: actions/upload-artifact@<versão-atual>
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: e2e-playwright/playwright-report/
+          retention-days: 7                       # relatório e trace são dado sensível (V-24): retenção curta, sem artifact aberto

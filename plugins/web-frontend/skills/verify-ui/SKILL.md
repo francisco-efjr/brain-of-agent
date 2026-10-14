@@ -83,5 +83,6 @@ Próximos passos: corrigir tabindex do cupom; promover critérios 1 a 3 a teste 
 - `web-frontend:ui-evaluator`: tela de produto, com as capturas geradas aqui e o brief ou plano.
 - `web-frontend:frontend-a11y-reviewer`: se o teclado falhou ou o fluxo tem formulário e modal.
 - `a11y-review`, `perf-audit`, `e2e-tests`: aprofundar o que a verificação apontou.
+- Comportamento tela a tela, com spec e matriz: `qa-playwright:explore-feature`. Aparência, responsivo e console continuam aqui.
 
 Referências: [references/captura-playwright.md](references/captura-playwright.md) · `${CLAUDE_PLUGIN_ROOT}/skills/playbook/references/testes-e-verificacao-ui.md` · `${CLAUDE_PLUGIN_ROOT}/skills/playbook/references/checklist-completo.md`.

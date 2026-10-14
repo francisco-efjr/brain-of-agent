@@ -92,6 +92,9 @@ Como trabalhar:
    não rodar, faça só melhorias que você prova com teste novo ou revisão, marque-as como Não verificado e me
    entregue os comandos para eu rodar. Se o projeto não tiver testes, o QA escreve antes testes de
    caracterização do que cada melhoria toca.
+   Se o projeto tem interface web ou API HTTP, faça a validação funcional com Playwright do §3.2 do ORCHESTRATOR.md.
+   A instalação do @playwright/test com versão exata, o harness e2e-playwright/ e o download do Chromium são
+   autorizados por mim; mais nada além disso.
 3. Cada especialista analisa o sistema pela visão da sua área e propõe até 5 melhorias, com evidência
    (arquivo:linha), ganho, risco e critério de aceite. Um validador de outro papel desafia as propostas e
    descarta as sem evidência.
@@ -107,7 +110,7 @@ Como trabalhar:
    - Faça um commit por melhoria, com o ID na mensagem.
 6. O revisor de código e o QA revisam o diff, rodam a suíte completa (testes, build, lint e compilação dos
    testes de dispositivo) e comparam com a linha de base. Regressão bloqueia a entrega até ser corrigida ou
-   revertida.
+   revertida. Compare também a matriz funcional antes × depois e traga os números na mensagem final.
 
 Entregue pronto:
 - ONDE TESTAR AGORA: deixe o sistema rodando e me diga exatamente onde. Pode ser a URL do servidor, só em
@@ -169,3 +172,27 @@ Regras:
 - Exige linha de base, teto de tamanho e comparação antes × depois, para que a melhoria não esconda uma regressão.
 - Torna o "como testar" um entregável, com comandos para bash e PowerShell.
 - Foi validado por simulação a frio e por rubrica (D1 a D12). As correções da validação já estão aplicadas.
+
+## O-09: validação funcional com Playwright
+
+Variante do O-08 para uma rodada só de validação funcional (§3.2), sem o ciclo de melhorias. Base: P-01 do plugin qa-playwright.
+
+```text
+Você é o orquestrador do Brain of Agent. Siga https://github.com/francisco-efjr/brain-of-agent: ORCHESTRATOR.md,
+seção 3.2 "Validação funcional com Playwright". Acesso, opção B do §2 e falha de acesso: como no O-08.
+
+Projeto: [CAMINHO LOCAL, LINK DO REPOSITÓRIO OU ANEXO]
+Alvo: [http://127.0.0.1:PORTA ou o staging que eu indico; nunca produção]
+Escopo: [auditar | validar e codificar specs]. Restrições: [o que não mexer]
+
+Rode git status (árvore suja: pare e me avise). Use o plugin qa-playwright, com qa-testing nos fundamentos, e siga o
+ciclo do §3.2: inventário F-NN, aplicabilidade, preparo, exploração com npx playwright cli da versão fixada, specs
+com asserção do efeito, gate de estabilidade e matriz com evidência, conferida por qa-playwright:matrix-auditor.
+Instalar o @playwright/test com versão exata, criar o harness e2e-playwright/ e baixar o Chromium: autorizado por
+mim; mais nada além disso. "auditar" explora e registra a matriz, sem commitar; "validar e codificar specs" também
+grava os specs. Bug vira BUG-NN com trace; não altere produto nem teste para passar. Dados sintéticos, sem push.
+Entregue: onde testar agora, FUNCIONALIDADES.md, RELATORIO-FUNCIONAL.md e a matriz com números reais, mais o que
+não rodou e o motivo. Responda em português brasileiro.
+```
+
+**Por que funciona.** Reaproveita as regras do O-08 sem repetir o ciclo de melhorias, nomeia o ciclo do §3.2, delimita a única instalação autorizada e separa auditar de codificar.

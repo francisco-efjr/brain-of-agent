@@ -601,6 +601,23 @@
       ]
     },
     {
+      "name": "qa-playwright",
+      "source": "./plugins/qa-playwright",
+      "description": "Validação funcional funcionalidade por funcionalidade com Playwright: inventário F-NN, exploração com a CLI da versão fixada, specs que asseram o efeito, gate de estabilidade, matriz com evidência e N/A com equivalente para UI nativa.",
+      "keywords": [
+        "playwright",
+        "e2e",
+        "functional-testing",
+        "feature-matrix",
+        "browser-testing",
+        "api-testing",
+        "trace",
+        "qa",
+        "test-automation",
+        "PLAYWRIGHT-COMPLETO"
+      ]
+    },
+    {
       "name": "web-research-apify",
       "source": "./plugins/web-research-apify",
       "description": "Extra opcional: ensina agentes do Claude Code a usar o Apify MCP como ferramenta de pesquisa web profunda (Reddit, X, YouTube, SERP, crawl de documentação, páginas com JavaScript ou bloqueio). Orienta a conexão com confirmação, escolhe o Actor, executa só com orçamento aprovado e teto de gasto, lê o dataset sem estourar o contexto, cita a URL original, reverifica e audita o custo. Sem .mcp.json, hooks ou bin/; sem as tools da Apify faz fallback para WebSearch/WebFetch e declara a lacuna. Não afiliado à Apify.",

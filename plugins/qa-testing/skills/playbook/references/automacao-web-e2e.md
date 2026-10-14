@@ -159,7 +159,7 @@ Verificado (V-20): **planner** escreve plano Markdown em `specs/`; **generator**
 
 ## Reconhecimento em 5 passos
 
-Para E2E novo contra app dinâmico (V-11, Apache-2.0, destilado; o plugin documenta o comando e **não embute** o helper `with_server.py`, porque ele executa shell arbitrário via `--server`; leia o código do helper antes de executar): (1) navegar para a página; (2) esperar a rede ficar ociosa antes de inspecionar o DOM; (3) capturar screenshot e a lista de elementos interativos; (4) escolher seletores descritivos; (5) agir e conferir o resultado. Só contra local ou staging; screenshots no diretório de trabalho do projeto (não em `/tmp` do sistema). Em HTML estático, leia o arquivo e ache os seletores sem subir navegador.
+Para E2E novo contra app dinâmico (V-11, Apache-2.0, destilado; o plugin documenta o comando e **não embute** o helper `with_server.py`, porque ele executa shell arbitrário via `--server`; leia o código do helper antes de executar): (1) navegar para a página; (2) esperar um elemento esperado da página (não `networkidle`, desencorajado pela documentação do Playwright) antes de inspecionar o DOM; (3) capturar screenshot e a lista de elementos interativos; (4) escolher seletores descritivos; (5) agir e conferir o resultado. Só contra local ou staging; screenshots no diretório de trabalho do projeto (não em `/tmp` do sistema). Em HTML estático, leia o arquivo e ache os seletores sem subir navegador.
 
 ## Cypress e Selenium em pontos
 

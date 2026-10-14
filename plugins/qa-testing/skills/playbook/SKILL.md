@@ -72,6 +72,7 @@ Templates em `assets/templates/`: plano-de-teste, tabela-de-riscos, caso-de-test
 | "Casos de teste para esta regra/campo", "valores de borda", "charter" | skill `test-design` | Técnica explícita, dado concreto |
 | "Teste intermitente/flaky", "falha só no CI", "aumentei os retries" | skill `flaky-triage` | Classifica a causa antes de mexer |
 | "Revise/escreva este teste E2E ou de UI" | skill `e2e-review` | Pode delegar a `test-reviewer` |
+| "Valide funcionalidade por funcionalidade", "abra o app e teste cada tela", "matriz de funcionalidades", Playwright no sistema rodando | plugin `qa-playwright` (`/qa-playwright:playbook`) | Obrigatório em rodada de teste com superfície web ou HTTP (ORCHESTRATOR §3.2); aqui ficam estratégia, revisão, bug report e flaky |
 | "Revise estes testes (unit/integração)" | agente `test-reviewer` | Somente leitura |
 | "Quais testes são inúteis/duplicados?" | agente `test-auditor` | Relatório; aplicação só por lote aprovado |
 | "Explore o app/API e relate bugs, sem consertar" | agente `qa-reporter` | Relatório com evidência |
@@ -178,6 +179,7 @@ Este plugin é dono de **como verificar** (estratégia, casos, revisão de teste
 | saas-multitenant | isolamento, billing, provisionamento | casos de isolamento entre tenants daqui; `/saas-multitenant:playbook` |
 | fintech-payments | regras de pagamento, PSP, conformidade | exemplo PIX daqui é ilustrativo; `/fintech-payments:playbook` |
 | ecommerce-marketplace | catálogo, checkout, estoque | regras de frete/cupom como material de teste; `/ecommerce-marketplace:playbook` |
+| qa-playwright | inventário F-NN, exploração com a CLI fixada, specs por funcionalidade, gate de estabilidade, matriz com evidência, N/A de UI nativa | estratégia, risco e parecer daqui; execução e matriz de lá; `/qa-playwright:playbook` |
 
 Se o outro plugin não estiver instalado, cumpra a parte de verificação e diga ao usuário qual plugin cobriria o resto.
 

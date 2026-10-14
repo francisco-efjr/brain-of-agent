@@ -17,3 +17,4 @@ Os prompts estão em [references/prompt-library.md](references/prompt-library.md
 | Auditoria de segurança e LGPD | O-06 |
 | Só planejar, sem executar | O-07 |
 | Melhoria pronta feita pelos especialistas, com testes e COMO-TESTAR | O-08 |
+| Rodada só de validação funcional com Playwright, funcionalidade por funcionalidade (§3.2) | O-09 |

@@ -1,6 +1,6 @@
 {
   "name": "design-engineering-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 skills de motion, polimento e direção visual (Emil Kowalski e taste-skill, MIT, vendorizadas sem alteração), precedência explícita de estilo (design system do projeto, design system da casa, direções taste), agentes somente leitura, prompts e evals.",
   "author": {
     "name": "Francisco Edson",

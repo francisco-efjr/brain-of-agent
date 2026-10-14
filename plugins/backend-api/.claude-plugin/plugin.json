@@ -1,6 +1,6 @@
 {
   "name": "backend-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Projete, implemente, revise, teste e depure serviços e APIs (REST, GraphQL, gRPC) com contrato OpenAPI, erros RFC 9457, autenticação e autorização, idempotência, paginação, rate limiting e tools para agentes, sempre com verificação por evidência.",
   "author": { "name": "Francisco Edson", "url": "https://github.com/francisco-efjr" },
   "license": "MIT",

@@ -1,0 +1,23 @@
+{
+  "name": "qa-playwright",
+  "version": "0.1.0",
+  "description": "Validação funcional funcionalidade por funcionalidade com Playwright: inventário F-NN, exploração com a CLI da versão fixada, specs que asseram o efeito, gate de estabilidade, matriz com evidência e N/A com equivalente para UI nativa.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "repository": "https://github.com/francisco-efjr/brain-of-agent",
+  "license": "MIT",
+  "keywords": [
+    "playwright",
+    "e2e",
+    "functional-testing",
+    "feature-matrix",
+    "browser-testing",
+    "api-testing",
+    "trace",
+    "qa",
+    "test-automation",
+    "PLAYWRIGHT-COMPLETO"
+  ]
+}

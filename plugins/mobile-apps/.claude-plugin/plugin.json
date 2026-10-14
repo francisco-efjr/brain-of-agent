@@ -1,6 +1,6 @@
 {
   "name": "mobile-apps",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Playbook, skills, agentes e prompts para construir, revisar, depurar e publicar apps mobile (iOS/SwiftUI, Android/Compose, React Native/Expo, Flutter): arquitetura, offline-first, push, permissões, performance, acessibilidade, testes e checklists de App Store e Google Play, com gates de confirmação antes de qualquer envio.",
   "author": {
     "name": "Francisco Edson",

@@ -1,6 +1,6 @@
 {
   "name": "orchestrator",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Orquestra demandas de software multiárea: classifica a demanda, casa com as tags do registro de conhecimento (gatilhos → plugin líder, fundamentos, apoio e validador), escolhe agentes e skills dos plugins por segmento, despacha com validação independente e consolida relatórios.",
   "author": {
     "name": "Francisco Edson",

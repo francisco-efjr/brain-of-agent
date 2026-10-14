@@ -87,6 +87,7 @@ Duas correções que não estabilizam o mesmo teste, ou três hipóteses descart
 
 - `web-frontend:frontend-code-reviewer`: revisão do PR de teste em contexto limpo (T-10).
 - `a11y-review` para o conteúdo dos critérios; `verify-ui` para captura e evidência manual; `forms-and-data` para testes do formulário com Server Action.
+- Validar funcionalidade por funcionalidade no app rodando (inventário F-NN, exploração com a CLI, matriz, gate de estabilidade): `qa-playwright:playbook`. Aqui ficam o spec de componente e o de fluxo escritos junto da feature.
 
 ## Gotchas
 

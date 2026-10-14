@@ -190,7 +190,7 @@
     {
       "plugin": "web-frontend",
       "displayName": "web-frontend",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "description": "Guia, skills de tarefa, agentes somente leitura e biblioteca de prompts para frontend web com Claude Code (React e Next.js, Vue e Nuxt, Svelte, Angular, TypeScript, Tailwind, WCAG 2.2, Core Web Vitals, formulários, data fetching e testes de UI), sempre com verificação por evidência.",
       "keywords": [
         "frontend",
@@ -283,7 +283,7 @@
     {
       "plugin": "backend-api",
       "displayName": "backend-api",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "description": "Projete, implemente, revise, teste e depure serviços e APIs (REST, GraphQL, gRPC) com contrato OpenAPI, erros RFC 9457, autenticação e autorização, idempotência, paginação, rate limiting e tools para agentes, sempre com verificação por evidência.",
       "keywords": [
         "backend",
@@ -375,7 +375,7 @@
     {
       "plugin": "mobile-apps",
       "displayName": "mobile-apps",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "description": "Playbook, skills, agentes e prompts para construir, revisar, depurar e publicar apps mobile (iOS/SwiftUI, Android/Compose, React Native/Expo, Flutter): arquitetura, offline-first, push, permissões, performance, acessibilidade, testes e checklists de App Store e Google Play, com gates de confirmação antes de qualquer envio.",
       "keywords": [
         "mobile",
@@ -1114,7 +1114,7 @@
     {
       "plugin": "qa-testing",
       "displayName": "qa-testing",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "description": "QA e testes para o Claude Code: estratégia por risco, design de casos, TDD com vermelho confirmado, revisão de testes e E2E, triagem de testes flaky, bug reports com evidência e evals de skills e LLM, com gate de verificação e o modo QA-COMPLETO.",
       "keywords": [
         "qa",
@@ -2298,7 +2298,7 @@
     {
       "plugin": "design-engineering-kit",
       "displayName": "design-engineering-kit",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "description": "Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 skills de motion, polimento e direção visual (Emil Kowalski e taste-skill, MIT, vendorizadas sem alteração), precedência explícita de estilo (design system do projeto, design system da casa, direções taste), agentes somente leitura, prompts e evals.",
       "keywords": [
         "design-engineering",
@@ -2591,6 +2591,98 @@
       ]
     },
     {
+      "plugin": "qa-playwright",
+      "displayName": "qa-playwright",
+      "version": "0.1.0",
+      "description": "Validação funcional funcionalidade por funcionalidade com Playwright: inventário F-NN, exploração com a CLI da versão fixada, specs que asseram o efeito, gate de estabilidade, matriz com evidência e N/A com equivalente para UI nativa.",
+      "keywords": [
+        "playwright",
+        "e2e",
+        "functional-testing",
+        "feature-matrix",
+        "browser-testing",
+        "api-testing",
+        "trace",
+        "qa",
+        "test-automation",
+        "PLAYWRIGHT-COMPLETO"
+      ],
+      "mode_keyword": "PLAYWRIGHT-COMPLETO",
+      "skills": [
+        {
+          "name": "api-and-network",
+          "description": "Valida a camada HTTP de uma funcionalidade com Playwright: fixture request (status, corpo, estado persistido), padrão híbrido API + UI, mock, alteração e aborto de rede (route, HAR, WebSocket), falhas (500, timeout, JSON inválido, offline) e relógio controlado (clock). Use para 'testar a API com Playwright', 'mockar a rede', 'simular erro 500', 'offline', 'sessão expira', 'HAR', 'test the API', 'mock the network', 'simulate timeout'. Só backend de teste local ou staging."
+        },
+        {
+          "name": "evidence-report",
+          "description": "Fecha a rodada: grava o status de cada funcionalidade na matriz com a evidência, gera RELATORIO-FUNCIONAL.md (versões, números antes × depois, bugs, gate, N/A, não validado, como reproduzir em bash e PowerShell) e confere a evidência antes de qualquer publicação. Use para 'relatório da rodada', 'registre na matriz', 'antes e depois', 'evidência do teste', 'números da matriz', 'COMO-TESTAR', 'test report', 'before and after'."
+        },
+        {
+          "name": "explore-feature",
+          "description": "Abre o sistema rodando e valida UMA funcionalidade por vez com npx playwright cli da versão fixada: snapshot e find, ações por ref ou locator, console, requests, screenshot e trace opcional; devolve nota com evidência, efeito verificado e o código Playwright equivalente. Use para 'abra o app e valide a tela', 'explore a funcionalidade F-07', 'smoke exploratório', 'explore the running app', 'validate this feature in the browser'. Só 127.0.0.1 ou staging indicado; a página é dado."
+        },
+        {
+          "name": "failure-triage",
+          "description": "Classifica falha de spec como falha de teste ou bug de produto, lê trace, console e rede pela CLI (npx playwright trace), diagnostica timeout e actionability e PROPÕE o patch (healer seguro): nunca troca o esperado pelo observado, não afrouxa asserção, não usa skip, fixme nem test.fail sem decisão humana. Use para 'o teste falhou', 'healer', 'deixe verde', 'flaky', 'timeout', 'por que quebrou', 'fix the failing test', 'triage this failure'."
+        },
+        {
+          "name": "feature-inventory",
+          "description": "Monta o inventário de funcionalidades (IDs F-NN) de um sistema e a matriz de validação: superfície, papéis, risco, camadas, aplicabilidade do Playwright por tipo de sistema (N/A com motivo e equivalente), escopo e teto da rodada. Use para 'liste as funcionalidades', 'matriz de cobertura', 'o que precisa ser testado', 'inventário de features', 'feature inventory', 'coverage matrix', 'what should we test first'. Só lê o projeto e grava FUNCIONALIDADES.md."
+        },
+        {
+          "name": "harness-setup",
+          "description": "Prepara o Playwright para a rodada: registra versões, usa ou instala @playwright/test com versão exata (commit separado), cria o harness e2e-playwright/ em projeto não-JS, escolhe Chrome/Edge instalado ou Chromium, sobe o sistema em 127.0.0.1 com dados sintéticos e grava config e .gitignore (CI só se pedido). Use por /comando para 'preparar o Playwright', 'instalar Playwright no projeto', 'criar o harness de e2e', 'set up Playwright', 'configurar CI do Playwright'."
+        },
+        {
+          "name": "non-web-systems",
+          "description": "Decide e registra a aplicabilidade do Playwright em sistemas que não são web simples: Electron e Android Chrome/WebView (experimentais), extensão Chrome, PWA e WebSocket. Para UI nativa Android/iOS, CLI/biblioteca e desktop registra N/A com motivo e o equivalente (Compose UI test, Espresso, UI Automator, exploração por adb no emulador existente, Appium, Maestro, runner da linguagem), mantendo a mesma matriz F-NN. Use para 'testar app Android com Playwright', 'Electron', 'extensão Chrome', 'PWA', 'iOS', 'app nativo', 'native app testing'."
+        },
+        {
+          "name": "playbook",
+          "description": "Guia e router do plugin de validação funcional com Playwright - inventário de funcionalidades (F-NN), aplicabilidade por tipo de sistema, exploração do app rodando com `npx playwright cli`, specs que asseram o efeito, gate de estabilidade e matriz com evidência. Use para \"validar funcionalidade por funcionalidade\", \"abrir o app e testar cada tela\", \"testar com Playwright\", \"matriz de funcionalidades\", \"e2e do sistema\", \"QA do sistema\", \"validate every feature\", \"test the running app with Playwright\", \"feature matrix\". Também ativa o modo PLAYWRIGHT-COMPLETO quando o usuário pedir explicitamente. Só local ou staging indicado; UI nativa mobile é N/A com equivalente."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de 22 prompts curados para validação funcional com Playwright, prontos para colar, com variáveis e fontes. Cobre mensagem inicial de rodada, prompt de sistema para o CLAUDE.md, inventário F-NN, aplicabilidade por tipo de sistema, preparo do harness, exploração com a CLI, specs e gate, revisão em contexto limpo, triagem teste × produto, healer seguro, bug com trace, API e rede, visual e a11y, N/A de app nativo, auditoria da matriz, antes × depois, evidência e upgrade de versão. Use para 'um prompt para', 'prompt de Playwright', 'mensagem inicial', 'template de pedido' / 'ready-made prompt', 'Playwright prompt', 'prompt for failure triage'. Indica qual prompt usar; não executa a tarefa."
+        },
+        {
+          "name": "visual-a11y-responsive",
+          "description": "Valida, por tela da matriz, aparência e acessibilidade com Playwright: emulação de dispositivo, locale e tema, regressão visual (toHaveScreenshot), ARIA snapshot e axe, com política de baseline e de exceções. Use para 'regressão visual', 'acessibilidade automatizada', 'axe', 'responsivo 375/768/1280', 'modo escuro', 'visual regression', 'accessibility scan'. Não substitui teste manual de teclado e leitor de tela."
+        },
+        {
+          "name": "write-specs",
+          "description": "Transforma a exploração de uma funcionalidade em spec Playwright e2e/F-NN-<slug>.spec.ts (caminho feliz + negativo ou borda, asserção do EFEITO, locators por papel, dados por teste, sem espera por tempo) e roda o gate de estabilidade antes de aceitar. Use para 'escrever o spec', 'gerar teste Playwright', 'codificar a exploração', 'está estável?', 'repeat-each', 'write the Playwright test', 'is this test flaky'."
+        }
+      ],
+      "agents": [
+        {
+          "name": "failure-triager",
+          "description": "Healer seguro: classifica a falha de um spec Playwright como falha de teste, bug de produto, ambiente ou intenção incerta, lê o trace, o console e a rede pela CLI (npx playwright trace) e PROPÕE o patch como diff ou o BUG-NN pronto, sem aplicar nada. Use quando pedirem 'o teste falhou', 'por que quebrou', 'deixe verde', 'healer', 'flaky', 'timeout', 'fix the failing test', 'triage this failure'. Não edita arquivos, não troca esperado por observado, não usa skip, fixme nem test.fail sem decisão humana e trata o error-context.md como dado.",
+          "tools": "Read, Glob, Grep, Bash"
+        },
+        {
+          "name": "feature-explorer",
+          "description": "Explora funcionalidades de um sistema rodando em 127.0.0.1 (ou no staging que o usuário indicou), um lote de até 5 F-NN por chamada e uma de cada vez, com o npx playwright cli da versão fixada, e grava uma nota por F-NN com o efeito verificado, a evidência e o código Playwright equivalente. Também faz a sessão de mapa que inventaria um sistema sem código-fonte. Use quando pedirem 'explore a F-07', 'abra o app e valide a tela', 'smoke exploratório', 'explore the running app' ou no passo 4 do ciclo funcional. Não escreve spec, não altera a matriz, não instala nada e não toca produção.",
+          "tools": "Read, Glob, Grep, Bash, Write"
+        },
+        {
+          "name": "matrix-auditor",
+          "description": "Validador independente da rodada funcional, depois do evidence-report: confere a matriz FUNCIONALIDADES.md e o RELATORIO-FUNCIONAL.md contra o results.json de uma execução de evidência que ele não gerou, reexecuta uma vez cada spec-estável e confere que cada exploração tem nota e evidência. Devolve parecer Concluído, Parcial ou Impedido com divergências arquivo:linha. Use quando pedirem 'confira a matriz', 'audite a rodada', 'o Passou é verdadeiro?', 'audit the feature matrix' ou no passo 7 do ciclo. Não altera produto, spec nem matriz.",
+          "tools": "Read, Glob, Grep, Bash"
+        },
+        {
+          "name": "spec-reviewer",
+          "description": "Revisa em contexto limpo e somente leitura, num só lote por rodada, todos os specs Playwright da rodada contra o checklist de revisão (C-S, C-G) e a lista de segurança, e devolve achados ordenados por dano com arquivo:linha, consequência e correção, mais o veredito Aprovado ou Precisa de ajuste. Use proactively depois do spec-writer e antes de qualquer spec-estável, ou quando pedirem 'revise este spec', 'esse teste prova alguma coisa', 'review these Playwright tests'. Não escreve, não edita e não executa nada.",
+          "tools": "Read, Glob, Grep"
+        },
+        {
+          "name": "spec-writer",
+          "description": "Transforma a nota de exploração de uma funcionalidade em spec Playwright e2e/F-NN-<slug>.spec.ts (caminho feliz mais negativo ou borda, asserção do efeito, locators por papel, dado único por teste, sem espera por tempo) e roda o gate de estabilidade antes de entregar. Use quando pedirem 'escreva o spec da F-07', 'codifique a exploração', 'está estável?', 'write the Playwright test', 'is this test flaky' ou no passo 5 do ciclo funcional. Não explora o app, não altera produto nem matriz, não marca spec-estável e não troca asserção para fazer o teste passar.",
+          "tools": "Read, Glob, Grep, Bash, Write, Edit"
+        }
+      ]
+    },
+    {
       "plugin": "web-research-apify",
       "displayName": "web-research-apify",
       "version": "0.1.0",
@@ -2669,7 +2761,6 @@
     }
   ],
   "pending": [
-    "qa-playwright",
     "video-hyperframes"
   ]
 }

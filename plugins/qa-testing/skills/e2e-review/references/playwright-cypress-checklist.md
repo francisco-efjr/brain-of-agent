@@ -141,7 +141,7 @@ Guardrail (K4, Inferido a partir de V-20 e V-06): corrija o teste só quando a f
 
 ## Reconhecimento em 5 passos
 
-Para escrever E2E em app local/staging que você não conhece (V-11): (1) navegar; (2) esperar rede ociosa; (3) capturar screenshot e lista de elementos interativos; (4) escolher seletores; (5) agir e conferir o resultado. Exemplo de script (Node, ambiente de teste, saída na pasta do projeto):
+Para escrever E2E em app local/staging que você não conhece (V-11): (1) navegar; (2) esperar um elemento esperado da página (não `networkidle`, desencorajado pela documentação do Playwright); (3) capturar screenshot e lista de elementos interativos; (4) escolher seletores; (5) agir e conferir o resultado. Exemplo de script (Node, ambiente de teste, saída na pasta do projeto):
 
 ```js
 // recon.mjs: rode com BASE_URL do ambiente de teste
@@ -150,7 +150,7 @@ import { chromium } from 'playwright';
 const browser = await chromium.launch();
 const page = await browser.newPage();
 await page.goto(process.env.BASE_URL);
-await page.waitForLoadState('networkidle');   // só para reconhecimento
+await page.getByRole('main').waitFor();      // um elemento esperado da página, não `networkidle`
 await page.screenshot({ path: 'recon.png', fullPage: true });
 const itens = await page
   .locator('a, button, input, select, textarea, [role]')
@@ -163,7 +163,7 @@ console.log(JSON.stringify(itens, null, 2));
 await browser.close();
 ```
 
-`networkidle` serve para o reconhecimento; no teste final espere a condição de negócio (a documentação do Playwright desencoraja `networkidle` como estratégia de espera: Inferido). A skill `webapp-testing` da Anthropic (Apache-2.0) traz um helper `with_server.py`; este plugin documenta o comando, não o embute, porque o helper executa comandos de shell arbitrários passados em `--server` (leia o código antes de rodar).
+Espere sempre um elemento ou condição de negócio, inclusive no reconhecimento: a documentação do Playwright marca `networkidle` como DISCOURAGED (`api/params.md`, Verificado no qa-playwright V-32). Para explorar um app rodando funcionalidade por funcionalidade, prefira `npx playwright cli` da versão fixada (plugin `qa-playwright`), que devolve a árvore de acessibilidade e o código com locator estável. A skill `webapp-testing` da Anthropic (Apache-2.0) traz um helper `with_server.py`; este plugin documenta o comando, não o embute, porque o helper executa comandos de shell arbitrários passados em `--server` (leia o código antes de rodar).
 
 ## Revisão completa de exemplo
 

@@ -110,4 +110,5 @@ appId: com.exemplo.app
 | Flutter com diálogo de permissão | `patrol` sobre `integration_test` |
 | RN componente | RNTL por texto/papel |
 | RN fluxo vital | Maestro ou Detox (E2E único) |
+| Playwright | N/A em UI nativa; WebView e Chrome Android experimentais; backend com `request`: `qa-playwright:non-web-systems` |
 | App que exige aparelho físico iOS | Detox não suporta aparelho real no iOS (V-70); XCUITest roda pelo Xcode (macOS); suporte das demais ferramentas em aparelho real: Não verificado. Appium delega a drivers instalados à parte (brain) |

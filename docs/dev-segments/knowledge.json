@@ -2066,6 +2066,46 @@
       "status": "publicado"
     },
     {
+      "tag": "qa-playwright",
+      "label": "Validação funcional funcionalidade por funcionalidade com Playwright: inventário F-NN, exploração com a CLI d…",
+      "description": "Validação funcional funcionalidade por funcionalidade com Playwright: inventário F-NN, exploração com a CLI da versão fixada, specs que asseram o efeito, gate de estabilidade, matriz com evidência e N/A com equivalente …",
+      "triggers": [
+        "playwright",
+        "e2e",
+        "functional-testing",
+        "feature-matrix",
+        "browser-testing",
+        "api-testing",
+        "trace",
+        "qa",
+        "test-automation",
+        "playwright-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "qa-playwright",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "failure-triager",
+            "feature-explorer",
+            "matrix-auditor",
+            "spec-reviewer",
+            "spec-writer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/qa-playwright/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
       "tag": "qa-testing",
       "label": "QA e testes para o Claude Code: estratégia por risco, design de casos, TDD com vermelho confirmado, revisão d…",
       "description": "QA e testes para o Claude Code: estratégia por risco, design de casos, TDD com vermelho confirmado, revisão de testes e E2E, triagem de testes flaky, bug reports com evidência e evals de skills e LLM, com gate de verifi…",
@@ -2946,21 +2986,14 @@
         "abrir o app e validar",
         "validação funcional",
         "matriz de funcionalidades",
-        "inventário de funcionalidades",
-        "testes de ponta a ponta",
         "testes e2e",
         "end-to-end",
         "testar no navegador",
         "automação de testes web",
         "playwright",
-        "playwright mcp",
         "playwright cli",
-        "healer",
-        "trace viewer",
         "e2e tests",
-        "browser tests",
         "functional validation",
-        "test every feature",
         "feature by feature validation",
         "playwright-completo"
       ],
@@ -2981,7 +3014,7 @@
             "matrix-auditor"
           ],
           "role": "lider",
-          "status": "em construção"
+          "status": "publicado"
         },
         {
           "plugin": "qa-testing",
@@ -3012,7 +3045,6 @@
         {
           "plugin": "engineering-lifecycle",
           "skills": [
-            "browser-testing-with-devtools",
             "test-driven-development"
           ],
           "agents": [
@@ -3041,9 +3073,9 @@
         "docs/dev-segments/research/qa-playwright/VALIDATED.md",
         "docs/dev-segments/research/qa-playwright/SYNTHESIS.md"
       ],
-      "notes": "Passo obrigatório do ORCHESTRATOR §3.2 em toda rodada de teste com superfície web ou HTTP. Exploração com `npx playwright cli` da versão fixada do projeto (sem @latest, sem .mcp.json). Preparo pré-autorizado pelo dono: @playwright/test exato como devDependency na branch local, harness e2e-playwright/, Chromium no cache só sem Chrome/Edge. Exigem confirmação: --with-deps/admin, plugin ou MCP no Claude Code, init-agents, outras dependências, produção. UI nativa Android/iOS: N/A com equivalente (Compose/Espresso/UI Automator, exploração por adb).",
+      "notes": "Passo obrigatório do ORCHESTRATOR §3.2 em toda rodada de teste com superfície web ou HTTP. Exploração com `npx playwright cli` da versão fixada do projeto (sem @latest, sem .mcp.json). Preparo pré-autorizado pelo dono: @playwright/test exato como devDependency na branch local, harness e2e-playwright/, Chromium no cache só sem Chrome/Edge. Exigem confirmação: --with-deps/admin, plugin ou MCP no Claude Code, init-agents, outras dependências, produção. UI nativa Android/iOS: N/A com equivalente (Compose/Espresso/UI Automator, exploração por adb). browser-testing-with-devtools (engineering-lifecycle) fica de fora dos fundamentos: manda configurar chrome-devtools-mcp@latest com -y em .mcp.json, contra o §3.2.",
       "origin": "curada",
-      "status": "em construção"
+      "status": "publicado"
     },
     {
       "tag": "ui-producao",

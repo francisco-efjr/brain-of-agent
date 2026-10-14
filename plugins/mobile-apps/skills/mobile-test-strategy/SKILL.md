@@ -84,6 +84,8 @@ Execução até aqui: nenhuma. Dispositivos: a definir com o usuário (base real
 
 XCUIApplication e seletores, setup Gradle do Espresso, instalação do Detox e Patrol não lidos (lacuna 10). Estratégia de testes para Flutter com `patrol`: só a menção na página de V-67. Metas numéricas de cobertura não são oficiais em nenhuma fonte lida.
 
+- O Playwright não cobre UI nativa Android/iOS (a documentação cobre web, Electron e Chrome/WebView Android, estes experimentais). Na validação funcional por funcionalidade (ORCHESTRATOR §3.2) a UI nativa fica N/A e este plano é o executor equivalente; WebView e backend: `qa-playwright:non-web-systems`.
+
 ## Quando delegar
 
 - Escrever ou ajustar testes e rodar comandos já aprovados: agente `mobile-test-engineer` (único com escrita; só em pastas de teste; para após 3 tentativas falhas).

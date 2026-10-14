@@ -53,3 +53,10 @@ instalação dos plugins oficiais `figma@claude-plugins-official` e `playwright@
   `engineering-lifecycle:` (8 arquivos afetados), para resolver dentro deste plugin. Detalhes e procedimento de
   atualização em [third_party/README.md](plugins/engineering-lifecycle/third_party/addyosmani-agent-skills/README.md).
 - Hooks, `evals/cases`, `docs/` de instalação e adaptadores de outros hosts não foram redistribuídos.
+
+## Playwright (plugin `qa-playwright`)
+
+- Origem: https://github.com/microsoft/playwright (commit `b536a63`, release v1.64.0), https://github.com/microsoft/playwright-mcp (v0.0.83) e https://github.com/microsoft/playwright-cli (v0.1.22), lidos em 13/10/2026.
+- Licença Apache-2.0. "Portions Copyright (c) Microsoft Corporation" e "Portions Copyright 2017 Google Inc." (`microsoft/playwright`, que também cita no NOTICE código derivado do Puppeteer, Apache-2.0); "Copyright (c) Microsoft Corporation" (`playwright-mcp`, `playwright-cli`).
+- Nenhum arquivo foi copiado. O plugin destila a documentação com redação própria e usa trechos curtos de configuração e de código (no máximo cerca de 40 linhas) com a atribuição "Microsoft Playwright, Apache-2.0". Fontes e classes em [fontes.md](plugins/qa-playwright/skills/playbook/references/fontes.md).
+- O plugin não traz `.mcp.json` nem instala nada: orienta usar `npx playwright cli` e `npx playwright mcp` do `@playwright/test` com versão fixada no projeto.
