@@ -18,7 +18,7 @@ Sumário: 1 STORYBOARD.md · 2 Direção do vídeo · 3 SCRIPT.md · 4 Exemplo m
 | `duration`, `transition_in`, `poster`, `src` | Duração do quadro, transição de entrada, imagem de pôster e caminho do HTML (preenchido na construção) |
 | `type` | Papel do quadro: `hook`, `pain_point`, `product_intro` (a ideia), `feature_showcase` (unidade do corpo), `benefit_highlight`, `social_proof` (evidência), `branding` (tese ou lição), `cta` |
 | `blueprint`, `focal`, `roles` | Forma de tomada; elementos inventados do quadro (palavra herói, nós do diagrama, série do gráfico) |
-| `sfx` | Nome(s) da biblioteca embutida (`manifest.json`), disparados no início do quadro; só no regime com SFX. Disparo no meio do quadro exige editar o `audio_meta.json` (caso real do dono, **não executado**) |
+| `sfx` | Nome(s) da biblioteca embutida (`manifest.json`), disparados no início do quadro; só no regime com SFX. Disparo no meio do quadro exige editar o `audio_meta.json` à mão depois do `fetch-sfx` (`"source":"host"`, volume 0.35; **Verificado, dogfood 2026-10-14, DF-05**: 15 cues resolvidos pela biblioteca local, 31 disparos, 31 `<audio>` montados pelo `assemble-index`) |
 
 Mapeamento de papel para `type` no faceless: gancho = `hook`; a ideia nomeada = `product_intro`; um mecanismo, passo ou camada por quadro = `feature_showcase`; prova, exemplo ou número = `social_proof`; tese ou lição = `branding`.
 

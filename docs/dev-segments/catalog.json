@@ -2685,7 +2685,7 @@
     {
       "plugin": "video-hyperframes",
       "displayName": "video-hyperframes",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "description": "Camada em PT-BR de orquestração, segurança e qualidade por cima das skills oficiais do HyperFrames: vídeos explicativos de software (arquitetura, fluxos, código, números verificados), motion graphics e changelogs em vídeo no Claude Code, com política de privacidade do roteiro, toolchain Windows sem instalações globais, gates humanos antes do render e revisão de quadros por contact sheet.",
       "keywords": [
         "hyperframes",
@@ -2731,7 +2731,7 @@
         },
         {
           "name": "video-render-deliver",
-          "description": "Renderiza o MP4 final de um vídeo HyperFrames e entrega: confere pré-condições (check sem erro e sem browserSkipped, contact sheet inspecionado, preview desta versão já mostrado ao usuário, Chrome e FFmpeg por caminho explícito, rede para jsdelivr), roda o render com --output explícito, valida com ffprobe (duração, resolução, fps, áudio) e escreve COMO-RENDERIZAR.md e o bloco 'Onde ver agora'. Só por /video-hyperframes:video-render-deliver. Nunca publica nem envia o projeto."
+          "description": "Renderiza o MP4 final de um vídeo HyperFrames e entrega: confere pré-condições (check sem erro e sem browserSkipped, contact sheet inspecionado, preview desta versão já mostrado ao usuário, Chrome e FFmpeg por caminho explícito, rede para jsdelivr e Google Fonts), roda o render com --output explícito, valida com ffprobe (duração, resolução, fps, áudio) e escreve COMO-RENDERIZAR.md e o bloco 'Onde ver agora'. Só por /video-hyperframes:video-render-deliver. Nunca publica nem envia o projeto."
         },
         {
           "name": "video-source-script",

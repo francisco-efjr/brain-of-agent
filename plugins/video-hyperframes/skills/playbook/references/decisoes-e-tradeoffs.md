@@ -1,6 +1,6 @@
 # Decisões e tradeoffs: árvores de escolha para vídeo com HyperFrames
 
-Validado em 2026-10-13 · Rótulos: Verificado, Inferido, Suposição, Não verificável, Não aplicável · Itens `V-nn`: resumo de cada um na seção 10 de [fontes.md](fontes.md); decisões `D1` a `D14` e conflitos `C1` a `C18` do design do plugin · Constantes de versão: [toolchain-windows.md](toolchain-windows.md).
+Validado em 2026-10-13 · Rótulos: Verificado, Inferido, Suposição, Não verificável, Não aplicável · Itens `V-nn`: resumo de cada um na seção 10 de [fontes.md](fontes.md); decisões `D1` a `D14` e conflitos `C1` a `C19` do design do plugin · Itens `DF-nn`: observação do primeiro uso real (dogfood 2026-10-14), seção 12 de [fontes.md](fontes.md) · Constantes de versão: [toolchain-windows.md](toolchain-windows.md).
 
 Regra de uso: escolha pelo menor caminho que atende ao pedido, diga a alternativa descartada e o motivo em uma linha. Dúvida material bloqueia só a decisão dependente.
 
@@ -19,7 +19,7 @@ Regra de uso: escolha pelo menor caminho que atende ao pedido, diga a alternativ
 11. Duração e número de quadros
 12. Formato e tamanhos por destino
 13. Decisões de arquitetura do plugin (D1 a D14)
-14. Conflitos resolvidos (C1 a C18)
+14. Conflitos resolvidos (C1 a C19)
 15. Conflitos do upstream sem resolução
 16. Tensões a medir
 17. Decisões que dependem do usuário
@@ -56,7 +56,7 @@ Sinais substituem perguntas: "surpreenda-me", "faça direto" trava automação s
 | Regime de som | Quando | Mecânica | Rótulo |
 | --- | --- | --- | --- |
 | **(a) mudo total** | explicativo para ler; nada de som | `music: none`, sem `SCRIPT.md`, sem `sfx:`; o `audio.mjs` não gera nada e remove o `audio_meta.json`; pule `sync-durations` e `fetch-sfx` | Verificado (V-24) |
-| **(b) silencioso com SFX** | efeitos de transição e destaque | `sfx:` por quadro com nomes do `manifest.json` (19 sons); sem voz, pule `sync-durations` e rode `fetch-sfx`; cada nome dispara uma vez no início do quadro; disparos no meio exigem editar o `audio_meta.json` (`source: "host"`) | **caso real, não executado** (L23) |
+| **(b) silencioso com SFX** | efeitos de transição e destaque | `sfx:` por quadro com nomes do `manifest.json` (19 sons); sem voz, pule `sync-durations`; `audio.mjs` (sem `SCRIPT.md`, `music: none`) grava um `audio_meta.json` vazio e `audio.mjs fetch-sfx` resolve os cues pela biblioteca local (no caso real: 15 cues, 13 `.mp3` copiados para `projeto\assets\sfx`, "heygen: no", nenhum download); cada nome dispara uma vez no início do quadro; disparos no meio exigem editar o `audio_meta.json` (`"source":"host"`, volume 0.35, 31 disparos no caso real) e o `assemble-index` monta um `<audio>` por disparo (31) | **Verificado (dogfood 2026-10-14, DF-05)** |
 | **(c) com voz** | narração | portão de voz; Kokoro local; teste de uma frase; downloads confirmados | PT-BR Não verificável (L1) |
 
 Narração: **silencioso** (padrão recomendado enquanto a cadeia PT-BR não for validada) > **local** (Kokoro, opt-in, com a lista do portão em [seguranca-e-privacidade.md](seguranca-e-privacidade.md)) > **nuvem** (proibida por padrão; o texto sai da máquina; só com pedido explícito e efeito descrito). Pergunta de privacidade: "nenhuma, local ou nuvem?" (C11); padrão: nenhuma ou local. Atenção: com `music: none`, sem `SCRIPT.md` e sem cues, o projeto é tratado como mudo total e o `sync-durations` falha; no regime (b) pule-o. Duração sem voz vem do `STORYBOARD.md` (`duration` é expectativa, não gate).
@@ -102,17 +102,17 @@ Pergunta de design em 3 estados: (1) **já tem guia** (`frame.md`, `design.md`, 
 
 ## 9. Workers ou inline serial (D8, V-39, V-46)
 
-O faceless oficial manda um sub-agente por quadro. Até cerca de 6 a 8 quadros, "inline serial" (o agente principal constrói um a um) é aceito como equivalente e mais rápido (o upstream mediu, para 5 cenas curtas, cerca de 9 min inline contra cerca de 21 min empacotado). Acima disso ou com quadros independentes e pesados, despache workers pela ferramenta Agent: DISPATCH = `_role.md` gerado pelo upstream mais o pacote do quadro; WAIT = o arquivo `compositions\frames\NN-*.html` existir em disco (não a notificação); artefato ausente: redespache **uma vez**. O plugin não tem agente de quadro próprio (duplicaria contrato volátil). Os workers leem só o pacote e o `frame.md`, nunca o `STORYBOARD.md`.
+O faceless oficial manda um sub-agente por quadro. Até cerca de 6 a 8 quadros, "inline serial" (o agente principal constrói um a um) é aceito como equivalente e mais rápido (o upstream mediu, para 5 cenas curtas, cerca de 9 min inline contra cerca de 21 min empacotado). Acima disso ou com quadros independentes e pesados, despache workers pela ferramenta Agent: DISPATCH = `_role.md` gerado pelo upstream mais o pacote do quadro; WAIT = o arquivo `compositions\frames\NN-*.html` existir em disco (não a notificação); artefato ausente: redespache **uma vez**. O plugin não tem agente de quadro próprio (duplicaria contrato volátil). Os workers leem só o pacote e o `frame.md`, nunca o `STORYBOARD.md`. **Caso real (Verificado, dogfood 2026-10-14, DF-09, DF-10):** 12 workers Sonnet em 2 lotes de 6, cada um lendo só o `_role.md`, o próprio pacote e o `frame.md`; o `lint` do primeiro quadro, antes do segundo lote, pegou cedo o problema sistemático dos ids com dígito (DF-03). Recomendação: faça sempre o "lint do primeiro quadro" antes de liberar o lote seguinte e padronize no despacho a URL e a versão do GSAP, os seletores de atributo, o id em todo `data-start`, as ligaduras desligadas e a precedência do `frame.md` sobre o `_role.md` (C19).
 
-## 10. Fonte embutida, instalada ou Google (V-19, V-67)
+## 10. Fonte embutida, instalada ou Google (V-19, V-67, DF-01)
 
 | Opção | Rede | Quando |
 | --- | --- | --- |
-| Embutida (18 famílias pré-empacotadas) | nenhuma | **padrão**; use as não banidas: Montserrat, Oswald, League Gothic, Archivo Black, Space Mono, IBM Plex Mono, JetBrains Mono, Source Code Pro, Noto Sans JP |
-| Instalada localmente | nenhuma | fonte da marca com arquivo; capturada em render local; proprietária do sistema (por exemplo SF Pro) não vai no render |
-| Google Fonts | sim, em tempo de build | último caso; aviso `font_family_without_font_face` |
+| "Embutida" (18 famílias reconhecidas sem aviso) | **sim**: não é bundle local nesta versão do CLI; as faces vêm do Google Fonts na compilação e o cache fica fora do projeto, em `~\.cache\hyperframes\fonts\` (Verificado, dogfood 2026-10-14, DF-01) | **padrão**; use as não banidas: Montserrat, Oswald, League Gothic, Archivo Black, Space Mono, IBM Plex Mono, JetBrains Mono, Source Code Pro, Noto Sans JP |
+| Instalada localmente | nenhuma (a fonte do sistema; o `@font-face` local para render offline é Não verificado) | fonte da marca com arquivo; capturada em render local; proprietária do sistema (por exemplo SF Pro) não vai no render |
+| Google Fonts (fora das 18) | sim, em tempo de build | último caso; aviso `font_family_without_font_face` |
 
-Acentos PT-BR nas embutidas: Não verificável sem `snapshot`.
+Render 100% offline: rodar uma vez online para popular o cache (Inferido) ou embutir `@font-face` local (Não verificado). Em texto mono, desligue as ligaduras (DF-02). Acentos PT-BR nas embutidas: Não verificável sem `snapshot`.
 
 ## 11. Duração e número de quadros (V-62, V-32)
 
@@ -147,7 +147,7 @@ O `aspect` deriva de `destination`; o dono pode decidir outro (por exemplo 16:9 
 | D13 | Windows 11 com PowerShell | máquina do dono; snippets bash do upstream |
 | D14 | Sem `prefs.mjs record` nem `recipe.mjs freeze` por padrão | toda gravação escreve em `<home>\.media` |
 
-## 14. Conflitos resolvidos (C1 a C18)
+## 14. Conflitos resolvidos (C1 a C19)
 
 | ID | Conflito | Resolução |
 | --- | --- | --- |
@@ -169,6 +169,7 @@ O `aspect` deriva de `destination`; o dono pode decidir outro (por exemplo 16:9 
 | C16 | Roteiro verbatim × duração | `~` na duração; a voz decide |
 | C17 | Tipos de variável (5 × 7), `data-playback-start`, HeyGen OAuth × API key | não usar variáveis do HyperFrames nem `data-playback-start`; sem login |
 | C18 | `VIDEO-COMPLETO` soa como "entregar o vídeo completo" | é modo de leitura e aplicação do protocolo; não autoriza render, download nem nuvem |
+| C19 | `_role.md` oficial do worker ("herói visível até 0,5 s"; `@font-face` por fonte) × storyboard de revelação progressiva e fontes do conjunto "embutido" | vale o `frame.md` (`## Regras do vídeo`), repetido no despacho; no caso real o `check` passou com 0 erros (Verificado, dogfood 2026-10-14, DF-09) |
 
 ## 15. Conflitos do upstream sem resolução (não citar como fato)
 

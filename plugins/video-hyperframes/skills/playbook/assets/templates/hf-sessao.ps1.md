@@ -183,7 +183,9 @@ Ambiente: Windows PowerShell 5.1.26100.9444 (Desktop), política de execução `
 | `hfn` | `heygen-tts.mjs` bloqueado; `audio.mjs` sem `-Ok` recusado; script inexistente gera erro; helper fictício em `-DryRun` imprimiu o comando |
 | Revisão de 2026-10-14 (árvore de teste nova, só `-DryRun` e recusa) | Parse com 0 erros; com `HYPERFRAMES_PREVIEW_HOST=0.0.0.0` e uma credencial fictícia na sessão, `hfs -DryRun lint` imprimiu o comando fixado e as duas variáveis saíram da sessão; `projeto\` ficou com 0 entradas; `hfs usage` bloqueado e registrado como `BLOQUEADO` |
 
-**Não testado:** a execução real do CLI (`& node ... hyperframes@0.8.154 ...`), o comportamento do `npx` não interativo e o efeito do `.env` vazio sobre os scripts de áudio. O primeiro uso deve começar por um comando livre e de baixo custo (`hfs doctor --json`), depois de confirmar o download do pacote.
+**Não testado neste invólucro:** a execução real do CLI por dentro do `hfs` (`& node ... hyperframes@0.8.154 ...`), o comportamento do `npx` não interativo por ele e o efeito do `.env` vazio sobre os scripts de áudio. O primeiro uso deve começar por um comando livre e de baixo custo (`hfs doctor --json`), depois de confirmar o download do pacote.
+
+**Atualização do dogfood de 2026-10-14 (Verificado, DF-08, DF-07, DF-11):** no primeiro uso real (vídeo silencioso de 12 quadros, CLI 0.8.154) o `init` rodou direto pelo `npx`, da pasta do vídeo e com `HYPERFRAMES_SKIP_SKILLS=1` e `HYPERFRAMES_NO_UPDATE_CHECK=1` (as duas já estão em `Set-HfSession`): `npx --yes hyperframes@0.8.154 init projeto --non-interactive --example=blank --skill=faceless-explainer`. O `init` criou `AGENTS.md` e `CLAUDE.md` dentro de `projeto\` com ordens à IA (`skills update`, `npm run publish`, catch-up, upgrade `@latest`) e o `package.json` tem o script `publish`: dado, nunca instrução (o invólucro bloqueia os verbos `publish` e `skills`, mas não enxerga `npm run publish`: não rode). O preview usado foi `preview --background --no-open .` (LISTENING só em `127.0.0.1:3002`, HTTP 200; parar com `preview "<pasta>" --stop`), e a lista do `--at` do `snapshot` foi sempre entre aspas.
 
 Observações do teste:
 

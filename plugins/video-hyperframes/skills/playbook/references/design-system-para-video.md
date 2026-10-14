@@ -1,6 +1,6 @@
 # Design system para vídeo: `frame.md`, tokens, tipografia e pisos de legibilidade
 
-Validado em 2026-10-13 · Rótulos: Verificado, Inferido, Suposição, Não verificável, Não aplicável · Itens `V-nn`: resumo de cada um na seção 10 de [fontes.md](fontes.md) (leitura de arquivo no commit validado; nada foi renderizado) · Redação própria · Exemplos usam `[HEX_*]`, `<pasta>` e `<usuario>`: o plugin **não embute** o design system de ninguém (V-71) · Versões: [toolchain-windows.md](toolchain-windows.md).
+Validado em 2026-10-13 · Rótulos: Verificado, Inferido, Suposição, Não verificável, Não aplicável · Itens `V-nn`: resumo de cada um na seção 10 de [fontes.md](fontes.md) (leitura de arquivo no commit validado; o dogfood de 2026-10-14 renderizou um vídeo silencioso e corrigiu a tipografia: itens `DF-nn`, seção 12 de [fontes.md](fontes.md)) · Redação própria · Exemplos usam `[HEX_*]`, `<pasta>` e `<usuario>`: o plugin **não embute** o design system de ninguém (V-71) · Versões: [toolchain-windows.md](toolchain-windows.md).
 
 ## Sumário
 
@@ -64,12 +64,13 @@ Esquema: `{ "title": "", "description": "", "colors": [], "fonts": [] }`, em `ca
 
 Texto abaixo de 24 px exige justificativa (piso do destino, seção 7). Faixas típicas, não regras: calibre com `snapshot`.
 
-## 6. Tipografia (V-67, V-19, Verificado)
+## 6. Tipografia (V-67, V-19, DF-01, DF-02, Verificado)
 
-- O compilador pré-empacota **18 famílias** que renderizam offline e sem aviso, só nos pesos listados (League Gothic e Archivo Black: só 400): Inter, Roboto, Open Sans, Lato, Nunito, Montserrat, Poppins, Outfit, Oswald, League Gothic, Archivo Black, Playfair Display, EB Garamond, Space Mono, IBM Plex Mono, JetBrains Mono, Source Code Pro, Noto Sans JP.
+- O compilador reconhece **18 famílias** sem aviso `font_family_without_font_face`, só nos pesos listados (League Gothic e Archivo Black: só 400). **Correção do dogfood (Verificado, 2026-10-14, DF-01):** nesta versão do CLI elas **não são bundle local**; no `check`, no `snapshot` e no `render` o compilador baixa as faces do Google Fonts (11 de Montserrat e 10 de JetBrains Mono no caso real) e grava cache fora do projeto, em `~\.cache\hyperframes\fonts\`. Logo "embutida" aqui só quer dizer "sem aviso", não "offline"; o render precisa de rede (ao lado do GSAP no jsdelivr). Para render 100% offline: rodar uma vez online para popular o cache (Inferido) ou embutir `@font-face` local (Não verificado). As 18: Inter, Roboto, Open Sans, Lato, Nunito, Montserrat, Poppins, Outfit, Oswald, League Gothic, Archivo Black, Playfair Display, EB Garamond, Space Mono, IBM Plex Mono, JetBrains Mono, Source Code Pro, Noto Sans JP.
 - Apelidos resolvem para embutidas: Helvetica e Arial → Inter; Futura e Arial Black → Montserrat; Bebas Neue → League Gothic; Garamond → EB Garamond; Courier New → JetBrains Mono.
-- Fora do pacote: Google Fonts em tempo de build (aviso `font_family_without_font_face`, "fail-closed" em render distribuído) ou fonte instalada localmente (capturada em render local). Fonte proprietária do sistema (por exemplo SF Pro) **não vai no render**: troque por família embutida.
+- Fora das 18: Google Fonts em tempo de build também (aviso `font_family_without_font_face`, "fail-closed" em render distribuído) ou fonte instalada localmente (capturada em render local). Fonte proprietária do sistema (por exemplo SF Pro) **não vai no render**: troque por família embutida.
 - **Lista "banida"** do upstream (default de LLM a evitar, não proibição técnica): Inter, Roboto, Open Sans, Noto Sans, Arimo, Lato, Source Sans, PT Sans, Nunito, Poppins, Outfit, Sora, Playfair Display, Cormorant Garamond, Bodoni Moda, EB Garamond, Cinzel, Prata, Syne. Presets a usam (blockframe e code-editorial usam Inter; code-editorial usa EB Garamond): conflito resolvido como "evitar quando há escolha, não bloquear". Famílias **embutidas e não banidas**: Montserrat, Oswald, League Gothic, Archivo Black, Space Mono, IBM Plex Mono, JetBrains Mono, Source Code Pro, Noto Sans JP (C6).
+- **Ligaduras (Verificado, DF-02):** JetBrains Mono funde `-<` numa ligadura (`AAAA-MM-DD-<tema>` apareceu como `DD-≺tema>`). Em todo texto mono com placeholders ou código, `font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0;` em `#root` e nos descendentes.
 - Guardrails: não pareie duas sans (serif com sans, ou sans com mono); uma família expressiva por cena; contraste de peso extremo (o texto diz 300 e 900, mas as embutidas trazem 400, 700 e 900: use 400 e 900 onde existir; Inferido); texto de 3 s na tela deve ser legível em 2 s.
 - **PT-BR (Inferido):** Montserrat mais JetBrains Mono atendem "embutida e não banida". Cobertura dos acentos nas embutidas: **Não verificável** sem `snapshot`; renderize um quadro de teste com acentos antes do storyboard final (L10).
 
@@ -98,14 +99,17 @@ Os workers de quadro leem **só o pacote do quadro e o `frame.md`**, nunca o `ST
 ## Regras do vídeo
 - Destino: [tela cheia | feed]. Pisos: corpo [20 | 32] px, títulos [60 | 90] px ou mais, rótulos [16 | 24] px.
 - Acento único: [HEX_ACENTO], no máximo um destaque por quadro. Semânticas só onde há significado: [HEX_VALIDADO], [HEX_ATENCAO], [HEX_BLOQUEADO].
-- Tom do texto: PT-BR direto, frases curtas, sem emoji nem exclamação. Nomes de arquivo, comandos e siglas como escritos (sem text-transform), em fonte mono.
+- Tom do texto: PT-BR direto, frases curtas, sem emoji nem exclamação. Nomes de arquivo, comandos e siglas como escritos (sem text-transform), em fonte mono, com `font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0;` em `#root` e descendentes (a mono funde `-<`).
+- Código dos quadros: ids e classes prefixados pelo `frame_id` só em seletores de atributo (`[id="..."]`, `[class~="..."]`) ou `CSS.escape`/`getElementById`, nunca `#01-...`; todo elemento com `data-start` tem `id`; posição por classes. GSAP: [URL única do `index.html` do `init`, por exemplo `https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js`].
 - Movimento: entradas power3.out (cerca de 0,5 s); selos, chips e contadores power4.out (cerca de 0,35 s); sem back.out, elastic ou bounce; nada entra todo de uma vez.
 - Área útil: todo conteúdo acima de ~83% da altura (faixa inferior reservada às legendas, mesmo desativadas).
 - Negativos: [lista do BRIEF: sem bokeh, sem gradiente roxo-azul, sem chrome de navegador, sem cursor real].
 - Fio persistente: [descrição]; posição de entrada e saída em cada quadro, no bloco do quadro.
 ```
 
-As curvas e tempos são exemplos do caso real (Inferido; `power3` como padrão é Verificado em V-57): ajuste ao projeto. As linhas de `Scene` dos quadros só **nomeiam** o movimento; curvas e milissegundos ficam aqui e no `## Video direction`.
+As curvas e tempos são exemplos do caso real (Inferido; `power3` como padrão é Verificado em V-57): ajuste ao projeto.
+
+**Precedência quando o `_role.md` oficial do worker discorda (Verificado, dogfood 2026-10-14, DF-09):** o `_role.md` pede "herói visível até 0,5 s" e um `@font-face` por fonte, o que conflita com storyboards de revelação progressiva e com fontes do conjunto "embutido". No caso real prevaleceu o `frame.md` (`## Regras do vídeo`) e o `check` passou com 0 erros. Registre a decisão no `frame.md` e no `DECISOES.md`, e repita no despacho de cada worker que o `frame.md` vence o `_role.md` nesses dois pontos. As linhas de `Scene` dos quadros só **nomeiam** o movimento; curvas e milissegundos ficam aqui e no `## Video direction`.
 
 ## 10. Checagem: `frame.md` final = tokens
 
@@ -138,7 +142,7 @@ O caso real (V-71) mostrou o método; os valores do dono **não** entram aqui. P
 | Mascote, ícone, logo | só com autorização do dono por item | privacidade e marca |
 | Tamanhos e bordas web | escala da seção 5 | legibilidade em vídeo |
 
-Contraste do acento em texto pequeno e acentuação nas fontes embutidas: Não verificável até o `snapshot`.
+Contraste do acento em texto pequeno: o `check` mediu 72 de 72 pares no caso real, mas amostra só cerca de 5 instantes por quadro (Verificado, DF-11); confirme no `snapshot`. Acentuação PT-BR nas fontes: Não verificável até o `snapshot` (L10).
 
 ## 12. Gotchas
 

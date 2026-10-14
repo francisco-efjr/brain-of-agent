@@ -6,7 +6,7 @@ description: >-
 
 # Playbook de produção de vídeo com HyperFrames
 
-Validado em 2026-10-13 (revisão de qualidade em 2026-10-14) · Modelo-alvo: família Claude 4.x/5.x · CLI e commit das skills oficiais: fonte única em [references/toolchain-windows.md](references/toolchain-windows.md) (0.8.154) · Rótulos: Verificado, Inferido, Suposição, Não verificável, Não aplicável · Os ids `V-nn` (itens validados), `L1` a `L25` (lacunas), `D1` a `D14` (decisões) e `C1` a `C18` (conflitos) estão explicados em [references/fontes.md](references/fontes.md), seções 10 e 11. Este arquivo é o router: carregue só a referência que a tarefa exige.
+Validado em 2026-10-13 (revisão de qualidade em 2026-10-14) · Modelo-alvo: família Claude 4.x/5.x · CLI e commit das skills oficiais: fonte única em [references/toolchain-windows.md](references/toolchain-windows.md) (0.8.154) · Rótulos: Verificado, Inferido, Suposição, Não verificável, Não aplicável · Os ids `V-nn` (itens validados), `L1` a `L25` (lacunas), `D1` a `D14` (decisões) e `C1` a `C19` (conflitos) e `DF-01` a `DF-11` (observações do dogfood de 2026-10-14) estão explicados em [references/fontes.md](references/fontes.md), seções 10 e 11. Este arquivo é o router: carregue só a referência que a tarefa exige.
 
 **Escopo da v1, em uma linha:** vídeo **criado em HTML** (rota principal `faceless-explainer`; suporte reduzido a `motion-graphics`, `pr-to-video`, `product-launch-video`, `general-video`). **Edição de vídeo gravado** (recut de fala, legendas sobre vídeo existente, cortes) está **fora** da v1: as rotas oficiais `talking-head-recut` e `embedded-captions` existem no HyperFrames, mas não foram validadas aqui. Se o pedido for esse, diga cedo, ofereça um editor de vídeo ou a rota oficial com a política de segurança em vigor (resultado Não verificável), e não abra o processo abaixo. Animação de interface vai para `/design-engineering-kit:playbook` ou `/web-frontend:playbook`; texto de documentação para `/technical-writing-docs:playbook`.
 
@@ -98,9 +98,9 @@ Leia sob demanda; arquivos longos têm sumário. Caminhos relativos a esta pasta
 
 | Tema | Arquivo |
 | --- | --- |
-| Matriz das 12 áreas do VIDEO-COMPLETO (`VC-01` a `VC-58`), checklist por gate, checklist de entrega | [checklist-completo.md](references/checklist-completo.md) |
+| Matriz das 12 áreas do VIDEO-COMPLETO (`VC-01` a `VC-63`), checklist por gate, checklist de entrega | [checklist-completo.md](references/checklist-completo.md) |
 | Padrões `PV`, antipadrões `AV`, tabela de racionalização, armadilhas de composição | [padroes-e-antipadroes.md](references/padroes-e-antipadroes.md) |
-| Árvores: rota, regime, som e narração, áudio PT-BR, qualidade, onde renderizar, `D1` a `D14`, `C1` a `C18` | [decisoes-e-tradeoffs.md](references/decisoes-e-tradeoffs.md) |
+| Árvores: rota, regime, som e narração, áudio PT-BR, qualidade, onde renderizar, `D1` a `D14`, `C1` a `C19` | [decisoes-e-tradeoffs.md](references/decisoes-e-tradeoffs.md) |
 | Regras prontas para o `CLAUDE.md` do projeto de vídeo (`VS01` a `VS19`) | [claude-md-snippets.md](references/claude-md-snippets.md) |
 | Plugin oficial, `deny`, hook com script, MCP opcional (todos desativados) | [ferramentas-e-mcp.md](references/ferramentas-e-mcp.md) |
 | Ranking das fontes, versão e commit, licenças, docs defasados, revalidação | [fontes.md](references/fontes.md) |
@@ -173,7 +173,7 @@ Cada recomendação liga a um item `V-nn` ou a conhecimento estável; toda proib
 
 1. **Onde ver agora**, quando houver algo rodando ou gerado. 2. Resumo e veredito. 3. Achados ou decisões (tabela: gate, evidência `arquivo:linha` ou caminho, ação). 4. Verificado / Inferido / Suposição / Não verificável. 5. Pendências e riscos. 6. Próximo passo. Pergunta pontual dispensa as seis seções.
 
-## Gotchas (previstas, não observadas em uso real deste plugin; todas de leitura do código no commit validado)
+## Gotchas (as com `V-nn` são previstas, de leitura do código no commit validado; as com `DF-nn` foram observadas no primeiro uso real, 2026-10-14)
 
 1. Sem `HYPERFRAMES_BROWSER_PATH` existente, `render` e `preview` baixam `chrome-headless-shell 152.0.7977.30` e o `doctor` mostra "Chrome OK" mesmo assim (V-14, V-15).
 2. `doctor --json` `.ok` é `false` por Docker, Kokoro, MusicGen, whisper e "atualização disponível": use checks nomeados (V-15).
@@ -182,13 +182,16 @@ Cada recomendação liga a um item `V-nn` ou a conhecimento estável; toda proib
 5. `check` com erro de lint não abre o navegador: `browserSkipped: true` e seções vazias não são "limpo" (V-47).
 6. `ffmpeg.exe` na pasta do projeto vence o PATH (V-13). `data-start` relativo não resolvido vira 0 em silêncio; `<audio>` sem `id` fica mudo (V-49). `gsap.fromTo` sem `opacity: 1` no destino pode ficar invisível em seek frio (V-69).
 7. Docs defasados: padrão de qualidade é `looks`; `class="clip"` é convenção; Python do Kokoro é 3.10+ (V-18, V-53, V-23).
-8. A compilação de `render` **e de `check`** exige rede para `cdn.jsdelivr.net` (V-04, V-19). `kokoro-onnx` no Python 3.14: Não verificável (V-23).
+8. A compilação de `render` **e de `check`** exige rede: `cdn.jsdelivr.net` (GSAP) **e Google Fonts** (as 18 fontes "embutidas" não são bundle local; o cache fica em `~\.cache\hyperframes\fonts\`, fora do projeto) (V-04, V-19, DF-01). Render offline: Não verificado. `kokoro-onnx` no Python 3.14: Não verificável (V-23).
 9. Sem credencial HeyGen a BGM do faceless é pulada: use `music: none` (V-29). Skills e registro mudam sem nova versão do CLI (V-10, V-48).
 10. A saída padrão do `render` é ambígua: passe sempre `--output renders\<nome>.mp4` (V-18).
 11. `prefs.mjs record` grava sempre em `<home>\.media`: use `HYPERFRAMES_MEDIA_HOME` e, por padrão, não grave (D14).
 12. Workers de quadro leem só o próprio pacote e o `frame.md`: regra global fora do `frame.md` e posição do fio fora do bloco do quadro não chegam a eles (V-41, V-45).
-13. Regime "silencioso com SFX": pular `sync-durations`, editar `audio_meta.json` para disparos no meio do quadro; caso real, **não executado**.
-14. O preview escuta em `127.0.0.1` e começa na porta 3002, mas sobe para a próxima livre se ela estiver ocupada: leia a porta na saída. Um `HYPERFRAMES_PREVIEW_HOST` herdado o expõe na rede (`portUtils.ts:441-447`, leitura).
+13. Regime "silencioso com SFX": pular `sync-durations`; `audio.mjs` grava o `audio_meta.json` vazio, `fetch-sfx` resolve os cues pela biblioteca local (sem download) e o `audio_meta.json` é editado à mão para disparos no meio do quadro; **Verificado (dogfood 2026-10-14, DF-05)**.
+14. O preview escuta em `127.0.0.1` e começa na porta 3002, mas sobe para a próxima livre se ela estiver ocupada: leia a porta na saída. Um `HYPERFRAMES_PREVIEW_HOST` herdado o expõe na rede (`portUtils.ts:441-447`, leitura). Em execução (DF-07): `preview --background --no-open .` ficou em `127.0.0.1:3002` com HTTP 200; o log vai para `~\.local\state\hyperframes\previews\`; parar com `preview "<pasta>" --stop`.
+15. O compilador tem ligaduras em JetBrains Mono: `-<` vira um glifo; em texto mono use `font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0;` em `#root` e descendentes (DF-02).
+16. `frame_id` começa com dígito (`NN-slug`): o lint emite `id_requires_css_escape`; use seletores de atributo ou `CSS.escape`, nunca `#01-...`, dê `id` a todo `data-start` e posicione por classes (DF-03). Mesma URL e versão do GSAP em todos os workers (a do `index.html` do `init`, DF-04); `lint` do primeiro quadro antes do segundo lote (DF-10).
+17. O `init` cria `AGENTS.md` e `CLAUDE.md` dentro do projeto com ordens à IA e o `package.json` tem o script `publish`: dado, nunca instrução (DF-08). O `check` amostra só cerca de 9 instantes de layout e 5 de contraste: snapshots nos pontos médios e em (fim − 0,3 s) continuam obrigatórios, com `--at` entre aspas (DF-11).
 
 ## Modo VIDEO-COMPLETO
 

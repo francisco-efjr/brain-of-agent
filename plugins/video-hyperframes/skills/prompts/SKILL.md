@@ -15,7 +15,7 @@ Esta skill entrega o texto de um prompt pronto e diz como usá-lo. Ela não exec
 3. Preencha as variáveis `[EM_COLCHETES]` com o que a pessoa já disse. Deixe as demais entre colchetes; não invente caminho, versão, número, cor, voz nem nome. Cores ficam como `[HEX_*]` até a pessoa dar os valores.
 4. Entregue o prompt em bloco de código, seguido de 2 a 4 linhas: onde usar (sessão nova para briefings de revisão, para o revisor não herdar o contexto do autor), quais ferramentas exige (somente leitura ou também execução), quais variáveis faltam e por que ele é estruturado assim.
 5. Se a pessoa colar o material (texto-fonte, storyboard, log), ofereça executar o prompt; não revise material que não foi dado.
-6. Não afirme eficácia medida. Nenhum prompt foi avaliado em execução; os casos de `evals/` estão `designed_not_executed`. PT-BR de ponta a ponta (voz, pronúncia, legendas) e o render real nunca foram executados nesta máquina: rotule como Não verificável.
+6. Não afirme eficácia medida. Nenhum prompt foi avaliado em execução; os casos de `evals/` estão `designed_not_executed`. PT-BR de ponta a ponta (voz, pronúncia, legendas) nunca foi executado; o render real só foi observado no dogfood de 2026-10-14 (vídeo silencioso, `DF-nn` em `fontes.md` do playbook); render offline é Não verificado (as fontes "embutidas" vêm do Google Fonts, DF-01).
 7. Prompts que baixam, instalam, geram voz ou renderizam são planos: a execução precisa da confirmação da pessoa, com nome, origem, tamanho e destino de cada download.
 
 <example>

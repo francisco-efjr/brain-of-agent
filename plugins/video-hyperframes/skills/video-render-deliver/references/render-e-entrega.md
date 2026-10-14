@@ -1,6 +1,6 @@
 # Render e entrega: qualidades, rede, formatos, `ffprobe` e "Onde ver agora"
 
-Base: HyperFrames (HeyGen, Apache-2.0), commit `bf4cf860fbd26a7d51938c5f11987c335d4e848a`: `render/plan.ts`, `render.ts`, `preview-render.md`, `htmlCompiler.ts`, `docs/prompting/rendering-and-output.mdx` (V-18, V-19, V-22, V-70), destilado com redação própria. Código vence documentação. **Nenhum render real foi executado na construção deste plugin** (lacuna L6): velocidade, RAM, tamanho do MP4 e desempenho com Chrome comum são Não verificáveis; o primeiro render desta máquina começa por um teste curto.
+Base: HyperFrames (HeyGen, Apache-2.0), commit `bf4cf860fbd26a7d51938c5f11987c335d4e848a`: `render/plan.ts`, `render.ts`, `preview-render.md`, `htmlCompiler.ts`, `docs/prompting/rendering-and-output.mdx` (V-18, V-19, V-22, V-70), destilado com redação própria. Código vence documentação. **Nenhum render real foi executado na construção deste plugin** (lacuna L6); o dogfood de 2026-10-14 (vídeo silencioso de 12 quadros) executou `check`, `snapshot`, `preview` e `render` (DF-01, DF-07, DF-11), mas sem registrar métricas de render que valham aqui: velocidade, RAM, tamanho do MP4 e desempenho com Chrome comum são Não verificáveis; o primeiro render desta máquina começa por um teste curto.
 
 Sumário: 1 Qualidade · 2 Saída e formatos · 3 Rede · 4 Só local · 5 Preview · 6 Render de teste · 7 `ffprobe` · 8 Falhas · 9 Entrega.
 
@@ -25,7 +25,7 @@ Os docs que dizem "`standard` é o padrão" estão defasados (V-18). Passe sempr
 
 ## 3. Rede
 
-A compilação do `render` **e do `check`** faz GET público em `cdn.jsdelivr.net` (GSAP 3.15.0 por padrão; timeout de 15 s; valida `integrity`), e embute o texto. Falha de download: "The render may fail if this script is required (e.g. GSAP)". Fontes: só as 18 famílias pré-empacotadas renderizam offline e sem aviso; família fora do pacote vem do Google Fonts na compilação (aviso `font_family_without_font_face`) ou da instalação local. Presets usam fontes fora do pacote: um render offline com preset pode falhar ou exigir a fonte instalada. Informe o usuário antes do render; não é possível "vendorizar" o GSAP (licença não OSI).
+A compilação do `render` **e do `check`** faz GET público em `cdn.jsdelivr.net` (GSAP 3.15.0 por padrão; timeout de 15 s; valida `integrity`), e embute o texto. Falha de download: "The render may fail if this script is required (e.g. GSAP)". Fontes (**corrigido pela execução real, Verificado, dogfood 2026-10-14, DF-01**): as 18 famílias "embutidas" **não são bundle local** nesta versão do CLI. No `check`, no `snapshot` e no `render` o compilador baixa as faces do Google Fonts (11 de Montserrat e 10 de JetBrains Mono no caso real) e grava cache fora do projeto, em `%USERPROFILE%\.cache\hyperframes\fonts\` (pastas `montserrat\` e `jetbrains-mono\`), além de `%USERPROFILE%\.cache\hyperframes\history\`: é acesso de rede do render (ao lado do GSAP) e escrita fora do projeto (cache de ferramenta, sem dado do usuário). Família fora das 18 vem do Google Fonts do mesmo jeito (aviso `font_family_without_font_face`) ou da instalação local. Para render 100% offline: rodar uma vez online para popular o cache (Inferido) ou embutir `@font-face` local (Não verificado). Informe o usuário antes do render; não é possível "vendorizar" o GSAP (licença não OSI).
 
 ## 4. Onde renderizar: só local
 
@@ -33,7 +33,7 @@ Local é o padrão e a iteração. `cloud render` zipa o projeto (até 200 MB) e
 
 ## 5. Preview
 
-`hfs preview --background`; a porta começa em **3002** e, se estiver ocupada, o CLI tenta as seguintes (até 100), então leia a porta real na saída do comando; o Studio local pode abrir o navegador sozinho. Verifique HTTP 200 e o endereço de escuta (troque `3002` pela porta lida):
+`hfs preview --background --no-open .` (de dentro de `projeto\`; `--no-open` evita abrir o navegador); a porta começa em **3002** e, se estiver ocupada, o CLI tenta as seguintes (até 100), então leia a porta real na saída do comando; sem `--no-open` o Studio local pode abrir o navegador sozinho. Verifique HTTP 200 e o endereço de escuta (troque `3002` pela porta lida):
 
 ```powershell
 $porta = 3002
@@ -41,7 +41,7 @@ $porta = 3002
 Get-NetTCPConnection -State Listen -LocalPort $porta | Select-Object LocalAddress, LocalPort, OwningProcess
 ```
 
-`LocalAddress` deve ser `127.0.0.1` ou `::1`; se for `0.0.0.0` ou `::`, pare e avise. Por leitura do código (`packages/cli/src/server/portUtils.ts:441-447`, 2026-10-14), o servidor escuta em `127.0.0.1` por padrão e só muda com `HYPERFRAMES_PREVIEW_HOST`, que o invólucro remove; a conferência continua porque nada foi executado. O PID da coluna `OwningProcess` vai para o "Onde ver agora". Sem `HYPERFRAMES_BROWSER_PATH` válido, o `preview` também baixa o `chrome-headless-shell`: o invólucro recusa.
+`LocalAddress` deve ser `127.0.0.1` ou `::1`; se for `0.0.0.0` ou `::`, pare e avise. Por leitura do código (`packages/cli/src/server/portUtils.ts:441-447`, 2026-10-14), o servidor escuta em `127.0.0.1` por padrão e só muda com `HYPERFRAMES_PREVIEW_HOST`, que o invólucro remove; a conferência continua a cada vez. **Em execução (Verificado, dogfood 2026-10-14, DF-07):** subiu em `127.0.0.1:3002`, `netstat` mostrou LISTENING só em `127.0.0.1` e o HTTP deu 200; o log fica em `%USERPROFILE%\.local\state\hyperframes\previews\` (fora do projeto); para parar, `hfs preview "<pasta>" --stop`. O PID da coluna `OwningProcess` vai para o "Onde ver agora". Sem `HYPERFRAMES_BROWSER_PATH` válido, o `preview` também baixa o `chrome-headless-shell`: o invólucro recusa.
 
 ## 6. Render de teste (primeira vez nesta máquina)
 

@@ -44,7 +44,7 @@ Observação sobre `pip install`: dentro do venv dedicado (`<venv>\Scripts\pytho
 | Verificação | Resultado | Evidência |
 | --- | --- | --- |
 | Provedor de voz observado | [Kokoro local / outro / sem voz] | [linha `tts: kokoro` do log de áudio; campo de provedor de `audio_engine_meta.json` (Inferido)] |
-| Arquivos criados fora de `projeto\` e da pasta do vídeo | [lista por `Glob` nos caminhos que o chamador indicou: `~\.hyperframes`, `~\.cache\hyperframes`, `~\.media`, skills globais] | [existência; datas] |
+| Arquivos criados fora de `projeto\` e da pasta do vídeo | [lista por `Glob` nos caminhos que o chamador indicou: `~\.hyperframes`, `~\.cache\hyperframes` (inclui `fonts\` e `history\` depois de `check`, `snapshot` ou `render`, esperados), `~\.local\state\hyperframes\previews` (esperado depois de `preview --background`), `~\.media`, skills globais] | [existência; datas] |
 | Memória entre projetos (`.media`) | [não gravada / gravada em `<pasta-do-video>\.media-home`] | |
 | Skills globais alteradas | [não / sim] | [data de modificação dos diretórios, se o chamador informou] |
 | Chamadas fora do invólucro | Não verificável (o log não as captura) | |

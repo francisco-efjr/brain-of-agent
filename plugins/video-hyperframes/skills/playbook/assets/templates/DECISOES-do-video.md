@@ -13,7 +13,7 @@ Uso: grave em `<pasta-do-video>\DECISOES.md`, fora de `projeto\`. É o registro 
 | Duração e tolerância | ~[N] s; aceitável [MIN] a [MAX] s | `~` porque a voz ou o ritmo decidem; conferido no `ffprobe` |
 | Idioma | pt-BR em todo texto de tela; nomes técnicos em inglês e fonte mono | Tom direto, frases curtas |
 | Fluxo e storyboard | storyboard [sim/não]; fluxo [automação/companion] | Pausas: plano (G5) e preview (G9) |
-| Regime de som | [mudo total / silencioso com SFX / com voz] | G6: mudo total = `music: none`, sem `SCRIPT.md`, sem `sfx:`; com SFX = nomes do `manifest.json` por quadro, disparados no início do quadro (disparo no meio exige editar o `audio_meta.json`: caso real do dono, **não executado**); com voz = portão de voz |
+| Regime de som | [mudo total / silencioso com SFX / com voz] | G6: mudo total = `music: none`, sem `SCRIPT.md`, sem `sfx:`; com SFX = nomes do `manifest.json` por quadro, disparados no início do quadro (disparo no meio exige editar o `audio_meta.json`: **Verificado, dogfood 2026-10-14**; o `fetch-sfx` resolveu os cues pela biblioteca local, sem download); com voz = portão de voz |
 | Música | nenhuma | BGM do faceless é pulada sem credencial HeyGen (V-29) |
 | Voz (se houver) | local; ID `p*` [ID]; teste de uma frase [feito/pendente] | Pt-BR ponta a ponta não foi validado: rotule Não verificável |
 | Visual | [guia do usuário / preset / decidir] | `video-design-system` gera `tokens.json` e `frame.md` |

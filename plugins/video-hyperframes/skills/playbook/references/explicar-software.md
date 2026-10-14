@@ -1,6 +1,6 @@
 # Explicar software em vídeo: história, quadros, números, código e escrita para a voz
 
-Validado em 2026-10-13 · Rótulos: Verificado, Inferido, Suposição, Não verificável, Não aplicável · Itens `V-nn`: resumo de cada um na seção 10 de [fontes.md](fontes.md) (leitura de arquivo no commit validado; nada foi renderizado) · Redação própria · Rota principal: `faceless-explainer` (V-33) · Motion e design: [design-system-para-video.md](design-system-para-video.md) · Privacidade: [seguranca-e-privacidade.md](seguranca-e-privacidade.md).
+Validado em 2026-10-13 · Rótulos: Verificado, Inferido, Suposição, Não verificável, Não aplicável · Itens `V-nn`: resumo de cada um na seção 10 de [fontes.md](fontes.md) (leitura de arquivo no commit validado; o dogfood de 2026-10-14 renderizou um vídeo silencioso de 12 quadros: `DF-nn`, seção 12 de [fontes.md](fontes.md)) · Redação própria · Rota principal: `faceless-explainer` (V-33) · Motion e design: [design-system-para-video.md](design-system-para-video.md) · Privacidade: [seguranca-e-privacidade.md](seguranca-e-privacidade.md).
 
 ## Sumário
 
@@ -116,7 +116,7 @@ Sistema fictício `[SISTEMA]`, vídeo mudo com SFX, cerca de 90 s, `concept-expl
 | F11 | 77 a 85,5 s | opcional | duas cenas de custo ou modelo por camada, sem misturar bases | Contrast |
 | F12 | 85,5 a 93 s | `branding` / `cta` | limites honestos; frase de lembrança; link; o fio pousa; cursor pisca 3 vezes (finito) e para | Memory & landing |
 
-Riscos registrados no caso real: **12 quadros em cerca de 93 s** contra o corpo típico de 3 a 6; o mitigador é palco fixo, transição única e fio persistente; os candidatos a corte são F10 e F11. Vídeo mudo: toda a explicação depende do texto na tela (seção 8). SFX no meio do quadro dependem de editar o `audio_meta.json` (regime b, caso real **não executado**); se falhar, aceite um SFX por quadro, no início. O preset pode impor fonte e polaridade ([design-system-para-video.md](design-system-para-video.md), seção 3).
+Riscos registrados no caso real: **12 quadros em cerca de 93 s** contra o corpo típico de 3 a 6; o mitigador é palco fixo, transição única e fio persistente; os candidatos a corte são F10 e F11. Vídeo mudo: toda a explicação depende do texto na tela (seção 8). SFX no meio do quadro dependem de editar o `audio_meta.json` (regime b; **Verificado no dogfood de 2026-10-14, DF-05**: 31 disparos editados à mão e 31 `<audio>` montados); se falhar, aceite um SFX por quadro, no início. O preset pode impor fonte e polaridade ([design-system-para-video.md](design-system-para-video.md), seção 3).
 
 **Formato de um quadro** (copy literal entre aspas, tempos relativos ao início do quadro, prazo de texto = duração − 2,5 s):
 

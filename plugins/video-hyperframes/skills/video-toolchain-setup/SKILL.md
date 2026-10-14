@@ -41,6 +41,7 @@ Esta skill tem `disable-model-invocation`: ela só roda quando o usuário digita
    | Modelo Kokoro (pelo `tts`) | `github.com/thewh1teagle/kokoro-onnx/releases` | cerca de 311 MB + 27 MB | `~\.cache\hyperframes\tts` | apagar a pasta |
    | Parakeet | Hugging Face `csukuangfj/sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8`, revisão `2bda32ec70b097a55adaa07d9a7173915b43cc78`, mais `sherpa-onnx-node@1.13.8` do npm | 670.478.772 bytes (cerca de 640 MiB) | `~\.cache\hyperframes` e `~\.cache\hyperframes\optional` | apagar as pastas |
    | Chrome gerenciado | CDN do `@puppeteer/browsers` | Não verificável | `~\.cache\hyperframes\chrome` | apagar a pasta |
+   | Fontes do compilador (informativo: o `check`, o `snapshot` e o `render` baixam sozinhos; não é passo do setup) | Google Fonts (11 faces de Montserrat e 10 de JetBrains Mono no caso real; Verificado, dogfood 2026-10-14, DF-01) | Não verificável | `~\.cache\hyperframes\fonts\` e `~\.cache\hyperframes\history\` | apagar as pastas |
 
    Saída: a mensagem enviada e os itens com "sim".
 2. **Invólucro (sem download).** Grave o bloco do [TP-06](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/hf-sessao.ps1.md) em `<pasta-do-video>\scripts\hf.ps1` **sem editar**, em ASCII, e crie `scripts\hf-env.ps1` com os caminhos aprovados. Prova (uma chamada):

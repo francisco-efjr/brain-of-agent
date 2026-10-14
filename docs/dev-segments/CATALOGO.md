@@ -813,7 +813,7 @@ Instalar: `/plugin install qa-playwright@brain-of-agent` · Playbook: `plugins/q
 | `qa-playwright:spec-reviewer` (`plugins/qa-playwright/agents/spec-reviewer.md`) | Revisa em contexto limpo e somente leitura, num só lote por rodada, todos os specs Playwright da rodada contra o checklist de revisão (C-S, C-G) e a lista de segurança, e devolve achados ordenados por dano com arquivo:l… | Read, Glob, Grep |
 | `qa-playwright:spec-writer` (`plugins/qa-playwright/agents/spec-writer.md`) | Transforma a nota de exploração de uma funcionalidade em spec Playwright e2e/F-NN-<slug>.spec.ts (caminho feliz mais negativo ou borda, asserção do efeito, locators por papel, dado único por teste, sem espera por tempo)… | Read, Glob, Grep, Bash, Write, Edit |
 
-## video-hyperframes (`video-hyperframes` 0.1.0)
+## video-hyperframes (`video-hyperframes` 0.1.1)
 
 Camada em PT-BR de orquestração, segurança e qualidade por cima das skills oficiais do HyperFrames: vídeos explicativos de software (arquitetura, fluxos, código, números verificados), motion graphics e changelogs em vídeo no Claude Code, com política de privacidade do roteiro, toolchain Windows sem instalações globais, gates humanos antes do render e revisão de quadros por contact sheet.
 

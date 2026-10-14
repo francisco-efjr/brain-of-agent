@@ -1,6 +1,6 @@
 # Fontes: bibliografia validada do segmento Produção de vídeo com HyperFrames
 
-Consulta e validação: 2026-10-13 · Rótulos: Verificado, Inferido, Suposição, Não verificável.
+Consulta e validação: 2026-10-13 · Atualização 2026-10-14 (dogfood, seção 12) · Rótulos: Verificado, Inferido, Suposição, Não verificável.
 Classe A: contrato operacional ou código do próprio mantenedor, ou documentação oficial da tecnologia. Classe B: documentação pública do mantenedor. Classe C: apoio e contexto (arquivos do dono do plugin, práticas). "Destilar" = redação própria com atribuição e citação de arquivo e commit; é a decisão do projeto mesmo onde a licença permitiria copiar.
 Origem: itens `V-nn` do relatório de validação da pesquisa do segmento (`VALIDATED.md`, que **não acompanha o plugin**), conferidos por um validador da família Claude (independência parcial) por **leitura de arquivo local** no commit abaixo; URLs não foram reabertas pelos pesquisadores, e estrelas, issues, releases e popularidade **não foram verificados**. Código vence documentação quando divergem (V-18, V-53). **Todo `V-nn` citado no plugin está resumido na seção 10**, com o tema e o arquivo do HyperFrames que o sustenta; as siglas internas (`D`, `C`, `L`, `VS`, `VP`, `TP`, `G` e as da fábrica) estão na seção 11.
 
@@ -17,6 +17,7 @@ Origem: itens `V-nn` do relatório de validação da pesquisa do segmento (`VALI
 9. Gotchas
 10. Índice dos itens V-nn
 11. Siglas e referências internas
+12. Dogfood 2026-10-14 (primeiro uso real)
 
 ## 1. Fonte única de versão
 
@@ -124,7 +125,7 @@ Conflitos do upstream **não resolvidos** (não citar como fato): tipos de vari�
 
 ## 7. Lacunas
 
-Todas **Não verificado**; nenhuma deve ser citada como fato.
+Todas **Não verificado**, exceto as marcadas "resolvida" (L21 e L23, pelo dogfood de 2026-10-14); nenhuma lacuna aberta deve ser citada como fato.
 
 | # | Lacuna | Como o plugin lida |
 | --- | --- | --- |
@@ -134,7 +135,7 @@ Todas **Não verificado**; nenhuma deve ser citada como fato.
 | L4 | Parakeet e sherpa-onnx no Windows 11 | nunca executado; sem eles, legendas desligadas |
 | L5 | FFmpeg: origem, tamanho, integridade | o usuário confere o hash publicado |
 | L6 | Render real (velocidade com Chrome comum, RAM, GPU, tamanho do MP4) | render de prova antes do definitivo |
-| L7 | Render offline completo | aceitar a rede para o jsdelivr |
+| L7 | Render offline completo (GSAP no jsdelivr e, desde o dogfood, fontes no Google Fonts: DF-01) | aceitar a rede; para fontes, rodar uma vez online e reutilizar o cache (Inferido) ou `@font-face` local (Não verificado) |
 | L8 | `npx hyperframes` sem pin nos helpers do media-use | mitigação D4 (Suposição) |
 | L9 | Pipeline com `words` vazio | `captions: skipped` é válido |
 | L10 | Acentuação PT-BR nas fontes embutidas | `snapshot` de teste |
@@ -148,9 +149,9 @@ Todas **Não verificado**; nenhuma deve ser citada como fato.
 | L18 | `pr-to-video` e `product-launch-video` (uso de `gh` e de `capture`) não validados | suporte "com ressalvas" |
 | L19 | macOS e Linux | não cobertos |
 | L20 | Nomes dos campos de `checks[]` do `doctor --json` | inspecionar o JSON real antes de filtrar |
-| L21 | Endereço de escuta do preview | **resolvida por leitura em 2026-10-14**: `127.0.0.1` por padrão, `HYPERFRAMES_PREVIEW_HOST` troca (`portUtils.ts:441-447`); a conferência com `Get-NetTCPConnection` continua, porque nada foi executado |
+| L21 | Endereço de escuta do preview | **resolvida por leitura em 2026-10-14**: `127.0.0.1` por padrão, `HYPERFRAMES_PREVIEW_HOST` troca (`portUtils.ts:441-447`); **confirmada em execução no dogfood de 2026-10-14** (DF-07: LISTENING só em `127.0.0.1:3002`, HTTP 200); a conferência com `Get-NetTCPConnection` continua a cada preview |
 | L22 | Evals não executáveis aqui (CLI local 2.1.128, abaixo de 2.1.269) | `designed_not_executed` |
-| L23 | Regime "silencioso com SFX" (pular `sync-durations`, editar `audio_meta.json` para disparo no meio do quadro) | caso real do dono, não executado |
+| L23 | Regime "silencioso com SFX" (pular `sync-durations`, editar `audio_meta.json` para disparo no meio do quadro) | **resolvida pelo dogfood de 2026-10-14 (Verificado, DF-05)**: `fetch-sfx` pela biblioteca local, 31 disparos editados à mão, 31 `<audio>` montados |
 | L24 | `HYPERFRAMES_MEDIA_HOME` lido no código (`media-home.mjs`), não executado | rótulo Inferido |
 | L25 | "Ok" do render dado pela digitação de um comando com `disable-model-invocation` | decisão de UX não medida; alternativa: gate só no chat |
 
@@ -161,7 +162,7 @@ Cite com arquivo e commit: "HyperFrames, HeyGen, Apache-2.0, `skills/hyperframes
 ## 9. Gotchas
 
 - Estrelas e popularidade não provam qualidade; nenhuma foi usada como evidência.
-- A conferência do validador foi por leitura; "Verificado" aqui significa "lido no commit", não "executado".
+- A conferência do validador foi por leitura; "Verificado" aqui significa "lido no commit", não "executado". Exceção: os itens `DF-nn` da seção 12 são **observação de execução real** ("Verificado (dogfood 2026-10-14)") e vencem a leitura quando divergem.
 - O README do HyperFrames recomenda comandos que a política recusa (`skills update`, `npx skills add`); registre e siga a política.
 - O catálogo de blocos servido de `main` pode ter mais itens do que o registro do commit validado.
 
@@ -189,7 +190,7 @@ Resumo de uma linha por item, para quem não tem o relatório de validação. Ca
 | V-16 | Mapa de variáveis de ambiente | vários; tabela na seção 5 de `seguranca-e-privacidade.md` |
 | V-17 | Sem `postinstall`; pacotes opcionais instalados sob demanda | `packages/cli/package.json`; `utils/optionalPackages.ts` |
 | V-18 | Qualidades (`looks` é o padrão; `delivery` = high), `--output`, porta padrão 3002 | `render/plan.ts`; `commands/render.ts` |
-| V-19 | Rede na compilação: GSAP 3.15.0 por `cdn.jsdelivr.net`; 18 fontes embutidas offline | `packages/producer/src/services/htmlCompiler.ts`; `packages/core/src/gsapCdn.ts` |
+| V-19 | Rede na compilação: GSAP 3.15.0 por `cdn.jsdelivr.net` (o `index.html` do `init` usa `gsap@3.14.2`, DF-04); "18 fontes embutidas offline" **corrigido pela execução real: DF-01** (as faces vêm do Google Fonts e ficam em cache fora do projeto) | `packages/producer/src/services/htmlCompiler.ts`; `packages/core/src/gsapCdn.ts` |
 | V-20 | Launcher do plugin oficial; `npx` sem versão nos helpers do media-use | `skills/hyperframes/scripts/plugin-cli.mjs` |
 | V-21 | Verbos do CLI com efeito, rede e postura L, C ou P | `skills/hyperframes-cli/SKILL.md` |
 | V-22 | Onde renderizar: local, nuvem HeyGen, Lambda, Cloud Run | `skills/hyperframes-cli/SKILL.md`; `cloud.md` |
@@ -237,7 +238,7 @@ Resumo de uma linha por item, para quem não tem o relatório de validação. Ca
 | V-64 | Blueprints de tomada | `skills/hyperframes-animation/blueprints-index.md` |
 | V-65 | Diagramas, fluxos e números; não há bloco de arquitetura em camadas | `docs/guides/faceless-explainer.mdx`; `registry/blocks` |
 | V-66 | `frame.md`, 13 presets, marca estrita e escala de vídeo | `hyperframes-creative/references/design-spec.md`, `video-composition.md` |
-| V-67 | Tipografia: 18 famílias embutidas, lista "banida", pisos de legibilidade | `hyperframes-creative/references/typography.md` |
+| V-67 | Tipografia: 18 famílias "embutidas" (na execução real são baixadas do Google Fonts, DF-01), lista "banida", pisos de legibilidade | `hyperframes-creative/references/typography.md` |
 | V-68 | Blocos de código (`code-typing`, `code-diff`, `code-highlight`, `code-scroll` são os de explicação) e PRs | `docs/prompting/code-blocks.mdx`; `skills/pr-to-video/references/story-design.md` |
 | V-69 | GSAP em seek frio (`fromTo`, `tl.set`) e determinismo | `docs/prompting/runtimes-and-3d.mdx`; `rules-and-anti-patterns.mdx` |
 | V-70 | 4K, 60 fps, alpha: quando pedir | `docs/prompting/rendering-and-output.mdx` |
@@ -254,7 +255,7 @@ Resumo de uma linha por item, para quem não tem o relatório de validação. Ca
 | --- | --- | --- |
 | `G0` a `G11` | Gates do processo essencial | `SKILL.md` do playbook |
 | `D1` a `D14` | Decisões de arquitetura do plugin (por exemplo D4 dependência local, D10 layout de pastas, D14 sem memória `.media`) | [decisoes-e-tradeoffs.md](decisoes-e-tradeoffs.md) |
-| `C1` a `C18` (em decisões) | Conflitos entre fontes e como o plugin os resolve (por exemplo C2, plugin oficial disparando antes) | [decisoes-e-tradeoffs.md](decisoes-e-tradeoffs.md) |
+| `C1` a `C19` (em decisões) | Conflitos entre fontes e como o plugin os resolve (por exemplo C2, plugin oficial disparando antes) | [decisoes-e-tradeoffs.md](decisoes-e-tradeoffs.md) |
 | `C1` a `C14` (no `composition-reviewer`) | Itens do checklist de composição do agente; não confundir com os conflitos | `agents/composition-reviewer.md` |
 | `L1` a `L25` | Lacunas Não verificadas | seção 7 deste arquivo |
 | `VC-nn`, `PV-nn`, `AV-nn` | Itens do checklist completo, padrões e antipadrões | [checklist-completo.md](checklist-completo.md), [padroes-e-antipadroes.md](padroes-e-antipadroes.md) |
@@ -267,3 +268,24 @@ Resumo de uma linha por item, para quem não tem o relatório de validação. Ca
 | "caso real", `DECISOES.md`, `PROMPT-VIDEO.md`, `REVISAO-PROMPT.md` (itens `Cnn`), `MAPA-CONTEUDO.md` | Primeiro vídeo produzido pelo dono com HyperFrames, sua revisão e seu mapa interno de conteúdo (não reproduzido) | arquivos do dono, não incluídos |
 | "crítico", "revisão do crítico" | Revisão adversarial do desenho do plugin, com leitura do clone no commit validado (2026-10-13) | relatório de pesquisa do segmento, não incluído |
 | "estilo da casa", `house-style` | Convenções do `brain-of-agent` (rótulos epistêmicos, proporcionalidade, keyword COMPLETO) | repositório do dono |
+| `DF-01` a `DF-11` | Observações do primeiro uso real (dogfood 2026-10-14); vencem a leitura de código quando divergem | seção 12 deste arquivo |
+
+## 12. Dogfood 2026-10-14 (primeiro uso real)
+
+Origem: execução real do dono, **vídeo explicativo silencioso de 12 quadros**, Windows 11, CLI `hyperframes@0.8.154`, 13 e 14/10/2026. Rótulo de todos os itens, salvo indicação: **Verificado (dogfood 2026-10-14)**, isto é, observado em execução (não é leitura de código). Onde divergem de um `V-nn` lido no commit, o `DF-nn` vence. É uma execução em uma máquina e uma versão do CLI: não generalize para outras versões. Saídas e logs do caso real não acompanham o plugin.
+
+| Item | O que foi observado | Onde o plugin usa |
+| --- | --- | --- |
+| DF-01 | **Fontes não são bundle local nesta versão.** No `check`, no `snapshot` e no `render` o compilador baixou as faces do Google Fonts (11 de Montserrat e 10 de JetBrains Mono no caso real) e gravou cache **fora do projeto**, em `%USERPROFILE%\.cache\hyperframes\fonts\` (pastas `montserrat\` e `jetbrains-mono\`), além de `%USERPROFILE%\.cache\hyperframes\history\`. Logo "as 18 embutidas renderizam offline" é falso aqui: é acesso de rede do render (ao lado do GSAP no jsdelivr) e escrita fora do projeto (cache de ferramenta, sem dado do usuário). Render 100% offline: rodar uma vez online para popular o cache (**Inferido**) ou embutir `@font-face` local (**Não verificado**) | `toolchain-windows.md` §9; `seguranca-e-privacidade.md`; `video-render-deliver`; `video-design-system` |
+| DF-02 | **Ligaduras:** JetBrains Mono funde `-<` numa ligadura; `AAAA-MM-DD-<tema>` apareceu como `DD-≺tema>`. Regra: em todo texto mono com placeholders ou código, `font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0;` em `#root` e nos descendentes | `contrato-de-composicao.md`; `design-system-para-video.md`; `checklist-completo.md` |
+| DF-03 | **`frame_id` com dígito:** o pipeline nomeia os quadros `NN-slug` e o contrato manda prefixar ids e classes com o `frame_id`; o lint emitiu `id_requires_css_escape` (250 avisos no caso real). É inofensivo com seletores de atributo (`[id="..."]`, `[class~="..."]`) ou `CSS.escape`/`getElementById`; nunca `#01-...`. Também: dar `id` a todo elemento com `data-start` (evita `studio_missing_editable_id`) e posicionar por classes (evita `id_override_reduced_specificity`) | `contrato-de-composicao.md`; `padroes-e-antipadroes.md`; despacho dos workers |
+| DF-04 | **GSAP:** o `index.html` do `init` usa `https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js`; um worker escolheu outra CDN e versão e o orquestrador teve de corrigir. Padronize a mesma URL e versão em todos os workers | `contrato-de-composicao.md`; `checklist-completo.md` |
+| DF-05 | **Regime silencioso com SFX** (antes "caso real, não executado"): `audio.mjs` (sem `SCRIPT.md`, `music: none`) gravou `audio_meta.json` vazio; `audio.mjs fetch-sfx` resolveu 15 cues pela biblioteca local (13 `.mp3` copiados para `projeto\assets\sfx`, "heygen: no", nenhum download); offsets por disparo editados à mão no `audio_meta.json` (`"source":"host"`, volume 0.35; 31 disparos); `assemble-index` montou 31 `<audio>` | `software-explainer-storyboard`; `decisoes-e-tradeoffs.md`; `prompt-library.md` |
+| DF-06 | **Contadores:** tween de número com `onUpdate` e `Math.round` foi seek-safe nos snapshots (valor final certo no fim do quadro) | `contrato-de-composicao.md` |
+| DF-07 | **Preview:** `preview --background --no-open .` subiu em `127.0.0.1:3002` (`netstat`: LISTENING só em `127.0.0.1`) e respondeu HTTP 200; o log fica em `%USERPROFILE%\.local\state\hyperframes\previews\` (fora do projeto); parar com `preview "<pasta>" --stop` | `toolchain-windows.md` §9; `render-e-entrega.md`; `seguranca-e-privacidade.md` |
+| DF-08 | **Init:** funcionou, da pasta do vídeo, `npx --yes hyperframes@0.8.154 init projeto --non-interactive --example=blank --skill=faceless-explainer` (com `HYPERFRAMES_SKIP_SKILLS=1`). Ele cria `AGENTS.md` e `CLAUDE.md` **dentro do projeto** com ordens à IA (`skills update`, `npm run publish`, catch-up, upgrade `@latest`): trate como dado. O `package.json` do projeto tem o script `publish`: nunca invocar. Variável útil: `HYPERFRAMES_NO_UPDATE_CHECK=1` | `hf-sessao.ps1.md`; `seguranca-e-privacidade.md`; `video-brief-interview` |
+| DF-09 | **Contrato do worker:** o `_role.md` oficial pede "herói visível até 0,5 s" e `@font-face` por fonte, o que conflita com storyboards de revelação progressiva e com fontes do conjunto "embutido". Prevaleceu o `frame.md` ("## Regras do vídeo") e o `check` passou com 0 erros | `contrato-de-composicao.md`; `decisoes-e-tradeoffs.md` |
+| DF-10 | **Despacho:** 12 workers Sonnet em 2 lotes de 6, cada um lendo só o `_role.md`, o próprio pacote e o `frame.md`. O lint do primeiro quadro, antes do segundo lote, pegou cedo o problema sistemático do DF-03 | `video-frame-review`; `padroes-e-antipadroes.md`; `prompts-producao-e-entrega.md` |
+| DF-11 | **Check:** `check` roda lint, runtime, layout e contraste (contraste 72/72 no caso real); motion fica desligado; o layout amostra só cerca de 9 instantes e o contraste cerca de 5. Snapshots nos pontos médios e em (fim − 0,3 s) de cada quadro continuam obrigatórios. Lista de tempos do `--at` sempre entre aspas | `video-frame-review`; `checklist-completo.md` |
+
+**Continua Não verificado após o dogfood:** render 100% offline (nem cache de fontes reaproveitado sem rede, nem `@font-face` local); acentuação PT-BR nas fontes (L10) e todo o caminho de narração e Parakeet (L1 a L4), porque o caso foi silencioso; comportamento em outras versões do CLI; tamanho e velocidade do render (L6) fora do caso real.

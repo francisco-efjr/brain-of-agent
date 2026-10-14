@@ -42,8 +42,8 @@ Para cada área: **aplicável**, **não aplicável** (com motivo) ou **lacuna** 
 | 5 | Design system | VC-21 a VC-24 | | G4 | | |
 | 6 | Storyboard e narrativa | VC-25 a VC-30 | | G5 | | |
 | 7 | Áudio e narração PT-BR | VC-31 a VC-34 | | G6 | | |
-| 8 | Contrato de composição | VC-35 a VC-40 | | G7, G8 | | |
-| 9 | Verificação (lint, check, snapshot, revisão) | VC-41 a VC-45 | | G8 | | |
+| 8 | Contrato de composição | VC-35 a VC-40, VC-59 a VC-61 | | G7, G8 | | |
+| 9 | Verificação (lint, check, snapshot, revisão) | VC-41 a VC-45, VC-62 e VC-63 | | G8 | | |
 | 10 | Render e entrega | VC-46 a VC-50 | | G9, G10 | | |
 | 11 | Licenças e atribuição | VC-51 a VC-53 | | G10 | | |
 | 12 | Orquestração e handoff | VC-54 a VC-58 | | G0, G11 | | |

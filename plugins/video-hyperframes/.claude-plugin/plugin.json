@@ -1,6 +1,6 @@
 {
   "name": "video-hyperframes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Camada em PT-BR de orquestração, segurança e qualidade por cima das skills oficiais do HyperFrames: vídeos explicativos de software (arquitetura, fluxos, código, números verificados), motion graphics e changelogs em vídeo no Claude Code, com política de privacidade do roteiro, toolchain Windows sem instalações globais, gates humanos antes do render e revisão de quadros por contact sheet.",
   "author": {
     "name": "Francisco Edson",

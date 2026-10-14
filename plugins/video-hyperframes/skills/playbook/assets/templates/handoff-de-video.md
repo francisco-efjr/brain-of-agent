@@ -43,7 +43,7 @@ Uso: gere ao fim de uma sessão, antes de a janela encher ou ao entregar para ou
 
 ## Estado do que está rodando
 
-Preview: [URL em 127.0.0.1, PID, como parar com `Stop-Process -Id <PID>` / encerrado]. Arquivos temporários ou caches a limpar: [..].
+Preview: [URL em 127.0.0.1, PID, como parar com `hfs preview "<pasta>" --stop` ou `Stop-Process -Id <PID>` / encerrado]. Arquivos temporários ou caches a limpar: [..].
 
 ## Próxima ação concreta
 

@@ -3,7 +3,7 @@ name: video-render-deliver
 description: >-
   Renderiza o MP4 final de um vídeo HyperFrames e entrega: confere pré-condições (check sem erro e
   sem browserSkipped, contact sheet inspecionado, preview desta versão já mostrado ao usuário,
-  Chrome e FFmpeg por caminho explícito, rede para jsdelivr), roda o render com --output
+  Chrome e FFmpeg por caminho explícito, rede para jsdelivr e Google Fonts), roda o render com --output
   explícito, valida com ffprobe (duração, resolução, fps, áudio) e escreve COMO-RENDERIZAR.md e o
   bloco 'Onde ver agora'. Só por /video-hyperframes:video-render-deliver. Nunca publica nem envia
   o projeto.
@@ -45,11 +45,11 @@ Esta skill tem `disable-model-invocation`: só roda quando o usuário digita `/v
 
    - (e) Espaço em disco informado; o tamanho do MP4 é Não verificável: peça confirmação de que cabe.
    - (f) Nenhum nome de credencial de nuvem na sessão (o invólucro os remove; confira a lista do preflight).
-   - (g) Aviso dito: o render consulta `cdn.jsdelivr.net` (e Google Fonts, se houver fonte fora do pacote).
+   - (g) Aviso dito: o render consulta `cdn.jsdelivr.net` (GSAP) **e o Google Fonts para todas as fontes, inclusive as "embutidas"** (que não são bundle local; Verificado, dogfood 2026-10-14, DF-01), e grava cache de fontes fora do projeto em `~\.cache\hyperframes\fonts\` (cache de ferramenta, sem dado do usuário). Render 100% offline: rodar uma vez online para popular o cache (Inferido) ou `@font-face` local (Não verificado).
    - (h) `projeto\renders\` existe (crie, se faltar).
 
    Saída: as oito linhas com estado.
-2. **Preview (só se o usuário ainda não viu esta versão; o G9 normalmente já fez).** `hfs preview --background`; leia a porta na saída (começa em 3002, V-18, e sobe se estiver ocupada); confira HTTP 200 em `http://127.0.0.1:<porta>` e a escuta local com `Get-NetTCPConnection -State Listen -LocalPort <porta>` (`LocalAddress` `127.0.0.1` ou `::1`; se `0.0.0.0` ou `::`, pare). O CLI escuta em `127.0.0.1` por padrão e só muda com `HYPERFRAMES_PREVIEW_HOST`, que o invólucro remove (leitura de `portUtils.ts`; não executado). Mostre a URL, o contact sheet e a duração; **pare** e peça o ok no chat (com o ok, siga para o passo 3). Saída: URL, PID, o pedido de ok.
+2. **Preview (só se o usuário ainda não viu esta versão; o G9 normalmente já fez).** `hfs preview --background --no-open .` (de dentro de `projeto\`); leia a porta na saída (começa em 3002, V-18, e sobe se estiver ocupada); confira HTTP 200 em `http://127.0.0.1:<porta>` e a escuta local com `Get-NetTCPConnection -State Listen -LocalPort <porta>` (`LocalAddress` `127.0.0.1` ou `::1`; se `0.0.0.0` ou `::`, pare). O CLI escuta em `127.0.0.1` por padrão e só muda com `HYPERFRAMES_PREVIEW_HOST`, que o invólucro remove (leitura de `portUtils.ts`). Em execução (Verificado, dogfood 2026-10-14, DF-07): subiu em `127.0.0.1:3002` (`netstat`: LISTENING só em `127.0.0.1`) com HTTP 200, e o log vai para `~\.local\state\hyperframes\previews\`, fora do projeto. Mostre a URL, o contact sheet e a duração; **pare** e peça o ok no chat (com o ok, siga para o passo 3). Saída: URL, PID, o pedido de ok.
 3. **Primeiro render nesta máquina.** Prove V-13, V-14 e V-19 com um render curto antes do definitivo (a pesquisa recomenda cerca de 5 s num projeto de teste). Sem projeto de teste, use `--quality draft` do próprio vídeo, avisando que leva o tempo de um render inteiro. Registre tempo e resultado. Se a máquina já tem um render de teste registrado no `COMO-RENDERIZAR.md`, pule. Saída: tempo, tamanho e o resultado do `ffprobe`.
 4. **Render final.** `hfs -Ok render --quality "<q>" --output "renders\<nome>.mp4"` (placeholders entre aspas: sem elas o PowerShell rejeita o `<`). Padrão do código: `looks` (standard com CRF 16); entrega: `high` (o pipeline faceless oficial usa `--quality high`); `draft` para teste. `--output` explícito sempre (a saída padrão é ambígua no upstream, V-18). Se `renders\<nome>.mp4` já existir, use outro nome (por exemplo `-v2`) para não sobrescrever a versão aprovada. `--workers 1` só para comparar quadros com exatidão. **Não** repita `lint`, `check` nem `snapshot` depois do render. O render pode passar do limite de uma chamada de ferramenta: rode em segundo plano (`run_in_background`) e acompanhe a saída real; `HYPERFRAMES_RENDER_DETACHED` é exemplo do upstream para macOS e Linux, não use. Saída: o comando executado e a saída real (ou o `stderr`).
 5. **Validar com `ffprobe`** (sintaxe conferida na construção com um clipe de 2 s):
@@ -60,7 +60,7 @@ Esta skill tem `disable-model-invocation`: só roda quando o usuário digita `/v
    ```
 
    Confira: duração dentro da tolerância do `BRIEF.md` ou do `DECISOES.md` (no caso de referência, 85 a 95 s para ~90 s; sem tolerância gravada, reporte a diferença e deixe o usuário decidir); largura x altura igual ao `aspect`; `r_frame_rate` como pedido; fluxo de áudio coerente com o regime de som (**mudo total: nenhum; silencioso com SFX ou com voz: um**); `size` não minúsculo; `Test-Path` do caminho absoluto. Saída: o JSON colado e a conclusão por campo.
-6. **Entregar.** Grave `COMO-RENDERIZAR.md` ([TP-05](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/COMO-RENDERIZAR.md)) em `projeto\`, só com o que foi executado. Abra a mensagem final com o bloco **Onde ver agora**: MP4 em caminho absoluto com as métricas do `ffprobe`; contact sheet; preview (URL, PID e como parar com `Stop-Process -Id <PID>`) ou "preview encerrado"; caminho do `COMO-RENDERIZAR.md`. `recipe.mjs freeze` só se o usuário pedir, com `HYPERFRAMES_MEDIA_HOME` na pasta do vídeo (grava em `<home>\.media\recipes`). Sugira o G11: `execution-security-auditor` em modo pós-execução, lendo `.hf-log.txt`.
+6. **Entregar.** Grave `COMO-RENDERIZAR.md` ([TP-05](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/COMO-RENDERIZAR.md)) em `projeto\`, só com o que foi executado. Abra a mensagem final com o bloco **Onde ver agora**: MP4 em caminho absoluto com as métricas do `ffprobe`; contact sheet; preview (URL, PID e como parar com `hfs preview "<pasta>" --stop` ou `Stop-Process -Id <PID>`) ou "preview encerrado"; caminho do `COMO-RENDERIZAR.md`. `recipe.mjs freeze` só se o usuário pedir, com `HYPERFRAMES_MEDIA_HOME` na pasta do vídeo (grava em `<home>\.media\recipes`). Sugira o G11: `execution-security-auditor` em modo pós-execução, lendo `.hf-log.txt`.
 7. **Falhas.** Mostre o `stderr` e **pare**. Crash `0xC0000409` (3221225595) no Windows: confira `HYPERFRAMES_BROWSER_PATH` (remediação oficial, V-14). Sinal de download de Chrome: pare e pergunte. Falha de rede para o GSAP: confira `cdn.jsdelivr.net`. Depois de 3 tentativas, pare e reporte o que falta.
 
 ## Verificação
@@ -96,7 +96,7 @@ Previstas; "prevista, não observada" em uso real deste plugin.
 - Sobrescrever o MP4 aprovado; deixar o preview rodando sem dizer o PID.
 - Repetir `lint`, `check` e `snapshot` depois do render (o upstream manda não repetir).
 - Iterar mudando várias coisas por render: "mude só X para Y; mantenha o resto", com alvo absoluto (V-59).
-- Ignorar que o render precisa de rede para o GSAP.
+- Ignorar que o render precisa de rede para o GSAP e para as fontes (Google Fonts), e prometer render offline (DF-01).
 
 ## Quando delegar
 

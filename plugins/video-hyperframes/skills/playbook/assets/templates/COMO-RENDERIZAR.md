@@ -15,7 +15,7 @@ Uso: a skill `video-render-deliver` grava este arquivo em `<pasta-do-video>\proj
 - Windows 11 com Windows PowerShell 5.1; Node 22 ou superior; invólucro `hf.ps1` em `<pasta-do-video>\scripts\`
 - Skills oficiais do HyperFrames: [plugin / clone] no commit [hash]; CLI `hyperframes@0.8.154`
 - Chrome do sistema; FFmpeg e ffprobe portáteis (origem [..], SHA-256 conferido [sim/não])
-- Rede para `cdn.jsdelivr.net` (o GSAP é buscado na compilação do `check` e do `render`) e, se houver fonte fora do pacote, para o Google Fonts
+- Rede para `cdn.jsdelivr.net` (o GSAP é buscado na compilação do `check` e do `render`) **e para o Google Fonts (as faces de todas as fontes, inclusive as "embutidas", são baixadas e ficam em cache fora do projeto, em `~\.cache\hyperframes\fonts\`)**. Render offline: só com o cache já populado (Inferido) ou `@font-face` local (Não verificado)
 - Variáveis de sessão (só nomes): `HYPERFRAMES_NO_TELEMETRY`, `DO_NOT_TRACK`, `HYPERFRAMES_NO_UPDATE_CHECK`, `HYPERFRAMES_SKIP_SKILLS`, `HYPERFRAMES_MEDIA_HOME`, `HYPERFRAMES_BROWSER_PATH`, `HYPERFRAMES_FFMPEG_PATH`, `HYPERFRAMES_FFPROBE_PATH`
 
 ## 3. Comandos (cada bloco é uma chamada de ferramenta: o processo é novo)
@@ -28,7 +28,7 @@ Uso: a skill `video-render-deliver` grava este arquivo em `<pasta-do-video>\proj
 . "<pasta-do-video>\scripts\hf.ps1" ; Set-Location "<pasta-do-video>\projeto" ; hfs snapshot --at "[t1,t2,...]"
 
 # preview local (aprovacao); conferir escuta em 127.0.0.1
-. "<pasta-do-video>\scripts\hf.ps1" ; Set-Location "<pasta-do-video>\projeto" ; hfs preview --background
+. "<pasta-do-video>\scripts\hf.ps1" ; Set-Location "<pasta-do-video>\projeto" ; hfs preview --background --no-open .
 
 # render, so depois do ok ao preview; --output sempre explicito
 . "<pasta-do-video>\scripts\hf.ps1" ; Set-Location "<pasta-do-video>\projeto" ; hfs -Ok render --quality [q] --output renders\[nome].mp4
@@ -57,7 +57,7 @@ O que não foi executado e por quê: [lista]. Limitações conhecidas: PT-BR de 
 ## 6. Como refazer e como desfazer
 
 - Refazer: repita a seção 3 na ordem; para mudar algo, altere **uma** variável por render ("mude só X para Y; mantenha o resto").
-- Desfazer: apague `renders\[nome].mp4`; o preview em segundo plano para com `Stop-Process -Id [PID]`; as pastas `.hyperframes\`, `.media-home\` e `.hf-vazio\` podem ser apagadas à mão. Nada foi gravado em `PATH`, registro do Windows ou skills globais. O CLI mantém caches fora do projeto (`~\.hyperframes`, `~\.cache\hyperframes`) que só você decide limpar (`hfs clean --dry-run` mostra o que sairia).
+- Desfazer: apague `renders\[nome].mp4`; o preview em segundo plano para com `hfs preview "<pasta>" --stop` ou `Stop-Process -Id [PID]` (o log fica em `~\.local\state\hyperframes\previews\`); as pastas `.hyperframes\`, `.media-home\` e `.hf-vazio\` podem ser apagadas à mão. Nada foi gravado em `PATH`, registro do Windows ou skills globais. O CLI mantém caches fora do projeto (`~\.hyperframes`, `~\.cache\hyperframes`, inclusive as fontes baixadas em `fonts\`) que só você decide limpar (`hfs clean --dry-run` mostra o que sairia).
 
 ## 7. Aviso de rede e privacidade
 

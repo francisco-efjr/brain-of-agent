@@ -17,7 +17,7 @@ Esta parte traz os prompts de produção, revisão, entrega e auditoria: teste d
 - Mesmas convenções de [prompt-library.md](prompt-library.md#como-ler-cada-prompt): variáveis em `[MAIÚSCULAS_ENTRE_COLCHETES]`, redação própria destilada de arquivos do HyperFrames (HeyGen, Apache-2.0, commit `bf4cf860`) sem cópia literal, tabela de fontes (V-nn → arquivos) naquele arquivo.
 - VP-21, VP-22, VP-23 e VP-27 são **briefings** para os agentes somente leitura `frame-reviewer`, `composition-reviewer`, `fact-privacy-checker` e `execution-security-auditor`. O agente não vê a conversa: o briefing leva objetivo, arquivos, formato, parada e as regras críticas repetidas. Cole-os também quando o agente rodar como `general-purpose` sem a restrição de `tools`; nesse caso o texto "somente leitura" é a única barreira.
 - Os agentes não gravam: devolvem o relatório com `Caminho sugerido` e o agente principal grava em `<pasta-do-video>\relatorios\`.
-- Nenhum prompt foi medido em execução (`designed_not_executed`). Render real e PT-BR de ponta a ponta nunca foram executados nesta máquina: rotule como Não verificável.
+- Nenhum prompt foi medido em execução (`designed_not_executed`). PT-BR de ponta a ponta nunca foi executado; o render real só foi observado no dogfood de 2026-10-14 (vídeo silencioso de 12 quadros, DF-01 a DF-11 em `fontes.md` do playbook). Fora disso, rotule como Não verificável. Render offline também: as fontes vêm do Google Fonts (DF-01).
 
 ---
 
@@ -254,7 +254,7 @@ Beats, com janelas que não se sobrepõem e somam [DURAÇÃO] s [BEATS]:
 - [T1]–[T2] s: ...
 Técnica: [TÉCNICA, se quiser fixar o bloco ou o movimento]; ease power3.out, sem overshoot.
 Negativos: sem arquivos de imagem ou mídia externos (tudo em HTML, SVG e CSS); sem React nem Vue; sem bokeh nem gradiente roxo-azul; sem loops infinitos.
-Fluxo: autônomo, sem storyboard; faça no máximo uma pergunta, só se a entrada for ambígua. Passos: preflight curto; construção; check sem erro e sem browserSkipped; snapshot nos pontos médios e contact sheet; preview em 127.0.0.1; pare e peça o meu ok; render só depois, com --output explícito e ffprobe.
+Fluxo: autônomo, sem storyboard; faça no máximo uma pergunta, só se a entrada for ambígua. Passos: preflight curto; construção; check sem erro e sem browserSkipped; snapshot nos pontos médios e em (fim − 0,3 s) de cada quadro, com a lista do --at entre aspas, e contact sheet; preview em 127.0.0.1; pare e peça o meu ok; render só depois, com --output explícito e ffprobe.
 Limites: [Cole o bloco VP-05.]
 ```
 

@@ -6,7 +6,7 @@ Marque cada linha como Verificado (com a saída ou o `arquivo:linha` que a suste
 
 ## Sumário
 
-A. Matriz das 12 áreas do modo VIDEO-COMPLETO (itens `VC-01` a `VC-58`)
+A. Matriz das 12 áreas do modo VIDEO-COMPLETO (itens `VC-01` a `VC-63`)
 B. Checklist por gate G0 a G11 e o pipeline oficial
 C. Checklist universal de prompt e skill, adaptado
 D. Checklist de entrega
@@ -36,7 +36,7 @@ Para cada área, marque `aplicável`, `não aplicável (motivo)` ou `lacuna (o q
 | VC-09 | Nenhum `ffmpeg.exe` dentro do projeto | `Get-ChildItem -LiteralPath "<projeto>" -Recurse -Filter ffmpeg.exe` vazio |
 | VC-10 | `doctor` lido por checks nomeados | `ok: true` em Node.js, FFmpeg, FFprobe e Chrome; `.ok` global ignorado |
 | VC-11 | `init` rodou da pasta do vídeo, com `HYPERFRAMES_SKIP_SKILLS=1`, em `projeto/` vazia | comando e saída; `hyperframes.json` presente |
-| VC-12 | Rede do render avisada | menção a `cdn.jsdelivr.net` (e Google Fonts, se houver fonte fora do pacote) |
+| VC-12 | Rede do render avisada | menção a `cdn.jsdelivr.net` (GSAP) **e ao Google Fonts (faces de todas as fontes, inclusive as "embutidas")**, com o cache fora do projeto em `~\.cache\hyperframes\fonts\`; nenhuma promessa de render offline (DF-01) |
 
 ### A3. Intenção e BRIEF
 
@@ -61,7 +61,7 @@ Para cada área, marque `aplicável`, `não aplicável (motivo)` ou `lacuna (o q
 | ID | Verificação | Evidência de pronto |
 | --- | --- | --- |
 | VC-21 | `frame.md` final usa exatamente os valores de `tokens.json` | tabela token, valor do usuário, valor no `frame.md`, igual? |
-| VC-22 | Fontes embutidas e não banidas; pisos do destino atendidos | lista com origem; corpo 20 (tela cheia) ou 32 px (feed) |
+| VC-22 | Fontes do conjunto "embutido" e não banidas (na execução real são baixadas do Google Fonts, DF-01); pisos do destino atendidos | lista com origem; corpo 20 (tela cheia) ou 32 px (feed) |
 | VC-23 | `## Regras do vídeo` no fim do `frame.md` | seção presente (os workers não leem o `STORYBOARD.md`) |
 | VC-24 | Um acento por quadro; fundo claro com bordas de 2 px ou mais; sem gradiente linear de tela cheia em fundo escuro | `snapshot` inspecionado |
 
@@ -80,10 +80,10 @@ Para cada área, marque `aplicável`, `não aplicável (motivo)` ou `lacuna (o q
 
 | ID | Verificação | Evidência de pronto |
 | --- | --- | --- |
-| VC-31 | Regime de som coerente com `audio_meta.json` | mudo total: sem arquivo; SFX: entradas `sfx`; voz: `voices` |
+| VC-31 | Regime de som coerente com `audio_meta.json` | mudo total: sem arquivo; silencioso com SFX: `audio.mjs` sem `SCRIPT.md` grava o arquivo vazio e o `fetch-sfx` preenche as entradas `sfx` (Verificado, dogfood 2026-10-14, DF-05); voz: `voices` |
 | VC-32 | Com voz: `--voice` de prefixo `p`, teste de uma frase ouvido, números e siglas como se fala, só o bloco recuado do `SCRIPT.md` vai ao TTS | log do áudio; resultado do teste |
 | VC-33 | Parakeet instalado ou legendas desligadas; sem Whisper | saída do `models install parakeet` ou `captions: skipped` |
-| VC-34 | `music: none`; SFX só da biblioteca (19 nomes do `manifest.json`) | `STORYBOARD.md`; `Grep` dos nomes |
+| VC-34 | `music: none`; SFX só da biblioteca (19 nomes do `manifest.json`); no caso real o `fetch-sfx` não baixou nada ("heygen: no") e os `.mp3` foram copiados para `projeto\assets\sfx` | `STORYBOARD.md`; `Grep` dos nomes; contagem de `<audio>` no `index.html` igual à de disparos |
 
 ### A8. Contrato de composição ([padroes-e-antipadroes.md](padroes-e-antipadroes.md), seção 4)
 
@@ -95,6 +95,9 @@ Para cada área, marque `aplicável`, `não aplicável (motivo)` ou `lacuna (o q
 | VC-38 | `<style>` e `<script>` dentro do `<template>`; raiz estilizada por `#root`; fundo de tela cheia em camada `clip` | leitura |
 | VC-39 | `gsap.fromTo` com destino visível (`opacity: 1`); sem `tl.set` de esconder em t=0 | `Grep` |
 | VC-40 | Doutrina da rota: `power3`, sem `back.out`, `bounce` ou `elastic` como default | `Grep` |
+| VC-59 | Ligaduras desligadas em todo texto mono com placeholders ou código: `font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0;` em `#root` e nos descendentes (JetBrains Mono funde `-<`; DF-02) | `Grep` da declaração; `snapshot` de um texto com `-<` |
+| VC-60 | Ids e classes prefixados pelo `frame_id` (que começa com dígito, `NN-slug`) só em seletores de atributo (`[id="..."]`, `[class~="..."]`) ou `CSS.escape`/`getElementById`, nunca `#01-...`; todo elemento com `data-start` tem `id`; posição por classes (DF-03) | `Grep` por `#[0-9]` nos quadros: 0; `lint` sem `studio_missing_editable_id` nem `id_override_reduced_specificity` |
+| VC-61 | GSAP com a mesma URL e versão em todos os quadros (a do `index.html` do `init`: `https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js`) (DF-04) | `Grep` por `gsap` nos quadros: uma única URL |
 
 ### A9. Verificação (lint, check, snapshot, revisão)
 
@@ -102,9 +105,11 @@ Para cada área, marque `aplicável`, `não aplicável (motivo)` ou `lacuna (o q
 | --- | --- | --- |
 | VC-41 | `hfs check` sem erro **e** com `browserSkipped` falso | trecho do JSON citado |
 | VC-42 | Janelas de cada cena conferidas | `hfs timeline --json` |
-| VC-43 | `snapshot` nos pontos médios e contact sheet inspecionado | `.hyperframes\artifacts\snapshots\<id>\contact-sheet.jpg` aberto |
+| VC-43 | `snapshot` nos pontos médios e em (fim − 0,3 s) de cada quadro, lista do `--at` entre aspas, e contact sheet inspecionado | `.hyperframes\artifacts\snapshots\<id>\contact-sheet.jpg` aberto |
 | VC-44 | `frame-reviewer` e `fact-privacy-checker` rodaram; `composition-reviewer` só com sintoma | relatórios TP-04 |
 | VC-45 | No máximo 3 rodadas de correção; depois, parar e reportar | registro |
+| VC-62 | Despacho em lotes: `lint` do primeiro quadro pronto antes de liberar o lote seguinte de workers (pegou o problema sistemático dos ids em 12 quadros; DF-10) | saída do `lint` registrada antes do 2º lote |
+| VC-63 | O `check` roda lint, runtime, layout e contraste (motion desligado), mas o layout amostra cerca de 9 instantes e o contraste cerca de 5: não substitui os snapshots dos pontos médios e de (fim − 0,3 s) (DF-11) | `check` verde **e** snapshots inspecionados |
 
 ### A10. Render e entrega ([decisoes-e-tradeoffs.md](decisoes-e-tradeoffs.md), seções 5 e 6)
 
@@ -149,7 +154,7 @@ Gate com saída verificável; "pausa" = o usuário responde no chat.
 | G6 | áudio pelo regime de som | `audio_meta.json` coerente | no regime (c), log com provedor local |
 | G7 | pipeline oficial: quadros, índice, legendas, transições | `compositions\frames\NN-*.html`, `index.html` | todos os quadros `animated`; gate por artefato em disco |
 | G8 | `video-frame-review`: `hfs check`, `snapshot`, contact sheet, agentes | relatório TP-04 | sem bloqueantes |
-| G9 | `hfs preview --background` e conferência de HTTP 200 e bind | URL, PID | **pausa 2**: comando exato `/video-hyperframes:video-render-deliver <pasta> high` ou o que muda |
+| G9 | `hfs preview --background --no-open .` e conferência de HTTP 200 e bind | URL, PID | **pausa 2**: comando exato `/video-hyperframes:video-render-deliver <pasta> high` ou o que muda |
 | G10 | `video-render-deliver` (DMI) | `renders\<nome>.mp4`, `COMO-RENDERIZAR.md` | `ffprobe` colado |
 | G11 | `execution-security-auditor` sobre `.hf-log.txt` | relatório TP-08, handoff | sem incidente aberto |
 
@@ -163,8 +168,8 @@ Gate com saída verificável; "pausa" = o usuário responde no chat.
 | 3 Storyboard e roteiro | ler `story-spine`, `story-design`, `blueprints-index`, `storyboard-format`, `script-format`; escrever `STORYBOARD.md` (e `SCRIPT.md`); plano em chat | **usuário aprovou** o plano |
 | 3.1 Áudio | `hfn -Ok "<SKILL_DIR>\scripts\audio.mjs" --script .\SCRIPT.md --storyboard .\STORYBOARD.md --hyperframes . --out .\audio_meta.json --voice "<id>"` em segundo plano; silencioso: marcar o projeto | job iniciado ou projeto marcado |
 | 4 Desenho visual | sketches (`storyboard.html`) no modo colaborativo, uma pergunta quando prontos; sequência de cenas com tempos e `## Video direction`; antes de inventar um look nomeado, `catalog --query`; **sem HTML** neste passo | todo quadro com sequência, `focal`/`roles` inventados |
-| 5 Frames | esperar o áudio; `sync-durations` (só com voz) e `fetch-sfx` (se houver `sfx:`); `add <bloco>` só com confirmação; `frame-packets.mjs`; **um worker por quadro**; marcar `animated`; `captions.mjs build` (ou `skipped`); `assemble-index.mjs` | todos `animated`; `index.html` existe |
-| 6 Finalizar | `transitions.mjs inject` e `verify`; `hfs check` (inclui o lint); `snapshot --at "<t1,t2,...>"` (pontos médios, lista entre aspas); olhar o contact sheet; `preview --background`; "render now, or what changes?"; só então `render ... --output`; **não** repetir lint, check nem snapshot depois do render | `check` limpo, snapshots inspecionados, **usuário aprovou** |
+| 5 Frames | esperar o áudio; `sync-durations` (só com voz) e `fetch-sfx` (se houver `sfx:`); `add <bloco>` só com confirmação; `frame-packets.mjs`; **um worker por quadro** (em lotes; `lint` do primeiro quadro antes do lote seguinte, DF-10); marcar `animated`; `captions.mjs build` (ou `skipped`); `assemble-index.mjs` | todos `animated`; `index.html` existe |
+| 6 Finalizar | `transitions.mjs inject` e `verify`; `hfs check` (inclui o lint); `snapshot --at "<t1,t2,...>"` (pontos médios e fim − 0,3 s de cada quadro, lista entre aspas); olhar o contact sheet; `preview --background --no-open .`; "render now, or what changes?"; só então `render ... --output`; **não** repetir lint, check nem snapshot depois do render | `check` limpo, snapshots inspecionados, **usuário aprovou** |
 
 **Regras transversais (Verificado, V-41, V-45, V-47):** se um comando falhar, mostre o `stderr` e pare; corrija com a menor edição segura em `compositions\frames\NN-*.html` e rode de novo só o que falhou. `text_box_overflow` de 1 a 4 px em `#caption-word-*` ou `.caption-line` é falso positivo conhecido; só aja se o achado citar elemento de quadro `#el-NN-*`. Fundo de tela cheia vai em camada `class="clip"`, nunca no `#root`. Workers leem só o pacote e o `frame.md` e escrevem só `compositions\frames\NN-*.html`. Formatos: 1920x1080, 1080x1920, 1080x1080. A duração real da voz vence; nunca edite à mão durações sincronizadas.
 
@@ -212,7 +217,7 @@ Onze itens de V-61 (compilação Inferida; cada item isolado é Verificado) mais
 11. Render só depois de aprovação explícita.
 12. `ffprobe` colado: duração, resolução, fps, áudio.
 13. Caminhos absolutos do MP4, do contact sheet e do `COMO-RENDERIZAR.md` existem (`Test-Path`).
-14. Auditoria de execução feita (VC-58) e limitações declaradas (PT-BR de ponta a ponta e render real nunca executados no plugin).
+14. Auditoria de execução feita (VC-58) e limitações declaradas (PT-BR com voz de ponta a ponta nunca executado; render real só observado no dogfood de 2026-10-14, vídeo silencioso, DF-01 a DF-11; render offline Não verificado).
 
 ## E. Autoverificação do próprio plugin
 

@@ -13,7 +13,7 @@ Status: concluído | rascunho | não revisado
 - CLI: `hyperframes@0.8.154` · skills oficiais: [plugin / clone] no commit [hash] · invólucro: `hfs`
 - `check`: comando [`hfs check` / `hfs check --strict`] · erros [N] · avisos [N] · **`browserSkipped`: [true/false]** · seções de layout e contraste: [preenchidas / vazias]
 - `check` com `browserSkipped: true` ou seções vazias **não é limpo**: corrija o lint e rode de novo antes de seguir.
-- Snapshots: id [..] · pontos médios [t1, t2, ...] · contact sheet: `<pasta>\projeto\.hyperframes\artifacts\snapshots\<id>\contact-sheet.jpg`
+- Snapshots: id [..] · pontos médios e fim − 0,3 s de cada quadro [t1, t2, ...] · contact sheet: `<pasta>\projeto\.hyperframes\artifacts\snapshots\<id>\contact-sheet.jpg`
 - Impressão digital da árvore avaliada (compositions, assets, index.html, frame.md): [SHA-256] (o `video-render-deliver` compara com a árvore no momento do render)
 
 ## Achados por quadro

@@ -1,6 +1,6 @@
 # video-hyperframes: produção de vídeo com HyperFrames
 
-Plugin do Claude Code, parte do marketplace `brain-of-agent`. Versão 0.1.0 · Conteúdo validado em 2026-10-13 · Modelo-alvo: família Claude 4.x/5.x · Plataforma-alvo: Windows 11 com PowerShell · Licença MIT. **Não é afiliado à HeyGen**; "HyperFrames" e "HeyGen" aparecem só para atribuição e descrição técnica.
+Plugin do Claude Code, parte do marketplace `brain-of-agent`. Versão 0.1.1 · Conteúdo validado em 2026-10-13, com lições do primeiro uso real em 2026-10-14 · Modelo-alvo: família Claude 4.x/5.x · Plataforma-alvo: Windows 11 com PowerShell · Licença MIT. **Não é afiliado à HeyGen**; "HyperFrames" e "HeyGen" aparecem só para atribuição e descrição técnica.
 
 ## O que entrega
 
@@ -45,7 +45,7 @@ As duas skills marcadas "comando" têm `disable-model-invocation`: o modelo não
 
 Conteúdo do `playbook` (em `skills/playbook/`):
 
-- `references/` (10): `seguranca-e-privacidade`, `toolchain-windows`, `decisoes-e-tradeoffs`, `checklist-completo` (58 itens `VC-nn`), `padroes-e-antipadroes`, `explicar-software`, `design-system-para-video`, `claude-md-snippets` (`VS01` a `VS19`), `ferramentas-e-mcp` (recomendações desativadas: `deny`, hook, MCP), `fontes`.
+- `references/` (10): `seguranca-e-privacidade`, `toolchain-windows`, `decisoes-e-tradeoffs`, `checklist-completo` (63 itens `VC-nn`), `padroes-e-antipadroes`, `explicar-software`, `design-system-para-video`, `claude-md-snippets` (`VS01` a `VS19`), `ferramentas-e-mcp` (recomendações desativadas: `deny`, hook, MCP), `fontes`.
 - `assets/templates/` (10): `BRIEF-preenchido`, `DECISOES-do-video`, `fonte-dos-fatos`, `relatorio-revisao-de-quadros`, `COMO-RENDERIZAR`, `hf-sessao.ps1` (o invólucro `hfs`/`hfn`), `storyboard-para-aprovacao`, `relatorio-seguranca-da-execucao`, `checklist-video-completo`, `handoff-de-video`.
 - Referências específicas nas skills de tarefa: `roteiro-oficial-de-perguntas`, `formatos-storyboard-e-script`, `contrato-de-composicao`, `render-e-entrega`.
 - `evals/`: 10 casos no formato `claude plugin eval`, `designed_not_executed`.
@@ -71,7 +71,7 @@ Pela linha de comando: `claude plugin marketplace add francisco-efjr/brain-of-ag
 | FFmpeg e ffprobe | build portátil em pasta do usuário, hash conferido por você; `video-toolchain-setup` guia o download com confirmação |
 | Chrome do sistema | apontado por `HYPERFRAMES_BROWSER_PATH`, para o render não baixar outro navegador |
 | Opcional: Python 3.10+ em venv, modelo Kokoro, Parakeet | só para narração local; cerca de 1 GB; PT-BR de ponta a ponta nunca foi executado |
-| Rede para `cdn.jsdelivr.net` | a compilação de `render` e de `check` busca o GSAP |
+| Rede para `cdn.jsdelivr.net` e Google Fonts | a compilação de `check`, `snapshot` e `render` busca o GSAP (jsdelivr) e as faces das fontes (Google Fonts, inclusive as "embutidas"); o cache das fontes fica fora do projeto, em `~\.cache\hyperframes\fonts\` |
 
 ## Exemplos de pedidos
 
@@ -115,17 +115,30 @@ Também: documentação de hooks e de permissões do Claude Code (classe A, lida
 - Plugin sob licença MIT. Autor: Francisco Edson (https://github.com/francisco-efjr).
 - **HyperFrames, HeyGen, Apache-2.0** (Copyright 2026 HeyGen, Inc.): o conteúdo upstream é **destilado com redação própria**, com citação de arquivo e commit; nada foi copiado e nenhuma skill foi vendorizada. Os exemplos mínimos adaptados trazem a atribuição. A licença não concede uso de marca (§6): este plugin não é afiliado à HeyGen.
 - Partes marcadas nos arquivos vêm do repositório `francisco-efjr/brain-of-agent` (MIT, conteúdo do próprio autor): protocolo do orquestrador, modo completo, caso real do vídeo, template de handoff (adaptados). Nenhum caminho pessoal nem valor do design system do autor é reproduzido.
-- Terceiros citados e **não** redistribuídos: GSAP (licença própria, não OSI; carregado de CDN pelo render), Parakeet TDT 0.6B v3 da NVIDIA (CC-BY-4.0, com atribuição quando mencionado), SFX da Pixabay (Pixabay Content License; ficam dentro do vídeo renderizado), fontes embutidas do compilador (OFL e similares).
+- Terceiros citados e **não** redistribuídos: GSAP (licença própria, não OSI; carregado de CDN pelo render), Parakeet TDT 0.6B v3 da NVIDIA (CC-BY-4.0, com atribuição quando mencionado), SFX da Pixabay (Pixabay Content License; ficam dentro do vídeo renderizado), fontes do compilador (OFL e similares; baixadas do Google Fonts na compilação, não distribuídas aqui).
 - "Claude" e "Anthropic" pertencem a seus titulares; este plugin não é oficial.
+
+## Novidades 0.1.1 (dogfood)
+
+Lições do primeiro uso real (vídeo explicativo silencioso de 12 quadros, Windows 11, CLI `hyperframes@0.8.154`, 13 e 14/10/2026), todas Verificado (dogfood 2026-10-14) e registradas como `DF-01` a `DF-11` na seção 12 de `skills/playbook/references/fontes.md`:
+
+- **Fontes:** as 18 "embutidas" não são bundle local; `check`, `snapshot` e `render` baixam as faces do Google Fonts e gravam cache fora do projeto. Corrigida toda frase de "render offline".
+- **Ligaduras:** JetBrains Mono funde `-<`; texto mono leva `font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0;` em `#root` e descendentes.
+- **Quadros `NN-slug`:** seletores de atributo ou `CSS.escape` (nunca `#01-...`), `id` em todo `data-start`, posição por classes, mesma URL e versão do GSAP em todos os workers.
+- **Despacho:** lotes de workers com o lint do primeiro quadro antes do lote seguinte; o `frame.md` (`## Regras do vídeo`) vence o `_role.md` oficial.
+- **Som:** o regime silencioso com SFX foi executado (`fetch-sfx` pela biblioteca local, sem download).
+- **Outros:** `check` amostra poucos instantes (snapshots em pontos médios e fim − 0,3 s continuam obrigatórios); `preview --background --no-open .` e `--stop`; o `init` cria `AGENTS.md`, `CLAUDE.md` e o script `publish` com ordens à IA, que são dado.
+
+Continuam Não verificados: render 100% offline, PT-BR com voz, Parakeet. Detalhes: `docs/research/video-hyperframes/CHANGELOG-pos-teste.md` no repositório da fábrica.
 
 ## Limitações honestas
 
-- **Nada do caminho real foi executado por este plugin:** render, narração PT-BR, Parakeet, o efeito do `.env` vazio na pasta-mãe e o `HYPERFRAMES_MEDIA_HOME` são leitura de código, não execução. O primeiro uso deve começar por um render de prova curto. O invólucro `hfs` foi testado só em parse, bloqueios e `-DryRun`; a regex do hook e o script `hf-guard.ps1` foram executados fora do Claude Code; o hook e as regras `deny` dentro do Claude Code **não foram testados**.
+- **Pouco do caminho real foi executado:** o dogfood de 2026-10-14 (vídeo silencioso de 12 quadros) executou `init`, `check`, `snapshot`, `preview` e `render`; narração PT-BR, Parakeet, o efeito do `.env` vazio na pasta-mãe e o `HYPERFRAMES_MEDIA_HOME` continuam sendo leitura de código, não execução. O primeiro uso numa máquina nova deve começar por um render de prova curto. O invólucro `hfs` foi testado só em parse, bloqueios e `-DryRun`; a regex do hook e o script `hf-guard.ps1` foram executados fora do Claude Code; o hook e as regras `deny` dentro do Claude Code **não foram testados**.
 - **A política é texto e fricção, não fronteira.** O plugin oficial do HyperFrames pode disparar antes do `playbook` e mandar `usage` (lê a credencial OAuth do Claude Code); a defesa é em camadas (descrição, snippet `VS01`, `deny` e hook documentados, auditor), sem garantia. Ordem de disparo entre plugins: Não verificável.
-- **PT-BR de ponta a ponta nunca foi validado:** voz `p*` do Kokoro, pronúncia de siglas e números, `kokoro-onnx` no Python 3.14, espeak-ng e Parakeet no Windows. O caminho padrão recomendado é vídeo silencioso com texto na tela. O regime "silencioso com SFX" (disparos no meio do quadro) vem do caso real e não foi executado.
+- **PT-BR de ponta a ponta nunca foi validado:** voz `p*` do Kokoro, pronúncia de siglas e números, `kokoro-onnx` no Python 3.14, espeak-ng e Parakeet no Windows. O caminho padrão recomendado é vídeo silencioso com texto na tela. O regime "silencioso com SFX" (disparos no meio do quadro) foi executado no dogfood de 2026-10-14 (Verificado).
 - **O upstream é volátil.** Skills e registro mudam sem nova versão do CLI; o pin cobre só o CLI. As constantes de versão têm fonte única em `toolchain-windows.md` e `fontes.md` e exigem revalidação a cada subida de versão.
 - **Rotas com ressalvas:** `pr-to-video` e `product-launch-video` (uso de `gh` e de `capture`) não foram validadas; `general-video` custa despacho por cena; `slideshow`, `embedded-captions`, `talking-head-recut`, `music-to-video` e `remotion-to-hyperframes` estão fora da v1.
-- **Render depende de rede** (`cdn.jsdelivr.net`; Google Fonts se a fonte não for embutida); render offline completo é Não verificável.
+- **Render depende de rede** (`cdn.jsdelivr.net` para o GSAP e Google Fonts para **todas** as fontes: as "embutidas" não são bundle local, Verificado no dogfood); render 100% offline é Não verificado (rodar uma vez online para popular o cache é Inferido; `@font-face` local, Não verificado).
 - **Aprovação do render por comando** (`disable-model-invocation`) é decisão de UX não medida; `hfn prefs.mjs get` pede `-Ok` no invólucro por precaução, embora seja leitura.
 - Os 10 evals são `designed_not_executed`; `claude plugin eval` exige Claude Code 2.1.269 ou superior e consome cota. Sem baseline sem plugin medido, a utilidade é hipótese.
 - As revisões de qualidade (estrutural em 2026-10-13, de prompt e conteúdo em 2026-10-14) foram feitas por modelos da família Claude: independência parcial; as notas são autoavaliação até um validador externo ler os arquivos finais.

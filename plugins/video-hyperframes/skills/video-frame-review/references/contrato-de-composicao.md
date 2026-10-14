@@ -1,8 +1,8 @@
 # Contrato de composição HyperFrames: armadilhas silenciosas
 
-Base: HyperFrames (HeyGen, Apache-2.0), commit `bf4cf860fbd26a7d51938c5f11987c335d4e848a`: `hyperframes-core/references/` (`data-attributes`, `determinism-rules`, `sub-compositions`, `tracks-and-clips`, `minimal-composition`), `frame-worker-core.md`, `packages/lint/src/rules/composition.ts` e `docs/prompting/*` (V-49 a V-53, V-57, V-69), destilado com redação própria. Rótulo geral: **Verificado** (texto lido); o comportamento em render não foi executado. Código vence documentação: onde a doc diverge do código, vale o código (V-53).
+Base: HyperFrames (HeyGen, Apache-2.0), commit `bf4cf860fbd26a7d51938c5f11987c335d4e848a`: `hyperframes-core/references/` (`data-attributes`, `determinism-rules`, `sub-compositions`, `tracks-and-clips`, `minimal-composition`), `frame-worker-core.md`, `packages/lint/src/rules/composition.ts` e `docs/prompting/*` (V-49 a V-53, V-57, V-69), destilado com redação própria. Rótulo geral: **Verificado** (texto lido); o comportamento em render não foi executado, exceto onde marcado `DF-nn` (**Verificado, dogfood 2026-10-14**: observação do primeiro uso real, vídeo silencioso de 12 quadros, CLI 0.8.154; resumo em `fontes.md` do playbook, seção 12). Código vence documentação: onde a doc diverge do código, vale o código (V-53).
 
-Sumário: 1 Raiz e clips · 2 Tempo · 3 Mídia · 4 Timeline e determinismo · 5 Sub-composições · 6 Doutrina da rota faceless · 7 Sintoma -> causa · 8 Exemplo mínimo · 9 O que o lint já cobre.
+Sumário: 1 Raiz e clips · 2 Tempo · 3 Mídia · 4 Timeline e determinismo · 5 Sub-composições · 6 Doutrina da rota faceless · 7 Sintoma -> causa · 8 Exemplo mínimo · 9 O que o lint já cobre · 10 Regras do dogfood (2026-10-14) para o worker e o despacho.
 
 ## 1. Raiz e clips
 
@@ -30,6 +30,8 @@ Sumário: 1 Raiz e clips · 2 Tempo · 3 Mídia · 4 Timeline e determinismo · 
 - Proibido: `Date.now()`, `performance.now()`, `Math.random()` sem semente, rede para ativo obrigatório em tempo de render, estado de hover, scroll ou foco, `repeat: -1` sem raiz de duração finita (`gsap_infinite_repeat` vira aviso). Dado ao vivo também não: o que o vídeo precisa saber já está presente antes do render.
 - Não anime a mesma propriedade do mesmo elemento em várias timelines. Evite transform CSS e `x`/`y` do GSAP no mesmo elemento (`gsap_css_transform_conflict`).
 - **Seek frio:** um `gsap.fromTo` cujo destino não traz `opacity: 1` pode ficar **invisível** num worker de render que faz seek direto (`gsap_cold_seek_hidden_fromto_missing_reveal`). Não esconda o estado inicial com `tl.set(...)` em t=0 dentro da timeline (`gsap_timeline_set_initial_hide`): use `gsap.set` fora da timeline ou CSS. `fromTo` mostra o estado inicial **antes** de começar; elemento que deve estar ausente até o cue precisa de `to()` com keyframes, `tl.set()` de duração zero na fronteira do beat ou a própria janela do clip. Prefira `gsap.fromTo` a `gsap.from`.
+- Contador numérico: tween de número com `onUpdate` e `Math.round` foi seek-safe nos snapshots, com o valor final certo no fim do quadro (Verificado, DF-06).
+- GSAP: a mesma URL e versão em todos os quadros, a do `index.html` do `init` (`https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js`); um worker que escolhe outra CDN ou versão obriga o orquestrador a corrigir depois (Verificado, DF-04).
 - Workers paralelos não renderizam bit a bit idênticos: para comparar quadros com exatidão, `--workers 1`.
 - O lint usa denylist, não allowlist de propriedades: ausência de aviso não prova que uma propriedade é segura.
 
@@ -38,7 +40,7 @@ Sumário: 1 Raiz e clips · 2 Tempo · 3 Mídia · 4 Timeline e determinismo · 
 - Só o conteúdo de `<template>` é clonado; tudo fora (inclusive `<head>`) é descartado. `<style>` e `<script>` ficam **dentro** do `<template>`.
 - O `data-composition-id` do host, o id interno do arquivo e a chave de `window.__timelines` são o mesmo valor (sintoma de erro: "Sub-composition timelines not registered after 45000ms").
 - Estilize a raiz por `#root`, nunca por classe (`subcomposition_root_styled_by_class`). Não faça `master.add(child)`. A timeline de uma sub-composição não alcança elemento do host.
-- Cada worker de quadro entrega um único fragmento `<template>`, prefixa ids e classes com o `frame_id`, não cria saída (só o último quadro assenta) e não opera a CLI. A lista de 15 itens de autoverificação está em `frame-worker-core.md` oficial; leia lá em vez de copiar.
+- Cada worker de quadro entrega um único fragmento `<template>`, prefixa ids e classes com o `frame_id` (com dígito no início: veja a seção 10 para os seletores), não cria saída (só o último quadro assenta) e não opera a CLI. A lista de 15 itens de autoverificação está em `frame-worker-core.md` oficial; leia lá em vez de copiar.
 
 ## 6. Doutrina de motion da rota faceless (normativa; vale sobre o guia geral)
 
@@ -56,6 +58,8 @@ Ease suave `power3` como padrão (`expo.out` em chegada rápida); sem `back.out`
 | Quadro colapsado ou vazio | Sem `class="clip"` e sem layout absoluto | Estilo do filho direto da raiz |
 | `check` persiste depois da 1ª correção | Erro de lint que impede o navegador (`browserSkipped`) ou causa não vista | Saída completa do `check`; chamar o `composition-reviewer` |
 | `text_box_overflow` de 1 a 4 px em legenda | Falso positivo conhecido | Ignore se não citar `#el-NN-*` |
+| Dezenas de avisos `id_requires_css_escape` (250 no caso real) | `frame_id` começa com dígito (`NN-slug`) e o contrato manda prefixar ids e classes com ele | Seletores `#01-...`: troque por `[id="..."]`, `[class~="..."]` ou `CSS.escape` (seção 10) |
+| Texto mono com glifo trocado (`AAAA-MM-DD-<tema>` saiu como `DD-≺tema>`) | Ligadura de JetBrains Mono em `-<` | `font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0;` em `#root` e descendentes (seção 10) |
 
 ## 8. Exemplo mínimo standalone (adaptado de HyperFrames, HeyGen, Apache-2.0)
 
@@ -93,4 +97,16 @@ Os quadros reais do faceless são sub-composições com `<template>` (seção 5)
 
 ## 9. O que o lint já cobre (não repita à mão) e o que ele não vê
 
-Cobre, entre outros: `root_missing_composition_id`, `subcomposition_root_styled_by_class`, `timed_element_missing_clip_class`, `css_transition_used`, `gsap_css_transform_conflict`, `gsap_infinite_repeat`, `gsap_animates_clip_element`, `gsap_cold_seek_hidden_fromto_missing_reveal`, `gsap_timeline_set_initial_hide`, `media_missing_id`, `video_missing_muted`, `video_nested_in_timed_element`, `font_family_without_font_face`. **Não vê:** referências relativas de `data-start` (resolvem em silêncio), janelas semiabertas, timeline registrada cedo demais, intenção de movimento. Esses são o trabalho do `composition-reviewer`, quando houver sintoma.
+Cobre, entre outros: `root_missing_composition_id`, `subcomposition_root_styled_by_class`, `timed_element_missing_clip_class`, `css_transition_used`, `gsap_css_transform_conflict`, `gsap_infinite_repeat`, `gsap_animates_clip_element`, `gsap_cold_seek_hidden_fromto_missing_reveal`, `gsap_timeline_set_initial_hide`, `media_missing_id`, `video_missing_muted`, `video_nested_in_timed_element`, `font_family_without_font_face`, `id_requires_css_escape`, `studio_missing_editable_id`, `id_override_reduced_specificity`. **Não vê:** referências relativas de `data-start` (resolvem em silêncio), janelas semiabertas, timeline registrada cedo demais, intenção de movimento. Esses são o trabalho do `composition-reviewer`, quando houver sintoma.
+
+## 10. Regras do dogfood (2026-10-14) para o worker e o despacho
+
+Rótulo: **Verificado (dogfood 2026-10-14)**, salvo indicação. Repita estas regras no despacho de cada worker, porque ele lê só o `_role.md`, o próprio pacote e o `frame.md`; o ideal é gravá-las em `## Regras do vídeo` do `frame.md`.
+
+1. **Ids e classes com `frame_id` que começa por dígito (DF-03).** O pipeline nomeia os quadros `NN-slug` e o contrato manda prefixar ids e classes com o `frame_id`, então o lint emite `id_requires_css_escape` (250 avisos no caso real). É inofensivo se os seletores forem de atributo (`[id="01-titulo"]`, `[class~="01-card"]`) ou se o script usar `CSS.escape` ou `getElementById`; nunca `#01-...` nem `.01-...`. Dê `id` a todo elemento com `data-start` (evita `studio_missing_editable_id`) e posicione por classes, não por id (evita `id_override_reduced_specificity`).
+2. **Ligaduras (DF-02).** Em todo texto mono com placeholders ou código, `font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0;` aplicado a `#root` e aos descendentes. JetBrains Mono funde `-<` num glifo (`AAAA-MM-DD-<tema>` apareceu como `DD-≺tema>`).
+3. **Fontes (DF-01).** As 18 famílias "embutidas" não são bundle local nesta versão do CLI: o `check`, o `snapshot` e o `render` baixam as faces do Google Fonts (11 de Montserrat e 10 de JetBrains Mono no caso real) e gravam cache fora do projeto, em `~\.cache\hyperframes\fonts\`. Acesso de rede do render, ao lado do GSAP. Render 100% offline: rodar uma vez online para popular o cache (Inferido) ou `@font-face` local (Não verificado).
+4. **GSAP (DF-04).** Uma única URL e versão em todos os workers: a do `index.html` do `init`.
+5. **Precedência (DF-09).** O `_role.md` oficial pede "herói visível até 0,5 s" e um `@font-face` por fonte. Isso conflita com storyboards de revelação progressiva e com fontes do conjunto "embutido". No caso real prevaleceu o `frame.md` (`## Regras do vídeo`) e o `check` passou com 0 erros. Ordem: `frame.md` (`## Regras do vídeo`) > `_role.md` > preferência do worker; registre no `DECISOES.md` qualquer ponto do `_role.md` que foi dispensado.
+6. **Lint do primeiro quadro (DF-10).** Despache em lotes (2 lotes de 6 workers no caso real) e rode o lint do primeiro quadro pronto antes de liberar o lote seguinte: foi assim que o problema sistemático do item 1 apareceu cedo.
+7. **Alcance do `check` (DF-11).** Ele roda lint, runtime, layout e contraste (72 de 72 pares no caso real); motion fica desligado; o layout amostra só cerca de 9 instantes e o contraste cerca de 5. Snapshots nos pontos médios e em (fim − 0,3 s) de cada quadro continuam obrigatórios, com a lista do `--at` sempre entre aspas.
