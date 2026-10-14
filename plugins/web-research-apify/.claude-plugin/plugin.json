@@ -1,0 +1,25 @@
+{
+  "name": "web-research-apify",
+  "version": "0.1.0",
+  "description": "Extra opcional: ensina agentes do Claude Code a usar o Apify MCP como ferramenta de pesquisa web profunda (Reddit, X, YouTube, SERP, crawl de documentação, páginas com JavaScript ou bloqueio). Orienta a conexão com confirmação, escolhe o Actor, executa só com orçamento aprovado e teto de gasto, lê o dataset sem estourar o contexto, cita a URL original, reverifica e audita o custo. Sem .mcp.json, hooks ou bin/; sem as tools da Apify faz fallback para WebSearch/WebFetch e declara a lacuna. Não afiliado à Apify.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "apify",
+    "apify-mcp",
+    "web-research",
+    "pesquisa-web",
+    "web-scraping",
+    "actors",
+    "reddit",
+    "youtube-transcript",
+    "serp",
+    "crawler",
+    "cost-control",
+    "research-method",
+    "apify-completo"
+  ]
+}

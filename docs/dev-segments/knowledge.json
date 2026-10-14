@@ -1970,7 +1970,7 @@
             "apify-researcher"
           ],
           "role": "lider",
-          "status": "em construção"
+          "status": "publicado"
         },
         {
           "plugin": "automation-integrations",
@@ -2018,7 +2018,7 @@
       ],
       "notes": "Rota gratuita primeiro: scraping com código próprio ou de página estática fica com automation-integrations:responsible-scraping, sem Apify; Apify só quando a rota gratuita falha (bloqueio, JavaScript, sem API). Sem .mcp.json ativo: a conexão (mcp.apify.com, OAuth) é feita pelo usuário com confirmação. pesquisa-com-orcamento só roda por comando (gasta dinheiro). Despachado como general-purpose, o agente não herda tools: repetir orçamento, ferramentas e regras no prompt (P-21).",
       "origin": "curada",
-      "status": "em construção"
+      "status": "publicado"
     },
     {
       "tag": "product-discovery-specs",
@@ -3275,6 +3275,47 @@
       "validators": [],
       "sources": [
         "docs/dev-segments/research/web-frontend/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "web-research-apify",
+      "label": "Extra opcional: ensina agentes do Claude Code a usar o Apify MCP como ferramenta de pesquisa web profunda (Re…",
+      "description": "Extra opcional: ensina agentes do Claude Code a usar o Apify MCP como ferramenta de pesquisa web profunda (Reddit, X, YouTube, SERP, crawl de documentação, páginas com JavaScript ou bloqueio).",
+      "triggers": [
+        "apify",
+        "apify-mcp",
+        "web-research",
+        "pesquisa-web",
+        "web-scraping",
+        "actors",
+        "reddit",
+        "youtube-transcript",
+        "serp",
+        "crawler",
+        "cost-control",
+        "research-method",
+        "apify-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "web-research-apify",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "apify-cost-auditor",
+            "apify-researcher",
+            "apify-source-verifier"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/web-research-apify/VALIDATED.md"
       ],
       "origin": "automatica",
       "status": "publicado"

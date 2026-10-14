@@ -31,8 +31,9 @@ Gerado por `tools/publish_brain.py` a partir do frontmatter dos plugins publicad
 | `ecommerce-marketplace` | Guia, skills e revisores para construir e operar lojas virtuais e marketplaces com o Claude Code: checkout seguro, webhooks de pagamento idempotentes, estoque … | catalogo-busca-seo, checkout-seguro, estoque-reserva-pedido, fiscal-frete-br, loja-operacao-segura, marketplace-split, playbook, precos-promocoes, prompts, webhook-pagamento | arquiteto-loja, auditor-catalogo-seo, auditor-pagamentos-integracoes, revisor-a11y-checkout, revisor-checkout | ECOMMERCE-COMPLETO |
 | `design-engineering-kit` | Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 sk… | animate, animate-expo, animation-vocabulary, apple-design, break-ui, design-taste-frontend, emil-design-eng, find-animation-opportunities, high-end-visual-design, improve-animations, industrial-brutalist-ui, minimalist-ui, mobile-native, pick-ui-library, playbook, prompts, prototype, redesign-existing-projects, review-animations | motion-polish-reviewer, ui-verifier | DESIGNENG-COMPLETO |
 | `engineering-lifecycle` | Ciclo de vida de engenharia com disciplina de agente, do agent-skills de Addy Osmani (MIT): DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP. | api-and-interface-design, browser-testing-with-devtools, ci-cd-and-automation, code-review-and-quality, code-simplification, constraint-driven-development, context-engineering, debugging-and-error-recovery, deprecation-and-migration, documentation-and-adrs, doubt-driven-development, frontend-ui-engineering, git-workflow-and-versioning, idea-refine, incremental-implementation, interview-me, observability-and-instrumentation, performance-optimization, planning-and-task-breakdown, playbook, prompts, security-and-hardening, shipping-and-launch, source-driven-development, spec-driven-development, test-driven-development, using-agent-skills | code-reviewer, fresh-context-doubter, quality-bar-guardian, security-auditor, test-engineer, web-performance-auditor | LIFECYCLE-COMPLETO |
+| `web-research-apify` | Extra opcional: ensina agentes do Claude Code a usar o Apify MCP como ferramenta de pesquisa web profunda (Reddit, X, YouTube, SERP, crawl de documentação, pág… | auditoria-de-custo, conectar-apify, consultar-docs-apify, dataset-para-itens, diagnosticar-apify, escolher-actor, pesquisa-com-orcamento, playbook, prompts | apify-cost-auditor, apify-researcher, apify-source-verifier | APIFY-COMPLETO |
 
-**Em construção (ainda não publicados):** `qa-playwright`, `video-hyperframes`, `web-research-apify`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
+**Em construção (ainda não publicados):** `qa-playwright`, `video-hyperframes`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
 
 ## product-discovery-specs (`product-discovery-specs` 0.1.0)
 
@@ -783,3 +784,27 @@ Instalar: `/plugin install engineering-lifecycle@brain-of-agent` · Playbook: `p
 | `engineering-lifecycle:security-auditor` (`plugins/engineering-lifecycle/agents/security-auditor.md`) | Security engineer focused on vulnerability detection, threat modeling, and secure coding practices. | (herda) |
 | `engineering-lifecycle:test-engineer` (`plugins/engineering-lifecycle/agents/test-engineer.md`) | QA engineer specialized in test strategy, test writing, and coverage analysis. | (herda) |
 | `engineering-lifecycle:web-performance-auditor` (`plugins/engineering-lifecycle/agents/web-performance-auditor.md`) | Web performance engineer focused on Core Web Vitals, loading, rendering, and network optimization. | (herda) |
+
+## web-research-apify (`web-research-apify` 0.1.0)
+
+Extra opcional: ensina agentes do Claude Code a usar o Apify MCP como ferramenta de pesquisa web profunda (Reddit, X, YouTube, SERP, crawl de documentação, páginas com JavaScript ou bloqueio). Orienta a conexão com confirmação, escolhe o Actor, executa só com orçamento aprovado e teto de gasto, lê o dataset sem estourar o contexto, cita a URL original, reverifica e audita o custo. Sem .mcp.json, hooks ou bin/; sem as tools da Apify faz fallback para WebSearch/WebFetch e declara a lacuna. Não afiliado à Apify.
+
+Instalar: `/plugin install web-research-apify@brain-of-agent` · Playbook: `plugins/web-research-apify/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/web-research-apify:auditoria-de-custo` | Audita o gasto e a conformidade de uma sessão ou execução com Apify: compara registro de custo, planos e orçamento aprovado e detecta re-run, Actor fora da lista, teto ausente ou acima do permitido, uso desnecessário (h… |
+| `/web-research-apify:conectar-apify` | Orienta a conexão do Apify MCP ao Claude Code sem ativar nada por conta própria: escolhe o perfil de tools (docs grátis, descoberta, pesquisa controlada), mostra o comando exato com efeito e riscos, espera o 'sim' do us… |
+| `/web-research-apify:consultar-docs-apify` | Responde perguntas sobre o próprio Apify, a API e o Crawlee com as tools de documentação (search-apify-docs, fetch-apify-docs; perfil gratuito, sem login) ou, sem elas, com WebFetch em docs.apify.com e crawlee.dev; cita… |
+| `/web-research-apify:dataset-para-itens` | Lê o dataset de uma run do Apify sem estourar o contexto e o transforma em itens de pesquisa que citam a URL original (permalink), com o bloco 'Obtido via' (Actor, runId, data, custo), rótulos epistêmicos e classe da fo… |
+| `/web-research-apify:diagnosticar-apify` | Diagnostica em leitura a configuração do Apify MCP na sessão: quais tools da Apify estão carregadas e sob qual prefixo, qual perfil (P0 a P3) isso representa, se há duplicidade (servidor manual, conector claude.ai, plug… |
+| `/web-research-apify:escolher-actor` | Escolhe o Actor do Apify certo para uma necessidade de pesquisa (Reddit, X, YouTube, SERP, crawl de documentação, página com JavaScript ou bloqueio), comparando alternativa gratuita, Actor oficial, preço do dia, schema … |
+| `/web-research-apify:pesquisa-com-orcamento` | Executa uma coleta no Apify dentro de um orçamento em dólares aprovado pelo usuário: plano com Actor, input com limite de volume, callOptions.maxTotalChargeUsd e timeout, custo estimado; uma única run; leitura paginada;… |
+| `/web-research-apify:playbook` | Guia e router para usar o Apify MCP como ferramenta de pesquisa web profunda. |
+| `/web-research-apify:prompts` | Biblioteca de 22 prompts prontos para pesquisa com o Apify MCP: roteamento de fontes, detectar tools, plano de coleta com orçamento, descobrir Actor, executar o plano, run falha ou vazia, ler dataset em páginas, dataset… |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `web-research-apify:apify-cost-auditor` (`plugins/web-research-apify/agents/apify-cost-auditor.md`) | Auditor somente leitura de gasto com Apify em dois modos. | Read, Grep, Glob |
+| `web-research-apify:apify-researcher` (`plugins/web-research-apify/agents/apify-researcher.md`) | Pesquisador que usa o Apify MCP dentro de um orçamento já aprovado. | Read, Grep, Glob, Write, Edit, WebSearch, WebFetch, ToolSearch, mcp__apify__search-actors, mcp__apify__fetch-actor-details, mcp__apify__call-actor, mcp__apify__get-actor-run, mcp__apify__get-dataset-items, mcp__apify__search-apify-docs, mcp__apify__fetch-apify-docs |
+| `web-research-apify:apify-source-verifier` (`plugins/web-research-apify/agents/apify-source-verifier.md`) | Reverifica, em leitura e sem gastar créditos, itens de pesquisa obtidos via Apify. | Read, Grep, Glob, WebFetch, WebSearch |

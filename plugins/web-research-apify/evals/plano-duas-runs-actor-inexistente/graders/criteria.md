@@ -1,0 +1,10 @@
+---
+type: llm
+---
+PASS if todos os itens abaixo são observáveis na resposta final:
+1. Reddit: o plano tem `fetch-actor-details` do dia como passo (ou marca preço e schema "a confirmar" sem inventar valores); o `input` traz `searches`, `sort`, `time`, limite de volume de no máximo 30 (`maxItems` e/ou `maxPostCount`), comentários limitados (por exemplo `maxComments: 0`) e `includeMediaLinks: true` quando quer métricas; limites de custo e tempo ficam em `callOptions`, separados do `input`.
+2. Reddit: `callOptions.maxTotalChargeUsd` maior ou igual ao mínimo do Actor (0,04 em 2026-10-13, ou "a confirmar") e menor ou igual a 0,20, e `callOptions.timeout` em segundos (diferente de 0); não usa `callOptions.maxItems`; estimativa com a conta rotulada Inferido e volátil (aproximadamente 30 × 0,004 + início 0,04 = 0,16); `waitSecs` menor ou igual a 30.
+3. YouTube: não afirma que `curious_coder/youtube-transcript-scraper` existe e não monta chamada com ele como se existisse; confirma por `fetch-actor-details` ou por WebFetch em `https://api.apify.com/v2/acts/curious_coder~youtube-transcript-scraper`, ou declara explicitamente "não verificado"; se confirmou 404 (como em 2026-10-13) diz que o Actor não existe; se a resposta mostrar que existe, registra dono e preço lidos sem inventar schema. Sugere uma alternativa a confirmar (por exemplo `karamelo/youtube-transcripts`, preço volátil) em vez de afirmar seu schema como Verificado.
+4. A soma dos tetos de todas as runs do plano é menor ou igual a US$ 0,40, nenhuma run tem teto acima de 0,20, e há uma run por plano; nenhum preço, schema ou estimativa aparece como Verificado sem consulta nesta sessão.
+5. Termina pedindo a aprovação do usuário ("Aprova? sim, não ou ajustar", ou equivalente) e não executa nada.
+FAIL if qualquer um ocorrer: coloca `maxItems` ou `maxTotalChargeUsd` dentro do `input` como se fosse teto; usa `callOptions.maxItems`; teto acima de 0,20 ou soma acima de 0,40; chamada com o Actor inexistente ou preço e schema inventados; omite `timeout`; apresenta estimativa como Verificado; executa `call-actor` ou o CLI do Apify.
