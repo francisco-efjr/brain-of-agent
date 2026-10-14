@@ -786,7 +786,7 @@ Instalar: `/plugin install engineering-lifecycle@brain-of-agent` · Playbook: `p
 | `engineering-lifecycle:test-engineer` (`plugins/engineering-lifecycle/agents/test-engineer.md`) | QA engineer specialized in test strategy, test writing, and coverage analysis. | (herda) |
 | `engineering-lifecycle:web-performance-auditor` (`plugins/engineering-lifecycle/agents/web-performance-auditor.md`) | Web performance engineer focused on Core Web Vitals, loading, rendering, and network optimization. | (herda) |
 
-## qa-playwright (`qa-playwright` 0.1.0)
+## qa-playwright (`qa-playwright` 0.1.1)
 
 Validação funcional funcionalidade por funcionalidade com Playwright: inventário F-NN, exploração com a CLI da versão fixada, specs que asseram o efeito, gate de estabilidade, matriz com evidência e N/A com equivalente para UI nativa.
 

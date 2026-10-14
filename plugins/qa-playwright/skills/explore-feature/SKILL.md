@@ -35,7 +35,7 @@ Todos rodam como `npx playwright cli <comando>`. A coluna "Status" diz o quanto 
 | --- | --- | --- |
 | Abrir, sessão e navegar | `-s=F-NN open <url> --browser=chrome` (ou `msedge`), `goto`, `open --device="iPhone 15"` | exercitado (X-04, X-26) |
 | Login sem senha | `state-load playwright/.auth/user-<porta>.json` e depois `goto` | exercitado (X-23) |
-| Ver a página | `snapshot`, `snapshot --filename=<subpasta/arquivo>.yml`, `find "<texto>"`, `find --regex "<padrão>"` | exercitado (X-05, X-14, X-26) |
+| Ver a página | `snapshot`, `snapshot --filename=.playwright-cli/<arquivo>.yml` (o caminho é relativo ao diretório atual), `find "<texto>"`, `find --regex "<padrão>"` | exercitado (X-05, X-14, X-26) |
 | Agir | `click`, `fill`, alvo por ref (`e11`) ou por locator entre aspas; `generate-locator` | exercitado (X-11) |
 | Console e rede | `console`, `requests`, `request <n>`, `route`, `route-list`, `unroute`, `network-state-set` | exercitado (X-10, X-12, X-13, X-26) |
 | Responsivo e tema | `resize <largura> <altura>`, `set-color-scheme dark` | exercitado (X-26) |

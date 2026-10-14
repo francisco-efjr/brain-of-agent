@@ -38,19 +38,19 @@ Alvo de uma ação: **ref** do snapshot (`e11`) ou **expressão de locator** ent
 
 ```bash
 npx playwright cli -s=F-07 open "http://127.0.0.1:4173/tarefas" --browser=chrome
-npx playwright cli -s=F-07 snapshot --filename=F-07-inicio.yml
+npx playwright cli -s=F-07 snapshot --filename=.playwright-cli/F-07-inicio.yml
 npx playwright cli -s=F-07 find "pendente"
 npx playwright cli -s=F-07 fill "getByRole('textbox', { name: 'Nova tarefa' })" "Comprar pão"
 npx playwright cli -s=F-07 click "getByRole('button', { name: 'Adicionar' })"
 npx playwright cli -s=F-07 console
 npx playwright cli -s=F-07 requests
-npx playwright cli -s=F-07 screenshot --filename=F-07-depois.png
+npx playwright cli -s=F-07 screenshot --filename=.playwright-cli/F-07-depois.png
 npx playwright cli -s=F-07 close
 npx playwright cli list
 ```
 
 - `-s=<nome>` nomeia a sessão e vale em todos os comandos (X-26). Use `-s=F-NN`. A sessão padrão é **em memória**; `--persistent`, `--profile` e `attach` só com aprovação (G-18).
-- `snapshot --filename=` e `screenshot --filename=` aceitam subpasta relativa (`--filename=exploracao/F-03.png`, X-26). `find --regex "<padrão>"` recebe o padrão como **valor** da opção: `find "x" --regex` dá erro "expected string, received boolean" (X-26).
+- `snapshot --filename=` e `screenshot --filename=` aceitam subpasta relativa ao diretório atual (`--filename=exploracao/F-03.png`, X-26): sem prefixo, o arquivo cai fora do `.gitignore`. Use `--filename=.playwright-cli/<arquivo>` (dogfood S-24). `find --regex "<padrão>"` recebe o padrão como **valor** da opção: `find "x" --regex` dá erro "expected string, received boolean" (X-26).
 - Aspas: externas duplas e internas simples funcionam em bash e em PowerShell 5.1. Não use `--%` com `npx` (X-16).
 - A saída no terminal é curta e aponta para arquivos: snapshot em `.playwright-cli\page-<timestamp>.yml`, console em `.playwright-cli\console-<ts>.log`, trace em `.playwright-cli\traces\*.trace`, screenshot `.png` em `.playwright-cli\` (X-05, X-13). A CLI imprime caminho **relativo** a `.playwright-cli/`: registre **caminhos absolutos** na nota.
 - Refs (`eN`) mudam quando o DOM muda: refaça o snapshot depois de cada mudança de estado (V-05; Inferido).
@@ -64,7 +64,7 @@ Para cada F-NN do lote, na ordem. Cada passo traz a saída esperada.
 | --- | --- | --- |
 | 1 | Carregar a linha F-NN, os cenários com esperado e fonte, e o estado inicial (papel, dados) | Cenários em mãos |
 | 2 | `open <url> --browser=chrome` com sessão `-s=F-NN`. Com login: `state-load playwright/.auth/user-<porta>.json` e depois `goto <url>` | Página aberta no estado certo |
-| 3 | `snapshot --filename=F-NN-<passo>.yml` e `find "<texto>"` em vez de snapshot completo | Elementos achados sem inflar o contexto |
+| 3 | `snapshot --filename=.playwright-cli/F-NN-<passo>.yml` e `find "<texto>"` em vez de snapshot completo | Elementos achados sem inflar o contexto |
 | 4 | Caminho feliz com **efeito verificado** contra o esperado do cenário: valor, contador, estado persistido (`reload` e `requests`), não só "apareceu" | Efeito confirmado ou divergência |
 | 5 | Um negativo ou borda pelo risco: vazio, duplicata, sem permissão, offline, 500 | Comportamento de erro registrado |
 | 6 | `console` e `requests` com triagem | Erros de aplicação separados de ruído |

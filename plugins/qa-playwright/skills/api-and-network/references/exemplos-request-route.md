@@ -9,7 +9,7 @@ import { test, expect } from './fixtures';
 
 test.describe('F-08 Tarefas pela API refletem a UI @ui', () => {   // híbrido com `page`: @ui; @api fica para spec só com `request`
   test('feliz: tarefa criada pela API aparece na UI e some depois de excluída', async ({ page, request }, testInfo) => {
-    const titulo = `Tarefa API ${testInfo.testId.slice(0, 6)}`;      // dado único por teste (V-33)
+    const titulo = `Tarefa API ${testInfo.testId.slice(-8)}`;      // dado único por teste (V-33)
 
     // Dado via API (o formato do corpo e o status vêm da fonte de verdade)
     const criada = await request.post('/api/tarefas', { data: { titulo } });

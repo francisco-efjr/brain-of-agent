@@ -23,7 +23,7 @@ export { expect };
 // Exemplo de extensão (descomente e adapte): dado criado pelo próprio teste e limpo por id capturado (V-33, V-51).
 // export const testComTarefa = test.extend<{ tarefa: { id: string; nome: string } }>({
 //   tarefa: async ({ request }, use, testInfo) => {
-//     const nome = `Tarefa ${testInfo.testId.slice(0, 6)}`;
+//     const nome = `Tarefa ${testInfo.testId.slice(-8)}`;
 //     const criada = await request.post('/api/tarefas', { data: { nome } });
 //     const { id } = await criada.json();
 //     await use({ id, nome });

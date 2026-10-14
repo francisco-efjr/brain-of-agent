@@ -9,7 +9,7 @@ import { test, expect } from './fixtures';
 
 test.describe('F-07 Excluir tarefa @ui', () => {
   test('feliz: excluir remove o item, ajusta o contador e persiste', async ({ page, app, request }, testInfo) => {
-    const nome = `Comprar pão ${testInfo.testId.slice(0, 6)}`;
+    const nome = `Comprar pão ${testInfo.testId.slice(-8)}`;
     const pendentes = async () => Number((await page.getByText(/pendente\(s\)/).innerText()).match(/\d+/)![0]);
     await app.abrir('/tarefas');
     const antes = await pendentes();
@@ -45,7 +45,7 @@ test.describe('F-07 Excluir tarefa @ui', () => {
 | --- | --- | --- |
 | Cabeçalho `// spec:` e `// seed:` | rastro até a matriz e ao estado inicial | V-08 |
 | `F-07` no `describe` e `@ui` no título | `--grep "F-07"` roda uma funcionalidade; `--grep-invert "@ui"` filtra por tipo | X-16 |
-| `testInfo.testId.slice(0, 6)` no nome | dado único por teste: nenhum teste depende do que outro criou | V-33, V-34 |
+| `testInfo.testId.slice(-8)` no nome | dado único por teste: nenhum teste depende do que outro criou | V-33, V-34 |
 | `getByRole('textbox', { name })` | locator por papel e nome acessível | V-27 |
 | `filter({ hasText: nome })` | item de lista por conteúdo, não por índice | V-28 |
 | `await expect(item).toHaveCount(1)` | asserção web-first com auto-retry | V-31 |

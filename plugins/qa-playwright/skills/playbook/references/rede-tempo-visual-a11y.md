@@ -25,7 +25,7 @@ Fonte: V-51. Três usos da fixture `request`: testar a API, **preparar estado** 
 
 ```ts
 test('F-08 criar tarefa persiste @ui', async ({ page, request }, testInfo) => {
-  const nome = `Tarefa ${testInfo.testId.slice(0, 6)}`;
+  const nome = `Tarefa ${testInfo.testId.slice(-8)}`;
   await page.goto('/tarefas');
   await page.getByRole('textbox', { name: 'Nova tarefa' }).fill(nome);
   await page.getByRole('button', { name: 'Adicionar' }).click();

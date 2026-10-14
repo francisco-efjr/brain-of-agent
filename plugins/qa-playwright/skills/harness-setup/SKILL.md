@@ -55,7 +55,7 @@ Argumentos recebidos: $ARGUMENTS (projeto e, se vier, `--ci`).
 6. **Arquivos.** Copie dos templates e ajuste `testDir`, porta, comando do servidor e caminho de saúde:
    - [playwright.config.ts](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/playwright.config.ts) e [fixtures.ts](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/fixtures.ts);
    - [auth.setup.ts](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/auth.setup.ts), só se houver login;
-   - [gitignore-trecho.txt](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/gitignore-trecho.txt) no `.gitignore` (inclui `playwright/.auth/`, `test-results/`, `playwright-report/`, `.playwright-cli/`);
+   - [gitignore-trecho.txt](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/gitignore-trecho.txt) no `.gitignore` (inclui `**/playwright/.auth/`, que também pega `e2e-playwright/playwright/.auth/`; confira com `git check-ignore -v <caminho do estado>`, `test-results/`, `playwright-report/`, `.playwright-cli/`);
    - [harness-package.json](${CLAUDE_PLUGIN_ROOT}/skills/playbook/assets/templates/harness-package.json) só mostra o resultado esperado: o arquivo real vem do `npm i -D -E`.
    Mantenha a config e o `package.json` na mesma pasta: com a config numa subpasta sem `package.json`, o `playwright-report/` foi gravado na pasta do `package.json` (X-17).
 7. **Verificar.** `npx playwright --version` igual ao `package.json`; `npx playwright cli --help` lista `open`, `snapshot` e `find`; `npx playwright test --list` executa. Saída: três comandos com resultado.

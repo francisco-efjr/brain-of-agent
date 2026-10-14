@@ -38,11 +38,11 @@ Antes do lote, leia `${CLAUDE_PLUGIN_ROOT}/skills/explore-feature/SKILL.md` e, p
 2. **Para cada F-NN, uma de cada vez**, repita os passos 3 a 10.
 3. **Carregue** a linha, os cenários e o estado inicial (papel, dados sintéticos).
 4. **Abra** com `npx playwright cli -s=F-NN open "<url>" --browser=chrome`. URL com `&` vai entre aspas (o `--%` do PowerShell falhou com `npx` em outro comando, e a forma com aspas ainda não foi exercitada com `&`: Não verificado). Com login: `npx playwright cli -s=F-NN state-load playwright/.auth/user-<porta>.json` e depois `goto`. Se o `state-load` falhar ou não houver estado, a linha fica `Bloqueado` com o motivo; não tente `fill` de senha.
-5. **Leia a página pelo snapshot**, não pela captura: `snapshot --filename=F-NN-<passo>.yml` e `find "<texto>"` em vez de snapshot completo. Aja por ref (`e11`) ou por locator (`"getByRole('button', { name: 'Adicionar' })"`). Refaça o snapshot depois de cada mudança de estado, porque as refs mudam.
+5. **Leia a página pelo snapshot**, não pela captura: `snapshot --filename=.playwright-cli/F-NN-<passo>.yml` e `find "<texto>"` em vez de snapshot completo. Aja por ref (`e11`) ou por locator (`"getByRole('button', { name: 'Adicionar' })"`). Refaça o snapshot depois de cada mudança de estado, porque as refs mudam.
 6. **Caminho feliz com o efeito verificado** contra o esperado do cenário: valor, contador, estado persistido (`reload` e `requests`), não só "apareceu". Registre como você verificou.
 7. **Um negativo ou borda pelo risco:** vazio, duplicata, sem permissão, `network-state-set offline`, 500 por `route "**/api/..." --status 500`.
 8. **Triagem de `console` e `requests`.** O 404 de `favicon.ico` não é bug; erro da aplicação é achado.
-9. **Evidência:** `screenshot --filename=F-NN-<passo>.png`, o snapshot `.yml` e, em falha ou risco alto, `tracing-start` e `tracing-stop`. Registre caminhos absolutos (a CLI imprime caminho relativo a `.playwright-cli/`). Copie o código `getByRole(...)` devolvido por cada ação, ou use `generate-locator`. A CLI não gera asserção: ela fica para o spec.
+9. **Evidência:** `screenshot --filename=.playwright-cli/F-NN-<passo>.png`, o snapshot `.yml` e, em falha ou risco alto, `tracing-start` e `tracing-stop`. Registre caminhos absolutos (a CLI imprime caminho relativo a `.playwright-cli/`). Copie o código `getByRole(...)` devolvido por cada ação, ou use `generate-locator`. A CLI não gera asserção: ela fica para o spec.
 10. **Feche:** `close` e `list`, inclusive depois de erro. Grave a nota `F-NN.md`.
 11. **Resumo ao chamador** no formato abaixo, com no máximo 10 linhas por lote.
 

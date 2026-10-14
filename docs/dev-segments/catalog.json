@@ -2593,7 +2593,7 @@
     {
       "plugin": "qa-playwright",
       "displayName": "qa-playwright",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "description": "Validação funcional funcionalidade por funcionalidade com Playwright: inventário F-NN, exploração com a CLI da versão fixada, specs que asseram o efeito, gate de estabilidade, matriz com evidência e N/A com equivalente para UI nativa.",
       "keywords": [
         "playwright",

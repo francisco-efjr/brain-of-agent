@@ -44,7 +44,9 @@ Argumentos recebidos: $ARGUMENTS (spec, caminho de trace ou a saída da falha co
    npx playwright trace errors
    npx playwright trace console
    npx playwright trace requests
-   npx playwright trace snapshot <id>
+   npx playwright trace action <id>       # detalhe da ação
+   npx playwright trace screenshot <id>   # imagem da ação
+   # `trace snapshot <id>` exige o Chromium baixado; só com Chrome do sistema falha (dogfood S-24)
    npx playwright trace close
    ```
 

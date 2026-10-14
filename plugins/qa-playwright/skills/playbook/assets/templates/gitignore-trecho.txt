@@ -5,4 +5,5 @@ test-results/
 playwright-report/
 blob-report/
 .playwright-cli/
-playwright/.auth/
+# `**/` pega também e2e-playwright/playwright/.auth/; sem ele o padrão só vale na raiz (dogfood S-24, git check-ignore)
+**/playwright/.auth/

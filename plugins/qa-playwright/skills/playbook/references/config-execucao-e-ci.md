@@ -185,7 +185,7 @@ npx playwright trace actions          # passos com locator e duração
 npx playwright trace errors           # erros
 npx playwright trace console          # console da página
 npx playwright trace requests         # método e status das requisições
-npx playwright trace snapshot <id>    # DOM de uma ação
+npx playwright trace snapshot <id>    # DOM de uma ação;# exige o Chromium baixado; só com Chrome do sistema falha ("Executable doesn't exist"). Use `trace action <id>` e `trace screenshot <id>` (dogfood S-24)
 npx playwright trace close
 ```
 

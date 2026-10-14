@@ -9,7 +9,7 @@ import { test, expect } from './fixtures';
 
 test.describe('F-07 Excluir tarefa @ui', () => {
   test('feliz: excluir remove o item, ajusta o contador e persiste', async ({ page, app, request }, testInfo) => {
-    const nome = `Comprar pão ${testInfo.testId.slice(0, 6)}`;           // dado único por teste (V-33)
+    const nome = `Comprar pão ${testInfo.testId.slice(-8)}`;           // dado único por teste (V-33)
     const pendentes = async () => Number((await page.getByText(/pendente\(s\)/).innerText()).match(/\d+/)![0]);
 
     await app.abrir('/tarefas');
