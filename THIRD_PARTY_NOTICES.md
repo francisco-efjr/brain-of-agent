@@ -38,3 +38,18 @@ Atribuição, lista exata e procedimento de atualização em
 
 Figma MCP e Playwright MCP (Apache-2.0, Microsoft) não são redistribuídos aqui. O kit orienta a
 instalação dos plugins oficiais `figma@claude-plugins-official` e `playwright@claude-plugins-official`.
+
+## agent-skills (plugin `engineering-lifecycle`)
+
+- Origem: https://github.com/addyosmani/agent-skills
+- Créditos: Addy Osmani (criador), Federico Bartoli e Joan León (colaboradores) e contribuidores.
+- Copyright (c) 2025 Addy Osmani. Licença MIT preservada em
+  [plugins/engineering-lifecycle/third_party/addyosmani-agent-skills/LICENSE](plugins/engineering-lifecycle/third_party/addyosmani-agent-skills/LICENSE).
+- Commit `aeac41d4d005999432bb7312f7ff06383a91d59d`, plugin upstream 0.6.13, importado em 13/10/2026.
+- 68 arquivos copiados byte a byte (25 skills, 7 checklists em `references/`, 4 personas em `agents/`, 5 evals,
+  `docs/agents.md` e a licença), com inventário sha256 em
+  [inventory.json](plugins/engineering-lifecycle/third_party/addyosmani-agent-skills/inventory.json).
+- Única modificação: nos 9 comandos copiados de `.claude/commands/`, o prefixo de skill `agent-skills:` virou
+  `engineering-lifecycle:` (8 arquivos afetados), para resolver dentro deste plugin. Detalhes e procedimento de
+  atualização em [third_party/README.md](plugins/engineering-lifecycle/third_party/addyosmani-agent-skills/README.md).
+- Hooks, `evals/cases`, `docs/` de instalação e adaptadores de outros hosts não foram redistribuídos.

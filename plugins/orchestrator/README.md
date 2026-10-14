@@ -16,8 +16,10 @@ Instale também os plugins dos segmentos que você usa. A lista está em `docs/d
 | Componente | Uso |
 | --- | --- |
 | `/orchestrator:playbook [demanda]` | Orquestra a demanda (protocolo em `skills/playbook/references/protocolo.md`) |
-| `/orchestrator:prompts` | Mensagens prontas para acionar o orquestrador (O-01 a O-07) |
-| Agente `orchestrator:demand-router` | Classifica a demanda e devolve o plano, sem executar |
+| `skills/playbook/references/conhecimento.md` | Registro de conhecimento por tag (gerado): gatilhos → plugin líder, fundamentos, apoio, validador e status. É por ele que a demanda vira especialista |
+| `skills/playbook/references/catalogo.md` | Catálogo de plugins, skills e agentes (gerado), para o que não casar com tag |
+| `/orchestrator:prompts` | Mensagens prontas para acionar o orquestrador (O-01 a O-08) |
+| Agente `orchestrator:demand-router` | Classifica a demanda, casa com as tags e devolve o plano, sem executar |
 
 ## Sem instalar
 

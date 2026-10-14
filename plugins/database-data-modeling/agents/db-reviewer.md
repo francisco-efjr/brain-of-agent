@@ -80,7 +80,7 @@ Severidade: crítica = perda ou vazamento de dados, ou indisponibilidade prováv
 Este agente revisa o dado persistido. O que muda por plataforma:
 - **Servidor (web e APIs):** cobertura plena; atenção a versões de aplicação coexistindo no deploy e a pooler.
 - **Mobile (Android e iOS):** SQLite local (Room, Core Data, SwiftData, GRDB). A migração roda no aparelho do usuário, sem janela de manutenção e sem rollback central; o app pode pular várias versões de schema de uma vez. Revise o SQL da migração e peça teste de upgrade de cada versão anterior. Offline-first, sincronização e APIs de persistência nativas ficam em `/mobile-apps:playbook`.
-- **Web (navegador):** IndexedDB e localStorage ficam fora do escopo (`/web-frontend:playbook`); banco acessado direto pelo cliente via serviço gerenciado depende de RLS ou regras do serviço: delegue a `db-security-auditor`.
+- **Web (navegador):** IndexedDB e localStorage ficam fora do escopo (`/web-frontend:playbook`); banco acessado direto pelo cliente via serviço gerenciado depende de RLS ou regras do serviço: recomende no relatório uma passagem de `db-security-auditor` (quem despacha é a sessão principal).
 - **Desktop:** SQLite embarcado no instalável; migração roda no auto-update com o arquivo do usuário. Exija cópia do arquivo antes de migrar; mecanismo de atualização fica no plugin `cli-desktop-tooling`.
 
 ## Formato de saída

@@ -1,0 +1,43 @@
+{
+  "name": "engineering-lifecycle",
+  "version": "0.1.0",
+  "description": "Ciclo de vida de engenharia com disciplina de agente, do agent-skills de Addy Osmani (MIT): DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP. 25 skills, 4 personas, 9 comandos e 7 checklists vendorizados sem alteração de conteúdo, mais playbook em PT-BR com crosswalk para os plugins do brain, comportamentos operacionais, anti-racionalização consolidada, prompts, 2 agentes próprios somente leitura e evals. Modo LIFECYCLE-COMPLETO por pedido explícito.",
+  "author": {
+    "name": "Francisco Edson",
+    "url": "https://github.com/francisco-efjr"
+  },
+  "license": "MIT",
+  "keywords": [
+    "lifecycle-completo",
+    "engineering-lifecycle",
+    "ciclo de vida de engenharia",
+    "spec-driven-development",
+    "spec antes do código",
+    "planning-and-task-breakdown",
+    "incremental-implementation",
+    "test-driven-development",
+    "tdd",
+    "constraint-driven-development",
+    "doubt-driven-development",
+    "source-driven-development",
+    "context-engineering",
+    "interview-me",
+    "idea-refine",
+    "code-review",
+    "code-simplification",
+    "security-hardening",
+    "performance-optimization",
+    "core-web-vitals",
+    "git-workflow",
+    "ci-cd",
+    "deprecation-and-migration",
+    "adr",
+    "observability",
+    "shipping-and-launch",
+    "rollout",
+    "rollback",
+    "anti-rationalization",
+    "agent-skills",
+    "addy-osmani"
+  ]
+}

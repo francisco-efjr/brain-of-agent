@@ -1,0 +1,494 @@
+{
+  "repository": "https://github.com/addyosmani/agent-skills",
+  "license": "MIT",
+  "revision": "aeac41d4d005999432bb7312f7ff06383a91d59d",
+  "upstream_plugin_version": "0.6.13",
+  "imported_on": "2026-10-13",
+  "plugin": "engineering-lifecycle",
+  "files": [
+    {
+      "upstream_path": "skills/api-and-interface-design/SKILL.md",
+      "plugin_path": "skills/api-and-interface-design/SKILL.md",
+      "sha256_upstream": "e83d34f52ff12dd8a7c5134cd7e8140ea4541ec65e204f8a1e4cd366e30c4192",
+      "sha256_plugin": "e83d34f52ff12dd8a7c5134cd7e8140ea4541ec65e204f8a1e4cd366e30c4192",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/browser-testing-with-devtools/SKILL.md",
+      "plugin_path": "skills/browser-testing-with-devtools/SKILL.md",
+      "sha256_upstream": "4e3aacd6a380cd25bc6c2d67fdd1c926a9b22535b8a62109ecd33cefd909e3d9",
+      "sha256_plugin": "4e3aacd6a380cd25bc6c2d67fdd1c926a9b22535b8a62109ecd33cefd909e3d9",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/ci-cd-and-automation/SKILL.md",
+      "plugin_path": "skills/ci-cd-and-automation/SKILL.md",
+      "sha256_upstream": "a6ed8ed56456b01ff8314c44eefc69897d9905ae4e06bb2b7036286efb79b5f0",
+      "sha256_plugin": "a6ed8ed56456b01ff8314c44eefc69897d9905ae4e06bb2b7036286efb79b5f0",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/code-review-and-quality/SKILL.md",
+      "plugin_path": "skills/code-review-and-quality/SKILL.md",
+      "sha256_upstream": "2db1e850379f255fd3091ef278cde24cd6c7d2ba23e360cc52ea522c40d4396e",
+      "sha256_plugin": "2db1e850379f255fd3091ef278cde24cd6c7d2ba23e360cc52ea522c40d4396e",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/code-simplification/SKILL.md",
+      "plugin_path": "skills/code-simplification/SKILL.md",
+      "sha256_upstream": "f0c5ed754057eb0c1e027e2587f59de816651feb5e837242296c43ea21cf621d",
+      "sha256_plugin": "f0c5ed754057eb0c1e027e2587f59de816651feb5e837242296c43ea21cf621d",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/constraint-driven-development/references/floor-guard.md",
+      "plugin_path": "skills/constraint-driven-development/references/floor-guard.md",
+      "sha256_upstream": "59715dc6c3c6c36ec9177f9ced65c379e80a4539b36115456666bfabc43a6a9c",
+      "sha256_plugin": "59715dc6c3c6c36ec9177f9ced65c379e80a4539b36115456666bfabc43a6a9c",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/constraint-driven-development/SKILL.md",
+      "plugin_path": "skills/constraint-driven-development/SKILL.md",
+      "sha256_upstream": "06479d4305f286d23cfb99f5dc85695896785269664e1f6a8d800e3b71e70c10",
+      "sha256_plugin": "06479d4305f286d23cfb99f5dc85695896785269664e1f6a8d800e3b71e70c10",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/context-engineering/SKILL.md",
+      "plugin_path": "skills/context-engineering/SKILL.md",
+      "sha256_upstream": "8b736cb9e55b82b265ab6ff78349c0e826e8a6df550deddf665b7fb3ff858b63",
+      "sha256_plugin": "8b736cb9e55b82b265ab6ff78349c0e826e8a6df550deddf665b7fb3ff858b63",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/debugging-and-error-recovery/SKILL.md",
+      "plugin_path": "skills/debugging-and-error-recovery/SKILL.md",
+      "sha256_upstream": "21f3960f5d7ae2cc95c40896545004dbbcbbd752ea65fc2d53962554d4174220",
+      "sha256_plugin": "21f3960f5d7ae2cc95c40896545004dbbcbbd752ea65fc2d53962554d4174220",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/deprecation-and-migration/SKILL.md",
+      "plugin_path": "skills/deprecation-and-migration/SKILL.md",
+      "sha256_upstream": "6a624f942e09c69863a4219b9bd5d56975026b67b0c70bc83385ffd2120b6142",
+      "sha256_plugin": "6a624f942e09c69863a4219b9bd5d56975026b67b0c70bc83385ffd2120b6142",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/documentation-and-adrs/SKILL.md",
+      "plugin_path": "skills/documentation-and-adrs/SKILL.md",
+      "sha256_upstream": "b60d503925bbaacee7fd63935db70b9ced5b2514ff5a56a672130e01b9690bc5",
+      "sha256_plugin": "b60d503925bbaacee7fd63935db70b9ced5b2514ff5a56a672130e01b9690bc5",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/doubt-driven-development/SKILL.md",
+      "plugin_path": "skills/doubt-driven-development/SKILL.md",
+      "sha256_upstream": "6fa1fcd8420c28daf7e53c5b08b0f20b907911efd2a6d9bce0b9740da20a4008",
+      "sha256_plugin": "6fa1fcd8420c28daf7e53c5b08b0f20b907911efd2a6d9bce0b9740da20a4008",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/frontend-ui-engineering/SKILL.md",
+      "plugin_path": "skills/frontend-ui-engineering/SKILL.md",
+      "sha256_upstream": "29a3e53d57c0a128831a20730ae874a8c4fda40c001fcdc15f8e9ad4b5f72f1b",
+      "sha256_plugin": "29a3e53d57c0a128831a20730ae874a8c4fda40c001fcdc15f8e9ad4b5f72f1b",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/git-workflow-and-versioning/SKILL.md",
+      "plugin_path": "skills/git-workflow-and-versioning/SKILL.md",
+      "sha256_upstream": "b7465d187935c52546d39fdc7bd6ac36d94eda25a9500ef8c18b767d2eb116ea",
+      "sha256_plugin": "b7465d187935c52546d39fdc7bd6ac36d94eda25a9500ef8c18b767d2eb116ea",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/idea-refine/examples.md",
+      "plugin_path": "skills/idea-refine/examples.md",
+      "sha256_upstream": "563204bfbf2f80a444151695205af4cb759e722b3d1e5460e08f278a69c89ba1",
+      "sha256_plugin": "563204bfbf2f80a444151695205af4cb759e722b3d1e5460e08f278a69c89ba1",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/idea-refine/frameworks.md",
+      "plugin_path": "skills/idea-refine/frameworks.md",
+      "sha256_upstream": "161ebc18fdf2d996bc62a87a2d747cf1bf53548354f8925de25c732c27f00309",
+      "sha256_plugin": "161ebc18fdf2d996bc62a87a2d747cf1bf53548354f8925de25c732c27f00309",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/idea-refine/refinement-criteria.md",
+      "plugin_path": "skills/idea-refine/refinement-criteria.md",
+      "sha256_upstream": "1ca2973a4d01b5cb37ab7ddb2eff77fa4e792634a33d0ce44961c068fc88d51a",
+      "sha256_plugin": "1ca2973a4d01b5cb37ab7ddb2eff77fa4e792634a33d0ce44961c068fc88d51a",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/idea-refine/scripts/idea-refine.sh",
+      "plugin_path": "skills/idea-refine/scripts/idea-refine.sh",
+      "sha256_upstream": "f02a52408a4218047c032d221483abfbb48d11f090bb4915965c7419bf2e0e47",
+      "sha256_plugin": "f02a52408a4218047c032d221483abfbb48d11f090bb4915965c7419bf2e0e47",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/idea-refine/SKILL.md",
+      "plugin_path": "skills/idea-refine/SKILL.md",
+      "sha256_upstream": "21ef828e3a2144245b67f840cc3805f761e98c9acce9a96670b7cd7441353463",
+      "sha256_plugin": "21ef828e3a2144245b67f840cc3805f761e98c9acce9a96670b7cd7441353463",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/incremental-implementation/SKILL.md",
+      "plugin_path": "skills/incremental-implementation/SKILL.md",
+      "sha256_upstream": "df66536610071727feae1ca95f3c391c248ad828041750ccd3699cce763aa00b",
+      "sha256_plugin": "df66536610071727feae1ca95f3c391c248ad828041750ccd3699cce763aa00b",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/interview-me/SKILL.md",
+      "plugin_path": "skills/interview-me/SKILL.md",
+      "sha256_upstream": "ace4b675999bb504593d572e0f73f3d7e803ad6fddf318445598c82c11939db2",
+      "sha256_plugin": "ace4b675999bb504593d572e0f73f3d7e803ad6fddf318445598c82c11939db2",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/observability-and-instrumentation/SKILL.md",
+      "plugin_path": "skills/observability-and-instrumentation/SKILL.md",
+      "sha256_upstream": "e7fcb0820306d46268de9594d676ad98e35040858926c412b7000faa52a61f87",
+      "sha256_plugin": "e7fcb0820306d46268de9594d676ad98e35040858926c412b7000faa52a61f87",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/performance-optimization/references/optimization-patterns.md",
+      "plugin_path": "skills/performance-optimization/references/optimization-patterns.md",
+      "sha256_upstream": "fbf724076ffb8ac1a28e1a2773c0b550f5361090024b2dd32e5a682c69b7945f",
+      "sha256_plugin": "fbf724076ffb8ac1a28e1a2773c0b550f5361090024b2dd32e5a682c69b7945f",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/performance-optimization/SKILL.md",
+      "plugin_path": "skills/performance-optimization/SKILL.md",
+      "sha256_upstream": "bd36a30e55a5f84329a6977eba5e1ab7654146e71eaba88e34337d4ee020460f",
+      "sha256_plugin": "bd36a30e55a5f84329a6977eba5e1ab7654146e71eaba88e34337d4ee020460f",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/planning-and-task-breakdown/SKILL.md",
+      "plugin_path": "skills/planning-and-task-breakdown/SKILL.md",
+      "sha256_upstream": "ed0f90cc5951ddd4bcab7f871f64efec93a49af9279ef93bc470da77ad8da3f7",
+      "sha256_plugin": "ed0f90cc5951ddd4bcab7f871f64efec93a49af9279ef93bc470da77ad8da3f7",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/security-and-hardening/references/hardening-patterns.md",
+      "plugin_path": "skills/security-and-hardening/references/hardening-patterns.md",
+      "sha256_upstream": "2e1b93a502b4cdb0258404441f3aab029b0cce4003fbbcc61af9a2de18bab9ab",
+      "sha256_plugin": "2e1b93a502b4cdb0258404441f3aab029b0cce4003fbbcc61af9a2de18bab9ab",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/security-and-hardening/SKILL.md",
+      "plugin_path": "skills/security-and-hardening/SKILL.md",
+      "sha256_upstream": "2e3fc60eed5aba97fe416f3f3c9317fdb014a682925ec70a733c3ff99e4b9858",
+      "sha256_plugin": "2e3fc60eed5aba97fe416f3f3c9317fdb014a682925ec70a733c3ff99e4b9858",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/shipping-and-launch/SKILL.md",
+      "plugin_path": "skills/shipping-and-launch/SKILL.md",
+      "sha256_upstream": "726f3e546369db289160b8d42195590f00b6432887e17bf19070dcc9a347fe39",
+      "sha256_plugin": "726f3e546369db289160b8d42195590f00b6432887e17bf19070dcc9a347fe39",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/source-driven-development/SKILL.md",
+      "plugin_path": "skills/source-driven-development/SKILL.md",
+      "sha256_upstream": "c59faf851377f0eeda45306398d16eb96d77ab1c2fd3e1a7fb58e9a0af33c1e9",
+      "sha256_plugin": "c59faf851377f0eeda45306398d16eb96d77ab1c2fd3e1a7fb58e9a0af33c1e9",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/spec-driven-development/SKILL.md",
+      "plugin_path": "skills/spec-driven-development/SKILL.md",
+      "sha256_upstream": "c4b97ce3d7f24be0e67fd612c7595f65504872e3a9f8d338d098b2363fdb66ef",
+      "sha256_plugin": "c4b97ce3d7f24be0e67fd612c7595f65504872e3a9f8d338d098b2363fdb66ef",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/test-driven-development/SKILL.md",
+      "plugin_path": "skills/test-driven-development/SKILL.md",
+      "sha256_upstream": "a3aa6ba95638497025577469eda10ed17918698209615aeafbc26f131bf2469d",
+      "sha256_plugin": "a3aa6ba95638497025577469eda10ed17918698209615aeafbc26f131bf2469d",
+      "modified": false
+    },
+    {
+      "upstream_path": "skills/using-agent-skills/SKILL.md",
+      "plugin_path": "skills/using-agent-skills/SKILL.md",
+      "sha256_upstream": "30787ef2c77bf1a4729fffed0f6523ba6fcbe81bdc436b36371b78c21394d3c3",
+      "sha256_plugin": "30787ef2c77bf1a4729fffed0f6523ba6fcbe81bdc436b36371b78c21394d3c3",
+      "modified": false
+    },
+    {
+      "upstream_path": "references/accessibility-checklist.md",
+      "plugin_path": "references/accessibility-checklist.md",
+      "sha256_upstream": "61c759d94d52296231f5f310b92b401f56c44e4430dc3cc95ebac5d7b1d5ffac",
+      "sha256_plugin": "61c759d94d52296231f5f310b92b401f56c44e4430dc3cc95ebac5d7b1d5ffac",
+      "modified": false
+    },
+    {
+      "upstream_path": "references/definition-of-done.md",
+      "plugin_path": "references/definition-of-done.md",
+      "sha256_upstream": "d1c75d2ae65d2c7a9cd01f93fa8de63e00e75f2fe5d08be224d576157054dcee",
+      "sha256_plugin": "d1c75d2ae65d2c7a9cd01f93fa8de63e00e75f2fe5d08be224d576157054dcee",
+      "modified": false
+    },
+    {
+      "upstream_path": "references/observability-checklist.md",
+      "plugin_path": "references/observability-checklist.md",
+      "sha256_upstream": "25fcd0e854596a5ab6f11b002050d245bf78f5ae0fcbd1df699b89451ae0e1e8",
+      "sha256_plugin": "25fcd0e854596a5ab6f11b002050d245bf78f5ae0fcbd1df699b89451ae0e1e8",
+      "modified": false
+    },
+    {
+      "upstream_path": "references/orchestration-patterns.md",
+      "plugin_path": "references/orchestration-patterns.md",
+      "sha256_upstream": "61e543d86f19f86b83074f8c1c769455c7085a2c72dd47b1da21a8c63785be4a",
+      "sha256_plugin": "61e543d86f19f86b83074f8c1c769455c7085a2c72dd47b1da21a8c63785be4a",
+      "modified": false
+    },
+    {
+      "upstream_path": "references/performance-checklist.md",
+      "plugin_path": "references/performance-checklist.md",
+      "sha256_upstream": "fffc38b8f3b328a973aab8b1a2efdd72b65710d8f4b57f28f8374ddae7f8a88b",
+      "sha256_plugin": "fffc38b8f3b328a973aab8b1a2efdd72b65710d8f4b57f28f8374ddae7f8a88b",
+      "modified": false
+    },
+    {
+      "upstream_path": "references/security-checklist.md",
+      "plugin_path": "references/security-checklist.md",
+      "sha256_upstream": "37774056502fe8970dcd2fd27dca5fa31f2a55232649fc3056c89c3af7d62755",
+      "sha256_plugin": "37774056502fe8970dcd2fd27dca5fa31f2a55232649fc3056c89c3af7d62755",
+      "modified": false
+    },
+    {
+      "upstream_path": "references/testing-patterns.md",
+      "plugin_path": "references/testing-patterns.md",
+      "sha256_upstream": "f0bf05acd0edcadc27297ad5b74f104c8103ccfedba1a05cd6d6ae4af8364c56",
+      "sha256_plugin": "f0bf05acd0edcadc27297ad5b74f104c8103ccfedba1a05cd6d6ae4af8364c56",
+      "modified": false
+    },
+    {
+      "upstream_path": "agents/code-reviewer.md",
+      "plugin_path": "agents/code-reviewer.md",
+      "sha256_upstream": "4efbd53e08e57291cc2869865be809897fbe598767600118ec687d00a557fff4",
+      "sha256_plugin": "4efbd53e08e57291cc2869865be809897fbe598767600118ec687d00a557fff4",
+      "modified": false
+    },
+    {
+      "upstream_path": "agents/security-auditor.md",
+      "plugin_path": "agents/security-auditor.md",
+      "sha256_upstream": "66a3f68f1c691b600ddb44e88afb138e239d0572df37be84e1f9a427c887dd0a",
+      "sha256_plugin": "66a3f68f1c691b600ddb44e88afb138e239d0572df37be84e1f9a427c887dd0a",
+      "modified": false
+    },
+    {
+      "upstream_path": "agents/test-engineer.md",
+      "plugin_path": "agents/test-engineer.md",
+      "sha256_upstream": "a7a0b33ec3294da8fb4ee02ed28c665056bafa48982930fe551dcfadda9117af",
+      "sha256_plugin": "a7a0b33ec3294da8fb4ee02ed28c665056bafa48982930fe551dcfadda9117af",
+      "modified": false
+    },
+    {
+      "upstream_path": "agents/web-performance-auditor.md",
+      "plugin_path": "agents/web-performance-auditor.md",
+      "sha256_upstream": "0928b1cf8103262a364bce0c1fc689a918852e2275441f1b2e687adfa1e607e9",
+      "sha256_plugin": "0928b1cf8103262a364bce0c1fc689a918852e2275441f1b2e687adfa1e607e9",
+      "modified": false
+    },
+    {
+      "upstream_path": "docs/agents.md",
+      "plugin_path": "docs/agents.md",
+      "sha256_upstream": "ac1d7704dcd70b9e98e8109254ece554381c7c488e54471ff17a648e5bcb13d2",
+      "sha256_plugin": "ac1d7704dcd70b9e98e8109254ece554381c7c488e54471ff17a648e5bcb13d2",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/code-review-fires/graders/off-by-one.md",
+      "plugin_path": "evals/code-review-fires/graders/off-by-one.md",
+      "sha256_upstream": "037f6a8efa5f4201a18f5a7f3e2f02f7386e15186288cd6d664c919f358298fc",
+      "sha256_plugin": "037f6a8efa5f4201a18f5a7f3e2f02f7386e15186288cd6d664c919f358298fc",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/code-review-fires/graders/severity-labels.md",
+      "plugin_path": "evals/code-review-fires/graders/severity-labels.md",
+      "sha256_upstream": "40205888b3334a6b7e8b090fff57e514aff5d6516ead2beccd114055d2365b42",
+      "sha256_plugin": "40205888b3334a6b7e8b090fff57e514aff5d6516ead2beccd114055d2365b42",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/code-review-fires/graders/skill-fired.md",
+      "plugin_path": "evals/code-review-fires/graders/skill-fired.md",
+      "sha256_upstream": "ade80103447b09a46b45f1b958e70fd86fc0c07acffd3c4b0c50dc0b2a8f77af",
+      "sha256_plugin": "ade80103447b09a46b45f1b958e70fd86fc0c07acffd3c4b0c50dc0b2a8f77af",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/code-review-fires/prompt.md",
+      "plugin_path": "evals/code-review-fires/prompt.md",
+      "sha256_upstream": "2012ebdf5fe90a06ff593b4725f23f35c9a1ce80cbdbea8dcb98947e82f1d2d6",
+      "sha256_plugin": "2012ebdf5fe90a06ff593b4725f23f35c9a1ce80cbdbea8dcb98947e82f1d2d6",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/code-review-stays-quiet/graders/not-fired.md",
+      "plugin_path": "evals/code-review-stays-quiet/graders/not-fired.md",
+      "sha256_upstream": "39a199bfde058e803d865f92f402c865994cf0a5548a0123d773dc202199a563",
+      "sha256_plugin": "39a199bfde058e803d865f92f402c865994cf0a5548a0123d773dc202199a563",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/code-review-stays-quiet/graders/tdd-fired.md",
+      "plugin_path": "evals/code-review-stays-quiet/graders/tdd-fired.md",
+      "sha256_upstream": "f81e4b8972c3e18216f3dee8fd88c1775b321b78b92c1beaf8ba75e9ba85729f",
+      "sha256_plugin": "f81e4b8972c3e18216f3dee8fd88c1775b321b78b92c1beaf8ba75e9ba85729f",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/code-review-stays-quiet/prompt.md",
+      "plugin_path": "evals/code-review-stays-quiet/prompt.md",
+      "sha256_upstream": "23ed00fbdac4588124e991501f2e4f16b7d36a72cb002c2849b2df1c4ceef07e",
+      "sha256_plugin": "23ed00fbdac4588124e991501f2e4f16b7d36a72cb002c2849b2df1c4ceef07e",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/code-review-stays-quiet-on-commit-message/graders/not-fired.md",
+      "plugin_path": "evals/code-review-stays-quiet-on-commit-message/graders/not-fired.md",
+      "sha256_upstream": "39a199bfde058e803d865f92f402c865994cf0a5548a0123d773dc202199a563",
+      "sha256_plugin": "39a199bfde058e803d865f92f402c865994cf0a5548a0123d773dc202199a563",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/code-review-stays-quiet-on-commit-message/prompt.md",
+      "plugin_path": "evals/code-review-stays-quiet-on-commit-message/prompt.md",
+      "sha256_upstream": "a00e49ea73c7cdc53337d1f949199efe099cae9b23645f9bc14cab49b1560a87",
+      "sha256_plugin": "a00e49ea73c7cdc53337d1f949199efe099cae9b23645f9bc14cab49b1560a87",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/tdd-fires-on-pasted-bug/graders/failing-test-first.md",
+      "plugin_path": "evals/tdd-fires-on-pasted-bug/graders/failing-test-first.md",
+      "sha256_upstream": "f92de4fd6ba13063e63d6b7ac034e047bbb62eb6319038ab8323bdef70dc02ec",
+      "sha256_plugin": "f92de4fd6ba13063e63d6b7ac034e047bbb62eb6319038ab8323bdef70dc02ec",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/tdd-fires-on-pasted-bug/graders/skill-fired.md",
+      "plugin_path": "evals/tdd-fires-on-pasted-bug/graders/skill-fired.md",
+      "sha256_upstream": "a9c46ec0601ec8902f2bfed3e86b000708843547bdb8a1628482171d4505eef8",
+      "sha256_plugin": "a9c46ec0601ec8902f2bfed3e86b000708843547bdb8a1628482171d4505eef8",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/tdd-fires-on-pasted-bug/prompt.md",
+      "plugin_path": "evals/tdd-fires-on-pasted-bug/prompt.md",
+      "sha256_upstream": "5784d9ec56fb3a761843c1eb0cce6379378c6977bab809e77d0b9c95b3e354c5",
+      "sha256_plugin": "5784d9ec56fb3a761843c1eb0cce6379378c6977bab809e77d0b9c95b3e354c5",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/tdd-stays-quiet-on-debug/graders/not-fired.md",
+      "plugin_path": "evals/tdd-stays-quiet-on-debug/graders/not-fired.md",
+      "sha256_upstream": "700d4c6b2023a5a56aa89dbe4cd45d0eebb6f6ee7f3a80e716fcb93ebbfddf49",
+      "sha256_plugin": "700d4c6b2023a5a56aa89dbe4cd45d0eebb6f6ee7f3a80e716fcb93ebbfddf49",
+      "modified": false
+    },
+    {
+      "upstream_path": "evals/plugin/tdd-stays-quiet-on-debug/prompt.md",
+      "plugin_path": "evals/tdd-stays-quiet-on-debug/prompt.md",
+      "sha256_upstream": "fb123f9e4f0fd8995db663fc858879b9486459a783b27425ba4ecec815ce151a",
+      "sha256_plugin": "fb123f9e4f0fd8995db663fc858879b9486459a783b27425ba4ecec815ce151a",
+      "modified": false
+    },
+    {
+      "upstream_path": ".claude/commands/build.md",
+      "plugin_path": "commands/build.md",
+      "sha256_upstream": "74cc85b5092f8e209bcda36441a4ce17a5cd9efd2a7d8ce76ba202816088e277",
+      "sha256_plugin": "6a1466b52d6f84606142c745cfd71566dc4f7cf5a12fc776d16f50593549bbb8",
+      "modified": true,
+      "note": "namespace agent-skills: -> engineering-lifecycle: (6 ocorrencia(s))"
+    },
+    {
+      "upstream_path": ".claude/commands/code-simplify.md",
+      "plugin_path": "commands/code-simplify.md",
+      "sha256_upstream": "71e9e8d38c5cbab5b7ecff324ed4ea0f1aaa4fd053ea6c2b717f2fbadfb65a91",
+      "sha256_plugin": "88bfca2d8aed7335add77b048e530754695a03164df3dd584251dff8fce49c43",
+      "modified": true,
+      "note": "namespace agent-skills: -> engineering-lifecycle: (1 ocorrencia(s))"
+    },
+    {
+      "upstream_path": ".claude/commands/constraints.md",
+      "plugin_path": "commands/constraints.md",
+      "sha256_upstream": "f6d8fdf69be74059db907cf474149eae336b6fbfbcbfb791546e321085612171",
+      "sha256_plugin": "61847446e1204e50d57e41f719e7e88034353e9d178fdb28dfca86b85a5407b9",
+      "modified": true,
+      "note": "namespace agent-skills: -> engineering-lifecycle: (1 ocorrencia(s))"
+    },
+    {
+      "upstream_path": ".claude/commands/plan.md",
+      "plugin_path": "commands/plan.md",
+      "sha256_upstream": "91d961b2a7011209bc6771c176932e72e11b99d0c524e3f63c9f2e2a94fbc993",
+      "sha256_plugin": "f4af830a5e9b6435070ff4d86300448a407406edd426dd322de2dd7175448411",
+      "modified": true,
+      "note": "namespace agent-skills: -> engineering-lifecycle: (1 ocorrencia(s))"
+    },
+    {
+      "upstream_path": ".claude/commands/review.md",
+      "plugin_path": "commands/review.md",
+      "sha256_upstream": "fac1e89ece153275ee8e9d89141d2bd56d9d1aaf0bf1d487bf129b7fbf1dc3e9",
+      "sha256_plugin": "c0c7903f657b7b73691c4fd204975491a026bd1d2790dbf7f2fc4787e6ea96e7",
+      "modified": true,
+      "note": "namespace agent-skills: -> engineering-lifecycle: (1 ocorrencia(s))"
+    },
+    {
+      "upstream_path": ".claude/commands/ship.md",
+      "plugin_path": "commands/ship.md",
+      "sha256_upstream": "2d42cf82d17a0097a0143d8181f9686480388204838688e45b08c591f3042fbc",
+      "sha256_plugin": "cd11cf2e6a133ce356d7682d4231981a1bd889bb425d64471aa63bb6f4d41838",
+      "modified": true,
+      "note": "namespace agent-skills: -> engineering-lifecycle: (1 ocorrencia(s))"
+    },
+    {
+      "upstream_path": ".claude/commands/spec.md",
+      "plugin_path": "commands/spec.md",
+      "sha256_upstream": "82325b4cc75ae2413c7bf4b6f84804eb662935d9df98edab50eef2b39ff904b0",
+      "sha256_plugin": "17bee1e53a0269b9143f05bf9434be2339f460c192c388111826939d8a4e3500",
+      "modified": true,
+      "note": "namespace agent-skills: -> engineering-lifecycle: (1 ocorrencia(s))"
+    },
+    {
+      "upstream_path": ".claude/commands/test.md",
+      "plugin_path": "commands/test.md",
+      "sha256_upstream": "62f72b64cfac6db984db072fdc987a23e6049876191297da5f37367def986ff2",
+      "sha256_plugin": "3730ea123775f24a9256d6753f266e9e2c21de02691a6d58f84eb3244219aac7",
+      "modified": true,
+      "note": "namespace agent-skills: -> engineering-lifecycle: (2 ocorrencia(s))"
+    },
+    {
+      "upstream_path": ".claude/commands/webperf.md",
+      "plugin_path": "commands/webperf.md",
+      "sha256_upstream": "74c0c1335f1397a5138a78eda4275e4e5deba16c4537f3a4b4971c3280d0ba27",
+      "sha256_plugin": "74c0c1335f1397a5138a78eda4275e4e5deba16c4537f3a4b4971c3280d0ba27",
+      "modified": false
+    },
+    {
+      "upstream_path": "LICENSE",
+      "plugin_path": "third_party/addyosmani-agent-skills/LICENSE",
+      "sha256_upstream": "6f202f8bd568cd730dbb2b0d1f8e243bc74c2fa1f64dbce9b2c7ea08bd5c9fd7",
+      "sha256_plugin": "6f202f8bd568cd730dbb2b0d1f8e243bc74c2fa1f64dbce9b2c7ea08bd5c9fd7",
+      "modified": false
+    }
+  ]
+}

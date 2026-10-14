@@ -10,7 +10,7 @@ Você coordena especialistas e não faz todo o trabalho sozinho. Mais especialis
 
 Demanda recebida: $ARGUMENTS
 
-O protocolo completo está em [references/protocolo.md](references/protocolo.md). O catálogo de plugins, skills e agentes, com "quando usar", está em [references/catalogo.md](references/catalogo.md).
+O protocolo completo está em [references/protocolo.md](references/protocolo.md). O **registro de conhecimento por tag** (gatilhos → plugin líder, fundamentos, apoio, validador, status) está em [references/conhecimento.md](references/conhecimento.md); é por ele que a demanda vira especialista. O catálogo de plugins, skills e agentes, com "quando usar", está em [references/catalogo.md](references/catalogo.md), para o que não casar com tag nenhuma.
 
 ## Ativação e autonomia (§0 do protocolo)
 
@@ -26,7 +26,7 @@ Todo subagente recebe o **bloco de limites** do §2 B (sem push nem instalaçõe
 
 1. **Entrada.** Confirme demanda, alvo, escopo (auditar ou implementar) e restrições. Pergunte uma vez só se a resposta mudar a solução. Caso contrário, registre as suposições e siga.
 2. **Classificar.** Defina o tipo de trabalho: revisão, feature, bug, telas, spec, operação ou release. Detecte a stack no alvo, por exemplo `package.json`, `build.gradle.kts`, `pyproject.toml`, `go.mod`. Liste os riscos: dados pessoais, dinheiro, segurança, produção.
-3. **Selecionar.** Use a tabela de combinações abaixo e o catálogo. Leia só o `playbook` dos plugins escolhidos.
+3. **Selecionar pelas tags.** Case a demanda com os gatilhos de [references/conhecimento.md](references/conhecimento.md) (PT-BR ou EN; pode casar mais de uma tag). Para cada tag: o especialista vem da rota **líder**; o subagente recebe também as skills das rotas de **fundamentos**; **apoio** só se o contexto pedir; o validador vem da tag. Tag em construção: declare a lacuna e use a rota publicada mais próxima. Para o que não casar, use a tabela de combinações abaixo e o catálogo, e registre a lacuna. Leia só o `playbook` dos plugins escolhidos.
 4. **Planejar.** Monte uma tabela com trabalho, `plugin:agente`, skills, entrada, saída e validador. Mostre o plano em poucas linhas e siga sem esperar aprovação.
 5. **Despachar.** Primeiro o trabalho somente leitura (mapa, revisão, auditoria), em paralelo quando for independente. Use os subagentes `<plugin>:<agente>` instalados. Sem instalação, use um subagente `general-purpose` com o corpo de `plugins/<plugin>/agents/<agente>.md` como instruções.
 6. **Validar.** Cada entrega relevante passa por um validador independente: outro papel e, se possível, outro modelo. Achado sem `arquivo:linha` vira Não verificado ou é descartado.
@@ -50,6 +50,8 @@ Todo subagente recebe o **bloco de limites** do §2 B (sem push nem instalaçõe
 | LLM e agentes | `llm-ai-agents` + `security-appsec` |
 | Docs | `technical-writing-docs` |
 | Release | `git-workflow-release` |
+| Ciclo completo de uma entrega ou disciplina de processo (spec antes do código, TDD, fatias incrementais, revisão em 5 eixos, ship com rollback) | `engineering-lifecycle` como fundamentos (`/engineering-lifecycle:spec`, `plan`, `build`, `test`, `review`, `ship`) + plugin do segmento como líder |
+| Conhecimento adquirido (vídeo, pesquisa web, Playwright…) | A tag em `references/conhecimento.md`: líder + fundamentos + validador |
 
 Se um plugin não estiver instalado nem publicado, use o mais próximo e declare a lacuna.
 

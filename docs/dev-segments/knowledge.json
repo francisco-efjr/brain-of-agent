@@ -1,0 +1,3283 @@
+{
+  "generated_by": "tools/publish_brain.py",
+  "spec": "docs/dev-segments/foundation/knowledge-registry-spec.md",
+  "tags": [
+    {
+      "tag": "adr-decisoes",
+      "label": "ADRs e documentação de decisões",
+      "description": "Registra decisões de arquitetura em ADR (contexto, decisão, alternativas com motivo, consequências, status e data) respeitando antes a convenção do repositório; não apaga ADR antigo, substitui; mantém README e regras de agente atualizados.",
+      "triggers": [
+        "escreve um adr para essa decisão",
+        "documenta por que escolhemos x",
+        "registra a decisão de arquitetura",
+        "me dá um modelo de adr",
+        "como numero os adrs desse repo",
+        "substituir um adr antigo",
+        "readme para esse projeto",
+        "documenta essa api pública",
+        "write an adr for this",
+        "adr template",
+        "record why we chose this library",
+        "supersede an old adr",
+        "documentation-and-adrs"
+      ],
+      "routes": [
+        {
+          "plugin": "architecture-design",
+          "skills": [
+            "adr",
+            "adr-write"
+          ],
+          "agents": [
+            "adr-writer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "documentation-and-adrs"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "technical-writing-docs",
+          "skills": [
+            "escrever-adr",
+            "escrever-readme"
+          ],
+          "agents": [
+            "technical-writer"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "product-discovery-specs",
+          "skills": [],
+          "agents": [
+            "decision-recorder"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "technical-writing-docs:auditor-de-docs"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-29. A convenção do repositório-alvo vence; sem ela, a do brain (docs/adr, MADR) (C-12). adr-write é manual-only e só grava ADR aprovado.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "architecture-design",
+      "label": "Decisões de arquitetura com humano no comando: ADRs, trade-offs, revisão de desenho, system design, decomposi…",
+      "description": "Decisões de arquitetura com humano no comando: ADRs, trade-offs, revisão de desenho, system design, decomposição (DDD, monólito modular, strangler), resiliência e consistência (retry, circuit breaker, outbox, saga, idem…",
+      "triggers": [
+        "architecture",
+        "adr",
+        "system-design",
+        "c4",
+        "ddd",
+        "hexagonal",
+        "modular-monolith",
+        "microservices",
+        "event-driven",
+        "cqrs",
+        "resilience",
+        "api-design",
+        "trade-offs",
+        "architecture-review",
+        "arquitetura-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "architecture-design",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "adr-writer",
+            "architecture-blueprint",
+            "architecture-reviewer",
+            "boundary-mapper",
+            "skeptic-architect"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/architecture-design/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "automation-integrations",
+      "label": "Playbook, skills, agentes e prompts para automação de workflows, webhooks idempotentes, integrações entre API…",
+      "description": "Playbook, skills, agentes e prompts para automação de workflows, webhooks idempotentes, integrações entre APIs, servidores MCP, hooks de guardrail, jobs agendados com claude -p, scraping responsável e autoria de skills …",
+      "triggers": [
+        "automation",
+        "integrations",
+        "mcp",
+        "mcp-server",
+        "webhooks",
+        "idempotency",
+        "n8n",
+        "hooks",
+        "skills",
+        "plugins",
+        "scheduled-jobs",
+        "scraping",
+        "prompt-injection",
+        "automacao",
+        "automacao-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "automation-integrations",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "automation-architect",
+            "integration-reviewer",
+            "mcp-security-reviewer",
+            "plugin-validator",
+            "third-party-auditor"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/automation-integrations/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "backend-api",
+      "label": "Projete, implemente, revise, teste e depure serviços e APIs (REST, GraphQL, gRPC) com contrato OpenAPI, erros…",
+      "description": "Projete, implemente, revise, teste e depure serviços e APIs (REST, GraphQL, gRPC) com contrato OpenAPI, erros RFC 9457, autenticação e autorização, idempotência, paginação, rate limiting e tools para agentes, sempre com…",
+      "triggers": [
+        "backend",
+        "api",
+        "rest",
+        "openapi",
+        "graphql",
+        "grpc",
+        "oauth2",
+        "jwt",
+        "api-security",
+        "idempotency",
+        "pagination",
+        "rate-limiting",
+        "rfc-9457",
+        "webhooks",
+        "backend-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "backend-api",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "api-contract-reviewer",
+            "api-security-reviewer",
+            "api-test-engineer",
+            "backend-architect",
+            "backend-debugger"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/backend-api/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "barra-de-qualidade",
+      "label": "Barra de qualidade (CONSTRAINTS.md), catraca e guarda de afrouxamento",
+      "description": "Registra a barra do projeto num contrato versionado (piso, números com comando, métricas em catraca, exceções com dono e prazo) e vigia o diff contra o afrouxamento: supressão nova, teste pulado, limiar baixado.",
+      "triggers": [
+        "defina nossos padrões de qualidade",
+        "crie um constraints.md",
+        "set up constraints",
+        "quality gates para o agente",
+        "o agente está pulando teste pra passar",
+        "o agente silenciou o lint",
+        "bloqueie eslint-disable no diff",
+        "o limiar de cobertura foi reduzido",
+        "trave a cobertura atual",
+        "catraca de qualidade",
+        "ratchet the coverage",
+        "check whether the diff weakened our quality bar",
+        "constraint-driven development",
+        "/constraints"
+      ],
+      "routes": [
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "constraint-driven-development"
+          ],
+          "agents": [
+            "quality-bar-guardian"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "qa-testing",
+          "skills": [
+            "tdd-guard",
+            "verification-gate"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "code-quality-refactoring",
+          "skills": [
+            "tech-debt-triage"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "devops-cloud-infra",
+          "skills": [
+            "gha-hardening-review"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "sre-observability",
+          "skills": [
+            "slo-design"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "qa-testing:test-auditor"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-06, V-07. Ferramentas (Semgrep, gitleaks, osv-scanner, axe, Lighthouse, Stryker) só como proposta, instalar com confirmação (C-3). Defaults são convenções do autor. Acessibilidade em WCAG 2.2 AA. floor-guard não é executado: vira regra do agente quality-bar-guardian.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "blockchain-web3",
+      "label": "Revisão de segurança de smart contracts (Solidity; Anchor com cobertura parcial), testes de invariantes e fuz…",
+      "description": "Revisão de segurança de smart contracts (Solidity; Anchor com cobertura parcial), testes de invariantes e fuzz com Foundry, checklists de ERC-20/721/1155/4626, oráculos, L2, upgradeability e assinaturas, com portões de …",
+      "triggers": [
+        "web3",
+        "blockchain",
+        "solidity",
+        "smart-contracts",
+        "foundry",
+        "openzeppelin",
+        "audit",
+        "fuzzing",
+        "invariants",
+        "erc4626",
+        "oracles",
+        "eip712",
+        "security-review",
+        "anchor",
+        "web3-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "blockchain-web3",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "defi-protocol-analyst",
+            "finding-refuter",
+            "invariant-test-engineer",
+            "solidity-security-reviewer",
+            "web3-agent-safety-auditor"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/blockchain-web3/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "ci-cd-portoes",
+      "label": "CI/CD e portões de qualidade",
+      "description": "Esteira de CI em ordem de custo sem gate pulado (lint, tipos, testes, build, auditoria), falha de CI devolvida ao agente com verificação local, branch protection, segredos em cofre e pipeline abaixo de 10 minutos.",
+      "triggers": [
+        "monta o pipeline de ci para esse repo",
+        "meu ci está lento",
+        "o ci falhou, o que faço",
+        "quais gates devo ter",
+        "configura o github actions",
+        "shift left nos testes",
+        "branch protection para main",
+        "automatizar lint e testes no pr",
+        "quem conserta o build quebrado",
+        "how do i set up ci",
+        "my pipeline keeps failing",
+        "speed up our ci",
+        "ci-cd-and-automation"
+      ],
+      "routes": [
+        {
+          "plugin": "devops-cloud-infra",
+          "skills": [
+            "gha-hardening-review",
+            "secrets-review",
+            "deploy-infra"
+          ],
+          "agents": [
+            "pipeline-security-auditor"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "ci-cd-and-automation"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "qa-testing",
+          "skills": [
+            "verification-gate"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "git-workflow-release",
+          "skills": [
+            "criar-pr"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "devops-cloud-infra:infra-reviewer"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-25. O upstream não cobre SAST, secret scanning nem SBOM; o brain cobre mais em gha-hardening-review e secrets-review (Inferido pelas descrições). deploy-infra é manual-only e só por pedido explícito.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "cli-desktop-tooling",
+      "label": "Playbook, skills, agentes e prompts para projetar, revisar, empacotar e distribuir CLIs, TUIs e apps desktop …",
+      "description": "Playbook, skills, agentes e prompts para projetar, revisar, empacotar e distribuir CLIs, TUIs e apps desktop (Electron, Tauri, WPF, WinUI, MAUI, Qt), com design de CLI para humanos e agentes, segurança desktop, assinatu…",
+      "triggers": [
+        "cli",
+        "command-line",
+        "tui",
+        "electron",
+        "tauri",
+        "wpf",
+        "winui",
+        "powershell",
+        "shellcheck",
+        "code-signing",
+        "msix",
+        "auto-update",
+        "developer-experience",
+        "windows",
+        "tooling-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "cli-desktop-tooling",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "cli-ux-reviewer",
+            "desktop-security-auditor",
+            "diff-gap-reviewer",
+            "release-readiness-auditor",
+            "script-reviewer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/cli-desktop-tooling/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "code-quality-refactoring",
+      "label": "Revisão de código com filtro de alto sinal, debugging por causa raiz, refatoração segura com testes de caract…",
+      "description": "Revisão de código com filtro de alto sinal, debugging por causa raiz, refatoração segura com testes de caracterização, migração com juiz de paridade e triagem de dívida técnica, sempre com evidência executável e rótulos…",
+      "triggers": [
+        "code-review",
+        "refactoring",
+        "debugging",
+        "root-cause",
+        "technical-debt",
+        "legacy-modernization",
+        "migration",
+        "characterization-tests",
+        "static-analysis",
+        "code-quality",
+        "qualidade-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "code-quality-refactoring",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "code-reviewer",
+            "codebase-mapper",
+            "debugger",
+            "finding-validator",
+            "refactor-planner"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/code-quality-refactoring/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "contexto-agente",
+      "label": "Contexto, regras do projeto e handoff entre sessões",
+      "description": "Monta o arquivo de regras do agente, decide o que carregar e o que podar (cinco níveis, poda a 75%), trata conteúdo externo como dado e fecha a sessão com um handoff de cinco campos para retomar sem perder decisões.",
+      "triggers": [
+        "o agente está ignorando as convenções do projeto",
+        "como montar o claude.md",
+        "o agente está inventando apis",
+        "a sessão está ficando confusa",
+        "o contexto está grande, o que cortar",
+        "quando devo abrir uma sessão nova",
+        "faça um handoff da tarefa",
+        "salve o estado para retomar amanhã",
+        "context engineering",
+        "the agent keeps ignoring our conventions",
+        "write a handoff so a fresh session can pick this up",
+        "what should i record before ending the session"
+      ],
+      "routes": [
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "context-engineering"
+          ],
+          "agents": [],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "llm-ai-agents",
+          "skills": [
+            "instruction-authoring"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "technical-writing-docs",
+          "skills": [
+            "auditar-claude-md"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "backend-api",
+          "skills": [
+            "backend-claude-md-setup"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "product-discovery-specs",
+          "skills": [
+            "spec-to-tasks"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "technical-writing-docs:revisor-de-instrucoes"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-11. instruction-authoring, auditar-claude-md, backend-claude-md-setup e spec-to-tasks são manual-only. 75% e 2.000 linhas são heurísticas. Os cinco campos do handoff podem entrar no roteiro continuar da fábrica.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "contrato-api",
+      "label": "Contrato de API, idempotência e retries seguros",
+      "description": "Desenha o contrato antes do código (formato de erro único, validação na fronteira, mudanças aditivas, paginação) e torna operações seguras sob retry e duplicação com chave de idempotência atômica. Erros no formato RFC 9457.",
+      "triggers": [
+        "desenhe os endpoints dessa feature",
+        "como versionar essa api sem quebrar clientes",
+        "defina o contrato entre esses módulos",
+        "put ou patch",
+        "paginação e erros padronizados",
+        "adicione um campo sem quebrar quem consome",
+        "o webhook chegou duas vezes",
+        "como evitar cobrança duplicada",
+        "preciso de idempotency-key",
+        "o timeout não diz se passou, e agora",
+        "make this endpoint safe to retry",
+        "design the rest endpoints for this",
+        "keep the api backward compatible",
+        "api-and-interface-design"
+      ],
+      "routes": [
+        {
+          "plugin": "backend-api",
+          "skills": [
+            "api-contract-design",
+            "idempotency-and-resilience"
+          ],
+          "agents": [
+            "backend-architect"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "api-and-interface-design"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "architecture-design",
+          "skills": [
+            "api-design",
+            "resilience-and-consistency"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "fintech-payments",
+          "skills": [
+            "payment-idempotency"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "automation-integrations",
+          "skills": [
+            "reviewing-webhook-receivers"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "backend-api:api-contract-reviewer"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-15, V-16. RFC 9457 do backend-api prevalece sobre o envelope de erro do upstream (C-2). Idempotência existe em cinco plugins: backend-api é a referência canônica.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "data-engineering",
+      "label": "Engenharia de dados e analytics para o Claude Code: pipelines ETL/ELT, dbt, Airflow e Dagster, Spark e stream…",
+      "description": "Engenharia de dados e analytics para o Claude Code: pipelines ETL/ELT, dbt, Airflow e Dagster, Spark e streaming, SQL analítico e custo em warehouses, contratos e qualidade de dados, linhagem e text-to-SQL seguro, com v…",
+      "triggers": [
+        "data-engineering",
+        "etl",
+        "elt",
+        "dbt",
+        "airflow",
+        "dagster",
+        "spark",
+        "streaming",
+        "bigquery",
+        "lakehouse",
+        "data-quality",
+        "data-contracts",
+        "text-to-sql",
+        "idempotency",
+        "dataeng-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "data-engineering",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "analytics-reviewer",
+            "data-pipeline-architect",
+            "data-pipeline-reviewer",
+            "eval-judge",
+            "pipeline-debugger"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/data-engineering/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "data-science-ml",
+      "label": "Playbook de ciência de dados e machine learning para Claude Code: EDA sem vazamento, validação e métricas, tr…",
+      "description": "Playbook de ciência de dados e machine learning para Claude Code: EDA sem vazamento, validação e métricas, treino e tuning reprodutíveis, séries temporais, A/B e inferência causal, avaliação de componentes LLM e promoçã…",
+      "triggers": [
+        "data-science",
+        "machine-learning",
+        "scikit-learn",
+        "pytorch",
+        "gradient-boosting",
+        "data-leakage",
+        "cross-validation",
+        "eda",
+        "time-series",
+        "ab-testing",
+        "causal-inference",
+        "llm-evals",
+        "mlops",
+        "drift",
+        "datascience-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "data-science-ml",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "ds-eval-auditor",
+            "ds-experiment-reviewer",
+            "ds-inference-reviewer",
+            "ds-leakage-auditor",
+            "ds-model-promotion-reviewer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/data-science-ml/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "database-data-modeling",
+      "label": "Modelagem, SQL, índices, planos de execução, transações, migrações sem downtime, multi-tenant e backup para P…",
+      "description": "Modelagem, SQL, índices, planos de execução, transações, migrações sem downtime, multi-tenant e backup para PostgreSQL, MySQL, SQLite, SQL Server, MongoDB, Redis e DynamoDB, com agentes somente leitura e rótulos de evid…",
+      "triggers": [
+        "database",
+        "sql",
+        "postgresql",
+        "mysql",
+        "sqlite",
+        "mongodb",
+        "redis",
+        "dynamodb",
+        "data-modeling",
+        "indexing",
+        "query-plan",
+        "transactions",
+        "migrations",
+        "multi-tenant",
+        "dados-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "database-data-modeling",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "db-migration-planner",
+            "db-query-analyst",
+            "db-reviewer",
+            "db-schema-architect",
+            "db-security-auditor"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/database-data-modeling/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "definicao-de-pronto",
+      "label": "Definição de pronto e checklists de verificação",
+      "description": "Aplica a Definition of Done fixa (correção, qualidade, integração, documentação, prontidão) e os checklists de segurança, performance e acessibilidade, com evidência por item; pronto exige verificação em execução.",
+      "triggers": [
+        "quando posso considerar isso pronto",
+        "isso está pronto de verdade",
+        "checklist antes do merge",
+        "o que falta para fechar essa tarefa",
+        "crie um critério de pronto para o projeto",
+        "gate final antes de subir",
+        "checklist de segurança, performance e acessibilidade",
+        "o que conferir antes de lançar",
+        "lista de verificação wcag",
+        "ready to merge",
+        "what's our definition of done",
+        "pre-merge checklist",
+        "definition-of-done"
+      ],
+      "routes": [
+        {
+          "plugin": "qa-testing",
+          "skills": [
+            "verification-gate"
+          ],
+          "agents": [],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "incremental-implementation"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "ux-ui-design",
+          "skills": [
+            "a11y-checklist"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "security-appsec",
+          "skills": [
+            "secrets-supply-chain-review"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "web-frontend",
+          "skills": [
+            "perf-audit"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "qa-testing:test-reviewer"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-17. definition-of-done.md e os *-checklist.md ficam em references/ do plugin (citados por incremental-implementation e shipping-and-launch). Acessibilidade em WCAG 2.2 AA. A matriz de gerenciadores do security-checklist é snapshot datado.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "deprecacao-migracao",
+      "label": "Deprecação, migração e mudança de schema sem downtime",
+      "description": "Decide se um sistema deve ser mantido ou descontinuado (cinco perguntas, substituto antes do aviso, regra do churn) e conduz a migração sem quebrar consumidores, inclusive schema em expand/contract com down testado.",
+      "triggers": [
+        "como removo essa api antiga",
+        "quero descontinuar essa funcionalidade",
+        "plano de deprecação",
+        "como migro os usuários para o novo serviço",
+        "devo manter esse sistema legado",
+        "código que ninguém mantém mas todo mundo usa",
+        "renomear coluna em produção sem downtime",
+        "expand e contract",
+        "backfill em lotes",
+        "posso dropar essa coluna",
+        "strangler fig",
+        "zero downtime schema change",
+        "deprecation-and-migration"
+      ],
+      "routes": [
+        {
+          "plugin": "code-quality-refactoring",
+          "skills": [
+            "migration-parity",
+            "refactor-seguro"
+          ],
+          "agents": [],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "deprecation-and-migration"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "database-data-modeling",
+          "skills": [
+            "safe-migrations"
+          ],
+          "agents": [
+            "db-migration-planner"
+          ],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "architecture-design",
+          "skills": [
+            "decomposition"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "database-data-modeling:db-reviewer"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-28. migration-parity é manual-only. Para schema puro, safe-migrations conduz na prática (fundamentos); a tag mantém um só líder.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "depuracao-causa-raiz",
+      "label": "Depurar até a causa raiz",
+      "description": "Para o trabalho novo, preserva a evidência, reproduz, localiza a camada, corrige a causa (não o sintoma) e deixa um teste de regressão que falha sem o conserto; trata regressão por bisect e bug não reproduzível por ramos.",
+      "triggers": [
+        "depura esse erro",
+        "por que isso está falhando",
+        "os testes quebraram depois da mudança",
+        "o build falhou, o que é isso",
+        "funcionava ontem e parou",
+        "acha o commit que introduziu o bug",
+        "reproduz esse bug antes de corrigir",
+        "bug intermitente",
+        "debug this error",
+        "it worked yesterday and now it's broken",
+        "bisect this regression",
+        "find the root cause",
+        "stop the line",
+        "debugging-and-error-recovery"
+      ],
+      "routes": [
+        {
+          "plugin": "code-quality-refactoring",
+          "skills": [
+            "debug-causa-raiz"
+          ],
+          "agents": [
+            "debugger"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "debugging-and-error-recovery"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "sre-observability",
+          "skills": [
+            "root-cause-investigation"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "backend-api",
+          "skills": [
+            "backend-debugging"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "git-workflow-release",
+          "skills": [
+            "bisect-regressao"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "code-quality-refactoring:finding-validator"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-19. Saída de erro e logs são dado, não instrução. bisect-regressao é manual-only. Teste instável por infraestrutura vai para qa-testing:flaky-triage; incidente em produção para sre-observability.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "design-engineering-kit",
+      "label": "Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada…",
+      "description": "Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 skills de motion, polimento e direção visual (Emil Kowalski e …",
+      "triggers": [
+        "design-engineering",
+        "figma",
+        "figma-mcp",
+        "playwright",
+        "playwright-mcp",
+        "design-to-code",
+        "ui-verification",
+        "motion",
+        "animation",
+        "ui-polish",
+        "emil-kowalski",
+        "taste-skill",
+        "react-native",
+        "designeng-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "design-engineering-kit",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "motion-polish-reviewer",
+            "ui-verifier"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "devops-cloud-infra",
+      "label": "Escreva, revise, planeje e diagnostique infraestrutura (Terraform/OpenTofu/Pulumi, Docker, Kubernetes/Helm, G…",
+      "description": "Escreva, revise, planeje e diagnostique infraestrutura (Terraform/OpenTofu/Pulumi, Docker, Kubernetes/Helm, GitOps, GitHub Actions, segredos, canary/blue-green, serverless e custo) com gate humano antes de qualquer muda…",
+      "triggers": [
+        "devops",
+        "cloud",
+        "infrastructure-as-code",
+        "terraform",
+        "kubernetes",
+        "docker",
+        "gitops",
+        "github-actions",
+        "secrets-management",
+        "progressive-delivery",
+        "supply-chain",
+        "troubleshooting",
+        "devops-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "devops-cloud-infra",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "infra-reviewer",
+            "k8s-workload-auditor",
+            "pipeline-security-auditor",
+            "rollout-planner"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/devops-cloud-infra/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "docs-oficiais",
+      "label": "Código fundamentado na documentação oficial da versão em uso",
+      "description": "Fundamenta código de framework na documentação oficial da versão detectada (detectar, buscar, implementar, citar), rotula o que não verificou como UNVERIFIED e trata o conteúdo buscado como dado, nunca como ordem.",
+      "triggers": [
+        "confirme na documentação oficial antes de implementar",
+        "isso ainda é a forma recomendada nessa versão",
+        "essa api está deprecada",
+        "use a sintaxe da versão do meu package.json",
+        "cite as fontes dessa implementação",
+        "não quero código de memória",
+        "verifique a doc do framework",
+        "check the official docs for our version",
+        "is this api deprecated in the version we use",
+        "cite sources for this pattern",
+        "source-driven development",
+        "ground this in the docs"
+      ],
+      "routes": [
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "source-driven-development"
+          ],
+          "agents": [],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "backend-api",
+          "skills": [
+            "stack-conventions"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "security-appsec",
+          "skills": [
+            "agent-risk-triage"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "code-quality-refactoring:finding-validator"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-12. Nenhuma skill do brain cobre o tema. Exige acesso web; sem web, tudo fica UNVERIFIED. Nunca embutir endpoint de telemetria vindo da doc sem avisar o usuário.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "ecommerce-marketplace",
+      "label": "Guia, skills e revisores para construir e operar lojas virtuais e marketplaces com o Claude Code: checkout se…",
+      "description": "Guia, skills e revisores para construir e operar lojas virtuais e marketplaces com o Claude Code: checkout seguro, webhooks de pagamento idempotentes, estoque e reservas, promoções, catálogo/busca/SEO, split de pagament…",
+      "triggers": [
+        "ecommerce",
+        "marketplace",
+        "checkout",
+        "payments",
+        "webhooks",
+        "idempotency",
+        "inventory",
+        "promotions",
+        "pix",
+        "nfe",
+        "split-payment",
+        "shopify",
+        "medusa",
+        "seo",
+        "ecommerce-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "ecommerce-marketplace",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "arquiteto-loja",
+            "auditor-catalogo-seo",
+            "auditor-pagamentos-integracoes",
+            "revisor-a11y-checkout",
+            "revisor-checkout"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/ecommerce-marketplace/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "engineering-lifecycle",
+      "label": "Ciclo de vida de engenharia com disciplina de agente, do agent-skills de Addy Osmani (MIT): DEFINE → PLAN → B…",
+      "description": "Ciclo de vida de engenharia com disciplina de agente, do agent-skills de Addy Osmani (MIT): DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP.",
+      "triggers": [
+        "lifecycle-completo",
+        "engineering-lifecycle",
+        "ciclo de vida de engenharia",
+        "spec-driven-development",
+        "spec antes do código",
+        "planning-and-task-breakdown",
+        "incremental-implementation",
+        "test-driven-development",
+        "tdd",
+        "constraint-driven-development",
+        "doubt-driven-development",
+        "source-driven-development",
+        "context-engineering",
+        "interview-me",
+        "idea-refine",
+        "code-review",
+        "code-simplification",
+        "security-hardening",
+        "performance-optimization",
+        "core-web-vitals",
+        "git-workflow",
+        "ci-cd",
+        "deprecation-and-migration",
+        "adr",
+        "observability",
+        "shipping-and-launch",
+        "rollout",
+        "rollback",
+        "anti-rationalization",
+        "agent-skills",
+        "addy-osmani"
+      ],
+      "routes": [
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "code-reviewer",
+            "fresh-context-doubter",
+            "quality-bar-guardian",
+            "security-auditor",
+            "test-engineer",
+            "web-performance-auditor"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "entrevista-intencao",
+      "label": "Entrevista de intenção e ambiguidade explícita",
+      "description": "Descobre o que a pessoa quer de fato antes da spec (uma pergunta por vez, com palpite, parada de 95%) e obriga a explicitar contradição ou requisito faltante em vez de escolher em silêncio. Entrega a intenção confirmada em seis campos.",
+      "triggers": [
+        "me entreviste antes de começar",
+        "interview me",
+        "grill me",
+        "stress-test my thinking",
+        "não sei bem o que quero",
+        "o que eu realmente quero com isso",
+        "uma pergunta de cada vez",
+        "o spec não diz o que acontece nesse caso",
+        "não invente requisito, pergunte",
+        "o código existente contradiz o pedido",
+        "don't guess, ask me",
+        "surface the ambiguity before you start",
+        "interview-me"
+      ],
+      "routes": [
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "interview-me"
+          ],
+          "agents": [],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "product-discovery-specs",
+          "skills": [
+            "spec-interview",
+            "write-prd"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "product-discovery-specs:spec-reviewer"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-02. Exige usuário presente; no fluxo autônomo (§0) vale quando o usuário pede a entrevista, senão registrar suposições. Fronteira: intenção aqui; conteúdo da spec em product-discovery-specs:spec-interview.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "fatias-incrementais",
+      "label": "Implementação em fatias verticais pequenas",
+      "description": "Implementa uma fatia testada por vez (implementar, testar, verificar, commitar, próxima), com escopo travado, fora de escopo anotado e não corrigido, e flag para o que fica incompleto.",
+      "triggers": [
+        "implemente isso em etapas pequenas",
+        "faça só a próxima tarefa do plano",
+        "não quero um pr gigante",
+        "vamos por partes testando cada uma",
+        "feature atrás de flag",
+        "mantenha o build verde entre os passos",
+        "land this in small verifiable steps",
+        "build it as thin vertical slices",
+        "keep the build green between steps",
+        "incremental-implementation",
+        "/build",
+        "/build auto"
+      ],
+      "routes": [
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "incremental-implementation"
+          ],
+          "agents": [],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "qa-testing",
+          "skills": [
+            "tdd-guard"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "git-workflow-release",
+          "skills": [
+            "commit-convencional",
+            "criar-pr"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "code-quality-refactoring",
+          "skills": [
+            "refactor-seguro"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "git-workflow-release:revisor-plano"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-08, V-31. /build auto exige SPEC.md, árvore limpa e aprovação única; commit por tarefa só em branch local, sem push. commit-convencional e criar-pr são manual-only.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "fintech-payments",
+      "label": "Construa, revise e teste sistemas de pagamentos (Pix, boleto, cartão) com idempotência, webhooks verificados,…",
+      "description": "Construa, revise e teste sistemas de pagamentos (Pix, boleto, cartão) com idempotência, webhooks verificados, dinheiro e ledger corretos, conciliação, estornos e chargebacks, 3DS, segurança e LGPD, sempre com evidência …",
+      "triggers": [
+        "fintech",
+        "payments",
+        "pagamentos",
+        "pix",
+        "boleto",
+        "idempotency",
+        "webhooks",
+        "ledger",
+        "double-entry",
+        "reconciliation",
+        "chargeback",
+        "3ds",
+        "pci-dss",
+        "lgpd",
+        "fintech-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "fintech-payments",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "payment-debugger",
+            "payment-reviewer",
+            "payment-test-engineer",
+            "payments-architect",
+            "reconciliation-analyst"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/fintech-payments/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "game-development",
+      "label": "Playbook, skills, agentes e prompts para desenvolver, revisar, otimizar e testar jogos em Godot/GDScript, Uni…",
+      "description": "Playbook, skills, agentes e prompts para desenvolver, revisar, otimizar e testar jogos em Godot/GDScript, Unity/C# e Unreal/C++, com verificação por execução (headless, sondas, captura), performance por orçamento, autor…",
+      "triggers": [
+        "game-development",
+        "gamedev",
+        "godot",
+        "gdscript",
+        "unity",
+        "unreal",
+        "game-loop",
+        "physics",
+        "netcode",
+        "profiling",
+        "gdd",
+        "playtest",
+        "headless",
+        "gamedev-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "game-development",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "game-engine-specialist",
+            "game-evaluator",
+            "gameplay-programmer",
+            "gameplay-reviewer",
+            "gdd-reviewer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/game-development/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "git-versionamento-release",
+      "label": "Git, commits atômicos, branches curtas e versionamento",
+      "description": "Commits atômicos como save points (uma coisa por commit, mensagem com o porquê), PRs de cerca de 100 linhas, branches curtas trunk-based, versão pelo impacto ao consumidor (SemVer), tag anotada e changelog curado.",
+      "triggers": [
+        "como organizo meus commits",
+        "faça commits atômicos",
+        "faça um pr pequeno",
+        "quanto deve ter um commit",
+        "como volto ao último estado que funcionava",
+        "qual versão devo subir",
+        "escreve o changelog dessa release",
+        "gitflow ou trunk-based",
+        "minha branch está há duas semanas",
+        "main sempre deployável",
+        "git worktree para agentes em paralelo",
+        "what semver bump is this",
+        "how big should a pr be",
+        "git-workflow-and-versioning"
+      ],
+      "routes": [
+        {
+          "plugin": "git-workflow-release",
+          "skills": [
+            "commit-convencional",
+            "criar-pr",
+            "rebase-seguro",
+            "release-cut",
+            "encerrar-branch"
+          ],
+          "agents": [
+            "revisor-diff"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "git-workflow-and-versioning"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "technical-writing-docs",
+          "skills": [
+            "escrever-changelog-release"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "git-workflow-release:auditor-release"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-24. git reset --hard HEAD só após git status e com o trabalho salvo ou confirmado (C-5); push e tag exigem confirmação. As skills do líder são manual-only. O vínculo com DORA no upstream é crença sem link.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "git-workflow-release",
+      "label": "Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos…",
+      "description": "Fluxo de git com Claude Code do commit à release: commits convencionais, PRs pequenos e revisáveis, conflitos, rebase e revert seguros, bisect, semver, changelog e releases, com push, merge, tag e publicação sempre sob …",
+      "triggers": [
+        "git",
+        "conventional-commits",
+        "pull-request",
+        "code-review",
+        "merge-conflicts",
+        "rebase",
+        "bisect",
+        "worktrees",
+        "semver",
+        "changelog",
+        "release",
+        "release-please",
+        "codeowners",
+        "branching",
+        "release-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "git-workflow-release",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "auditor-politica-repo",
+            "auditor-release",
+            "revisor-diff",
+            "revisor-plano"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/git-workflow-release/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "lancamento-rollback",
+      "label": "Lançamento em produção: checklist, rollout em estágios e rollback",
+      "description": "Prepara um lançamento reversível: checklist pré-lançamento em oito grupos, flag como kill switch, rollout em estágios com limiares para avançar, segurar ou reverter, e plano de rollback escrito antes do deploy.",
+      "triggers": [
+        "vamos subir isso para produção, o que falta",
+        "checklist antes do deploy",
+        "estamos prontos para o go-live",
+        "como fazemos o rollout gradual",
+        "canary de 5% dos usuários",
+        "quero lançar atrás de uma flag",
+        "quando remover a feature flag",
+        "qual o plano de rollback dessa release",
+        "como reverto se der errado",
+        "quando devo reverter",
+        "pre-launch checklist",
+        "are we ready to ship",
+        "shipping-and-launch",
+        "/ship"
+      ],
+      "routes": [
+        {
+          "plugin": "devops-cloud-infra",
+          "skills": [
+            "progressive-delivery"
+          ],
+          "agents": [
+            "rollout-planner"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "shipping-and-launch"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "sre-observability",
+          "skills": [
+            "release-health",
+            "slo-design"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "database-data-modeling",
+          "skills": [
+            "backup-restore-runbook",
+            "safe-migrations"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "technical-writing-docs",
+          "skills": [
+            "escrever-runbook"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "git-workflow-release:auditor-release"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-26, V-27, V-32. Um só roteiro de canário por projeto (C-7). Limiares e tempos são exemplos do autor. O plano é documento: push, deploy e publicação exigem confirmação (§5). release-health é manual-only.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "llm-ai-agents",
+      "label": "Playbook, skills de tarefa, subagentes somente leitura e biblioteca de prompts para projetar, revisar e testa…",
+      "description": "Playbook, skills de tarefa, subagentes somente leitura e biblioteca de prompts para projetar, revisar e testar aplicações LLM e agentes: engenharia de prompt e de contexto, tool use e MCP, RAG medido, evals e LLM-as-jud…",
+      "triggers": [
+        "llm",
+        "ai-agents",
+        "prompt-engineering",
+        "context-engineering",
+        "tool-use",
+        "mcp",
+        "rag",
+        "evals",
+        "llm-as-judge",
+        "prompt-injection",
+        "guardrails",
+        "subagents",
+        "skills",
+        "prompt-caching",
+        "agent-sdk",
+        "ia-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "llm-ai-agents",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "agent-architect",
+            "agent-security-reviewer",
+            "eval-designer",
+            "prompt-reviewer",
+            "rag-pipeline-reviewer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/llm-ai-agents/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "mobile-apps",
+      "label": "Playbook, skills, agentes e prompts para construir, revisar, depurar e publicar apps mobile (iOS/SwiftUI, And…",
+      "description": "Playbook, skills, agentes e prompts para construir, revisar, depurar e publicar apps mobile (iOS/SwiftUI, Android/Compose, React Native/Expo, Flutter): arquitetura, offline-first, push, permissões, performance, acessibi…",
+      "triggers": [
+        "mobile",
+        "ios",
+        "android",
+        "swiftui",
+        "jetpack-compose",
+        "react-native",
+        "expo",
+        "flutter",
+        "app-store",
+        "play-store",
+        "offline-first",
+        "push-notifications",
+        "accessibility",
+        "eas",
+        "mobile-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "mobile-apps",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "mobile-architect",
+            "mobile-pr-reviewer",
+            "mobile-release-auditor",
+            "mobile-security-auditor",
+            "mobile-test-engineer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/mobile-apps/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "observabilidade-instrumentar",
+      "label": "Observabilidade: instrumentar, métricas RED e alertas por sintoma",
+      "description": "Instrumenta código novo para que o incidente seja consulta: perguntas do on-call antes dos sinais, logs estruturados com correlation ID, métricas RED e USE com labels limitados, tracing OpenTelemetry e alertas por sintoma com runbook.",
+      "triggers": [
+        "instrumenta esse serviço",
+        "adiciona logs e métricas nessa feature",
+        "não consigo saber o que aconteceu em produção",
+        "como estruturar meus logs",
+        "adiciona tracing com opentelemetry",
+        "quais métricas devo expor",
+        "o pager toca o tempo todo",
+        "alertas por sintoma",
+        "métricas red",
+        "set up logging for this service",
+        "we can't debug prod, what should we log",
+        "symptom-based alerting",
+        "observability-and-instrumentation"
+      ],
+      "routes": [
+        {
+          "plugin": "sre-observability",
+          "skills": [
+            "telemetry-review",
+            "alert-review",
+            "slo-design",
+            "runbook"
+          ],
+          "agents": [],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "observability-and-instrumentation"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "technical-writing-docs",
+          "skills": [
+            "escrever-runbook"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "sre-observability:reliability-reviewer"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-30. Exemplos do upstream em Node e Prometheus; limiares são exemplos. Nunca logar segredo ou PII.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "orquestracao-multiagente",
+      "label": "Orquestração de subagentes: padrões e anti-padrões",
+      "description": "Critério para orquestrar subagentes: invocação direta, comando de persona única, fan-out paralelo com merge na sessão principal, pipeline conduzido pelo usuário e isolamento de pesquisa; profundidade 1, personas não invocam personas, quatro anti-padrões.",
+      "triggers": [
+        "orquestrar subagentes",
+        "rodar especialistas em paralelo",
+        "fan-out com merge",
+        "quando usar subagente ou agent team",
+        "agente chamando agente",
+        "router de agentes",
+        "dividir a análise entre especialistas",
+        "quem orquestra os subagentes",
+        "agent teams para debugar hipóteses",
+        "multi-agent orchestration pattern",
+        "run specialist agents in parallel",
+        "persona calls persona",
+        "orchestration-patterns"
+      ],
+      "routes": [
+        {
+          "plugin": "orchestrator",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "demand-router"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "shipping-and-launch"
+          ],
+          "agents": [
+            "code-reviewer",
+            "security-auditor",
+            "test-engineer"
+          ],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "llm-ai-agents",
+          "skills": [
+            "agent-architecture"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "llm-ai-agents:agent-security-reviewer"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-32, V-33, V-34. Reconciliação com o ORCHESTRATOR em §8 (decisão do dono). Agent Teams é experimental e não adotado. O registro de tags é dado lido pela sessão principal, não um roteador que executa.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "performance-web",
+      "label": "Medir e otimizar performance (Core Web Vitals, N+1, índice, cache)",
+      "description": "Mede antes de otimizar (sintético e RUM p75), muda uma coisa por vez, mantém só o que supera a variância, registra as tentativas revertidas e deixa guarda de regressão. Cobre Core Web Vitals, N+1, índice, pool e cache.",
+      "triggers": [
+        "isso está lento",
+        "otimiza a performance disso",
+        "melhora o lcp da página",
+        "core web vitals ruins",
+        "tem n+1 nessa consulta",
+        "o endpoint demora demais",
+        "o bundle está pesado",
+        "defina orçamentos de performance",
+        "auditoria de web vitals",
+        "profile this",
+        "the page is slow",
+        "set performance budgets",
+        "performance-optimization",
+        "/webperf"
+      ],
+      "routes": [
+        {
+          "plugin": "web-frontend",
+          "skills": [
+            "perf-audit"
+          ],
+          "agents": [
+            "frontend-perf-reviewer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "performance-optimization"
+          ],
+          "agents": [
+            "web-performance-auditor"
+          ],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "sre-observability",
+          "skills": [
+            "performance-engineering"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "database-data-modeling",
+          "skills": [
+            "query-plan-and-indexing"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "sre-observability:perf-analyst"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-23. Nunca fabricar métrica: valor com fonte rotulada (Field, Lab, Trace) ou not measured. O modo Deep do upstream usa npx: só com versão fixada e confirmação, ou JSON fornecido pelo usuário (C-4). CRUX_API_KEY nunca no plugin.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "pesquisa-web-apify",
+      "label": "Pesquisa e coleta de dados na web em escala (Apify MCP)",
+      "description": "Pesquisar fontes em massa, raspar e extrair dados de sites e redes sociais com Actors do Apify via MCP, com teto de gasto aprovado pelo usuário, uso responsável e conteúdo coletado tratado como dado. Alimenta o método de pesquisa da fábrica.",
+      "triggers": [
+        "pesquisa na web em escala",
+        "pesquisar fontes em massa",
+        "raspar dados",
+        "web scraping",
+        "coletar dados de sites",
+        "crawler",
+        "apify",
+        "actor do apify",
+        "pesquisar no reddit",
+        "transcrição de youtube",
+        "serp",
+        "scrape reddit",
+        "scrape this site",
+        "collect data from the web",
+        "apify-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "web-research-apify",
+          "skills": [
+            "playbook",
+            "escolher-actor",
+            "dataset-para-itens"
+          ],
+          "agents": [
+            "apify-researcher"
+          ],
+          "role": "lider",
+          "status": "em construção"
+        },
+        {
+          "plugin": "automation-integrations",
+          "skills": [
+            "responsible-scraping",
+            "assessing-automation-risk"
+          ],
+          "agents": [
+            "third-party-auditor"
+          ],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "security-appsec",
+          "skills": [
+            "agent-risk-triage"
+          ],
+          "agents": [
+            "agent-config-auditor"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "llm-ai-agents",
+          "skills": [
+            "tool-design-review"
+          ],
+          "agents": [
+            "agent-security-reviewer"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "web-research-apify:apify-source-verifier",
+        "web-research-apify:apify-cost-auditor",
+        "automation-integrations:third-party-auditor"
+      ],
+      "sources": [
+        "docs/dev-segments/research/web-research-apify/VALIDATED.md",
+        "docs/dev-segments/research/web-research-apify/SYNTHESIS.md"
+      ],
+      "notes": "Rota gratuita primeiro: scraping com código próprio ou de página estática fica com automation-integrations:responsible-scraping, sem Apify; Apify só quando a rota gratuita falha (bloqueio, JavaScript, sem API). Sem .mcp.json ativo: a conexão (mcp.apify.com, OAuth) é feita pelo usuário com confirmação. pesquisa-com-orcamento só roda por comando (gasta dinheiro). Despachado como general-purpose, o agente não herda tools: repetir orçamento, ferramentas e regras no prompt (P-21).",
+      "origin": "curada",
+      "status": "em construção"
+    },
+    {
+      "tag": "product-discovery-specs",
+      "label": "Transforma ideias e pedidos vagos em PRD enxuto, spec testável, critérios de aceite, histórias INVEST, priori…",
+      "description": "Transforma ideias e pedidos vagos em PRD enxuto, spec testável, critérios de aceite, histórias INVEST, priorização (RICE, ICE, MoSCoW, Kano), roadmap, OKRs e experimentos, com entrevista guiada, gates de aprovação human…",
+      "triggers": [
+        "produto-completo",
+        "product-discovery",
+        "prd",
+        "spec-driven-development",
+        "user-stories",
+        "acceptance-criteria",
+        "gherkin",
+        "ears",
+        "jtbd",
+        "rice",
+        "moscow",
+        "okr",
+        "roadmap",
+        "ab-testing",
+        "requirements"
+      ],
+      "routes": [
+        {
+          "plugin": "product-discovery-specs",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "decision-recorder",
+            "discovery-synthesizer",
+            "feasibility-scout",
+            "plan-writer",
+            "spec-reviewer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/product-discovery-specs/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "qa-testing",
+      "label": "QA e testes para o Claude Code: estratégia por risco, design de casos, TDD com vermelho confirmado, revisão d…",
+      "description": "QA e testes para o Claude Code: estratégia por risco, design de casos, TDD com vermelho confirmado, revisão de testes e E2E, triagem de testes flaky, bug reports com evidência e evals de skills e LLM, com gate de verifi…",
+      "triggers": [
+        "qa",
+        "testing",
+        "test-strategy",
+        "test-design",
+        "tdd",
+        "e2e",
+        "playwright",
+        "flaky-tests",
+        "bug-report",
+        "llm-evals",
+        "verification",
+        "accessibility-testing",
+        "api-testing",
+        "qa-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "qa-testing",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "qa-reporter",
+            "test-auditor",
+            "test-reviewer",
+            "test-writer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/qa-testing/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "quebrar-em-tarefas",
+      "label": "Quebrar a spec em tarefas verticais e verificáveis",
+      "description": "Converte a spec aprovada em plano e tarefas pequenas, cada uma com critério de aceite, verificação, dependências e tamanho; checkpoints a cada 2 ou 3 tarefas e paralelismo explícito.",
+      "triggers": [
+        "quebre em tarefas",
+        "faça o plano de implementação",
+        "divida isso em tarefas",
+        "break this into tasks",
+        "plan the implementation",
+        "tarefas verticais",
+        "quais tarefas podem rodar em paralelo",
+        "monte o tasks/plan.md",
+        "isso é uma tarefa ou duas",
+        "tarefas pequenas o bastante para uma sessão",
+        "coloque checkpoints entre as fases",
+        "task list with acceptance criteria",
+        "planning-and-task-breakdown",
+        "/plan"
+      ],
+      "routes": [
+        {
+          "plugin": "product-discovery-specs",
+          "skills": [
+            "spec-to-tasks",
+            "refine-backlog"
+          ],
+          "agents": [
+            "plan-writer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "planning-and-task-breakdown"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "architecture-design",
+          "skills": [
+            "decomposition"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "qa-testing",
+          "skills": [
+            "test-design"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "product-discovery-specs:spec-reviewer"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-05. spec-to-tasks é manual-only e exige spec aprovada (gate G1). Convenção T001/REQ/TASK do brain prevalece (C-10); não sobrescrever plano com tarefas abertas.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "refinar-ideia",
+      "label": "Refinar uma ideia: divergir, convergir e cortar",
+      "description": "Transforma ideia vaga em direção escolhida: reformula como How Might We, diverge com lentes, converge em 2 a 3 direções, expõe premissas e entrega um one-pager com MVP e lista Not Doing.",
+      "triggers": [
+        "refine essa ideia",
+        "refine this idea",
+        "ideate on",
+        "me ajuda a refinar essa ideia",
+        "gera variações disso",
+        "quais outras abordagens existem",
+        "o que eu deixaria de fora",
+        "monte a lista do que não faremos",
+        "transforme isso num one-pager",
+        "how might we",
+        "brainstorm the options",
+        "expand options before i choose",
+        "idea-refine"
+      ],
+      "routes": [
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "idea-refine"
+          ],
+          "agents": [],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "product-discovery-specs",
+          "skills": [
+            "run-discovery",
+            "prioritize-roadmap"
+          ],
+          "agents": [
+            "decision-recorder",
+            "feasibility-scout"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "architecture-design:skeptic-architect"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-03. O brain cobre descoberta com usuários e priorização, não divergência por lentes nem Not Doing obrigatória. O one-pager só vai para docs/ideas/ com confirmação.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "revisao-de-codigo",
+      "label": "Revisão de código antes do merge",
+      "description": "Revisa a mudança em cinco eixos (correção, legibilidade, arquitetura, segurança, performance) com rótulos de severidade, arquivo:linha, mutação manual e limite de tamanho da mudança.",
+      "triggers": [
+        "revisa esse pr",
+        "faz o code review desse diff",
+        "posso mergear isso",
+        "revisa minhas mudanças antes do merge",
+        "dá uma olhada nesse diff",
+        "revisão em cinco eixos",
+        "code review com severidade crítico e nit",
+        "mudança grande demais, como dividir o pr",
+        "review this before i merge",
+        "code review this pr",
+        "review my diff",
+        "five-axis review",
+        "code-review-and-quality",
+        "/review"
+      ],
+      "routes": [
+        {
+          "plugin": "code-quality-refactoring",
+          "skills": [
+            "review-diff"
+          ],
+          "agents": [
+            "code-reviewer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "code-review-and-quality"
+          ],
+          "agents": [
+            "code-reviewer"
+          ],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "security-appsec",
+          "skills": [
+            "security-review-diff"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "git-workflow-release",
+          "skills": [
+            "criar-pr"
+          ],
+          "agents": [
+            "revisor-diff"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "code-quality-refactoring:finding-validator"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-20. Rótulos divergem entre skill e persona: adotar um conjunto com arquivo:linha (C-8). A mutação manual altera arquivo: fazer em cópia ou worktree (C-15).",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "revisao-por-duvida",
+      "label": "Revisão por dúvida em contexto novo e triagem de achados",
+      "description": "Submete decisões não triviais a um revisor adversarial em contexto novo (só artefato e contrato, nunca a conclusão), classifica os achados em quatro classes e para em três rodadas. Quem orquestra é a sessão principal.",
+      "triggers": [
+        "revise isso antes de eu confiar",
+        "faça uma revisão adversarial",
+        "encontre o que pode dar errado nesse plano",
+        "questione minhas suposições",
+        "dê uma segunda opinião com contexto limpo",
+        "prove que esse código está errado",
+        "o revisor disse isso, procede",
+        "separe o que é real do que é ruído nos achados",
+        "é falso positivo",
+        "play devil's advocate on this design",
+        "what could go wrong with this migration",
+        "fresh-context review",
+        "doubt-driven development",
+        "triage these review findings"
+      ],
+      "routes": [
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "doubt-driven-development"
+          ],
+          "agents": [
+            "fresh-context-doubter"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "architecture-design",
+          "skills": [
+            "design-review"
+          ],
+          "agents": [
+            "skeptic-architect"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "security-appsec",
+          "skills": [],
+          "agents": [
+            "finding-verifier"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "code-quality-refactoring:finding-validator"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-13. Só a sessão principal dispara o DOUBT (profundidade 1); a skill não entra no skills: de persona. CLI externa (codex, gemini) só com confirmação e em modo leitura (C-16). Há seis revisores céticos no brain; o ganho é o protocolo comum.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "roteador-de-fases",
+      "label": "Roteador de fases do ciclo de engenharia",
+      "description": "Decide em que fase do ciclo (definir, planejar, construir, verificar, revisar, entregar) o trabalho está e qual skill ou comando do engineering-lifecycle se aplica. É fundamentos do orquestrador, não um segundo roteador ativo.",
+      "triggers": [
+        "qual skill usar",
+        "por onde começo essa tarefa",
+        "em que fase do ciclo estou",
+        "qual é o próximo passo do ciclo",
+        "me guie pelas fases",
+        "qual comando usar agora",
+        "ciclo de vida da entrega",
+        "spec, plan, build, review, ship",
+        "which skill applies",
+        "where do i start with this feature",
+        "walk me through the lifecycle",
+        "what's the next step in the lifecycle",
+        "using-agent-skills",
+        "lifecycle-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "orchestrator",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "demand-router"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "using-agent-skills"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "automation-integrations",
+          "skills": [
+            "authoring-plugin-skills"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "llm-ai-agents:prompt-reviewer"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-01, V-31, V-35, V-36. Um só roteador ativo: o registro de tags lido pela sessão principal. using-agent-skills entra como fundamentos (o upstream desaconselha dois roteadores). Sequência pensada para código; não cobre dados, ML ou embarcados.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "saas-multitenant",
+      "label": "Projete, implemente, revise e teste SaaS B2B multi-tenant com Claude Code: isolamento por tenant (RLS no Post…",
+      "description": "Projete, implemente, revise e teste SaaS B2B multi-tenant com Claude Code: isolamento por tenant (RLS no PostgreSQL), autorização por objeto, billing com Stripe, entitlements, SSO/SCIM, ciclo de vida de dados (LGPD/GDPR…",
+      "triggers": [
+        "saas",
+        "multi-tenant",
+        "tenant-isolation",
+        "row-level-security",
+        "postgres",
+        "stripe-billing",
+        "subscriptions",
+        "webhooks",
+        "entitlements",
+        "sso",
+        "scim",
+        "rbac",
+        "lgpd",
+        "gdpr",
+        "saas-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "saas-multitenant",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "billing-reviewer",
+            "isolation-test-engineer",
+            "milestone-reviewer",
+            "saas-architect",
+            "tenant-isolation-reviewer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/saas-multitenant/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "security-appsec",
+      "label": "Revisão de segurança de diffs e PRs, modelagem de ameaças (STRIDE), autorização por objeto e tenant, segredos…",
+      "description": "Revisão de segurança de diffs e PRs, modelagem de ameaças (STRIDE), autorização por objeto e tenant, segredos, supply chain e triagem de risco de agentes, MCP e plugins, com OWASP Top 10:2025, API Top 10, LLM Top 10 e A…",
+      "triggers": [
+        "security",
+        "appsec",
+        "owasp",
+        "threat-modeling",
+        "stride",
+        "security-review",
+        "authorization",
+        "idor",
+        "secrets",
+        "supply-chain",
+        "prompt-injection",
+        "asvs",
+        "seguranca",
+        "seguranca-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "security-appsec",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "agent-config-auditor",
+            "finding-verifier",
+            "patch-reviewer",
+            "security-reviewer",
+            "threat-modeler"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/security-appsec/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "seguranca-hardening",
+      "label": "Segurança: modelagem de ameaças, endurecimento e fronteiras de aprovação",
+      "description": "Modela ameaças antes dos controles, aplica a regra de três camadas (sempre, pedir antes, nunca), protege caminhos destrutivos derivados de dados e trata saída de LLM e dependências como entrada não confiável.",
+      "triggers": [
+        "isso é seguro",
+        "revisa a segurança disso",
+        "audita as vulnerabilidades",
+        "endurece esse endpoint",
+        "tem injeção aqui",
+        "faça uma modelagem de ameaças",
+        "posso mexer na autenticação",
+        "o que exige aprovação antes de mudar a segurança",
+        "checa o caminho antes de deletar",
+        "nunca commitar segredo",
+        "security review this",
+        "harden this endpoint",
+        "threat model this feature",
+        "owasp check",
+        "security-and-hardening"
+      ],
+      "routes": [
+        {
+          "plugin": "security-appsec",
+          "skills": [
+            "security-review-diff",
+            "threat-model",
+            "secrets-supply-chain-review",
+            "harden-claude-code",
+            "agent-risk-triage"
+          ],
+          "agents": [
+            "security-reviewer",
+            "threat-modeler"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "security-and-hardening"
+          ],
+          "agents": [
+            "security-auditor"
+          ],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "backend-api",
+          "skills": [
+            "api-security-review"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "llm-ai-agents",
+          "skills": [
+            "agent-security-review"
+          ],
+          "agents": [
+            "agent-security-reviewer"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "security-appsec:finding-verifier"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-22. PoC descritivo, sem payload operacional e sem execução (C-6). A matriz de scripts de dependência é snapshot datado. OAuth e JWT não são cobertos pelo upstream.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "simplificar-codigo",
+      "label": "Simplificar código sem mudar o comportamento",
+      "description": "Simplifica entendendo antes de tocar (Chesterton's Fence), uma mudança por vez com testes intactos, refatoração em commit separado e automação acima de 500 linhas afetadas.",
+      "triggers": [
+        "simplifica esse código",
+        "deixa isso mais legível",
+        "esse código está complicado demais",
+        "refatora sem mudar o comportamento",
+        "tira o aninhamento e o código morto",
+        "posso apagar esse código",
+        "clean up this code",
+        "make this more readable",
+        "simplify this without changing behavior",
+        "chesterton's fence",
+        "code-simplification",
+        "/code-simplify"
+      ],
+      "routes": [
+        {
+          "plugin": "code-quality-refactoring",
+          "skills": [
+            "simplify-safe",
+            "refactor-seguro",
+            "tech-debt-triage"
+          ],
+          "agents": [],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "code-simplification"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "qa-testing",
+          "skills": [
+            "test-design"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "qa-testing:test-auditor"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-21. Não adotar o hook simplify-ignore (altera arquivos na leitura). Não simplificar código de performance crítica sem medição.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "spec-antes-do-codigo",
+      "label": "Spec antes do código, com aprovação",
+      "description": "Escreve e aprova a spec (seis áreas, Boundaries Always, Ask first e Never, critérios testáveis) antes do plano e do código; propõe mapa de capacidades quando o pedido agrupa módulos independentes.",
+      "triggers": [
+        "escreva a spec antes",
+        "write a spec first",
+        "faça um prd",
+        "spec antes do código",
+        "não codar antes de ter spec",
+        "documente os requisitos antes de implementar",
+        "quero um spec.md",
+        "divida em módulos antes da spec",
+        "spec com always, ask first e never",
+        "template de spec",
+        "write the requirements before coding",
+        "spec-driven development",
+        "/spec"
+      ],
+      "routes": [
+        {
+          "plugin": "product-discovery-specs",
+          "skills": [
+            "write-spec",
+            "write-prd",
+            "spec-interview",
+            "acceptance-criteria"
+          ],
+          "agents": [],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "spec-driven-development"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "architecture-design",
+          "skills": [
+            "decomposition"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "qa-testing",
+          "skills": [
+            "test-strategy"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "product-discovery-specs:spec-reviewer"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-04. IDs FR-/SC- do brain prevalecem sobre Success Criteria em prosa (C-11); SPEC-<id>.md só com mapa de capacidades aprovado. Parar o turno após a spec.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "sre-observability",
+      "label": "SLI/SLO e error budget, alertas por burn rate, telemetria (OpenTelemetry, Prometheus), triagem de incidentes …",
+      "description": "SLI/SLO e error budget, alertas por burn rate, telemetria (OpenTelemetry, Prometheus), triagem de incidentes somente leitura, postmortem blameless, runbooks, canário, testes de carga e performance, com agentes que inves…",
+      "triggers": [
+        "sre",
+        "observability",
+        "slo",
+        "error-budget",
+        "burn-rate",
+        "alerting",
+        "opentelemetry",
+        "prometheus",
+        "incident-response",
+        "postmortem",
+        "runbook",
+        "load-testing",
+        "k6",
+        "performance",
+        "sre-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "sre-observability",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "incident-support",
+            "perf-analyst",
+            "postmortem-scribe",
+            "reliability-reviewer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/sre-observability/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "systems-embedded-iot",
+      "label": "Revisão, depuração e testes de firmware (C/C++, Rust no_std, FreeRTOS, Zephyr, ESP32/STM32) com portão humano…",
+      "description": "Revisão, depuração e testes de firmware (C/C++, Rust no_std, FreeRTOS, Zephyr, ESP32/STM32) com portão humano para gravar em hardware, datasheet primeiro e checklists de ISR, barramentos, MQTT e OTA seguro.",
+      "triggers": [
+        "embedded",
+        "firmware",
+        "iot",
+        "rtos",
+        "freertos",
+        "zephyr",
+        "esp32",
+        "stm32",
+        "rust-no-std",
+        "mqtt",
+        "ota",
+        "misra",
+        "datasheet",
+        "embarcados-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "systems-embedded-iot",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "embedded-architect",
+            "firmware-debugger",
+            "firmware-reviewer",
+            "firmware-test-engineer",
+            "iot-security-auditor"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/systems-embedded-iot/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "tdd",
+      "label": "TDD, pirâmide e padrões de teste",
+      "description": "Escreve o teste antes do código e, em bug, o teste de reprodução que falha antes do conserto (Prove-It); escolhe o nível do teste pelo recurso que consome e aplica AAA, DAMP e dublê só na fronteira.",
+      "triggers": [
+        "faça isso com tdd",
+        "escreva o teste antes do código",
+        "crie um teste que reproduza esse bug antes de corrigir",
+        "red green refactor",
+        "prove-it",
+        "teste de regressão para esse bug",
+        "qual a proporção entre testes unitários e de integração",
+        "pirâmide de testes",
+        "devo mockar isso",
+        "meus testes quebram quando refatoro",
+        "write a failing test first",
+        "test pyramid",
+        "test-driven-development",
+        "/test"
+      ],
+      "routes": [
+        {
+          "plugin": "qa-testing",
+          "skills": [
+            "tdd-guard",
+            "test-design",
+            "test-strategy",
+            "flaky-triage"
+          ],
+          "agents": [
+            "test-writer",
+            "test-reviewer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "test-driven-development"
+          ],
+          "agents": [
+            "test-engineer"
+          ],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "web-frontend",
+          "skills": [
+            "e2e-tests"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "backend-api",
+          "skills": [
+            "api-test-suite"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "qa-testing:test-auditor"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-09, V-10. Desempate com testes-funcionais-playwright: aqui é desenho e estilo de teste; lá, validação funcional com evidência. A persona test-engineer, sem shell, não confirma a falha.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "technical-writing-docs",
+      "label": "Documentação técnica com Claude Code: README, tutoriais e guias (Diátaxis), ADRs, runbooks, changelog, docs d…",
+      "description": "Documentação técnica com Claude Code: README, tutoriais e guias (Diátaxis), ADRs, runbooks, changelog, docs de API (OpenAPI), docstrings, diagramas Mermaid, docs-as-code e arquivos para agentes (CLAUDE.md, AGENTS.md, sk…",
+      "triggers": [
+        "documentation",
+        "technical-writing",
+        "readme",
+        "diataxis",
+        "adr",
+        "runbook",
+        "changelog",
+        "release-notes",
+        "openapi",
+        "docstrings",
+        "mermaid",
+        "docs-as-code",
+        "claude-md",
+        "agents-md",
+        "docs-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "technical-writing-docs",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "auditor-de-docs",
+            "revisor-de-instrucoes",
+            "revisor-de-leitor",
+            "technical-writer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/technical-writing-docs/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "testes-funcionais-playwright",
+      "label": "Validação funcional, funcionalidade por funcionalidade, com Playwright",
+      "description": "Inventariar as funcionalidades do sistema, montar a matriz, explorar o app rodando e codificar specs Playwright por funcionalidade (E2E, API, visual, acessibilidade, responsivo, rede e falhas) com evidência: trace, screenshot e relatório HTML. Em UI nativa mobile, registra N/A com motivo e usa o equivalente, mantendo a mesma matriz.",
+      "triggers": [
+        "testar funcionalidade por funcionalidade",
+        "validar cada funcionalidade",
+        "abrir o app e validar",
+        "validação funcional",
+        "matriz de funcionalidades",
+        "inventário de funcionalidades",
+        "testes de ponta a ponta",
+        "testes e2e",
+        "end-to-end",
+        "testar no navegador",
+        "automação de testes web",
+        "playwright",
+        "playwright mcp",
+        "playwright cli",
+        "healer",
+        "trace viewer",
+        "e2e tests",
+        "browser tests",
+        "functional validation",
+        "test every feature",
+        "feature by feature validation",
+        "playwright-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "qa-playwright",
+          "skills": [
+            "playbook",
+            "feature-inventory",
+            "explore-feature",
+            "write-specs"
+          ],
+          "agents": [
+            "feature-explorer",
+            "spec-writer",
+            "spec-reviewer",
+            "failure-triager",
+            "matrix-auditor"
+          ],
+          "role": "lider",
+          "status": "em construção"
+        },
+        {
+          "plugin": "qa-testing",
+          "skills": [
+            "e2e-review",
+            "test-strategy",
+            "verification-gate"
+          ],
+          "agents": [
+            "test-auditor",
+            "test-writer"
+          ],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "web-frontend",
+          "skills": [
+            "e2e-tests",
+            "verify-ui"
+          ],
+          "agents": [
+            "ui-evaluator"
+          ],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "browser-testing-with-devtools",
+            "test-driven-development"
+          ],
+          "agents": [
+            "test-engineer"
+          ],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "design-engineering-kit",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "ui-verifier"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "qa-playwright:matrix-auditor",
+        "qa-testing:test-auditor"
+      ],
+      "sources": [
+        "docs/dev-segments/research/qa-playwright/VALIDATED.md",
+        "docs/dev-segments/research/qa-playwright/SYNTHESIS.md"
+      ],
+      "notes": "Passo obrigatório do ORCHESTRATOR §3.2 em toda rodada de teste com superfície web ou HTTP. Exploração com `npx playwright cli` da versão fixada do projeto (sem @latest, sem .mcp.json). Preparo pré-autorizado pelo dono: @playwright/test exato como devDependency na branch local, harness e2e-playwright/, Chromium no cache só sem Chrome/Edge. Exigem confirmação: --with-deps/admin, plugin ou MCP no Claude Code, init-agents, outras dependências, produção. UI nativa Android/iOS: N/A com equivalente (Compose/Espresso/UI Automator, exploração por adb).",
+      "origin": "curada",
+      "status": "em construção"
+    },
+    {
+      "tag": "ui-producao",
+      "label": "UI de produção: acessível, responsiva e verificada no navegador",
+      "description": "Constrói telas e componentes de produção (estados completos, teclado, responsivo, sem estética genérica de IA) e verifica no navegador com DevTools: console limpo, rede, DOM, screenshots antes e depois. Alvo de acessibilidade WCAG 2.2 AA.",
+      "triggers": [
+        "monte esse componente",
+        "crie essa tela responsiva",
+        "isso parece feito por ia, melhore",
+        "faça o formulário acessível",
+        "estados de carregando, vazio e erro",
+        "tem erro no console da página",
+        "inspecione as requisições de rede dessa ação",
+        "tire screenshot antes e depois da mudança",
+        "chrome devtools",
+        "devtools mcp",
+        "this ui looks generic",
+        "check console errors and network calls in the browser",
+        "frontend-ui-engineering",
+        "browser-testing-with-devtools"
+      ],
+      "routes": [
+        {
+          "plugin": "web-frontend",
+          "skills": [
+            "design-ui",
+            "component-review",
+            "a11y-review",
+            "verify-ui"
+          ],
+          "agents": [
+            "frontend-a11y-reviewer",
+            "frontend-code-reviewer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "frontend-ui-engineering",
+            "browser-testing-with-devtools"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "ux-ui-design",
+          "skills": [
+            "a11y-checklist",
+            "design-tokens"
+          ],
+          "agents": [],
+          "role": "fundamentos",
+          "status": "publicado"
+        },
+        {
+          "plugin": "design-engineering-kit",
+          "skills": [
+            "design-taste-frontend",
+            "minimalist-ui"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "web-frontend:ui-evaluator"
+      ],
+      "sources": [
+        "docs/dev-segments/research/engineering-lifecycle/VALIDATED.md"
+      ],
+      "notes": "V-14, V-18. Desempate com testes-funcionais-playwright: aqui, construção e inspeção interativa; lá, suítes por funcionalidade. MCP chrome-devtools não vem ativo: versão fixada e confirmação (C-4); perfil isolado; --autoConnect só com autorização. WCAG 2.2 AA (C-1).",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "ux-ui-design",
+      "label": "Direção visual, auditoria de UI, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing …",
+      "description": "Direção visual, auditoria de UI, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários para trabalhar com Claude, com skills, agentes avaliadores somente leitura, prompts cu…",
+      "triggers": [
+        "ux",
+        "ui",
+        "design-system",
+        "design-tokens",
+        "accessibility",
+        "wcag",
+        "usability",
+        "heuristic-evaluation",
+        "ux-writing",
+        "user-research",
+        "design-review",
+        "dtcg",
+        "uxui-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "ux-ui-design",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "a11y-reviewer",
+            "design-evaluator",
+            "design-system-auditor",
+            "ui-designer",
+            "ux-researcher"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/ux-ui-design/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "video-edicao",
+      "label": "Edição e produção de vídeo com código (HyperFrames)",
+      "description": "Criar, editar e renderizar vídeos por código: roteiro, cenas, animação, legendas, narração e render local, seguindo o playbook do HyperFrames. Entrega o vídeo renderizado ou o projeto pronto para renderizar, com o toolchain conferido.",
+      "triggers": [
+        "edição de vídeo",
+        "editar vídeo",
+        "editar um vídeo",
+        "montar um vídeo",
+        "criar um vídeo",
+        "produzir um vídeo",
+        "renderizar vídeo",
+        "vídeo explicativo",
+        "vídeo demo do produto",
+        "motion graphics",
+        "animação em vídeo",
+        "legendas e cortes",
+        "video editing",
+        "edit a video",
+        "render a video",
+        "explainer video",
+        "hyperframes"
+      ],
+      "routes": [
+        {
+          "plugin": "video-hyperframes",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [],
+          "role": "lider",
+          "status": "em construção"
+        },
+        {
+          "plugin": "design-engineering-kit",
+          "skills": [
+            "animate",
+            "animation-vocabulary",
+            "review-animations"
+          ],
+          "agents": [
+            "motion-polish-reviewer"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "ux-ui-design",
+          "skills": [
+            "design-brief",
+            "ux-writing"
+          ],
+          "agents": [
+            "design-evaluator"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "design-engineering-kit:motion-polish-reviewer"
+      ],
+      "sources": [
+        "docs/dev-segments/research/video-hyperframes/VALIDATED.md"
+      ],
+      "notes": "Plugin em construção por outra sessão (item 30 do plano da fábrica). Render local exige Node 22+ e FFmpeg; instalação só com confirmação do usuário. O status desta tag muda sozinho quando o plugin for publicado.",
+      "origin": "curada",
+      "status": "em construção"
+    },
+    {
+      "tag": "web-frontend",
+      "label": "Guia, skills de tarefa, agentes somente leitura e biblioteca de prompts para frontend web com Claude Code (Re…",
+      "description": "Guia, skills de tarefa, agentes somente leitura e biblioteca de prompts para frontend web com Claude Code (React e Next.js, Vue e Nuxt, Svelte, Angular, TypeScript, Tailwind, WCAG 2.2, Core Web Vitals, formulários, data…",
+      "triggers": [
+        "frontend",
+        "react",
+        "nextjs",
+        "vue",
+        "nuxt",
+        "svelte",
+        "angular",
+        "typescript",
+        "tailwind",
+        "accessibility",
+        "wcag",
+        "core-web-vitals",
+        "playwright",
+        "forms",
+        "frontend-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "web-frontend",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "frontend-a11y-reviewer",
+            "frontend-code-reviewer",
+            "frontend-perf-reviewer",
+            "frontend-security-auditor",
+            "ui-evaluator"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [
+        "docs/dev-segments/research/web-frontend/VALIDATED.md"
+      ],
+      "origin": "automatica",
+      "status": "publicado"
+    }
+  ]
+}

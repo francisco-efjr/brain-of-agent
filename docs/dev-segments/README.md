@@ -13,6 +13,12 @@ Esta pasta registra como os plugins de `plugins/` foram produzidos e como reprod
 
 A primeira tentativa usou o modelo mais caro em todos os agentes e esgotou a janela de uso. Por isso o processo final usa modelos por camada e roda em lotes, com um disjuntor que interrompe o lote quando os agentes começam a falhar.
 
+## Conhecimento adquirido e registro por tag
+
+Além dos 25 segmentos, o brain absorve conhecimento de fontes externas como plugins opcionais: `design-engineering-kit` (skills de motion e gosto, Emil Kowalski e taste-skill) e `engineering-lifecycle` (as 25 skills, 4 personas, 9 comandos e 7 checklists do [agent-skills](https://github.com/addyosmani/agent-skills) de Addy Osmani, MIT, vendorizados byte a byte com inventário sha256 e commit fixado, mais a camada própria em PT-BR). O critério é sempre o mesmo: material permissivo entra sem alteração, com licença e atribuição; o que tem plugin oficial mantido pelo fornecedor (Figma, Playwright, HyperFrames) não é duplicado, só orientado.
+
+**Cada conhecimento tem uma tag.** O [registro de conhecimento](KNOWLEDGE.md) (gerado; esquema em [foundation/knowledge-registry-spec.md](foundation/knowledge-registry-spec.md)) liga gatilhos em linguagem de usuário ("edição de vídeo", "escreva a spec antes", "teste funcionalidade por funcionalidade") ao plugin líder, às skills de fundamentos que o subagente deve carregar, ao apoio e ao validador independente. É o primeiro passo do orquestrador ao escolher especialistas (ORCHESTRATOR.md §3, passo 3). Uma tag automática por plugin nasce dos `keywords` do `plugin.json`; tags curadas ficam em `docs/foundation/knowledge/<tag>.json` na fábrica, um arquivo por tag, para que várias sessões adicionem conhecimento em paralelo sem conflito. Tag cujo plugin ainda não foi publicado aparece como "em construção".
+
 ## Reproduzir ou adicionar um segmento
 
 - Os scripts de orquestração ficam em `tools/dev-segments/workflows/`. `research-v2.js` cobre atlas e segmentos; `build-v2.js` cobre plugins, integração e contexto. Os dois rodam com a ferramenta Workflow do Claude Code, com `args` `{root, date, mode, segments, only}`.

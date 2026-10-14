@@ -30,6 +30,9 @@ Gerado por `tools/publish_brain.py` a partir do frontmatter dos plugins publicad
 | `fintech-payments` | Construa, revise e teste sistemas de pagamentos (Pix, boleto, cartão) com idempotência, webhooks verificados, dinheiro e ledger corretos, conciliação, estornos… | go-live-and-guardrails, money-ledger-design, payment-code-review, payment-idempotency, payment-test-plan, pix-boleto-br, playbook, prompts, reconciliation-disputes, webhook-handler | payment-debugger, payment-reviewer, payment-test-engineer, payments-architect, reconciliation-analyst | FINTECH-COMPLETO |
 | `ecommerce-marketplace` | Guia, skills e revisores para construir e operar lojas virtuais e marketplaces com o Claude Code: checkout seguro, webhooks de pagamento idempotentes, estoque … | catalogo-busca-seo, checkout-seguro, estoque-reserva-pedido, fiscal-frete-br, loja-operacao-segura, marketplace-split, playbook, precos-promocoes, prompts, webhook-pagamento | arquiteto-loja, auditor-catalogo-seo, auditor-pagamentos-integracoes, revisor-a11y-checkout, revisor-checkout | ECOMMERCE-COMPLETO |
 | `design-engineering-kit` | Complemento opcional do ux-ui-design para designer-engenheiro: do link do Figma à UI implementada, verificada no navegador (Playwright MCP) e polida, com 17 sk… | animate, animate-expo, animation-vocabulary, apple-design, break-ui, design-taste-frontend, emil-design-eng, find-animation-opportunities, high-end-visual-design, improve-animations, industrial-brutalist-ui, minimalist-ui, mobile-native, pick-ui-library, playbook, prompts, prototype, redesign-existing-projects, review-animations | motion-polish-reviewer, ui-verifier | DESIGNENG-COMPLETO |
+| `engineering-lifecycle` | Ciclo de vida de engenharia com disciplina de agente, do agent-skills de Addy Osmani (MIT): DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP. | api-and-interface-design, browser-testing-with-devtools, ci-cd-and-automation, code-review-and-quality, code-simplification, constraint-driven-development, context-engineering, debugging-and-error-recovery, deprecation-and-migration, documentation-and-adrs, doubt-driven-development, frontend-ui-engineering, git-workflow-and-versioning, idea-refine, incremental-implementation, interview-me, observability-and-instrumentation, performance-optimization, planning-and-task-breakdown, playbook, prompts, security-and-hardening, shipping-and-launch, source-driven-development, spec-driven-development, test-driven-development, using-agent-skills | code-reviewer, fresh-context-doubter, quality-bar-guardian, security-auditor, test-engineer, web-performance-auditor | LIFECYCLE-COMPLETO |
+
+**Em construção (ainda não publicados):** `qa-playwright`, `video-hyperframes`, `web-research-apify`. Para essas demandas, use o plugin mais próximo e declare a lacuna.
 
 ## product-discovery-specs (`product-discovery-specs` 0.1.0)
 
@@ -408,7 +411,7 @@ Instalar: `/plugin install code-quality-refactoring@brain-of-agent` · Playbook:
 | `code-quality-refactoring:finding-validator` (`plugins/code-quality-refactoring/agents/finding-validator.md`) | Cético somente leitura que tenta refutar achados de revisão de código lendo o código (reabre o trecho, procura guarda, teste ou chamada que torne o achado falso) e decide CONFIRMADO, REFUTADO ou INCONCLUSIVO com a linha… | Read, Grep, Glob |
 | `code-quality-refactoring:refactor-planner` (`plugins/code-quality-refactoring/agents/refactor-planner.md`) | Planejador somente leitura de refatoração segura. | Read, Grep, Glob |
 
-## ux-ui-design (`ux-ui-design` 0.1.0)
+## ux-ui-design (`ux-ui-design` 0.2.0)
 
 Direção visual, auditoria de UI, avaliação heurística, acessibilidade WCAG 2.2 AA, design tokens, UX writing e pesquisa com usuários para trabalhar com Claude, com skills, agentes avaliadores somente leitura, prompts curados e evals.
 
@@ -735,3 +738,48 @@ Instalar: `/plugin install design-engineering-kit@brain-of-agent` · Playbook: `
 |---|---|---|
 | `design-engineering-kit:motion-polish-reviewer` (`plugins/design-engineering-kit/agents/motion-polish-reviewer.md`) | Revisa motion e polimento de UI por leitura, aplicando os 10 padrões da skill review-animations, o checklist do emil-design-eng e o catálogo do break-ui, sempre depois dos tokens de motion do design system do projeto. | Read, Grep, Glob |
 | `design-engineering-kit:ui-verifier` (`plugins/design-engineering-kit/agents/ui-verifier.md`) | Verifica no navegador, com o Playwright MCP, uma UI já implementada contra o Figma, o brief ou o design system, e devolve relatório com achados (ID, severidade, evidência, recomendação). | (herda) |
+
+## engineering-lifecycle (`engineering-lifecycle` 0.1.0)
+
+Ciclo de vida de engenharia com disciplina de agente, do agent-skills de Addy Osmani (MIT): DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP. 25 skills, 4 personas, 9 comandos e 7 checklists vendorizados sem alteração de conteúdo, mais playbook em PT-BR com crosswalk para os plugins do brain, comportamentos operacionais, anti-racionalização consolidada, prompts, 2 agentes próprios somente leitura e evals. Modo LIFECYCLE-COMPLETO por pedido explícito.
+
+Instalar: `/plugin install engineering-lifecycle@brain-of-agent` · Playbook: `plugins/engineering-lifecycle/skills/playbook/SKILL.md`
+
+| Skill | Quando usar |
+|---|---|
+| `/engineering-lifecycle:api-and-interface-design` | Guides stable API and interface design. |
+| `/engineering-lifecycle:browser-testing-with-devtools` | Tests in real browsers via Chrome DevTools MCP. |
+| `/engineering-lifecycle:ci-cd-and-automation` | Automates CI/CD pipeline setup. |
+| `/engineering-lifecycle:code-review-and-quality` | Conducts multi-axis code review. |
+| `/engineering-lifecycle:code-simplification` | Simplifies code for clarity. |
+| `/engineering-lifecycle:constraint-driven-development` | Establishes a project's quality bar as a written contract and stops agents quietly lowering it. |
+| `/engineering-lifecycle:context-engineering` | Optimizes agent context setup. |
+| `/engineering-lifecycle:debugging-and-error-recovery` | Guides systematic root-cause debugging. |
+| `/engineering-lifecycle:deprecation-and-migration` | Manages deprecation and migration. |
+| `/engineering-lifecycle:documentation-and-adrs` | Records decisions and documentation. |
+| `/engineering-lifecycle:doubt-driven-development` | Subjects every non-trivial decision to a fresh-context adversarial review before it stands. |
+| `/engineering-lifecycle:frontend-ui-engineering` | Builds production-quality, accessible, responsive user-facing UIs. |
+| `/engineering-lifecycle:git-workflow-and-versioning` | Structures git workflow practices. |
+| `/engineering-lifecycle:idea-refine` | Refines raw ideas into sharp, actionable concepts through structured divergent and convergent thinking. |
+| `/engineering-lifecycle:incremental-implementation` | Delivers changes incrementally in thin, verifiable slices. |
+| `/engineering-lifecycle:interview-me` | Extracts what the user actually wants instead of what they think they should want. |
+| `/engineering-lifecycle:observability-and-instrumentation` | Instruments code so production behavior is visible and diagnosable. |
+| `/engineering-lifecycle:performance-optimization` | Optimizes application performance across frontend, backend, queries, and databases. |
+| `/engineering-lifecycle:planning-and-task-breakdown` | Breaks work into ordered tasks. |
+| `/engineering-lifecycle:playbook` | Guia do ciclo de vida de engenharia com disciplina de agente (agent-skills de Addy Osmani, MIT). |
+| `/engineering-lifecycle:prompts` | Biblioteca de prompts curados do ciclo de engenharia - restate de intenção em seis campos, dúvida adversarial sem a conclusão do autor, handoff de sessão, plano de rollback, decisão GO/NO-GO, tarefa de seis campos, CONS… |
+| `/engineering-lifecycle:security-and-hardening` | Hardens code against vulnerabilities. |
+| `/engineering-lifecycle:shipping-and-launch` | Prepares production launches. |
+| `/engineering-lifecycle:source-driven-development` | Grounds every implementation decision in official documentation. |
+| `/engineering-lifecycle:spec-driven-development` | Creates specs before coding. |
+| `/engineering-lifecycle:test-driven-development` | Drives development with tests using the red-green-refactor loop. |
+| `/engineering-lifecycle:using-agent-skills` | Discovers and invokes agent skills. |
+
+| Agente | Quando delegar | Ferramentas |
+|---|---|---|
+| `engineering-lifecycle:code-reviewer` (`plugins/engineering-lifecycle/agents/code-reviewer.md`) | Senior code reviewer that evaluates changes across five dimensions — correctness, readability, architecture, security, and performance. | (herda) |
+| `engineering-lifecycle:fresh-context-doubter` (`plugins/engineering-lifecycle/agents/fresh-context-doubter.md`) | Cético genérico em contexto novo para artefato sem dono de domínio (decisão, plano, afirmação, trecho de código). | Read, Grep, Glob |
+| `engineering-lifecycle:quality-bar-guardian` (`plugins/engineering-lifecycle/agents/quality-bar-guardian.md`) | Guarda somente leitura da barra de qualidade escrita em CONSTRAINTS.md. | Read, Grep, Glob |
+| `engineering-lifecycle:security-auditor` (`plugins/engineering-lifecycle/agents/security-auditor.md`) | Security engineer focused on vulnerability detection, threat modeling, and secure coding practices. | (herda) |
+| `engineering-lifecycle:test-engineer` (`plugins/engineering-lifecycle/agents/test-engineer.md`) | QA engineer specialized in test strategy, test writing, and coverage analysis. | (herda) |
+| `engineering-lifecycle:web-performance-auditor` (`plugins/engineering-lifecycle/agents/web-performance-auditor.md`) | Web performance engineer focused on Core Web Vitals, loading, rendering, and network optimization. | (herda) |

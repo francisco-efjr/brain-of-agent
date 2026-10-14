@@ -77,7 +77,8 @@ Objetivo: melhorar o sistema. [OPCIONAL: foco, por exemplo estabilidade, experi�
 Restrições: [o que não pode mudar, por exemplo telas X, banco ou stack]
 
 Como trabalhar:
-1. Leia o ORCHESTRATOR.md e o catálogo em docs/dev-segments/CATALOGO.md. Detecte a stack do projeto e escolha
+1. Leia o ORCHESTRATOR.md, o registro de conhecimento por tag em docs/dev-segments/KNOWLEDGE.md (case a demanda
+   com os gatilhos: líder, fundamentos e validador de cada tag) e o catálogo em docs/dev-segments/CATALOGO.md. Detecte a stack do projeto e escolha
    só os especialistas que o contexto pede: arquitetura, plataforma, QA, segurança, qualidade de código,
    UX/UI se houver interface, e outros se fizer sentido. Mostre o plano em poucas linhas e siga sem esperar
    minha aprovação. Você é o agente principal: conduza com autonomia até o fim e crie cada especialista como
