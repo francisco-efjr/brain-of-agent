@@ -28,10 +28,25 @@ TEMAS = {
     "conhecimento": RAIZ / "conhecimento" / "CORE-CONHECIMENTO.md",
     "memoria": RAIZ / "memoria" / "CORE-MEMORIA.md",
     "programacao": RAIZ / "programacao" / "CORE-PROGRAMACAO.md",
+    "automacao": RAIZ / "automacao" / "CORE-AUTOMACAO.md",
 }
 PERFIS = {
     # O que o dono usa todo dia entra completo; o resto entra como cartão.
-    "padrao": {"windows": "completo", "conhecimento": "completo", "memoria": "cartao", "programacao": "cartao"},
+    "padrao": {
+        "windows": "completo",
+        "conhecimento": "completo",
+        "memoria": "cartao",
+        "programacao": "cartao",
+        "automacao": "cartao",
+    },
+    # Dia de programação: Windows e programação completos, o resto como cartão.
+    "dev": {
+        "windows": "completo",
+        "programacao": "completo",
+        "memoria": "cartao",
+        "conhecimento": "cartao",
+        "automacao": "cartao",
+    },
     "completo": {tema: "completo" for tema in TEMAS},
     "leve": {tema: "cartao" for tema in TEMAS},
 }

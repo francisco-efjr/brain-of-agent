@@ -4,7 +4,15 @@
 >
 > **O que não é.** Não é plugin e não é lido pelo `ORCHESTRATOR.md`. Nenhum arquivo fora desta pasta depende dela, exceto o teste `tests/test_local_ai_core.py`, que confere se o `CORE.md` está montado.
 
-Versão 3.0, 2026-11-19. Temas: **Windows** (operar o PC), **conhecimento** (pesquisar, citar fontes e manter a base local) e **memória** (lembrar preferências, decisões, procedimentos e onde parou, com base no desenho do [ai-memory](https://github.com/akitaonrails/ai-memory)).
+Versão 3.1, 2026-11-19. Cinco temas:
+
+| Tema | Para quê | Fontes |
+| --- | --- | --- |
+| **Windows** | Operar o PC com PowerShell, com ensaio, backup e aprovação por risco | 98 |
+| **Conhecimento** | Pesquisar, citar fontes, checar afirmações e manter a base local | 57 |
+| **Memória** | Lembrar preferências, decisões, procedimentos e onde parou, com base no desenho do [ai-memory](https://github.com/akitaonrails/ai-memory) | 41 |
+| **Programação** | Trabalhar nos projetos de código com branch, testes e evidência | 28, mais cerca de 196 itens validados da casa |
+| **Automação** | Tarefas que rodam sozinhas, com ficha aprovada, limites e parada de emergência | 25, mais 63 itens validados da casa |
 
 ## Estrutura
 
@@ -24,11 +32,21 @@ local-ai-core/
 │   ├── REFERENCIA-CONHECIMENTO.md     # 18 seções: fontes, checagem, evidência, citação, base local, RAG
 │   ├── PESQUISA-CONHECIMENTO.md       # 57 fontes e validação da esteira para pesquisa
 │   └── evals/CASOS-CONHECIMENTO.md    # 14 casos de teste
-└── memoria/
-    ├── CORE-MEMORIA.md                # tema: memória de longo prazo
-    ├── REFERENCIA-MEMORIA.md          # 17 seções: tipos, formato, envelhecimento, bastão, envenenamento
-    ├── PESQUISA-MEMORIA.md            # 41 fontes, princípios do ai-memory e validação da esteira
-    └── evals/CASOS-MEMORIA.md         # 12 casos de teste
+├── memoria/
+│   ├── CORE-MEMORIA.md                # tema: memória de longo prazo
+│   ├── REFERENCIA-MEMORIA.md          # 17 seções: tipos, formato, envelhecimento, bastão, envenenamento
+│   ├── PESQUISA-MEMORIA.md            # 41 fontes, princípios do ai-memory e validação da esteira
+│   └── evals/CASOS-MEMORIA.md         # 12 casos de teste
+├── programacao/
+│   ├── CORE-PROGRAMACAO.md            # tema: programação no PC
+│   ├── REFERENCIA-PROGRAMACAO.md      # 20 seções: bug, fatias, refatoração, testes, git, dependências, Windows
+│   ├── PESQUISA-PROGRAMACAO.md        # 28 fontes diretas e a pesquisa validada da casa
+│   └── evals/CASOS-PROGRAMACAO.md     # 12 casos de teste
+└── automacao/
+    ├── CORE-AUTOMACAO.md              # tema: automação de rotinas
+    ├── REFERENCIA-AUTOMACAO.md        # 12 seções: Agendador, script modelo, idempotência, disjuntor, avisos
+    ├── PESQUISA-AUTOMACAO.md          # 25 fontes diretas e a pesquisa validada da casa
+    └── evals/CASOS-AUTOMACAO.md       # 12 casos de teste
 ```
 
 ## Como funciona
@@ -41,9 +59,10 @@ local-ai-core/
 
 | Perfil | Temas completos | Temas como cartão | Tamanho estimado |
 | --- | --- | --- | --- |
-| `padrao` (o `CORE.md`) | Windows, conhecimento | memória | cerca de 5.900 tokens |
-| `completo` | todos | nenhum | cerca de 7.000 tokens |
-| `leve` | nenhum | todos | cerca de 2.700 tokens |
+| `padrao` (o `CORE.md`) | Windows, conhecimento | memória, programação, automação | cerca de 6.500 tokens |
+| `dev` | Windows, programação | memória, conhecimento, automação | cerca de 6.000 tokens |
+| `completo` | todos | nenhum | cerca de 9.600 tokens |
+| `leve` | nenhum | todos | cerca de 3.300 tokens |
 
 Para quem usa cartão, o core completo do tema precisa estar indexado na memória (passo 4 da instalação). Combinação própria: `--temas windows,memoria:cartao`.
 
@@ -87,7 +106,7 @@ Os passos 1 a 9 são os nove originais; a pesquisa acrescentou o 0 (proporcional
    jarvis memory index <caminho>\local-ai-core-indice
    ```
 
-   As notas que a IA grava ficam em `%USERPROFILE%\IA-Operador\conhecimento\` e `%USERPROFILE%\IA-Operador\memoria\`, e ela mesma as reindexa.
+   A IA grava em `%USERPROFILE%\IA-Operador\`: notas de pesquisa em `conhecimento\`, memória em `memoria\`, fichas de automação em `automacoes\`, além de `backups\`, `logs\` e `scripts\`. Ela mesma reindexa o que grava.
 5. Rode os casos de `evals/` de cada tema com `jarvis chat` antes de dar autonomia.
 
 ## O que o core não garante
