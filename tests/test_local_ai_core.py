@@ -21,11 +21,20 @@ class LocalAiCoreTest(unittest.TestCase):
     def setUp(self):
         self.montador = carregar_montador()
 
-    def test_fontes_dos_temas_existem(self):
+    def test_fontes_dos_temas_existem_e_tem_cartao(self):
         self.assertTrue(self.montador.BASE.is_file())
         for tema, caminho in self.montador.TEMAS.items():
             with self.subTest(tema=tema):
                 self.assertTrue(caminho.is_file(), caminho)
+                texto = caminho.read_text(encoding="utf-8")
+                self.assertIn(self.montador.INICIO, texto)
+                self.assertIn(self.montador.FIM, texto)
+
+    def test_perfis_cobrem_temas_validos(self):
+        for perfil, escolha in self.montador.PERFIS.items():
+            with self.subTest(perfil=perfil):
+                self.assertTrue(set(escolha) <= set(self.montador.TEMAS))
+                self.assertTrue(set(escolha.values()) <= set(self.montador.MODOS))
 
     def test_core_md_em_dia(self):
         saida = io.StringIO()
@@ -33,11 +42,20 @@ class LocalAiCoreTest(unittest.TestCase):
             codigo = self.montador.main(["--check"])
         self.assertEqual(codigo, 0, "CORE.md desatualizado: rode python local-ai-core/montar_core.py")
 
-    def test_core_md_traz_base_e_temas(self):
+    def test_core_md_segue_o_perfil_padrao(self):
         texto = (RAIZ / "CORE.md").read_text(encoding="utf-8")
-        for marcador in ("<esteira>", "<invariantes>", "<windows-execucao>", "<pesquisa-metodo>"):
-            with self.subTest(marcador=marcador):
-                self.assertIn(marcador, texto)
+        self.assertNotIn(self.montador.INICIO, texto)
+        for tema, modo in self.montador.PERFIS["padrao"].items():
+            _, cartao, completo = self.montador.partes_do_tema(
+                self.montador.TEMAS[tema].read_text(encoding="utf-8"), tema
+            )
+            with self.subTest(tema=tema, modo=modo):
+                if modo == "completo":
+                    self.assertIn(completo, texto)
+                    self.assertNotIn(cartao, texto)
+                else:
+                    self.assertIn(cartao, texto)
+                    self.assertNotIn(completo, texto)
 
 
 if __name__ == "__main__":

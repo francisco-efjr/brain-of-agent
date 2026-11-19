@@ -4,7 +4,7 @@
 >
 > **O que não é.** Não é plugin e não é lido pelo `ORCHESTRATOR.md`. Nenhum arquivo fora desta pasta depende dela, exceto o teste `tests/test_local_ai_core.py`, que confere se o `CORE.md` está montado.
 
-Versão 2.0, 2026-11-19. Temas: **Windows** (operar o PC) e **conhecimento** (pesquisar, citar fontes e manter a base local).
+Versão 3.0, 2026-11-19. Temas: **Windows** (operar o PC), **conhecimento** (pesquisar, citar fontes e manter a base local) e **memória** (lembrar preferências, decisões, procedimentos e onde parou, com base no desenho do [ai-memory](https://github.com/akitaonrails/ai-memory)).
 
 ## Estrutura
 
@@ -19,18 +19,33 @@ local-ai-core/
 │   ├── REFERENCIA-WINDOWS.md          # 26 áreas do Windows, buscadas sob demanda
 │   ├── PESQUISA-WINDOWS.md            # 98 fontes e validação da esteira
 │   └── evals/CASOS-WINDOWS.md         # 14 casos de teste
-└── conhecimento/
-    ├── CORE-CONHECIMENTO.md           # tema: pesquisa e conhecimento
-    ├── REFERENCIA-CONHECIMENTO.md     # 18 seções: fontes, checagem, evidência, citação, base local, RAG
-    ├── PESQUISA-CONHECIMENTO.md       # 57 fontes e validação da esteira para pesquisa
-    └── evals/CASOS-CONHECIMENTO.md    # 14 casos de teste
+├── conhecimento/
+│   ├── CORE-CONHECIMENTO.md           # tema: pesquisa e conhecimento
+│   ├── REFERENCIA-CONHECIMENTO.md     # 18 seções: fontes, checagem, evidência, citação, base local, RAG
+│   ├── PESQUISA-CONHECIMENTO.md       # 57 fontes e validação da esteira para pesquisa
+│   └── evals/CASOS-CONHECIMENTO.md    # 14 casos de teste
+└── memoria/
+    ├── CORE-MEMORIA.md                # tema: memória de longo prazo
+    ├── REFERENCIA-MEMORIA.md          # 17 seções: tipos, formato, envelhecimento, bastão, envenenamento
+    ├── PESQUISA-MEMORIA.md            # 41 fontes, princípios do ai-memory e validação da esteira
+    └── evals/CASOS-MEMORIA.md         # 12 casos de teste
 ```
 
 ## Como funciona
 
 **Base mais temas.** A base vale para tudo: classes de risco, esteira, invariantes gerais, formatos e regras de parada. Cada tema aplica a base à sua área, com exemplos de risco, regras próprias e exemplos de conversa. Como o OpenJarvis aceita um só arquivo de prompt, o `montar_core.py` junta base e temas no `CORE.md`.
 
-**Duas camadas por tema.** O core do tema é curto e vai no prompt. A referência do tema é longa, fica na memória e é buscada só quando a tarefa pede. Prompt curto e estável deixa o modelo local mais rápido e mais obediente.
+**Três camadas por tema.** O **cartão** (6 a 7 linhas) diz o que vale sempre e manda buscar o resto. O **core do tema** traz as regras completas. A **referência** é longa e só é buscada quando a tarefa pede. Prompt curto e estável deixa o modelo local mais rápido e mais obediente.
+
+**Perfis.** Cada tema entra no `CORE.md` completo ou só como cartão:
+
+| Perfil | Temas completos | Temas como cartão | Tamanho estimado |
+| --- | --- | --- | --- |
+| `padrao` (o `CORE.md`) | Windows, conhecimento | memória | cerca de 5.900 tokens |
+| `completo` | todos | nenhum | cerca de 7.000 tokens |
+| `leve` | nenhum | todos | cerca de 2.700 tokens |
+
+Para quem usa cartão, o core completo do tema precisa estar indexado na memória (passo 4 da instalação). Combinação própria: `--temas windows,memoria:cartao`.
 
 **A esteira**, proposta pelo dono e validada pela pesquisa:
 
@@ -53,7 +68,7 @@ Os passos 1 a 9 são os nove originais; a pesquisa acrescentou o 0 (proporcional
    python local-ai-core/montar_core.py
    ```
 
-   Para usar só alguns temas: `python local-ai-core/montar_core.py --temas conhecimento --saida <caminho>\CORE-pesquisa.md`. O script mostra o tamanho estimado em tokens.
+   Outro perfil: `python local-ai-core/montar_core.py --perfil leve --saida <caminho>\CORE-leve.md`. Combinação própria: `--temas conhecimento,memoria:cartao`. O script mostra o tamanho estimado em tokens.
 3. No `%USERPROFILE%\.openjarvis\config.toml`, aponte o prompt de sistema para o `CORE.md`. Deixe `system_prompt` vazio ou comentado, porque o valor inline tem precedência sobre o arquivo:
 
    ```toml
@@ -66,18 +81,14 @@ Os passos 1 a 9 são os nove originais; a pesquisa acrescentou o 0 (proporcional
    ```
 
    Aspas simples fazem do TOML uma string literal. Com `context_from_memory = false` e a ferramenta `retrieval`, a IA busca na memória só quando precisa; a busca automática soma até cerca de 2 mil tokens em toda pergunta. Os nomes das ferramentas vêm da documentação lida por resumo: confira na sua versão.
-4. Indexe as referências e a base de conhecimento:
+4. Indexe na memória os cores e as referências de todos os temas (a IA busca neles quando um tema está como cartão ou quando precisa de detalhe). O jeito mais simples é copiar os arquivos `CORE-*.md` e `REFERENCIA-*.md` dos temas para uma pasta só e indexar a pasta:
 
    ```bash
-   jarvis memory index <caminho>\local-ai-core\windows\REFERENCIA-WINDOWS.md
+   jarvis memory index <caminho>\local-ai-core-indice
    ```
 
-   ```bash
-   jarvis memory index <caminho>\local-ai-core\conhecimento\REFERENCIA-CONHECIMENTO.md
-   ```
-
-   Se a sua versão só aceitar pasta, copie as referências para uma pasta própria e indexe a pasta. As notas que a IA grava ficam em `%USERPROFILE%\IA-Operador\conhecimento\` e são reindexadas por ela.
-5. Rode os casos de `windows/evals/` e `conhecimento/evals/` com `jarvis chat` antes de dar autonomia.
+   As notas que a IA grava ficam em `%USERPROFILE%\IA-Operador\conhecimento\` e `%USERPROFILE%\IA-Operador\memoria\`, e ela mesma as reindexa.
+5. Rode os casos de `evals/` de cada tema com `jarvis chat` antes de dar autonomia.
 
 ## O que o core não garante
 
@@ -105,11 +116,11 @@ Vem das páginas oficiais do Ollama; meça antes e depois.
 - `OLLAMA_KEEP_ALIVE=-1` mantém o modelo carregado; `OLLAMA_NUM_PARALLEL=1` se a memória estiver no limite.
 - No Windows, defina as variáveis em "Editar as variáveis de ambiente da sua conta" e reinicie o Ollama pela bandeja.
 - **Prompt estável:** prefixo idêntico aproveita o cache. Não ponha nada dinâmico nos arquivos de core.
-- **Tamanho do prompt** (estimativa do script, 2026-11-19): base com os dois temas, cerca de 5.500 tokens; base com um tema, cerca de 3.700. Se o modelo ficar lento ou desobediente, monte só os temas do uso do dia.
+- **Tamanho do prompt:** veja a tabela de perfis acima. Se o modelo ficar lento ou desobediente, use o perfil `leve` ou uma combinação própria.
 
 ## Como evoluir
 
 - Mudança no core passa pela própria esteira: proposta, teste nos casos de eval, validação, versão nova, `python local-ai-core/montar_core.py`.
 - Regra nova só depois de ver a mesma falha duas vezes, com motivo curto.
-- Tema novo: crie `<tema>/CORE-<TEMA>.md`, `REFERENCIA-<TEMA>.md`, `PESQUISA-<TEMA>.md` e `evals/`, acrescente o tema em `TEMAS` no `montar_core.py` e remonte. O teste do CI acusa se o `CORE.md` não for remontado.
+- Tema novo: crie `<tema>/CORE-<TEMA>.md` (com o bloco de cartão entre `<!-- cartao:inicio -->` e `<!-- cartao:fim -->`), `REFERENCIA-<TEMA>.md`, `PESQUISA-<TEMA>.md` e `evals/`, acrescente o tema em `TEMAS` e nos `PERFIS` do `montar_core.py` e remonte. O teste do CI acusa cartão faltando e `CORE.md` desatualizado.
 - Se o modelo pular regras, corte exemplos antes de cortar invariantes, e teste uma versão em inglês nos mesmos casos.
