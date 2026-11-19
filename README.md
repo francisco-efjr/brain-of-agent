@@ -4,6 +4,8 @@
 
 Mande **só o link**, com o projeto aberto na sessão, ou o link com a sua demanda. A IA assume como **orquestrador e agente principal** e cria os especialistas de cada plugin necessário. Ela conduz com autonomia: decide, implementa em branch local e testa. No fim, diz **onde testar agora**: servidor rodando, app aberto no aparelho ou comando pronto. Push, deploy, publicação, regra de negócio, troca de stack, instalações e ações irreversíveis ficam como decisão sua.
 
+**Aprende a cada uso.** Toda sessão começa pela versão mais nova deste repositório e carrega os aprendizados recentes da área antes de despachar os especialistas. No fim, registra o que aprendeu (boas práticas confirmadas, armadilhas, pesquisa com fontes) em `docs/aprendizados/<tag>/`, ligado às tags e aos agentes da área, e envia direto à `main`. É a única exceção de push, só para esses arquivos. Regras e formato em [docs/aprendizados/README.md](docs/aprendizados/README.md) e no [§8 do protocolo](ORCHESTRATOR.md#8-atualização-contínua-aprender-a-cada-sessão).
+
 Com demanda explícita:
 
 > Use https://github.com/francisco-efjr/brain-of-agent como orquestrador (siga o ORCHESTRATOR.md). Demanda: [O QUE QUERO]. Projeto: [CAMINHO OU LINK]. Escopo: [auditar | implementar]. Entrega: [relatórios | correções em branch | ambos].
