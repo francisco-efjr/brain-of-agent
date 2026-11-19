@@ -27,10 +27,11 @@ TEMAS = {
     "windows": RAIZ / "windows" / "CORE-WINDOWS.md",
     "conhecimento": RAIZ / "conhecimento" / "CORE-CONHECIMENTO.md",
     "memoria": RAIZ / "memoria" / "CORE-MEMORIA.md",
+    "programacao": RAIZ / "programacao" / "CORE-PROGRAMACAO.md",
 }
 PERFIS = {
     # O que o dono usa todo dia entra completo; o resto entra como cartão.
-    "padrao": {"windows": "completo", "conhecimento": "completo", "memoria": "cartao"},
+    "padrao": {"windows": "completo", "conhecimento": "completo", "memoria": "cartao", "programacao": "cartao"},
     "completo": {tema: "completo" for tema in TEMAS},
     "leve": {tema: "cartao" for tema in TEMAS},
 }
