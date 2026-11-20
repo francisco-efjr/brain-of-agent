@@ -1436,7 +1436,7 @@ $b = [System.Windows.Forms.SystemInformation]::VirtualScreen
 $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
 $g = [System.Drawing.Graphics]::FromImage($bmp)
 $g.CopyFromScreen($b.Left, $b.Top, 0, 0, $bmp.Size)
-$pasta = Join-Path ([Environment]::GetFolderPath('MyPictures')) 'Jarvis\Capturas'
+$pasta = Join-Path ([Environment]::GetFolderPath('MyPictures')) 'Wed\Capturas'
 New-Item -ItemType Directory -Path $pasta -Force | Out-Null
 $arq = Join-Path $pasta ((P 'NOME') + '-' + (Get-Date -Format 'yyyyMMdd-HHmmss') + '.png')
 $bmp.Save($arq, [System.Drawing.Imaging.ImageFormat]::Png)
