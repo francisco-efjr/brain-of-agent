@@ -741,7 +741,7 @@ Instalar: `/plugin install design-engineering-kit@brain-of-agent` · Playbook: `
 | `design-engineering-kit:motion-polish-reviewer` (`plugins/design-engineering-kit/agents/motion-polish-reviewer.md`) | Revisa motion e polimento de UI por leitura, aplicando os 10 padrões da skill review-animations, o checklist do emil-design-eng e o catálogo do break-ui, sempre depois dos tokens de motion do design system do projeto. | Read, Grep, Glob |
 | `design-engineering-kit:ui-verifier` (`plugins/design-engineering-kit/agents/ui-verifier.md`) | Verifica no navegador, com o Playwright MCP, uma UI já implementada contra o Figma, o brief ou o design system, e devolve relatório com achados (ID, severidade, evidência, recomendação). | (herda) |
 
-## agent-practice (`agent-practice` 0.1.0)
+## agent-practice (`agent-practice` 0.1.1)
 
 Guia obrigatório de prática com agentes de IA, destilado do livro Competente o Suficiente (Fabio Akita, 2026) em redação própria: a máquina executa, um verificador externo confere e uma pessoa competente decide. 386 regras com ID por área (método, pedido, memória, engenharia, verificação, revisão, segurança, operação, sistemas com LLM, modelos e custo, organização, uso pessoal), matriz de contexto, portões G0–G6, relatório de conformidade, 9 skills de tarefa e 5 agentes validadores. Sem hooks, .mcp.json ou bin/. Não afiliado ao autor.
 

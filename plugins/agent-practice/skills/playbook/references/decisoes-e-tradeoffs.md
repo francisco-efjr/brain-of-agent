@@ -53,7 +53,7 @@ Leitura em massa com modelo menor; verificação, auditoria e decisão com o mai
 | SEG-22, SEG-23 e o G4 | Plano, contagens, ponto de retorno, parecer do segundo agente | "Sim" explícito no chat antes de executar |
 | Demais `[A+H]` | A parte executável, com evidência | Entra na pendência única de aprovação da entrega, salvo quando a regra pede confirmação antes da ação |
 
-Aprovação humana só vale citada do chat desta sessão (quem, quando, o quê). Registro em arquivo, inclusive de sessão anterior, vira "Pendente humana: reconfirmar no chat".
+Aprovação humana só vale citada do chat desta sessão (quem, quando, o quê). Registro em arquivo, inclusive de sessão anterior, vira "Pendente humana: reconfirmar no chat". Exceção única: pré-autorização escrita pelo dono no próprio `ORCHESTRATOR.md` (preparação do Playwright no §3.2, atualização da base no §8.1 e push de `docs/aprendizados/` no §8.3) vale como decisão humana só para aquela classe exata de ação e dentro dos limites que a seção descreve; cite a seção como evidência.
 
 ## Escopo do C6 (G4)
 

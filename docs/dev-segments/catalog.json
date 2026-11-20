@@ -2411,7 +2411,7 @@
     {
       "plugin": "agent-practice",
       "displayName": "agent-practice",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "description": "Guia obrigatório de prática com agentes de IA, destilado do livro Competente o Suficiente (Fabio Akita, 2026) em redação própria: a máquina executa, um verificador externo confere e uma pessoa competente decide. 386 regras com ID por área (método, pedido, memória, engenharia, verificação, revisão, segurança, operação, sistemas com LLM, modelos e custo, organização, uso pessoal), matriz de contexto, portões G0–G6, relatório de conformidade, 9 skills de tarefa e 5 agentes validadores. Sem hooks, .mcp.json ou bin/. Não afiliado ao autor.",
       "keywords": [
         "boas-praticas-ia",
