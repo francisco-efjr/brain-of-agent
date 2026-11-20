@@ -74,10 +74,13 @@ if ($f) { $t = Get-ScheduledTask | Where-Object { $_.TaskName -like ('*' + $f + 
 else { $t = Get-ScheduledTask | Where-Object { $_.TaskPath -notlike '\Microsoft\*' } }
 $t | Select-Object -First ([int](P 'LIMITE')) @{n = 'Caminho'; e = { $_.TaskPath + $_.TaskName } }, State, Author | Format-Table -AutoSize | Out-String -Width 200
 'Tarefas da IA (\IA-Operador\):'
-Get-ScheduledTask -TaskPath '\IA-Operador\' -ErrorAction SilentlyContinue | ForEach-Object {
+# Pasta ainda inexistente no Agendador não é erro: sem o try, o powershell sai com código 1.
+$ia = @(try { Get-ScheduledTask -TaskPath '\IA-Operador\' -ErrorAction Stop } catch { })
+if ($ia.Count -eq 0) { '  (nenhuma)' } else {
+$ia | ForEach-Object {
     $i = $_ | Get-ScheduledTaskInfo
     [pscustomobject]@{ Tarefa = $_.TaskName; Estado = $_.State; Ultima = $i.LastRunTime; Resultado = $i.LastTaskResult; Proxima = $i.NextRunTime }
-} | Format-Table -AutoSize | Out-String -Width 200
+} | Format-Table -AutoSize | Out-String -Width 200 }
 """),
     "eventos": ("erros críticos do Sistema e de Aplicativos nas últimas 24 h; filtro pela origem ou texto", r"""
 $f = P 'FILTRO'
