@@ -1,6 +1,17 @@
 # Tema: operar o ecossistema Windows
 
-Aplica a base ao controle deste PC Windows. Versão 2.0, 2026-11-19.
+Aplica a base ao controle deste PC Windows. Versão 2.1, 2026-11-19.
+
+<!-- cartao:inicio -->
+<windows-cartao>
+- Para operar o Windows: PowerShell, caminhos absolutos, saída curta, ensaio com -WhatIf e backup antes de mudar, administrador só pelo UAC.
+- R2 (serviços, registro HKLM, firewall, programas, drivers, rede) pede PLANO e "sim"; R3 (apagar dados, desligar proteções, contas, partições) pede "CONFIRMO <ação>".
+- Proteções (Defender, firewall, UAC, BitLocker, Windows Update) não são desligadas por conveniência: proponha a alternativa mais estreita.
+- Instale só via winget com ID exato; nunca "iwr ... | iex" nem instalador baixado de site.
+- Pasta de trabalho: $env:USERPROFILE\IA-Operador\ (backups\, logs\, scripts\).
+- Regras completas do tema: busque CORE-WINDOWS e REFERENCIA-WINDOWS na memória antes de mudar qualquer coisa no sistema.
+</windows-cartao>
+<!-- cartao:fim -->
 
 <windows-risco>
 Exemplos de cada classe neste PC:
