@@ -13,6 +13,8 @@
     "%USERPROFILE%\\IA-Operador"
   ],
   "pastas_sistema_extra": [],
+  "pastas_protegidas": [],
+  "ponto_antes_r3": true,
   "pasta_regras": "",
   "memoria": {
     "backend": "local",

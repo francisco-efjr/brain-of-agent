@@ -723,5 +723,222 @@ class TestProtocolo(Base):
         self.assertTrue((self.tmp / "IA" / "logs").is_dir())
 
 
+# ---------------------------------------------------------------- guia agent-practice em código
+
+
+class TestGuia(Base):
+    """G4 (lista de proteção), oráculo na fonte, ponto de retorno antes do R3 e relatório com conformidade e voz."""
+
+    LIXEIRA = {"existe": True, "pasta": False, "arquivos": 1, "bytes": 10, "tipoDisco": 3}
+
+    def planejar(self, acao, parametros):
+        return self.plan.planejar(acao, parametros, "teste")
+
+    def test_lista_de_protecao(self):
+        self.executor.respostas["arquivo_para_lixeira:observar"] = self.LIXEIRA
+        for alvo in (self.cfg.backups / "p1", self.cfg.logs, self.cfg.planos / "x.json", self.tmp / "docs",
+                     self.cfg.pasta_operador, self.tmp):
+            with self.subTest(alvo=str(alvo)):
+                texto, _ = self.planejar("arquivo_para_lixeira", {"caminho": str(alvo)})
+                self.assertTrue(texto.startswith("BLOQUEADO"), texto)
+                self.assertIn("G4", texto)
+        texto, _ = self.planejar("arquivo_para_lixeira", {"caminho": str(self.tmp / "docs" / "velho.txt")})
+        self.assertIn("[R2]", texto)
+
+    def test_protecao_no_mover_e_na_escrita(self):
+        log = self.cfg.logs / "so-2026-11.jsonl"
+        log.write_text("{}", encoding="utf-8")
+        texto, _ = self.planejar("arquivo_mover", {"origem": str(log), "destino": str(self.tmp / "docs")})
+        self.assertTrue(texto.startswith("BLOQUEADO") and "G4" in texto, texto)
+        texto, _ = self.planejar("arquivo_escrever", {"caminho": str(self.cfg.backups / "falso.txt"), "conteudo": "a"})
+        self.assertTrue(texto.startswith("BLOQUEADO") and "G4" in texto, texto)
+        texto, _ = self.planejar("arquivo_escrever", {"caminho": str(self.cfg.scripts / "rotina.ps1"), "conteudo": "a"})
+        self.assertFalse(texto.startswith("BLOQUEADO"), texto)
+
+    def test_lixeira_conferida_na_propria_lixeira(self):
+        self.executor.respostas.update({
+            "arquivo_para_lixeira:observar": self.LIXEIRA,
+            "arquivo_para_lixeira:verificar": {"ok": True, "detalhe": "conferido na própria Lixeira: saiu do lugar e está lá com os 10 bytes"},
+        })
+        texto, _ = self.planejar("arquivo_para_lixeira", {"caminho": str(self.tmp / "docs" / "velho.txt")})
+        relatorio, erro = self.plan.executar(self.id_do_plano(texto))
+        self.assertFalse(erro, relatorio)
+        self.assertIn("STATUS: Verificado", relatorio)
+        verificar = next(c for c in self.executor.chamadas if c["rotulo"] == "arquivo_para_lixeira:verificar")
+        self.assertIn("System.Recycle.DeletedFrom", verificar["script"])
+        self.assertEqual(verificar["args"]["BYTES"], 10)
+        self.assertIn("CONFORMIDADE (guia):", relatorio)
+        self.assertIn("verificação na fonte: Verificado", relatorio)
+        self.assertIn("VOZ: Feito e conferido: mandar para a Lixeira", relatorio)
+        self.assertNotIn("ponto_retorno", self.executor.rotulos())  # R2 não cria ponto de restauração
+
+    def test_lixeira_sem_consulta_fica_parcial_e_fora_da_lixeira_falha(self):
+        self.executor.respostas.update({
+            "arquivo_para_lixeira:observar": self.LIXEIRA,
+            "arquivo_para_lixeira:verificar": [
+                {"ok": None, "detalhe": "saiu do lugar, mas não consegui consultar a Lixeira para conferir"},
+                {"ok": False, "detalhe": "saiu do lugar, mas NÃO está na Lixeira: pode ter sido apagado de vez"}],
+        })
+        texto, _ = self.planejar("arquivo_para_lixeira", {"caminho": str(self.tmp / "docs" / "a.txt")})
+        relatorio, _ = self.plan.executar(self.id_do_plano(texto))
+        self.assertIn("STATUS: Parcial", relatorio)
+        self.assertIn("VOZ: Feito, mas não consegui conferir tudo", relatorio)
+        texto, _ = self.planejar("arquivo_para_lixeira", {"caminho": str(self.tmp / "docs" / "b.txt")})
+        relatorio, erro = self.plan.executar(self.id_do_plano(texto))
+        self.assertTrue(erro)
+        self.assertIn("STATUS: Falhou", relatorio)
+        self.assertIn("NÃO está na Lixeira", relatorio)
+
+    def test_r3_cria_ponto_de_retorno_antes(self):
+        self.executor.respostas.update({
+            "arquivo_para_lixeira:observar": {**self.LIXEIRA, "tipoDisco": 2},
+            "arquivo_para_lixeira:verificar": {"ok": True, "detalhe": "conferido"},
+            "ponto_retorno": "já existe um ponto de restauração das últimas 24 h",
+        })
+        texto, _ = self.planejar("arquivo_para_lixeira", {"caminho": str(self.tmp / "docs" / "pendrive.txt")})
+        self.assertIn("[R3]", texto)
+        relatorio, erro = self.plan.executar(self.id_do_plano(texto))
+        self.assertFalse(erro, relatorio)
+        rotulos = self.executor.rotulos()
+        self.assertLess(rotulos.index("ponto_retorno"), rotulos.index("arquivo_para_lixeira:aplicar"))
+        self.assertTrue(next(c for c in self.executor.chamadas if c["rotulo"] == "ponto_retorno")["elevado"])
+        self.assertIn("já existe um ponto de restauração das últimas 24 h", relatorio)
+
+    def test_ponto_de_retorno_desligado_na_configuracao(self):
+        self.cfg.ponto_antes_r3 = False
+        self.executor.respostas.update({
+            "arquivo_para_lixeira:observar": {**self.LIXEIRA, "tipoDisco": 2},
+            "arquivo_para_lixeira:verificar": {"ok": True, "detalhe": "conferido"},
+        })
+        texto, _ = self.planejar("arquivo_para_lixeira", {"caminho": str(self.tmp / "docs" / "pendrive.txt")})
+        self.plan.executar(self.id_do_plano(texto))
+        self.assertNotIn("ponto_retorno", self.executor.rotulos())
+
+    def test_acao_ponto_restauracao(self):
+        self.executor.respostas.update({
+            "ponto_restauracao_criar:observar": {"lido": True, "ultimo": "2026-11-01T10:00:00"},
+            "ponto_restauracao_criar:aplicar": "ponto de restauração criado",
+            "ponto_restauracao_criar:verificar": {"ok": True, "detalhe": "ponto mais recente: IA-Operador em 20/11/2026 10:00"},
+        })
+        texto, _ = self.planejar("ponto_restauracao_criar", {})
+        self.assertIn("[R1]", texto)
+        relatorio, erro = self.plan.executar(self.id_do_plano(texto))
+        self.assertFalse(erro, relatorio)
+        self.assertIn("STATUS: Verificado", relatorio)
+        aplicar = next(c for c in self.executor.chamadas if c["rotulo"] == "ponto_restauracao_criar:aplicar")
+        self.assertTrue(aplicar["elevado"])
+        self.assertEqual(aplicar["args"]["DESCRICAO"], "IA-Operador")
+
+    def test_pastas_protegidas_da_configuracao(self):
+        extra = self.tmp / "docs" / "cofre"
+        extra.mkdir()
+        self.cfg.pastas_protegidas = [extra]
+        self.executor.respostas["arquivo_para_lixeira:observar"] = self.LIXEIRA
+        texto, _ = self.planejar("arquivo_para_lixeira", {"caminho": str(extra / "nota.md")})
+        self.assertTrue(texto.startswith("BLOQUEADO"), texto)
+        self.assertIsNone(politica.protegido(self.tmp / "docs" / "outra.md", self.cfg))
+
+
+class TestComandosDoDiaADia(Base):
+    """Ações para comandos de voz: risco, conferência do efeito real e volta."""
+
+    def planejar(self, acao, parametros):
+        return self.plan.planejar(acao, parametros, "teste")
+
+    def executar(self, texto):
+        return self.plan.executar(self.id_do_plano(texto))
+
+    def test_tela_bloquear(self):
+        self.executor.respostas["tela_bloquear:verificar"] = {"ok": True, "detalhe": "a tela de bloqueio está aberta"}
+        texto, _ = self.planejar("tela_bloquear", {})
+        self.assertIn("[R1]", texto)
+        relatorio, erro = self.executar(texto)
+        self.assertFalse(erro, relatorio)
+        self.assertIn("STATUS: Verificado", relatorio)
+
+    def test_desligamento_risco_conferencia_e_cancelar(self):
+        texto, _ = self.planejar("desligamento_agendar", {"acao": "desligar", "minutos": 2})
+        self.assertIn("[R3]", texto)
+        texto, _ = self.planejar("desligamento_agendar", {"acao": "reiniciar", "minutos": 30})
+        self.assertIn("[R2]", texto)
+        pid = self.id_do_plano(texto)
+        relatorio, erro = self.plan.executar(pid)
+        self.assertFalse(erro, relatorio)
+        self.assertIn("STATUS: Parcial", relatorio)  # não dá para ler um agendamento pendente sem cancelar
+        aplicar = next(c for c in self.executor.chamadas if c["rotulo"] == "desligamento_agendar:aplicar")
+        self.assertEqual((aplicar["args"]["SEGUNDOS"], aplicar["args"]["FLAG"]), (1800, "/r"))
+        volta, erro = self.plan.desfazer(pid)
+        self.assertIn("Cancelar o desligamento", volta)
+        self.executor.respostas["desligamento_cancelar:aplicar"] = "cancelado"
+        relatorio, erro = self.plan.executar(self.id_do_plano(volta))
+        self.assertFalse(erro, relatorio)
+        self.assertIn("STATUS: Verificado", relatorio)
+
+    def test_cancelar_sem_nada_agendado_conta_como_conferido(self):
+        self.executor.respostas["desligamento_cancelar:aplicar"] = "não havia desligamento agendado"
+        texto, _ = self.planejar("desligamento_cancelar", {})
+        relatorio, _ = self.executar(texto)
+        self.assertIn("não havia desligamento agendado", relatorio)
+
+    def test_tema(self):
+        self.executor.respostas["tema_definir:observar"] = {"apps": 0, "sistema": 0}
+        texto, _ = self.planejar("tema_definir", {"modo": "escuro"})
+        self.assertIn("já está no tema escuro", texto)
+        texto, _ = self.planejar("tema_definir", {"modo": "claro"})
+        self.assertIn("[R1]", texto)
+        self.executor.respostas["tema_definir:verificar"] = {"ok": True, "detalhe": "apps: 1; sistema: 1"}
+        pid = self.id_do_plano(texto)
+        self.plan.executar(pid)
+        aplicar = next(c for c in self.executor.chamadas if c["rotulo"] == "tema_definir:aplicar")
+        self.assertEqual(aplicar["args"]["VALOR"], 1)
+        self.executor.respostas["tema_definir:observar"] = {"apps": 1, "sistema": 1}  # o estado real depois da mudança
+        volta, _ = self.plan.desfazer(pid)
+        self.assertIn("Mudar o tema do Windows para escuro", volta)
+
+    def test_wifi(self):
+        self.executor.respostas["wifi_definir:observar"] = {"existe": False, "nome": "", "status": ""}
+        texto, _ = self.planejar("wifi_definir", {"estado": "desligar"})
+        self.assertIn("não há adaptador Wi-Fi", texto)
+        self.executor.respostas.update({"wifi_definir:observar": {"existe": True, "nome": "Wi-Fi", "status": "Up"},
+                                        "wifi_definir:verificar": {"ok": True, "detalhe": "Disabled"}})
+        texto, _ = self.planejar("wifi_definir", {"estado": "desligar"})
+        self.assertIn("[R2]", texto)
+        pid = self.id_do_plano(texto)
+        relatorio, erro = self.plan.executar(pid)
+        self.assertFalse(erro, relatorio)
+        aplicar = next(c for c in self.executor.chamadas if c["rotulo"] == "wifi_definir:aplicar")
+        self.assertTrue(aplicar["elevado"])
+        self.assertEqual(aplicar["args"]["ADAPTADOR"], "Wi-Fi")
+        self.executor.respostas["wifi_definir:observar"] = {"existe": True, "nome": "Wi-Fi", "status": "Disabled"}
+        volta, _ = self.plan.desfazer(pid)
+        self.assertIn("Ligar o Wi-Fi", volta)
+
+    def test_notificacoes(self):
+        self.executor.respostas["notificacoes_definir:observar"] = {"ligadas": 1}
+        self.assertIn("já estão ligadas", self.planejar("notificacoes_definir", {"estado": "ligar"})[0])
+        texto, _ = self.planejar("notificacoes_definir", {"estado": "desligar"})
+        self.assertIn("[R1]", texto)
+        self.executor.respostas["notificacoes_definir:verificar"] = {"ok": True, "detalhe": "desligadas"}
+        pid = self.id_do_plano(texto)
+        self.plan.executar(pid)
+        self.executor.respostas["notificacoes_definir:observar"] = {"ligadas": 0}
+        self.assertIn("Ligar as notificações", self.plan.desfazer(pid)[0])
+
+    def test_captura_conferida_pelo_arquivo(self):
+        png = self.tmp / "docs" / "captura.png"
+        png.write_bytes(b"\x89PNG" + b"0" * 4000)
+        self.executor.respostas["captura_tela:aplicar"] = str(png)
+        texto, _ = self.planejar("captura_tela", {"nome": "teste"})
+        self.assertIn("[R1]", texto)
+        relatorio, erro = self.executar(texto)
+        self.assertFalse(erro, relatorio)
+        self.assertIn("imagem salva", relatorio)
+        self.executor.respostas["captura_tela:aplicar"] = str(self.tmp / "nao-existe.png")
+        texto, _ = self.planejar("captura_tela", {})
+        relatorio, erro = self.executar(texto)
+        self.assertTrue(erro)
+        self.assertIn("STATUS: Falhou", relatorio)
+
+
 if __name__ == "__main__":
     unittest.main()

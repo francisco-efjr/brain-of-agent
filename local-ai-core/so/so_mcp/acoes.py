@@ -787,6 +787,9 @@ def _avaliar_escrever(p, obs, ctx):
         return _inviavel("o arquivo não existe: use modo criar")
     if not obs["paiExiste"]:
         return _inviavel("a pasta não existe: crie antes com pasta_criar")
+    bloqueio = politica.protegido(cam, ctx.cfg, escrita=True)
+    if bloqueio:
+        return "BLOQUEADO", bloqueio
     risco, motivo = politica.risco_escrita(cam, ctx.cfg, existe=obs["existe"])
     if risco == "BLOQUEADO":
         return risco, motivo
@@ -908,6 +911,10 @@ def _avaliar_mover(p, obs, ctx):
     classes = {politica.classe_caminho(pathlib.Path(x), ctx.cfg) for x in (p["origem"], obs["final"])}
     if "sistema" in classes:
         return "BLOQUEADO", "pasta do sistema ou raiz do disco"
+    motivo = (politica.protegido(pathlib.Path(p["origem"]), ctx.cfg)
+              or politica.protegido(pathlib.Path(obs["final"]), ctx.cfg, escrita=True))
+    if motivo:
+        return "BLOQUEADO", motivo
     if classes == {"permitida"}:
         return "R1", "mover dentro das pastas permitidas"
     return "R2", "mover fora das pastas permitidas"
@@ -935,6 +942,9 @@ def _avaliar_lixeira(p, obs, ctx):
         return "BLOQUEADO", "pasta do sistema ou raiz do disco"
     if not obs.get("existe"):
         return _inviavel("não existe")
+    motivo = politica.protegido(cam, ctx.cfg)
+    if motivo:
+        return "BLOQUEADO", motivo
     if int(obs.get("tipoDisco", 0)) != 3:
         return "R3", "disco removível ou de rede: pode apagar de vez, sem passar pela Lixeira"
     if int(obs.get("arquivos", 0)) > 1000 or int(obs.get("bytes", 0)) > 1 << 30:
@@ -968,11 +978,30 @@ if ((Get-Item -LiteralPath $c -Force).PSIsContainer) { [Microsoft.VisualBasic.Fi
 else { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile($c, 'OnlyErrorDialogs', 'SendToRecycleBin') }
 'enviado para a Lixeira'
 """,
+    extras=lambda p, obs: {"BYTES": int(obs.get("bytes", 0) or 0), "PASTA": "1" if obs.get("pasta") else "0"},
+    # Oráculo na fonte (VER-04, SEG-20): não basta ter saído do lugar; o item tem de estar na Lixeira, inteiro.
     verificar=r"""
-$existe = Test-Path -LiteralPath (P 'CAMINHO')
-[pscustomobject]@{ ok = (-not $existe); detalhe = $(if ($existe) { 'ainda existe' } else { 'não está mais no lugar; está na Lixeira' }) } | ConvertTo-Json -Compress
+$c = P 'CAMINHO'
+$existe = Test-Path -LiteralPath $c
+$nome = Split-Path -Leaf $c; $pai = Split-Path -Parent $c
+$consultou = $false; $na = $false; $tam = [int64]-1
+try {
+    $rb = (New-Object -ComObject Shell.Application).NameSpace(10)
+    $consultou = $true
+    foreach ($it in @($rb.Items())) {
+        if ([string]$it.ExtendedProperty('System.Recycle.DeletedFrom') -eq $pai -and [string]$it.ExtendedProperty('System.FileName') -eq $nome) { $na = $true; $tam = [int64]$it.Size; break }
+    }
+} catch {}
+$pasta = (P 'PASTA') -eq '1'; $esperado = [int64](P 'BYTES')
+$inteiro = $pasta -or ($tam -eq $esperado)
+if ($existe) { $ok = $false; $d = 'ainda existe no lugar' }
+elseif (-not $consultou) { $ok = $null; $d = 'saiu do lugar, mas não consegui consultar a Lixeira para conferir' }
+elseif (-not $na) { $ok = $false; $d = 'saiu do lugar, mas NÃO está na Lixeira: pode ter sido apagado de vez' }
+elseif (-not $inteiro) { $ok = $false; $d = "está na Lixeira, mas com tamanho diferente ($tam de $esperado bytes)" }
+else { $ok = $true; $d = 'conferido na própria Lixeira: saiu do lugar e está lá' + $(if (-not $pasta) { " com os $tam bytes" } else { '' }) }
+[pscustomobject]@{ ok = $ok; detalhe = $d } | ConvertTo-Json -Compress
 """,
-    verificacao="conferir que saiu do lugar",
+    verificacao="conferir na própria Lixeira que o item está lá e inteiro (não basta ter saído do lugar)",
     desfazer=lambda p, obs, info: {"nota": f"abra a Lixeira, clique com o botão direito em {pathlib.Path(p['caminho']).name} e escolha Restaurar"},
     chaves_estado=("arquivos", "bytes"),
 )
@@ -1225,13 +1254,244 @@ $r = Get-NetFirewallRule -DisplayName (P 'NOME') -ErrorAction SilentlyContinue
     interna=True,
 )
 
+# ---------------------------------------------------------------- comandos do dia a dia (voz)
+
+TELA_BLOQUEAR = Acao(
+    nome="tela_bloquear",
+    descricao="Bloqueia a tela.",
+    parametros={"motivo": Param("string", "por que bloquear (opcional)", obrigatorio=False, padrao="pedido do usuário",
+                                regex=r"[^`$;|&<>]{1,80}")},
+    avaliar=lambda p, obs, ctx: ("R1", "só bloqueia a tela; os programas continuam abertos"),
+    resumo=lambda p, obs: "Bloquear a tela",
+    aplicar="rundll32.exe user32.dll,LockWorkStation\n'pedido de bloqueio enviado'",
+    verificar=r"""
+Start-Sleep -Seconds 2
+$tela = @(Get-Process LogonUI -ErrorAction SilentlyContinue).Count -gt 0
+[pscustomobject]@{ ok = $(if ($tela) { $true } else { $null }); detalhe = $(if ($tela) { 'a tela de bloqueio está aberta' } else { 'não vi a tela de bloqueio; confira no monitor' }) } | ConvertTo-Json -Compress
+""",
+    verificacao="ver se a tela de bloqueio (LogonUI) abriu",
+    desfazer=lambda p, obs, info: {"nota": "entre com a sua senha ou PIN"},
+)
+
+
+def _avaliar_desligamento(p, obs, ctx):
+    if int(p["minutos"]) < 5:
+        return "R3", "menos de 5 minutos para salvar o trabalho ou cancelar"
+    return "R2", "desliga ou reinicia o PC; dá para cancelar até a hora com desligamento_cancelar"
+
+
+DESLIGAMENTO_AGENDAR = Acao(
+    nome="desligamento_agendar",
+    descricao="Desliga/reinicia em N min.",
+    parametros={"acao": Param("string", "desligar ou reiniciar", enum=("desligar", "reiniciar")),
+                "minutos": Param("integer", "daqui a quantos minutos", obrigatorio=False, padrao=10, minimo=1, maximo=240)},
+    avaliar=_avaliar_desligamento,
+    resumo=lambda p, obs: f"{'Desligar' if p['acao'] == 'desligar' else 'Reiniciar'} o PC daqui a {p['minutos']} minuto(s)",
+    extras=lambda p, obs: {"SEGUNDOS": int(p.get("minutos", 10)) * 60, "FLAG": "/r" if p.get("acao") == "reiniciar" else "/s"},
+    aplicar=r"""
+$ErrorActionPreference = 'Continue'
+shutdown.exe (P 'FLAG') /t (P 'SEGUNDOS') /c 'Agendado pela IA local a seu pedido. Para cancelar: diga cancela o desligamento.'
+if ($LASTEXITCODE -eq 1190) { throw 'já existe um desligamento agendado: cancele antes com desligamento_cancelar' }
+if ($LASTEXITCODE -ne 0) { throw ('shutdown falhou: código ' + $LASTEXITCODE) }
+'agendado'
+""",
+    # O Windows não grava evento ao agendar (o 1074 só sai no desligamento real; o 1075, ao cancelar) e não há como
+    # ler um agendamento pendente sem cancelá-lo: a conferência honesta é Parcial (VER-10), nunca um Verificado inventado.
+    verificar=lambda p, obs, info, ctx: (None, "o Windows aceitou o agendamento (shutdown.exe devolveu 0) e mostra o "
+                                               "aviso na tela; um agendamento pendente não dá para ler sem cancelar"),
+    verificacao="o Windows aceita ou recusa; o aviso aparece na tela",
+    desfazer=lambda p, obs, info: {"acao": "desligamento_cancelar", "parametros": {}},
+)
+
+DESLIGAMENTO_CANCELAR = Acao(
+    nome="desligamento_cancelar",
+    descricao="Cancela desligamento agendado.",
+    parametros={"motivo": Param("string", "por que cancelar (opcional)", obrigatorio=False, padrao="pedido do usuário",
+                                regex=r"[^`$;|&<>]{1,80}")},
+    avaliar=lambda p, obs, ctx: ("R1", "só cancela o agendamento"),
+    resumo=lambda p, obs: "Cancelar o desligamento ou reinício agendado",
+    aplicar=r"""
+$ErrorActionPreference = 'Continue'
+shutdown.exe /a 2>&1 | Out-Null
+if ($LASTEXITCODE -eq 0) { 'cancelado' } elseif ($LASTEXITCODE -eq 1116) { 'não havia desligamento agendado' } else { throw ('shutdown /a falhou: código ' + $LASTEXITCODE) }
+""",
+    verificar=lambda p, obs, info, ctx: ("cancelado" in info.get("texto", "") or "não havia" in info.get("texto", ""),
+                                          info.get("texto", "")),
+    verificacao="o próprio Windows responde se havia algo para cancelar",
+    desfazer=lambda p, obs, info: {"nota": "se quiser de novo, agende outra vez com desligamento_agendar"},
+)
+
+_TEMA = r"""
+$k = Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' -ErrorAction SilentlyContinue
+$apps = $(if ($k -and $null -ne $k.AppsUseLightTheme) { [int]$k.AppsUseLightTheme } else { 1 })
+$sis = $(if ($k -and $null -ne $k.SystemUsesLightTheme) { [int]$k.SystemUsesLightTheme } else { 1 })
+"""
+
+TEMA_DEFINIR = Acao(
+    nome="tema_definir",
+    descricao="Tema claro ou escuro.",
+    parametros={"modo": Param("string", "claro ou escuro", enum=("claro", "escuro"))},
+    observar=_TEMA + "[pscustomobject]@{ apps = $apps; sistema = $sis } | ConvertTo-Json -Compress\n",
+    avaliar=lambda p, obs, ctx: (_inviavel(f"já está no tema {p['modo']}")
+                                 if int(obs.get("apps", 1)) == int(obs.get("sistema", 1)) == (1 if p["modo"] == "claro" else 0)
+                                 else ("R1", "preferência visual do usuário; dá para voltar")),
+    resumo=lambda p, obs: f"Mudar o tema do Windows para {p['modo']}",
+    extras=lambda p, obs: {"VALOR": 1 if p.get("modo") == "claro" else 0},
+    aplicar=r"""
+$k = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize'
+if (-not (Test-Path $k)) { New-Item -Path $k -Force | Out-Null }
+New-ItemProperty -Path $k -Name AppsUseLightTheme -Value ([int](P 'VALOR')) -PropertyType DWord -Force | Out-Null
+New-ItemProperty -Path $k -Name SystemUsesLightTheme -Value ([int](P 'VALOR')) -PropertyType DWord -Force | Out-Null
+try {
+    Add-Type -Namespace IaSo -Name Tema -MemberDefinition '[DllImport("user32.dll", CharSet = CharSet.Unicode)] public static extern System.IntPtr SendMessageTimeout(System.IntPtr h, uint m, System.UIntPtr w, string l, uint f, uint t, out System.UIntPtr r);'
+    $r = [System.UIntPtr]::Zero; [IaSo.Tema]::SendMessageTimeout([System.IntPtr]0xffff, 0x1A, [System.UIntPtr]::Zero, 'ImmersiveColorSet', 2, 3000, [ref]$r) | Out-Null
+} catch {}
+'tema aplicado'
+""",
+    verificar=_TEMA + "[pscustomobject]@{ ok = ($apps -eq [int](P 'VALOR') -and $sis -eq [int](P 'VALOR')); detalhe = ('apps: ' + $apps + '; sistema: ' + $sis + ' (1 = claro, 0 = escuro)') } | ConvertTo-Json -Compress\n",
+    verificacao="ler de novo o registro do tema",
+    desfazer=lambda p, obs, info: {"acao": "tema_definir",
+                                   "parametros": {"modo": "claro" if int(obs.get("apps", 1) or 0) == 1 else "escuro"}},
+    chaves_estado=("apps", "sistema"),
+)
+
+_WIFI = r"""
+$a = Get-NetAdapter -ErrorAction SilentlyContinue | Where-Object { $_.PhysicalMediaType -match '802\.11' -or $_.InterfaceDescription -match 'Wi-?Fi|Wireless' } | Select-Object -First 1
+"""
+
+WIFI_DEFINIR = Acao(
+    nome="wifi_definir",
+    descricao="Liga/desliga o Wi-Fi.",
+    parametros={"estado": Param("string", "ligar ou desligar", enum=("ligar", "desligar"))},
+    observar=_WIFI + "[pscustomobject]@{ existe = [bool]$a; nome = $(if ($a) { $a.Name } else { '' }); status = $(if ($a) { [string]$a.Status } else { '' }) } | ConvertTo-Json -Compress\n",
+    avaliar=lambda p, obs, ctx: (_inviavel("não há adaptador Wi-Fi neste PC") if not obs.get("existe") else
+                                 _inviavel("o Wi-Fi já está desligado") if p["estado"] == "desligar" and obs.get("status") == "Disabled" else
+                                 _inviavel("o Wi-Fi já está ligado") if p["estado"] == "ligar" and obs.get("status") != "Disabled" else
+                                 ("R2", "corta a rede sem fio até ligar de novo") if p["estado"] == "desligar" else
+                                 ("R2", "liga o adaptador de rede (precisa de administrador)")),
+    resumo=lambda p, obs: f"{'Desligar' if p['estado'] == 'desligar' else 'Ligar'} o Wi-Fi ({obs.get('nome')})",
+    extras=lambda p, obs: {"ADAPTADOR": obs.get("nome", "")},
+    admin=True,
+    aplicar=r"""
+if ((P 'ESTADO') -eq 'desligar') { Disable-NetAdapter -Name (P 'ADAPTADOR') -Confirm:$false } else { Enable-NetAdapter -Name (P 'ADAPTADOR') -Confirm:$false }
+'pedido aplicado'
+""",
+    verificar=r"""
+Start-Sleep -Seconds 2
+$s = [string](Get-NetAdapter -Name (P 'ADAPTADOR') -ErrorAction SilentlyContinue).Status
+$ok = $(if ((P 'ESTADO') -eq 'desligar') { $s -eq 'Disabled' } else { $s -ne 'Disabled' -and $s -ne '' })
+[pscustomobject]@{ ok = $ok; detalhe = ('estado do adaptador agora: ' + $s) } | ConvertTo-Json -Compress
+""",
+    verificacao="ler o estado do adaptador",
+    desfazer=lambda p, obs, info: {"acao": "wifi_definir", "parametros": {"estado": "ligar" if p.get("estado") == "desligar" else "desligar"}},
+    chaves_estado=("status",),
+)
+
+_NOTIF = r"""
+$k = Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\PushNotifications' -ErrorAction SilentlyContinue
+$v = $(if ($k -and $null -ne $k.ToastEnabled) { [int]$k.ToastEnabled } else { 1 })
+"""
+
+NOTIFICACOES_DEFINIR = Acao(
+    nome="notificacoes_definir",
+    descricao="Liga/desliga notificações.",
+    parametros={"estado": Param("string", "ligar ou desligar", enum=("ligar", "desligar"))},
+    observar=_NOTIF + "[pscustomobject]@{ ligadas = $v } | ConvertTo-Json -Compress\n",
+    avaliar=lambda p, obs, ctx: (_inviavel(f"as notificações já estão {'ligadas' if p['estado'] == 'ligar' else 'desligadas'}")
+                                 if int(obs.get("ligadas", 1)) == (1 if p["estado"] == "ligar" else 0)
+                                 else ("R1", "preferência do usuário; dá para voltar")),
+    resumo=lambda p, obs: f"{'Ligar' if p['estado'] == 'ligar' else 'Desligar'} as notificações do Windows",
+    extras=lambda p, obs: {"VALOR": 1 if p.get("estado") == "ligar" else 0},
+    aplicar=r"""
+$k = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\PushNotifications'
+if (-not (Test-Path $k)) { New-Item -Path $k -Force | Out-Null }
+New-ItemProperty -Path $k -Name ToastEnabled -Value ([int](P 'VALOR')) -PropertyType DWord -Force | Out-Null
+'gravado'
+""",
+    verificar=_NOTIF + "[pscustomobject]@{ ok = ($v -eq [int](P 'VALOR')); detalhe = ('notificações: ' + $(if ($v -eq 1) { 'ligadas' } else { 'desligadas' }) + '; alguns apps só respeitam depois de reabertos') } | ConvertTo-Json -Compress\n",
+    verificacao="ler de novo o registro das notificações",
+    desfazer=lambda p, obs, info: {"acao": "notificacoes_definir",
+                                   "parametros": {"estado": "ligar" if int(obs.get("ligadas", 1) or 0) == 1 else "desligar"}},
+    chaves_estado=("ligadas",),
+)
+
+
+def _verificar_captura(p, obs, info, ctx):
+    arq = pathlib.Path(info.get("texto", "").strip())
+    ok = arq.is_file() and arq.stat().st_size > 1000
+    return ok, (f"imagem salva: {arq} ({arq.stat().st_size // 1024} KB)" if ok else "a imagem não foi salva")
+
+
+CAPTURA_TELA = Acao(
+    nome="captura_tela",
+    descricao="Print da tela.",
+    parametros={"nome": Param("string", "nome curto do arquivo (opcional)", obrigatorio=False, padrao="captura",
+                              regex=r"[\w-]{1,40}")},
+    avaliar=lambda p, obs, ctx: ("R1", "salva uma imagem nas suas Imagens; nada sai do PC"),
+    resumo=lambda p, obs: "Tirar um print da tela inteira",
+    aplicar=r"""
+Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+try { Add-Type -Namespace IaSo -Name Dpi -MemberDefinition '[DllImport("user32.dll")] public static extern bool SetProcessDPIAware();'; [IaSo.Dpi]::SetProcessDPIAware() | Out-Null } catch {}
+$b = [System.Windows.Forms.SystemInformation]::VirtualScreen
+$bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
+$g = [System.Drawing.Graphics]::FromImage($bmp)
+$g.CopyFromScreen($b.Left, $b.Top, 0, 0, $bmp.Size)
+$pasta = Join-Path ([Environment]::GetFolderPath('MyPictures')) 'Jarvis\Capturas'
+New-Item -ItemType Directory -Path $pasta -Force | Out-Null
+$arq = Join-Path $pasta ((P 'NOME') + '-' + (Get-Date -Format 'yyyyMMdd-HHmmss') + '.png')
+$bmp.Save($arq, [System.Drawing.Imaging.ImageFormat]::Png)
+$g.Dispose(); $bmp.Dispose()
+$arq
+""",
+    verificar=_verificar_captura,
+    verificacao="conferir que o arquivo PNG existe e não está vazio",
+    desfazer=lambda p, obs, info: {"nota": "se não quiser a imagem, mande para a Lixeira com arquivo_para_lixeira"},
+)
+
+# ---------------------------------------------------------------- ponto de retorno (SEG-24 do guia)
+
+PONTO_RESTAURACAO_CRIAR = Acao(
+    nome="ponto_restauracao_criar",
+    descricao="Ponto de restauração.",
+    parametros={"descricao": Param("string", "nome curto do ponto", obrigatorio=False, padrao="IA-Operador",
+                                   regex=r"[\w .,:()-]{1,60}")},
+    observar=r"""
+$u = $null
+try { $u = Get-ComputerRestorePoint -ErrorAction Stop | Sort-Object SequenceNumber | Select-Object -Last 1 } catch {}
+$q = ''
+if ($u) { $q = ([Management.ManagementDateTimeConverter]::ToDateTime($u.CreationTime)).ToString('s') }
+[pscustomobject]@{ lido = [bool]$u; ultimo = $q } | ConvertTo-Json -Compress
+""",
+    avaliar=lambda p, obs, ctx: ("R1", "cria um ponto de retorno; não muda arquivos nem configurações"),
+    resumo=lambda p, obs: f"Criar o ponto de restauração '{p['descricao']}'",
+    aplicar=r"""
+try { Checkpoint-Computer -Description (P 'DESCRICAO') -RestorePointType MODIFY_SETTINGS -WarningAction Stop -ErrorAction Stop; 'ponto de restauração criado' }
+catch { if ($_.Exception.Message -match '1440') { 'já existe um ponto de restauração das últimas 24 h' } else { throw } }
+""",
+    verificar=r"""
+$u = $null
+try { $u = Get-ComputerRestorePoint -ErrorAction Stop | Sort-Object SequenceNumber | Select-Object -Last 1 } catch {}
+if (-not $u) { [pscustomobject]@{ ok = $null; detalhe = 'não consegui ler os pontos de restauração (precisa de administrador ou a Proteção do Sistema está desligada)' } | ConvertTo-Json -Compress; return }
+$quando = [Management.ManagementDateTimeConverter]::ToDateTime($u.CreationTime)
+$horas = ((Get-Date) - $quando).TotalHours
+[pscustomobject]@{ ok = ($horas -lt 24); detalhe = ('ponto mais recente: ' + $u.Description + ' em ' + $quando.ToString('dd/MM/yyyy HH:mm') + $(if ($horas -lt 24) { '' } else { ' (mais de 24 h: a Proteção do Sistema pode estar desligada)' })) } | ConvertTo-Json -Compress
+""",
+    verificacao="ler o ponto de restauração mais recente",
+    desfazer=lambda p, obs, info: {"nota": "o Windows apaga pontos antigos sozinho; não há o que desfazer"},
+    admin=True,
+    timeout_s=300,
+    chaves_estado=(),
+)
+
 # ---------------------------------------------------------------- índice
 
 TODAS = [
     APP_ABRIR, ARQUIVO_ABRIR, ARQUIVO_ESCREVER, ARQUIVO_MOVER, ARQUIVO_PARA_LIXEIRA, PASTA_CRIAR,
     PROCESSO_ENCERRAR, SERVICO_CONFIGURAR_INICIO, SERVICO_REINICIAR, PROGRAMA_INSTALAR, PROGRAMA_ATUALIZAR,
     PROGRAMA_REMOVER, TAREFA_CRIAR, TAREFA_ATIVAR, REGISTRO_DEFINIR, PATH_USUARIO_ADICIONAR, ENERGIA_PLANO,
-    TEMPORARIOS_LIMPAR, FIREWALL_REGRA,
+    TEMPORARIOS_LIMPAR, FIREWALL_REGRA, PONTO_RESTAURACAO_CRIAR,
+    TELA_BLOQUEAR, DESLIGAMENTO_AGENDAR, DESLIGAMENTO_CANCELAR, TEMA_DEFINIR, WIFI_DEFINIR,
+    NOTIFICACOES_DEFINIR, CAPTURA_TELA,
     TAREFA_REMOVER, REGISTRO_REMOVER_VALOR, PASTA_REMOVER_VAZIA, ARQUIVO_REMOVER_CRIADO, ARQUIVO_RESTAURAR,
     PATH_USUARIO_DEFINIR, FIREWALL_REMOVER_REGRA,
 ]

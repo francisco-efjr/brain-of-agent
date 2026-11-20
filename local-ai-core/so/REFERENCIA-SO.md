@@ -87,3 +87,30 @@ Três cercas: a checagem em Python; a árvore sintática do próprio PowerShell 
 2. Acrescente em `TODAS`.
 3. Rode `python -m unittest discover -s tests`: o teste confere que os scripts só leem parâmetros declarados e que o desfazer aponta para uma ação existente.
 4. Rode `--autoteste` no Windows e um caso de conversa em `evals/CASOS-SO.md`.
+
+## 8. Guia agent-practice no servidor (desde 2026-11-20)
+
+O servidor aplica em código regras do guia obrigatório do brain-of-agent (`plugins/agent-practice`, destilado do livro *Competente o Suficiente*):
+
+| Regra | Onde | O que faz |
+| --- | --- | --- |
+| G4, lista de proteção (SEG-19, SEG-P03) | `politica.protegido` em `arquivo_para_lixeira`, `arquivo_mover` e `arquivo_escrever` | BLOQUEADO para apagar ou mover `backups`, `logs`, `planos`, `memoria` e `PARAR` da IA-Operador, o brain-of-agent, a pasta do usuário ou uma pasta pessoal inteira, e as `pastas_protegidas` da configuração; escrever dentro da trilha de auditoria também |
+| Oráculo na fonte (VER-04, SEG-20) | verificação de `arquivo_para_lixeira` | Confere na própria Lixeira que o item está lá e com o mesmo tamanho; fora da Lixeira = Falhou; Lixeira ilegível = Parcial |
+| Ponto de retorno (SEG-24) | `so_executar` em todo R3 e a ação `ponto_restauracao_criar` (R1, administrador) | Tenta um ponto de restauração antes do R3, sem travar se o Windows recusar (um a cada 24 h); `ponto_antes_r3: false` desliga |
+| Conformidade e voz (G6, VER-09) | RELATÓRIO de `so_executar` | Linhas `CONFORMIDADE (guia)` (plano relido, aprovação, ponto de retorno, verificação, falhas seguidas) e `VOZ` (uma frase que nunca diz feito sem Verificado) |
+
+Testes: `tests/test_so_mcp.py`, classe `TestGuia`.
+
+### Comandos do dia a dia (voz), desde 2026-11-20
+
+| Ação | Risco | Como confere | Desfazer |
+| --- | --- | --- | --- |
+| `tela_bloquear` | R1 | tela de bloqueio (LogonUI) aberta; se não vir, Parcial | entrar com a senha |
+| `desligamento_agendar` | R2 (R3 com menos de 5 min) | Parcial por desenho: o Windows não deixa ler um agendamento pendente sem cancelar | `desligamento_cancelar` |
+| `desligamento_cancelar` | R1 | resposta do próprio Windows (`shutdown /a`); ele grava o evento 1075 | agendar de novo |
+| `tema_definir` | R1 | relê o registro do tema | volta ao tema anterior |
+| `wifi_definir` | R2, administrador | estado do adaptador | o estado oposto |
+| `notificacoes_definir` | R1 | relê `ToastEnabled` | volta ao anterior |
+| `captura_tela` | R1 | o PNG existe e não está vazio | mandar para a Lixeira |
+
+Provado no PC em 20/11/2026: tema, notificações, agendar e cancelar, print e o print conferido na Lixeira. Wi-Fi e bloquear tela só por teste (desligar o Wi-Fi cortaria a sessão que testava; bloquear trancaria a tela do dono).

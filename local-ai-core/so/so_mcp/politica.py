@@ -414,3 +414,44 @@ def checar_consulta(comando: str) -> str | None:
         if erro:
             return erro
     return None
+
+
+# ---------------------------------------------------------------- G4: lista de proteção (guia agent-practice)
+
+_AUDITORIA = ("backups", "logs", "planos", "memoria")
+
+
+def _protegidas(cfg) -> list[tuple[pathlib.Path, str, bool]]:
+    """(pasta, motivo, vale também para o que está dentro). G4 do guia: nada apaga o próprio ponto de retorno,
+    a trilha de auditoria, o código do SO nem uma pasta pessoal inteira (SEG-19, SEG-P03)."""
+    from . import config as _config  # import tardio: config não depende de politica
+    op = cfg.pasta_operador
+    lista = [(op / n, f"{n} da IA-Operador (trilha de auditoria e ponto de retorno)", True) for n in _AUDITORIA]
+    lista.append((op / "PARAR", "o arquivo de parada geral (só o usuário mexe)", True))
+    lista.append((op, "a pasta da IA-Operador inteira", False))
+    lista.append((_config.PASTA_CORE.parent, "o código do próprio SO (brain-of-agent)", True))
+    perfil = cfg.perfil_usuario
+    lista.append((perfil, "a pasta do usuário inteira", False))
+    for nome in ("Documents", "Desktop", "Downloads", "Pictures", "Videos", "Music", "OneDrive"):
+        lista.append((perfil / nome, f"a pasta {nome} inteira", False))
+    lista += [(pasta, "uma pasta permitida inteira", False) for pasta in cfg.pastas_permitidas]
+    lista += [(pasta, "pasta protegida na configuração", True) for pasta in getattr(cfg, "pastas_protegidas", [])]
+    return lista
+
+
+def protegido(p: pathlib.Path, cfg, escrita: bool = False) -> str | None:
+    """Motivo do bloqueio se apagar ou mover p atinge a lista de proteção; None se pode seguir.
+
+    escrita=True (criar ou substituir arquivo): só a trilha de auditoria da IA conta."""
+    alvo = _norm(p)
+    for pasta, motivo, dentro_tambem in _protegidas(cfg):
+        if escrita and not (dentro_tambem and pasta.parent == cfg.pasta_operador and pasta.name in _AUDITORIA):
+            continue
+        if alvo == _norm(pasta):
+            return f"G4, lista de proteção: {motivo} ({pasta})"
+        if not escrita and dentro(pasta, p):
+            return f"G4, lista de proteção: o alvo contém {motivo} ({pasta})"
+        if dentro_tambem and dentro(p, pasta):
+            return f"G4, lista de proteção: fica dentro de {motivo} ({pasta})"
+    return None
+

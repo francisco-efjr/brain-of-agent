@@ -6,4 +6,4 @@ Só biblioteca padrão (Python 3.10+). Nada sai da máquina.
 """
 
 NOME = "ia-operador-so"
-VERSAO = "1.0.0"
+VERSAO = "1.1.0"

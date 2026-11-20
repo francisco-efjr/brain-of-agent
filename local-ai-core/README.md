@@ -20,7 +20,7 @@ Versão 3.2, 2026-11-19. Cinco temas e um modo de operação por ferramentas:
 | | Modo prompt | Modo SO (recomendado para modelo fraco) |
 | --- | --- | --- |
 | Prompt | `CORE.md` (base e temas, de 3.300 a 9.600 tokens) | `so/CORE-SO.md` (curto) e 12 ferramentas, cerca de 4.500 tokens no total |
-| Como age | `shell_exec` com qualquer comando | Catálogo fechado de 19 ações e leitura conferida |
+| Como age | `shell_exec` com qualquer comando | Catálogo fechado de 27 ações e leitura conferida |
 | Quem aplica as regras | O modelo, se lembrar | O servidor, em código |
 | Aprovação | "sim" no chat; fora do `jarvis chat` o OpenJarvis aprova sozinho | Janela do Windows em R2 e R3, em qualquer modo do OpenJarvis |
 | Instalação | Passos abaixo | [so/INSTALAR-SO.md](so/INSTALAR-SO.md) |

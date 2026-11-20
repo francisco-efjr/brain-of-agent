@@ -27,6 +27,8 @@ PADRAO: dict[str, Any] = {
         "%USERPROFILE%\\IA-Operador",
     ],
     "pastas_sistema_extra": [],
+    "pastas_protegidas": [],
+    "ponto_antes_r3": True,
     "pasta_regras": "",
     "memoria": {
         "backend": "local",
@@ -94,6 +96,8 @@ class Config:
     perfil_usuario: pathlib.Path
     pasta_regras: pathlib.Path
     memoria: dict[str, Any] = field(default_factory=dict)
+    pastas_protegidas: list[pathlib.Path] = field(default_factory=list)
+    ponto_antes_r3: bool = True
 
     @property
     def planos(self) -> pathlib.Path:
@@ -164,4 +168,6 @@ def carregar(arquivo: pathlib.Path | None = None, ambiente: dict[str, str] | Non
         perfil_usuario=caminho("%USERPROFILE%", amb),
         pasta_regras=caminho(regras, amb) if regras else PASTA_CORE,
         memoria=dados["memoria"],
+        pastas_protegidas=[caminho(p, amb) for p in dados.get("pastas_protegidas", [])],
+        ponto_antes_r3=bool(dados.get("ponto_antes_r3", True)),
     )

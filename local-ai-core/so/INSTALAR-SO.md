@@ -25,7 +25,7 @@ O modo SO troca o `shell_exec` por um servidor MCP local (`servidor_so.py`). O m
 | `memoria_bastao`, `memoria_buscar`, `memoria_lembrar` | R0 e R1 | Memória de longo prazo com as regras do tema memória embutidas |
 | `regras_consultar` | R0 | Busca a seção certa dos cores e das referências |
 
-Ações de `so_planejar`: `app_abrir`, `arquivo_abrir`, `arquivo_escrever`, `arquivo_mover`, `arquivo_para_lixeira`, `pasta_criar`, `processo_encerrar`, `servico_configurar_inicio`, `servico_reiniciar`, `programa_instalar`, `programa_atualizar`, `programa_remover`, `tarefa_criar`, `tarefa_ativar`, `registro_definir`, `path_usuario_adicionar`, `energia_plano`, `temporarios_limpar`, `firewall_regra`. A tabela de risco de cada uma está em [REFERENCIA-SO.md](REFERENCIA-SO.md).
+Ações de `so_planejar`: `app_abrir`, `arquivo_abrir`, `arquivo_escrever`, `arquivo_mover`, `arquivo_para_lixeira`, `pasta_criar`, `processo_encerrar`, `servico_configurar_inicio`, `servico_reiniciar`, `programa_instalar`, `programa_atualizar`, `programa_remover`, `tarefa_criar`, `tarefa_ativar`, `registro_definir`, `path_usuario_adicionar`, `energia_plano`, `temporarios_limpar`, `firewall_regra`, `ponto_restauracao_criar`, `tela_bloquear`, `desligamento_agendar`, `desligamento_cancelar`, `tema_definir`, `wifi_definir`, `notificacoes_definir`, `captura_tela`. A tabela de risco de cada uma está em [REFERENCIA-SO.md](REFERENCIA-SO.md).
 
 ## Passo a passo
 

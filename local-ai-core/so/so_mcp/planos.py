@@ -21,6 +21,30 @@ from .registro import Registro, agora
 _ALFABETO = "abcdefghjkmnpqrstuvwxyz23456789"
 MAX_FALHAS = 3
 
+# SEG-24 do guia: antes de um R3, um ponto de restauração do Windows, sem travar se o Windows recusar.
+_PONTO_RETORNO = r"""
+try { Checkpoint-Computer -Description (P 'DESCRICAO') -RestorePointType MODIFY_SETTINGS -WarningAction Stop -ErrorAction Stop; 'ponto de restauração criado' }
+catch { if ($_.Exception.Message -match '1440') { 'já existe um ponto de restauração das últimas 24 h' } else { 'ponto de restauração não criado: ' + $_.Exception.Message } }
+"""
+
+
+def _falavel(resumo: str, p: dict | None = None) -> str:
+    """Caminho inteiro não se fala: troca os caminhos dos parâmetros pelo nome do arquivo ou da pasta."""
+    for valor in sorted(((p or {}).values()), key=lambda v: -len(str(v))):
+        if isinstance(valor, str) and (":\\" in valor or valor.startswith("\\\\")):
+            resumo = resumo.replace(valor, pathlib.PureWindowsPath(valor).name or valor)
+    return resumo
+
+
+def _voz(status: str, resumo: str, desf: dict, p: dict | None = None) -> str:
+    """Uma frase para o canal de voz: o que aconteceu, sem dizer que fez o que a verificação não confirmou."""
+    resumo = _falavel(resumo, p)
+    inicio = {"Verificado": "Feito e conferido", "Parcial": "Feito, mas não consegui conferir tudo",
+              "Falhou": "Não confirmei o resultado"}.get(status, status)
+    resumo = (resumo[:1].lower() + resumo[1:]) if resumo else ""
+    volta = " Dá para desfazer se você pedir." if isinstance(desf, dict) and desf.get("acao") else ""
+    return f"{inicio}: {resumo}.{volta}"
+
 
 class Recusado(Exception):
     pass
@@ -165,7 +189,7 @@ class Planejador:
             return None, "o Windows aceitou o pedido; confira na tela"
         if callable(acao.verificar):
             ok, detalhe = acao.verificar(p, obs, info, self._ctx(plano_id))
-            return bool(ok), detalhe
+            return (None if ok is None else bool(ok)), detalhe
         r = self._ps(acao, "verificar", acao.verificar, p, obs, plano_id)
         if not r.ok:
             return False, "não consegui verificar: " + r.texto()[:300]
@@ -173,7 +197,8 @@ class Planejador:
             dados = r.json()
         except ValueError as exc:
             return False, f"verificação ilegível: {exc}"
-        return bool(dados.get("ok")), str(dados.get("detalhe", ""))
+        ok = dados.get("ok")
+        return (None if ok is None else bool(ok)), str(dados.get("detalhe", ""))
 
     # ------------------------------------------------------------ ferramentas
 
@@ -320,6 +345,14 @@ class Planejador:
             return (f"NÃO EXECUTADO: {aprovacao}. Não tente de novo nem por outro caminho; pergunte ao usuário o que ele prefere.", True)
 
         admin = plano["admin"]
+        ponto = ""
+        if risco == "R3" and acao.nome != "ponto_restauracao_criar" and getattr(self.cfg, "ponto_antes_r3", True):
+            try:
+                r = self.executor.rodar(_PONTO_RETORNO, {"DESCRICAO": f"IA-Operador {pid}"}, timeout=300,
+                                        elevado=True, rotulo="ponto_retorno")
+                ponto = cortar(r.texto().strip(), 200) or f"ponto de restauração: código {r.codigo}"
+            except Exception as exc:  # noqa: BLE001
+                ponto = "ponto de restauração não criado: " + cortar(str(exc), 200)
         backup: dict = {}
         if acao.backup:
             try:
@@ -351,9 +384,12 @@ class Planejador:
                 f"EVIDÊNCIA: {cortar(str(exc), 600)}",
                 "STATUS: Falhou",
                 f"APROVAÇÃO: {aprovacao}",
-                "BACKUP: " + (backup.get("texto") or "não houve"),
+                "BACKUP: " + (backup.get("texto") or "não houve") + (f" · {ponto}" if ponto else ""),
                 "DESFAZER: confira o estado com so_estado; se algo mudou pela metade, mostre ao usuário antes de tentar de novo.",
                 f"PENDÊNCIAS: tentativa {self.falhas[chave]} de {MAX_FALHAS}. Leia o erro, corrija a causa e planeje de novo.",
+                f"CONFORMIDADE (guia): plano relido sem mudança · aprovação: {aprovacao} · verificação: Falhou · "
+                f"falhas seguidas: {self.falhas[chave]}/{MAX_FALHAS}",
+                f"VOZ: Não deu certo: {_falavel(plano['resumo'][:1].lower() + plano['resumo'][1:], p)}. Nada foi confirmado; o erro está na tela.",
             ]), True)
 
         if backup.get("backup"):
@@ -380,9 +416,14 @@ class Planejador:
             f"EVIDÊNCIA: {detalhe}",
             f"STATUS: {status}",
             f"APROVAÇÃO: {aprovacao}",
-            "BACKUP: " + (backup.get("texto") or "não precisou"),
+            "BACKUP: " + (backup.get("texto") or "não precisou") + (f" · {ponto}" if ponto else ""),
             "DESFAZER: " + _texto_desfazer(desf, pid),
             f"PENDÊNCIAS: {pendencias}",
+            f"CONFORMIDADE (guia): plano relido sem mudança · aprovação: {aprovacao} · ponto de retorno: "
+            f"{backup.get('texto') or ('backup ' + backup['backup'] if backup.get('backup') else 'não precisou')}"
+            f"{(' + ' + ponto) if ponto else ''} · verificação na fonte: {status} · falhas seguidas: "
+            f"{self.falhas.get(chave, 0)}/{MAX_FALHAS}",
+            "VOZ: " + _voz(status, plano["resumo"], desf, p),
         ]), status == "Falhou")
 
     def desfazer(self, plano_id: str) -> tuple[str, bool]:
