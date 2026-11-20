@@ -2,6 +2,8 @@
 
 Versão: 1.2 · Data: 09/10/2026 · Idioma base: português brasileiro.
 
+> **Guia obrigatório de prática com agentes (desde 19/11/2026):** além deste contexto, aplique em toda tarefa o [§0.1 do ORCHESTRATOR.md](../../ORCHESTRATOR.md) e o [playbook do agent-practice](../../plugins/agent-practice/skills/playbook/SKILL.md): a máquina executa, um verificador externo confere e uma pessoa competente decide; regras por contexto, portões G0–G6 e `CONFORMIDADE.md`. Em conflito, os limites de autorização deste documento e do protocolo continuam valendo; o guia só acrescenta obrigações.
+
 ## 1. Finalidade e forma de uso
 
 Este documento é um contexto portável para orientar uma IA no trabalho de produto, design, arquitetura, engenharia, qualidade e operação de software. Seu propósito é transformar um pedido em uma entrega utilizável, verificável e coerente com o produto existente. Ele não treina os pesos do modelo, não instala ferramentas e não concede acesso a sistemas.

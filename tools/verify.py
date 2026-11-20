@@ -19,7 +19,7 @@ def safe_path(raw: str) -> PurePosixPath:
 
 
 def verify_snapshot(root: Path) -> int:
-    manifest = json.loads((root / 'registry/gstack-upstream.json').read_text())
+    manifest = json.loads((root / 'registry/gstack-upstream.json').read_text(encoding='utf-8'))
     if manifest['repository'] != 'https://github.com/garrytan/gstack' or manifest['directory'] != 'vendor/gstack':
         raise ValueError('Origem/diretório do snapshot inesperados')
     if not re.fullmatch(r'[0-9a-f]{40}', manifest['revision']):
@@ -37,10 +37,16 @@ def verify_snapshot(root: Path) -> int:
         if not path.parent.resolve().is_relative_to(vendor.resolve()):
             raise ValueError(f'Pai fora do snapshot: {rel}')
         if item['mode'] == '120000':
-            if not path.is_symlink():
+            if path.is_symlink():
+                data = os.readlink(path).encode()
+                target = path.resolve()
+            elif os.name != 'posix' and path.is_file():
+                # Windows com core.symlinks=false: o Git grava o alvo do link como texto.
+                data = path.read_bytes()
+                target = (path.parent / data.decode('utf-8')).resolve()
+            else:
                 raise ValueError(f'Symlink ausente: {rel}')
-            data = os.readlink(path).encode()
-            if not path.resolve().is_relative_to(vendor.resolve()) or not path.exists():
+            if not target.is_relative_to(vendor.resolve()) or not target.exists():
                 raise ValueError(f'Symlink inválido: {rel}')
         elif item['mode'] in ('100644', '100755'):
             if path.is_symlink() or not path.is_file():
@@ -63,7 +69,7 @@ def verify_snapshot(root: Path) -> int:
 
 def verify_own(root: Path) -> int:
     catalog = build_catalog(root)
-    if (root / 'registry/skills.json').read_text() != serialize(catalog):
+    if (root / 'registry/skills.json').read_text(encoding='utf-8') != serialize(catalog):
         raise ValueError('Catálogo desatualizado; execute python3 tools/catalog.py')
     ids = [entry['id'] for entry in catalog['skills']]
     if len(ids) != len(set(ids)):
@@ -71,7 +77,7 @@ def verify_own(root: Path) -> int:
     own = [root / 'SKILL.md', *sorted((root / 'brains').glob('*/SKILL.md'))]
     for entry in own:
         skill_name(entry)
-        text = entry.read_text()
+        text = entry.read_text(encoding='utf-8')
         # Recursos concretos anunciados em código inline e links Markdown.
         paths = re.findall(r'`((?:references|assets/templates|scripts|evals|vendor/gstack)/[^`\s]+\.(?:md|py|json))`', text)
         paths += re.findall(r'\]\(([^\s()]+\.(?:md|py|json))\)', text)

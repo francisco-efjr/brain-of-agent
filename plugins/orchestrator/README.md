@@ -11,6 +11,8 @@ claude plugin install orchestrator@brain-of-agent
 
 Instale também os plugins dos segmentos que você usa. A lista está em `docs/dev-segments/CATALOGO.md` do repositório.
 
+Instale sempre o `agent-practice` (`claude plugin install agent-practice@brain-of-agent`): é o guia obrigatório de prática com agentes que o orquestrador aplica em toda invocação (protocolo §0.1), com regras por contexto, portões G0–G6 e relatório de conformidade. Sem ele instalado, o orquestrador lê os arquivos do plugin pelo caminho.
+
 ## Componentes
 
 | Componente | Uso |

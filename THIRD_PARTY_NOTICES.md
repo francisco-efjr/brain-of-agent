@@ -60,3 +60,8 @@ instalação dos plugins oficiais `figma@claude-plugins-official` e `playwright@
 - Licença Apache-2.0. "Portions Copyright (c) Microsoft Corporation" e "Portions Copyright 2017 Google Inc." (`microsoft/playwright`, que também cita no NOTICE código derivado do Puppeteer, Apache-2.0); "Copyright (c) Microsoft Corporation" (`playwright-mcp`, `playwright-cli`).
 - Nenhum arquivo foi copiado. O plugin destila a documentação com redação própria e usa trechos curtos de configuração e de código (no máximo cerca de 40 linhas) com a atribuição "Microsoft Playwright, Apache-2.0". Fontes e classes em [fontes.md](plugins/qa-playwright/skills/playbook/references/fontes.md).
 - O plugin não traz `.mcp.json` nem instala nada: orienta usar `npx playwright cli` e `npx playwright mcp` do `@playwright/test` com versão fixada no projeto.
+
+## Competente o Suficiente (plugin `agent-practice`)
+
+- Fonte: AKITA, Fabio. *Competente o Suficiente*, edição 1.0, 2026 (revisão v1.1.0). Todos os direitos reservados.
+- Nenhum trecho foi copiado nem versionado. As regras são redação própria, organizadas pela estrutura do Brain of Agent, com referência por capítulo só para rastreabilidade. Não afiliado ao autor. Detalhes em `plugins/agent-practice/skills/playbook/references/fontes.md`.

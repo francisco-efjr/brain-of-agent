@@ -1,0 +1,4 @@
+# Arquivos verificados byte a byte por hash (vendor/gstack via registry/gstack-upstream.json,
+# fixtures via hashes.json): nunca converter fim de linha, nem com core.autocrlf=true no Windows.
+vendor/gstack/** -text
+brains/fullstack/evals/fixtures/** -text

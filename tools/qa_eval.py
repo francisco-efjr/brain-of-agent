@@ -11,8 +11,8 @@ DIMENSIONS = ('correctness', 'risk', 'evidence', 'utility', 'scope')
 
 
 def load_dataset(base: Path) -> tuple[list[dict], dict]:
-    cases = json.loads((base / 'cases.json').read_text())['cases']
-    rubrics = json.loads((base / 'rubrics.json').read_text())['cases']
+    cases = json.loads((base / 'cases.json').read_text(encoding='utf-8'))['cases']
+    rubrics = json.loads((base / 'rubrics.json').read_text(encoding='utf-8'))['cases']
     ids = [c['id'] for c in cases]
     rubric_ids = [r['id'] for r in rubrics]
     if not ids or len(ids) != len(set(ids)) or len(rubric_ids) != len(set(rubric_ids)) or set(ids) != set(rubric_ids):
@@ -41,7 +41,7 @@ def prepare(base: Path, target: Path, split: str) -> int:
 
 def summarize(base: Path, run_path: Path) -> dict:
     cases, rubrics = load_dataset(base)
-    run = json.loads(run_path.read_text())
+    run = json.loads(run_path.read_text(encoding='utf-8'))
     for field in ('model', 'configuration', 'skill_revision', 'condition', 'dataset_sha256', 'reviewer', 'review_method'):
         if not run.get(field):
             raise ValueError(f'Metadado ausente: {field}')

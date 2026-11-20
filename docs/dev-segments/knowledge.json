@@ -76,6 +76,47 @@
       "status": "publicado"
     },
     {
+      "tag": "agent-practice",
+      "label": "Guia obrigatório de prática com agentes de IA, destilado do livro Competente o Suficiente (Fabio Akita, 2026)…",
+      "description": "Guia obrigatório de prática com agentes de IA, destilado do livro Competente o Suficiente (Fabio Akita, 2026) em redação própria: a máquina executa, um verificador externo confere e uma pessoa competente decide.",
+      "triggers": [
+        "boas-praticas-ia",
+        "agent-guardrails",
+        "competente-o-suficiente",
+        "guia-obrigatorio",
+        "conformidade",
+        "oraculo-externo",
+        "verificacao",
+        "operacao-destrutiva",
+        "sandbox-agente",
+        "memoria-de-projeto",
+        "avaliacao-de-modelos",
+        "pedido-quatro-partes",
+        "pratica-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "agent-practice",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [
+            "agent-environment-auditor",
+            "claims-verifier",
+            "conformance-auditor",
+            "destructive-ops-guard",
+            "oracle-designer"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        }
+      ],
+      "validators": [],
+      "sources": [],
+      "origin": "automatica",
+      "status": "publicado"
+    },
+    {
       "tag": "architecture-design",
       "label": "Decisões de arquitetura com humano no comando: ADRs, trade-offs, revisão de desenho, system design, decomposi…",
       "description": "Decisões de arquitetura com humano no comando: ADRs, trade-offs, revisão de desenho, system design, decomposição (DDD, monólito modular, strangler), resiliência e consistência (retry, circuit breaker, outbox, saga, idem…",
@@ -163,6 +204,57 @@
         "docs/dev-segments/research/automation-integrations/VALIDATED.md"
       ],
       "origin": "automatica",
+      "status": "publicado"
+    },
+    {
+      "tag": "avaliacao-de-modelos",
+      "label": "Escolher modelo, ler benchmark ou anúncio e medir custo",
+      "description": "Teste próprio repetido e às cegas, leitura de benchmark (11 perguntas) e de anúncio (14 perguntas, três colunas), custo com releitura de cache e escolha por faixa, custo, tempo e ferramenta.",
+      "triggers": [
+        "qual modelo usar",
+        "comparar modelos",
+        "benchmark de llm",
+        "ranking de modelos",
+        "esse anúncio de ia é verdade",
+        "vale a pena trocar de modelo",
+        "quanto custa rodar o agente",
+        "modelo local",
+        "rodar llm em casa",
+        "which model should i use",
+        "is this ai benchmark legit",
+        "llm cost comparison"
+      ],
+      "routes": [
+        {
+          "plugin": "agent-practice",
+          "skills": [
+            "avaliar-modelo"
+          ],
+          "agents": [
+            "claims-verifier"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "llm-ai-agents",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "agent-practice:claims-verifier"
+      ],
+      "sources": [
+        "docs/dev-segments/research/agent-practice/SYNTHESIS.md",
+        "docs/dev-segments/research/agent-practice/VALIDACAO-COBERTURA.md"
+      ],
+      "notes": "Números de modelos são datados e envelhecem; a decisão é humana (MET-05).",
+      "origin": "curada",
       "status": "publicado"
     },
     {
@@ -554,6 +646,15 @@
           ],
           "agents": [],
           "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "agent-practice",
+          "skills": [
+            "memoria-do-projeto"
+          ],
+          "agents": [],
+          "role": "fundamentos",
           "status": "publicado"
         }
       ],
@@ -1569,6 +1670,57 @@
       "status": "publicado"
     },
     {
+      "tag": "kit-seguranca-agentes",
+      "label": "Ambiente seguro para agentes: jaula, permissões, backup",
+      "description": "Monta ou audita o ambiente do agente pelo kit de sete peças: jaula, snapshots, backup externo testado, permissões em três colunas, nada de produção, memória em arquivos e medidor de uso; injeção de prompt e skills de terceiros.",
+      "triggers": [
+        "sandbox para o agente",
+        "modo yolo",
+        "dangerously skip permissions",
+        "permissões do claude code",
+        "o agente apagou meus arquivos",
+        "proteger meu computador do agente",
+        "posso instalar essa skill",
+        "skill de terceiros é segura",
+        "backup antes de usar agente",
+        "agent sandbox",
+        "agent permissions",
+        "prompt injection protection"
+      ],
+      "routes": [
+        {
+          "plugin": "agent-practice",
+          "skills": [
+            "kit-seguranca-agente"
+          ],
+          "agents": [
+            "agent-environment-auditor"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "security-appsec",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "agent-practice:agent-environment-auditor"
+      ],
+      "sources": [
+        "docs/dev-segments/research/agent-practice/SYNTHESIS.md",
+        "docs/dev-segments/research/agent-practice/VALIDACAO-COBERTURA.md"
+      ],
+      "notes": "Não instala nem altera settings sem confirmação: entrega proposta e comandos.",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
       "tag": "lancamento-rollback",
       "label": "Lançamento em produção: checklist, rollout em estágios e rollback",
       "description": "Prepara um lançamento reversível: checklist pré-lançamento em oito grupos, flag como kill switch, rollout em estágios com limiares para avançar, segurar ou reverter, e plano de rollback escrito antes do deploy.",
@@ -1802,6 +1954,67 @@
       "status": "publicado"
     },
     {
+      "tag": "operacao-destrutiva",
+      "label": "Apagar, mover, limpar ou migrar dados com agente (portão G4)",
+      "description": "Protocolo bloqueante para ação destrutiva feita ou planejada por agente: lista de proteção não vazia e contada, premissas conferidas item a item, inventário independente, copiar-conferir-apagar, revisão por segundo agente e aprovação humana registrada.",
+      "triggers": [
+        "apagar arquivos",
+        "limpar a pasta",
+        "faxina nos arquivos",
+        "excluir dados",
+        "liberar espaço em disco",
+        "mover arquivos em massa",
+        "migrar dados",
+        "sincronizar pastas",
+        "restaurar backup",
+        "rsync --delete",
+        "delete files safely",
+        "clean up with an agent",
+        "data migration plan"
+      ],
+      "routes": [
+        {
+          "plugin": "agent-practice",
+          "skills": [
+            "guardar-destrutivo"
+          ],
+          "agents": [
+            "destructive-ops-guard"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "database-data-modeling",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "devops-cloud-infra",
+          "skills": [
+            "playbook"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "agent-practice:destructive-ops-guard"
+      ],
+      "sources": [
+        "docs/dev-segments/research/agent-practice/SYNTHESIS.md",
+        "docs/dev-segments/research/agent-practice/VALIDACAO-COBERTURA.md"
+      ],
+      "notes": "G4 é bloqueante: sem ele completo nada se apaga. Execução da exclusão só com aprovação do usuário no chat (ORCHESTRATOR §5).",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
       "tag": "orquestracao-multiagente",
       "label": "Orquestração de subagentes: padrões e anti-padrões",
       "description": "Critério para orquestrar subagentes: invocação direta, comando de persona única, fan-out paralelo com merge na sessão principal, pipeline conduzido pelo usuário e isolamento de pesquisa; profundidade 1, personas não invocam personas, quatro anti-padrões.",
@@ -2017,6 +2230,78 @@
         "docs/dev-segments/research/web-research-apify/SYNTHESIS.md"
       ],
       "notes": "Rota gratuita primeiro: scraping com código próprio ou de página estática fica com automation-integrations:responsible-scraping, sem Apify; Apify só quando a rota gratuita falha (bloqueio, JavaScript, sem API). Sem .mcp.json ativo: a conexão (mcp.apify.com, OAuth) é feita pelo usuário com confirmação. pesquisa-com-orcamento só roda por comando (gasta dinheiro). Despachado como general-purpose, o agente não herda tools: repetir orçamento, ferramentas e regras no prompt (P-21).",
+      "origin": "curada",
+      "status": "publicado"
+    },
+    {
+      "tag": "pratica-com-agentes",
+      "label": "Guia obrigatório de prática com agentes (Competente o Suficiente)",
+      "description": "Regras obrigatórias para trabalhar com agentes de IA, destiladas do livro Competente o Suficiente (Fabio Akita, 2026): a máquina executa, um verificador externo confere e uma pessoa competente decide. Matriz de contexto, portões G0–G6 e relatório de conformidade. Aplicado em toda invocação pelo ORCHESTRATOR §0.1; esta tag o põe como líder quando o pedido é o próprio tema.",
+      "triggers": [
+        "boas práticas com ia",
+        "boas práticas com agentes",
+        "guia do livro",
+        "competente o suficiente",
+        "regras para agentes de ia",
+        "conformidade com o guia",
+        "o agente disse que terminou, confira",
+        "como provar que o agente fez certo",
+        "como pedir para a ia",
+        "pedido em quatro partes",
+        "ai agent best practices",
+        "agent guardrails",
+        "verify ai output",
+        "pratica-completo"
+      ],
+      "routes": [
+        {
+          "plugin": "agent-practice",
+          "skills": [
+            "playbook",
+            "checar-conformidade",
+            "especificar-pedido",
+            "definir-oraculo",
+            "memoria-do-projeto",
+            "revisar-codigo-de-ia"
+          ],
+          "agents": [
+            "conformance-auditor",
+            "oracle-designer",
+            "claims-verifier"
+          ],
+          "role": "lider",
+          "status": "publicado"
+        },
+        {
+          "plugin": "engineering-lifecycle",
+          "skills": [
+            "context-engineering",
+            "test-driven-development"
+          ],
+          "agents": [],
+          "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "qa-testing",
+          "skills": [
+            "verification-gate"
+          ],
+          "agents": [
+            "test-auditor"
+          ],
+          "role": "apoio",
+          "status": "publicado"
+        }
+      ],
+      "validators": [
+        "agent-practice:conformance-auditor"
+      ],
+      "sources": [
+        "docs/dev-segments/research/agent-practice/SYNTHESIS.md",
+        "docs/dev-segments/research/agent-practice/VALIDACAO-COBERTURA.md"
+      ],
+      "notes": "Obrigatório em toda invocação (ORCHESTRATOR §0.1), mesmo sem esta tag casar. Nunca amplia permissões; regra humana vira decisão pendente. PRATICA-COMPLETO só por pedido explícito do usuário.",
       "origin": "curada",
       "status": "publicado"
     },
@@ -2333,6 +2618,15 @@
             "revisor-diff"
           ],
           "role": "apoio",
+          "status": "publicado"
+        },
+        {
+          "plugin": "agent-practice",
+          "skills": [
+            "revisar-codigo-de-ia"
+          ],
+          "agents": [],
+          "role": "fundamentos",
           "status": "publicado"
         }
       ],

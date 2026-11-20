@@ -8,6 +8,8 @@ Estado em 2026-10-10. Detalhes: [CONTEXTO-COMPLETO.md](CONTEXTO-COMPLETO.md). M�
 
 **Ativação.** Enviar só o link, com o projeto aberto na sessão, já basta. A IA vira orquestrador e agente principal (ORCHESTRATOR.md §0), cria os especialistas de cada plugin e conduz com autonomia até entregar rodando. A mensagem final começa por **Onde testar agora** e traz só o essencial. Push, deploy, publicação, mensagens, pagamentos, dados irreversíveis, regra de negócio, troca de stack e instalar plugins ou SDKs viram decisão pendente. Acesso negado e árvore suja param a implementação, e a leitura segue.
 
+**Guia obrigatório (ORCHESTRATOR.md §0.1).** Em toda invocação vale o plugin `agent-practice`, destilado em redação própria do livro *Competente o Suficiente* (Fabio Akita, 2026): a máquina executa, um verificador externo confere e uma pessoa competente decide. São 386 regras por contexto (matriz C0–C14), portões G0–G6 (G4, ação destrutiva, é bloqueante), bloco do guia em todo subagente e `CONFORMIDADE.md` na entrega. O guia não amplia permissões; `PRATICA-COMPLETO` só por pedido explícito.
+
 **Como acionar com demanda (cole e preencha):**
 > Use https://github.com/francisco-efjr/brain-of-agent como orquestrador (siga o ORCHESTRATOR.md). Demanda: [O QUE QUERO]. Projeto: [CAMINHO OU LINK]. Escopo: [auditar | implementar]. Entrega: [relatórios | correções em branch | ambos]. Restrições: [o que não mexer].
 

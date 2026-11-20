@@ -22,7 +22,7 @@ def skill_name(path: Path) -> str:
 
 
 def build_catalog(root: Path) -> dict:
-    manifest = json.loads((root / 'registry/gstack-upstream.json').read_text())
+    manifest = json.loads((root / 'registry/gstack-upstream.json').read_text(encoding='utf-8'))
     entries = [{'id': 'brain-of-agent', 'name': skill_name(root / 'SKILL.md'),
                 'source': 'own', 'path': 'SKILL.md'}]
     for path in sorted((root / 'brains').glob('*/SKILL.md')):
@@ -57,7 +57,7 @@ def main() -> int:
             for entry in catalog['skills']:
                 print(f"{entry['id']:<46} {entry['path']}")
         elif args.check:
-            if (ROOT / 'registry/skills.json').read_text() != serialize(catalog):
+            if (ROOT / 'registry/skills.json').read_text(encoding='utf-8') != serialize(catalog):
                 raise ValueError('Catálogo desatualizado; execute python3 tools/catalog.py')
             print(f"Catálogo atualizado: {len(catalog['skills'])} skills")
         else:

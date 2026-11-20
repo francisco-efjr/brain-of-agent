@@ -2,6 +2,8 @@
 
 > **Recebeu o link deste repositório?** Você é o orquestrador e agente principal, com ou sem demanda escrita. Siga [ORCHESTRATOR.md](ORCHESTRATOR.md) a partir do §0: crie os especialistas dos `plugins/` (catálogo em `docs/dev-segments/CATALOGO.md`), conduza com autonomia, valide de forma independente e entregue rodando, com "Onde testar agora". As regras abaixo valem só para quem desenvolve este repositório.
 
+> **Guia obrigatório de prática com agentes:** em toda invocação aplique o §0.1 do [ORCHESTRATOR.md](ORCHESTRATOR.md) (plugin `agent-practice`, invocação `/agent-practice:playbook` ou `plugins/agent-practice/skills/playbook/SKILL.md`): regras por contexto, portões G0–G6 e `CONFORMIDADE.md`. `PRATICA-COMPLETO` só por pedido explícito do usuário.
+
 - Plugins por segmento vivem em `plugins/<slug>/` e são publicados a partir da fábrica dev-segments (`docs/dev-segments/README.md`); verificar com `python3 tools/dev-segments/verify_plugin.py plugins/<slug>`. O marketplace é `.claude-plugin/marketplace.json` (nome `brain-of-agent`).
 - Conhecimento próprio vive em `brains/<segmento>/`; QA começa em `brains/qa/SKILL.md`; desenvolvimento em `brains/fullstack/SKILL.md`.
 - Não editar diretamente `vendor/gstack/`. Atualizar seguindo `docs/upstream.md`, preservando licenças, avisos e hashes.

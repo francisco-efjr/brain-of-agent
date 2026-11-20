@@ -22,3 +22,6 @@ dist/
 /qa_fluxo3.py
 /qa_fluxo4.py
 /run_all.py
+
+# Segredo local do Open WebUI: nunca versionar.
+.webui_secret_key

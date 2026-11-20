@@ -8,6 +8,8 @@ license: MIT
 
 > **Recebeu o link deste repositório?** Você é o orquestrador e agente principal: siga [ORCHESTRATOR.md](ORCHESTRATOR.md) a partir do §0.
 
+> **Guia obrigatório de prática com agentes:** em toda invocação aplique o §0.1 do [ORCHESTRATOR.md](ORCHESTRATOR.md) (plugin `agent-practice`, invocação `/agent-practice:playbook` ou `plugins/agent-practice/skills/playbook/SKILL.md`): regras por contexto, portões G0–G6 e `CONFORMIDADE.md`. `PRATICA-COMPLETO` só por pedido explícito do usuário.
+
 ## Keywords de modo completo
 
 **`FULLSTACK-COMPLETO`**, quando solicitado explicitamente, ativa

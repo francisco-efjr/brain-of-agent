@@ -563,6 +563,26 @@
       ]
     },
     {
+      "name": "agent-practice",
+      "source": "./plugins/agent-practice",
+      "description": "Guia obrigatório de prática com agentes de IA, destilado do livro Competente o Suficiente (Fabio Akita, 2026) em redação própria: a máquina executa, um verificador externo confere e uma pessoa competente decide. 386 regras com ID por área (método, pedido, memória, engenharia, verificação, revisão, segurança, operação, sistemas com LLM, modelos e custo, organização, uso pessoal), matriz de contexto, portões G0–G6, relatório de conformidade, 9 skills de tarefa e 5 agentes validadores. Sem hooks, .mcp.json ou bin/. Não afiliado ao autor.",
+      "keywords": [
+        "boas-praticas-ia",
+        "agent-guardrails",
+        "competente-o-suficiente",
+        "guia-obrigatorio",
+        "conformidade",
+        "oraculo-externo",
+        "verificacao",
+        "operacao-destrutiva",
+        "sandbox-agente",
+        "memoria-de-projeto",
+        "avaliacao-de-modelos",
+        "pedido-quatro-partes",
+        "pratica-completo"
+      ]
+    },
+    {
       "name": "engineering-lifecycle",
       "source": "./plugins/engineering-lifecycle",
       "description": "Ciclo de vida de engenharia com disciplina de agente, do agent-skills de Addy Osmani (MIT): DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP. 25 skills, 4 personas, 9 comandos e 7 checklists vendorizados sem alteração de conteúdo, mais playbook em PT-BR com crosswalk para os plugins do brain, comportamentos operacionais, anti-racionalização consolidada, prompts, 2 agentes próprios somente leitura e evals. Modo LIFECYCLE-COMPLETO por pedido explícito.",
@@ -657,7 +677,7 @@
     {
       "name": "orchestrator",
       "source": "./plugins/orchestrator",
-      "description": "Orquestra demandas de software multiárea: classifica a demanda, casa com as tags do registro de conhecimento (gatilhos → plugin líder, fundamentos, apoio e validador), escolhe agentes e skills dos plugins por segmento, despacha com validação independente e consolida relatórios.",
+      "description": "Orquestra demandas de software multiárea: classifica a demanda, casa com as tags do registro de conhecimento (gatilhos → plugin líder, fundamentos, apoio e validador), escolhe agentes e skills dos plugins por segmento, despacha com validação independente e consolida relatórios; aplica em toda invocação o guia obrigatório de prática com agentes (agent-practice, ORCHESTRATOR §0.1) e fecha com relatório de conformidade.",
       "keywords": [
         "orchestrator",
         "multi-agent",

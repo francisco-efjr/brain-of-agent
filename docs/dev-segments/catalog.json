@@ -2409,6 +2409,101 @@
       ]
     },
     {
+      "plugin": "agent-practice",
+      "displayName": "agent-practice",
+      "version": "0.1.0",
+      "description": "Guia obrigatório de prática com agentes de IA, destilado do livro Competente o Suficiente (Fabio Akita, 2026) em redação própria: a máquina executa, um verificador externo confere e uma pessoa competente decide. 386 regras com ID por área (método, pedido, memória, engenharia, verificação, revisão, segurança, operação, sistemas com LLM, modelos e custo, organização, uso pessoal), matriz de contexto, portões G0–G6, relatório de conformidade, 9 skills de tarefa e 5 agentes validadores. Sem hooks, .mcp.json ou bin/. Não afiliado ao autor.",
+      "keywords": [
+        "boas-praticas-ia",
+        "agent-guardrails",
+        "competente-o-suficiente",
+        "guia-obrigatorio",
+        "conformidade",
+        "oraculo-externo",
+        "verificacao",
+        "operacao-destrutiva",
+        "sandbox-agente",
+        "memoria-de-projeto",
+        "avaliacao-de-modelos",
+        "pedido-quatro-partes",
+        "pratica-completo"
+      ],
+      "mode_keyword": "PRATICA-COMPLETO",
+      "skills": [
+        {
+          "name": "adotar-ia-no-time",
+          "description": "Monta plano de adoção de IA numa equipe ou empresa: mede entrega ao cliente antes e depois (não uso da ferramenta), reserva treino sem meta, usa ciclos curtos, põe travas de qualidade antes de acelerar, reforça QA e revisão, mantém e forma júniors e preserva quem decide e responde. Use ao planejar adoção de IA, metas de produtividade, licenças, contratação, formação ou carreira; PT 'adotar IA no time', 'comprar licenças', 'medir produtividade', 'substituir devs', 'júniors com IA'; EN 'roll out AI coding tools', 'team adoption plan', 'AI productivity metrics', 'junior developers and AI'. Gera plano e recomendações, sem decidir cortes de pessoal."
+        },
+        {
+          "name": "avaliar-modelo",
+          "description": "Escolhe ou avalia modelo de IA, agente ou ferramenta com teste próprio, lê benchmark com as 11 perguntas e anúncio, promessa ou 'estudo' com as 14 perguntas, e conta custo real com cache e releituras. Use ao decidir qual modelo adotar, comparar ferramentas, citar tabela, preço, nota ou anúncio, estimar custo ou cota; PT 'qual modelo usar', 'esse benchmark vale?', 'o anúncio é verdade?', 'comparar modelos', 'quanto vai custar'; EN 'which model should I use', 'read this benchmark', 'AI announcement claims', 'cost of tokens'. Toda cifra sai datada e com fonte."
+        },
+        {
+          "name": "checar-conformidade",
+          "description": "Fecha uma entrega (portão G6) montando o relatório CONFORMIDADE.md: lê os contextos do pedido e a matriz de regras, atribui a cada regra aplicável um status (Atendida com evidência, Exceção justificada com quem decidiu, N/A com motivo, Pendente humana), nunca marca regra de aprovação humana como atendida sem registro e pede a contraprova ao agente auditor. Suporta o modo PRATICA-COMPLETO (todas as 386 regras) só por pedido explícito. Use ao terminar implementação, auditoria ou relatório; PT 'fechar a entrega', 'conformidade com o guia', 'está pronto?', 'relatório de conformidade'; EN 'definition of done', 'compliance report', 'close out the work'."
+        },
+        {
+          "name": "definir-oraculo",
+          "description": "Define como provar que o trabalho funciona antes de implementar: oráculo externo e verificador independente de quem fez, teste que falha primeiro, um comando para rodar, CI, integração com serviço real, checagem automática de saída de LLM e reprodução em 100% antes de depurar (portão G2). Use ao começar implementação, bug, investigação, teste ou antes de dizer 'pronto'; PT 'como provar que funciona', 'oráculo', 'critério de aceite', 'teste que falha antes', 'mock escrito pela IA'; EN 'how do we verify this', 'test oracle', 'independent verifier', 'TDD', 'validate LLM output'. Define o verificador; não declara sucesso sozinha."
+        },
+        {
+          "name": "especificar-pedido",
+          "description": "Transforma uma demanda vaga em pedido de quatro partes (quero, como, não quero, como saber que deu certo), lista o que a máquina não sabe (volumes, latência, dados sensíveis, idempotência, o que não pode quebrar), define comportamento em falha e produz plano revisado antes de executar (portão G1). Use ao receber demanda, ticket, ideia ou 'faz um sistema de X', ao planejar, escolher abordagem ou stack; PT 'especificar', 'montar o pedido', 'escopo', 'critério de pronto', 'plano antes de codar'; EN 'write a spec', 'turn this into a request', 'acceptance criteria', 'plan before coding'. Não executa a implementação."
+        },
+        {
+          "name": "guardar-destrutivo",
+          "description": "Protocolo bloqueante G4 para ação que apaga, move, sobrescreve, limpa, migra, sincroniza ou restaura o que o Git da branch local não restaura (dados de usuário, banco, buckets, mídia, arquivos não versionados ou ignorados, trabalho não commitado): plano escrito, lista de proteção não vazia, premissas conferidas item a item, inventário independente, copiar, conferir e só então apagar, revisão por segundo agente, aprovação humana registrada no chat e medição depois. Use diante de 'apagar dados', 'limpar a pasta', 'liberar espaço', 'mover arquivos em massa', 'migrar', 'sincronizar', 'restaurar', 'git clean', 'reset --hard', 'push --force', 'DROP', 'TRUNCATE', 'rsync --delete'; EN 'delete user data', 'cleanup', 'wipe', 'migrate data', 'sync'. Editar ou apagar arquivo versionado e commitado numa branch local é fluxo normal de código, não este protocolo. Nunca executa a exclusão sem aprovação humana."
+        },
+        {
+          "name": "kit-seguranca-agente",
+          "description": "Monta ou audita o ambiente seguro de um agente de IA pelo kit de sete peças: jaula (sandbox), snapshots, backup externo testado, permissões em três colunas, nada de produção, memória em arquivos e medidor de uso, com mapa por sistema (Linux, macOS, Windows com WSL2). Entrega diagnóstico, proposta e comandos; não instala nada nem altera configuração sem confirmação no chat. Use ao configurar permissões, sandbox, modo sem confirmação (yolo), segredos, rede, skills, plugins ou MCP de terceiros; PT 'ambiente seguro do agente', 'jaula', 'permissões', '.env', 'backup do agente'; EN 'agent sandbox', 'permissions setup', 'skip permissions', 'secure my agent'."
+        },
+        {
+          "name": "memoria-do-projeto",
+          "description": "Cria e mantém a memória do projeto para agentes de IA: AGENTS.md ou CLAUDE.md curto e imperativo, as três gavetas (regras, decisões e pesquisas, meio do caminho), passagem de turno ao fim da sessão, regra nova só na terceira repetição do erro, poda e revisão. Use ao iniciar um projeto, quando o agente esquece o combinado, repete erro, ao compactar, trocar de agente ou terminar a sessão; PT 'memória do agente', 'AGENTS.md', 'CLAUDE.md', 'passagem de turno', 'onde paramos', 'ele esqueceu'; EN 'agent memory', 'handoff notes', 'project instructions file', 'context compaction'."
+        },
+        {
+          "name": "playbook",
+          "description": "Invocação do guia obrigatório de prática com agentes de IA do Brain of Agent, destilado do livro Competente o Suficiente (Fabio Akita, 2026): a máquina executa, um verificador externo confere e uma pessoa competente decide. Classifica o contexto do pedido, carrega as regras obrigatórias da matriz (386 regras por área), aplica os portões G0–G6 e fecha com relatório de conformidade proporcional. Use sempre que o orquestrador do brain-of-agent for acionado e quando o pedido citar 'boas práticas com IA', 'guia do livro', 'competente o suficiente', 'regras para agentes', 'conformidade com o guia', 'o agente disse que terminou, confira'; EN 'AI agent best practices', 'agent guardrails', 'verify AI output'. Para tarefa específica (apagar ou migrar dados, sandbox e permissões, escolher modelo, memória do projeto, revisar PR), prefira a skill de tarefa do plugin. Ativa PRATICA-COMPLETO só por pedido explícito."
+        },
+        {
+          "name": "prompts",
+          "description": "Biblioteca de 22 prompts prontos do guia de prática com agentes de IA: pedido em quatro partes, o que a máquina não sabe, plano antes de executar, relato de bug, revisão de PR sem confiar na descrição, auditoria de segurança por classes de falha, caça a sabotagem, passagem de turno, recomeçar sessão, checagem de fatos com fonte primária, pergunta neutra e invertida, plano destrutivo e revisão por segundo agente, avaliação própria de modelo, leitura de anúncio em três colunas, oráculo, revisão requisito a requisito, o que falta na spec, robustez, prompt de sistema para AGENTS.md e mensagem inicial do Brain of Agent. Use quando o usuário pedir 'um prompt para...', 'template pronto', 'qual prompt usar', 'prompt de revisão de PR', 'prompt para AGENTS.md'; EN 'prompt library', 'ready-made prompt for agents'."
+        },
+        {
+          "name": "revisar-codigo-de-ia",
+          "description": "Revisa código gerado por IA, pull request ou contribuição externa sem confiar na descrição do autor: audita o diff inteiro, nomeia classes de falha de segurança, caça sabotagem (alerta silenciado, teste desligado ou afrouxado, exceção no scanner), audita erro silencioso, une listas de mais de um revisor e responde as seis perguntas de liberação. Somente leitura do produto. Use em 'revisa este PR', 'confere o código que a IA gerou', 'auditoria de segurança', 'posso liberar?', 'review de contribuição'; EN 'review AI-generated code', 'audit this diff', 'PR review', 'is this safe to ship'."
+        }
+      ],
+      "agents": [
+        {
+          "name": "agent-environment-auditor",
+          "description": "Audita o ambiente em que um agente de IA roda contra o kit de sete peças do SEG-S02 (jaula, snapshots com restauração sabida, backup externo testado, autonomia só para o reversível em três colunas, agente longe da produção, memória em arquivos, medidor de uso) e SEG-01 a SEG-18. Delegar para 'audita o ambiente do agente', 'posso ligar o modo yolo?', 'revisa minhas permissões', 'está seguro rodar o Claude Code aqui?'; EN 'audit agent sandbox and permissions'. Somente leitura: nunca altera settings, permissões nem arquivos.",
+          "tools": "Read, Grep, Glob, Bash"
+        },
+        {
+          "name": "claims-verifier",
+          "description": "Confere afirmações (relatórios, benchmarks, anúncios, números, notícias sobre IA) contra a fonte primária, com data, e classifica cada uma como medido por terceiro, palavra de quem vende ou desconhecido. Delegar para 'isso é verdade?', 'confere esse benchmark', 'o anúncio diz 444x', 'qual a fonte primária', 'verifica os números do relatório'; EN 'fact-check this claim', 'verify the benchmark'. Usa WebFetch e WebSearch; não executa código nem altera arquivos.",
+          "tools": "Read, Grep, Glob, WebFetch, WebSearch"
+        },
+        {
+          "name": "conformance-auditor",
+          "description": "Contraprova somente leitura do CONFORMIDADE.md de uma entrega: confere cada regra marcada como Atendida contra a evidência citada, reprova regra [H] marcada sem aprovação humana registrada e aponta regras aplicáveis que a matriz de contexto deixou de fora. Delegar ao fechar uma entrega (portão G6), para 'confere o relatório de conformidade', 'audita o CONFORMIDADE.md', 'a entrega cumpre o guia?'; EN 'audit the conformance report'. Não corrige arquivos nem executa ações do produto.",
+          "tools": "Read, Grep, Glob, Bash"
+        },
+        {
+          "name": "destructive-ops-guard",
+          "description": "Segundo agente do portão G4: revisa, com olhar de executor e somente por leitura, um plano destrutivo (apagar, mover, limpar, migrar, sincronizar) e mede na fonte contagens, tamanhos e hashes antes de qualquer aprovação. Aborta quando a lista de proteção está vazia ou a premissa não confere. Delegar antes de apagar ou mover dados, para 'revisa o plano de limpeza', 'pode apagar isto?', 'antes de migrar confere'; EN 'review the destructive plan', 'is it safe to delete'. Nunca executa rm, mv, del, sync nem altera arquivos.",
+          "tools": "Read, Grep, Glob, Bash"
+        },
+        {
+          "name": "oracle-designer",
+          "description": "Desenha o oráculo independente de uma tarefa antes de implementar: o que mede a realidade, quem escreve a verificação, como evitar teste do réu e qual o critério de pronto. Delegar quando o usuário ou o agente vai aceitar 'testes verdes' escritos pelo próprio modelo, antes de implementar, em depuração, em sistema que chama LLM; 'como provo que funciona?', 'qual teste confiável?', 'define o critério de pronto'; EN 'design the test oracle', 'independent verification'. Somente leitura; entrega o desenho, não implementa.",
+          "tools": "Read, Grep, Glob"
+        }
+      ]
+    },
+    {
       "plugin": "engineering-lifecycle",
       "displayName": "engineering-lifecycle",
       "version": "0.1.0",

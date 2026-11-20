@@ -99,7 +99,7 @@ def main() -> int:
     for destination in destinations:
         print(f'Fontes exportados: {destination}')
     for destination in destinations[1:]:
-        metadata = json.loads((destination / 'assets/contexto/availability.json').read_text())
+        metadata = json.loads((destination / 'assets/contexto/availability.json').read_text(encoding='utf-8'))
         missing = [name for name, exists in metadata['resources'].items() if not exists]
         if missing:
             print(f'Aviso: recursos comuns ausentes em {destination.name}: {", ".join(missing)}; leitura integral parcial.')

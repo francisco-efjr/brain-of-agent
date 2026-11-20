@@ -4,16 +4,17 @@ Gerado por `tools/publish_brain.py` a partir de `docs/foundation/knowledge/*.jso
 
 **Como o orquestrador usa (ORCHESTRATOR.md §3, passo 3):** case a demanda com os gatilhos (sinônimos, PT-BR ou EN; pode casar mais de uma tag). O especialista vem da rota **líder**; o subagente carrega também as skills das rotas de **fundamentos**; **apoio** entra se o contexto pedir; o validador independente vem da coluna própria. Tag **em construção**: declare a lacuna e use a rota publicada mais próxima. Nenhuma tag casando: use `CATALOGO.md` e a tabela de combinações do §4, e registre a lacuna.
 
-Tags: 29 curadas, 30 automáticas; 59 publicadas, 0 em construção.
+Tags: 33 curadas, 31 automáticas; 64 publicadas, 0 em construção.
 
 ## Tags curadas (conhecimento transversal e adquirido)
 
 | Tag | Conhecimento | Gatilhos (amostra) | Líder | Fundamentos e apoio | Validador | Status |
 |---|---|---|---|---|---|---|
 | `adr-decisoes` | ADRs e documentação de decisões | escreve um adr para essa decisão; documenta por que escolhemos x; registra a decisão de arquitetura; me dá um modelo de adr; como numero os adrs desse repo; substituir um adr antigo… | `architecture-design` · agentes `architecture-design:adr-writer` · skills `adr`, `adr-write` | `engineering-lifecycle` · skills `documentation-and-adrs`<br>`technical-writing-docs` · agentes `technical-writing-docs:technical-writer` · skills `escrever-adr`, `escrever-readme`<br>`product-discovery-specs` · agentes `product-discovery-specs:decision-recorder` | `technical-writing-docs:auditor-de-docs` | publicado |
+| `avaliacao-de-modelos` | Escolher modelo, ler benchmark ou anúncio e medir custo | qual modelo usar; comparar modelos; benchmark de llm; ranking de modelos; esse anúncio de ia é verdade; vale a pena trocar de modelo… | `agent-practice` · agentes `agent-practice:claims-verifier` · skills `avaliar-modelo` | `llm-ai-agents` · skills `playbook` | `agent-practice:claims-verifier` | publicado |
 | `barra-de-qualidade` | Barra de qualidade (CONSTRAINTS.md), catraca e guarda de afrouxamento | defina nossos padrões de qualidade; crie um constraints.md; set up constraints; quality gates para o agente; o agente está pulando teste pra passar; o agente silenciou o lint… | `engineering-lifecycle` · agentes `engineering-lifecycle:quality-bar-guardian` · skills `constraint-driven-development` | `qa-testing` · skills `tdd-guard`, `verification-gate`<br>`code-quality-refactoring` · skills `tech-debt-triage`<br>`devops-cloud-infra` · skills `gha-hardening-review`<br>`sre-observability` · skills `slo-design` | `qa-testing:test-auditor` | publicado |
 | `ci-cd-portoes` | CI/CD e portões de qualidade | monta o pipeline de ci para esse repo; meu ci está lento; o ci falhou, o que faço; quais gates devo ter; configura o github actions; shift left nos testes… | `devops-cloud-infra` · agentes `devops-cloud-infra:pipeline-security-auditor` · skills `gha-hardening-review`, `secrets-review`, `deploy-infra` | `engineering-lifecycle` · skills `ci-cd-and-automation`<br>`qa-testing` · skills `verification-gate`<br>`git-workflow-release` · skills `criar-pr` | `devops-cloud-infra:infra-reviewer` | publicado |
-| `contexto-agente` | Contexto, regras do projeto e handoff entre sessões | o agente está ignorando as convenções do projeto; como montar o claude.md; o agente está inventando apis; a sessão está ficando confusa; o contexto está grande, o que cortar; quando devo abrir uma sessão nova… | `engineering-lifecycle` · skills `context-engineering` | `llm-ai-agents` · skills `instruction-authoring`<br>`technical-writing-docs` · skills `auditar-claude-md`<br>`backend-api` · skills `backend-claude-md-setup`<br>`product-discovery-specs` · skills `spec-to-tasks` | `technical-writing-docs:revisor-de-instrucoes` | publicado |
+| `contexto-agente` | Contexto, regras do projeto e handoff entre sessões | o agente está ignorando as convenções do projeto; como montar o claude.md; o agente está inventando apis; a sessão está ficando confusa; o contexto está grande, o que cortar; quando devo abrir uma sessão nova… | `engineering-lifecycle` · skills `context-engineering` | `llm-ai-agents` · skills `instruction-authoring`<br>`technical-writing-docs` · skills `auditar-claude-md`<br>`backend-api` · skills `backend-claude-md-setup`<br>`product-discovery-specs` · skills `spec-to-tasks`<br>`agent-practice` · skills `memoria-do-projeto` | `technical-writing-docs:revisor-de-instrucoes` | publicado |
 | `contrato-api` | Contrato de API, idempotência e retries seguros | desenhe os endpoints dessa feature; como versionar essa api sem quebrar clientes; defina o contrato entre esses módulos; put ou patch; paginação e erros padronizados; adicione um campo sem quebrar quem consome… | `backend-api` · agentes `backend-api:backend-architect` · skills `api-contract-design`, `idempotency-and-resilience` | `engineering-lifecycle` · skills `api-and-interface-design`<br>`architecture-design` · skills `api-design`, `resilience-and-consistency`<br>`fintech-payments` · skills `payment-idempotency`<br>`automation-integrations` · skills `reviewing-webhook-receivers` | `backend-api:api-contract-reviewer` | publicado |
 | `definicao-de-pronto` | Definição de pronto e checklists de verificação | quando posso considerar isso pronto; isso está pronto de verdade; checklist antes do merge; o que falta para fechar essa tarefa; crie um critério de pronto para o projeto; gate final antes de subir… | `qa-testing` · skills `verification-gate` | `engineering-lifecycle` · skills `incremental-implementation`<br>`ux-ui-design` · skills `a11y-checklist`<br>`security-appsec` · skills `secrets-supply-chain-review`<br>`web-frontend` · skills `perf-audit` | `qa-testing:test-reviewer` | publicado |
 | `deprecacao-migracao` | Deprecação, migração e mudança de schema sem downtime | como removo essa api antiga; quero descontinuar essa funcionalidade; plano de deprecação; como migro os usuários para o novo serviço; devo manter esse sistema legado; código que ninguém mantém mas todo mundo usa… | `code-quality-refactoring` · skills `migration-parity`, `refactor-seguro` | `engineering-lifecycle` · skills `deprecation-and-migration`<br>`database-data-modeling` · agentes `database-data-modeling:db-migration-planner` · skills `safe-migrations`<br>`architecture-design` · skills `decomposition` | `database-data-modeling:db-reviewer` | publicado |
@@ -22,14 +23,17 @@ Tags: 29 curadas, 30 automáticas; 59 publicadas, 0 em construção.
 | `entrevista-intencao` | Entrevista de intenção e ambiguidade explícita | me entreviste antes de começar; interview me; grill me; stress-test my thinking; não sei bem o que quero; o que eu realmente quero com isso… | `engineering-lifecycle` · skills `interview-me` | `product-discovery-specs` · skills `spec-interview`, `write-prd` | `product-discovery-specs:spec-reviewer` | publicado |
 | `fatias-incrementais` | Implementação em fatias verticais pequenas | implemente isso em etapas pequenas; faça só a próxima tarefa do plano; não quero um pr gigante; vamos por partes testando cada uma; feature atrás de flag; mantenha o build verde entre os passos… | `engineering-lifecycle` · skills `incremental-implementation` | `qa-testing` · skills `tdd-guard`<br>`git-workflow-release` · skills `commit-convencional`, `criar-pr`<br>`code-quality-refactoring` · skills `refactor-seguro` | `git-workflow-release:revisor-plano` | publicado |
 | `git-versionamento-release` | Git, commits atômicos, branches curtas e versionamento | como organizo meus commits; faça commits atômicos; faça um pr pequeno; quanto deve ter um commit; como volto ao último estado que funcionava; qual versão devo subir… | `git-workflow-release` · agentes `git-workflow-release:revisor-diff` · skills `commit-convencional`, `criar-pr`, `rebase-seguro`, `release-cut`, `encerrar-branch` | `engineering-lifecycle` · skills `git-workflow-and-versioning`<br>`technical-writing-docs` · skills `escrever-changelog-release` | `git-workflow-release:auditor-release` | publicado |
+| `kit-seguranca-agentes` | Ambiente seguro para agentes: jaula, permissões, backup | sandbox para o agente; modo yolo; dangerously skip permissions; permissões do claude code; o agente apagou meus arquivos; proteger meu computador do agente… | `agent-practice` · agentes `agent-practice:agent-environment-auditor` · skills `kit-seguranca-agente` | `security-appsec` · skills `playbook` | `agent-practice:agent-environment-auditor` | publicado |
 | `lancamento-rollback` | Lançamento em produção: checklist, rollout em estágios e rollback | vamos subir isso para produção, o que falta; checklist antes do deploy; estamos prontos para o go-live; como fazemos o rollout gradual; canary de 5% dos usuários; quero lançar atrás de uma flag… | `devops-cloud-infra` · agentes `devops-cloud-infra:rollout-planner` · skills `progressive-delivery` | `engineering-lifecycle` · skills `shipping-and-launch`<br>`sre-observability` · skills `release-health`, `slo-design`<br>`database-data-modeling` · skills `backup-restore-runbook`, `safe-migrations`<br>`technical-writing-docs` · skills `escrever-runbook` | `git-workflow-release:auditor-release` | publicado |
 | `observabilidade-instrumentar` | Observabilidade: instrumentar, métricas RED e alertas por sintoma | instrumenta esse serviço; adiciona logs e métricas nessa feature; não consigo saber o que aconteceu em produção; como estruturar meus logs; adiciona tracing com opentelemetry; quais métricas devo expor… | `sre-observability` · skills `telemetry-review`, `alert-review`, `slo-design`, `runbook` | `engineering-lifecycle` · skills `observability-and-instrumentation`<br>`technical-writing-docs` · skills `escrever-runbook` | `sre-observability:reliability-reviewer` | publicado |
+| `operacao-destrutiva` | Apagar, mover, limpar ou migrar dados com agente (portão G4) | apagar arquivos; limpar a pasta; faxina nos arquivos; excluir dados; liberar espaço em disco; mover arquivos em massa… | `agent-practice` · agentes `agent-practice:destructive-ops-guard` · skills `guardar-destrutivo` | `database-data-modeling` · skills `playbook`<br>`devops-cloud-infra` · skills `playbook` | `agent-practice:destructive-ops-guard` | publicado |
 | `orquestracao-multiagente` | Orquestração de subagentes: padrões e anti-padrões | orquestrar subagentes; rodar especialistas em paralelo; fan-out com merge; quando usar subagente ou agent team; agente chamando agente; router de agentes… | `orchestrator` · agentes `orchestrator:demand-router` · skills `playbook` | `engineering-lifecycle` · agentes `engineering-lifecycle:code-reviewer`, `engineering-lifecycle:security-auditor`, `engineering-lifecycle:test-engineer` · skills `shipping-and-launch`<br>`llm-ai-agents` · skills `agent-architecture` | `llm-ai-agents:agent-security-reviewer` | publicado |
 | `performance-web` | Medir e otimizar performance (Core Web Vitals, N+1, índice, cache) | isso está lento; otimiza a performance disso; melhora o lcp da página; core web vitals ruins; tem n+1 nessa consulta; o endpoint demora demais… | `web-frontend` · agentes `web-frontend:frontend-perf-reviewer` · skills `perf-audit` | `engineering-lifecycle` · agentes `engineering-lifecycle:web-performance-auditor` · skills `performance-optimization`<br>`sre-observability` · skills `performance-engineering`<br>`database-data-modeling` · skills `query-plan-and-indexing` | `sre-observability:perf-analyst` | publicado |
 | `pesquisa-web-apify` | Pesquisa e coleta de dados na web em escala (Apify MCP) | pesquisa na web em escala; pesquisar fontes em massa; raspar dados; web scraping; coletar dados de sites; crawler… | `web-research-apify` · agentes `web-research-apify:apify-researcher` · skills `playbook`, `escolher-actor`, `dataset-para-itens` | `automation-integrations` · agentes `automation-integrations:third-party-auditor` · skills `responsible-scraping`, `assessing-automation-risk`<br>`security-appsec` · agentes `security-appsec:agent-config-auditor` · skills `agent-risk-triage`<br>`llm-ai-agents` · agentes `llm-ai-agents:agent-security-reviewer` · skills `tool-design-review` | `web-research-apify:apify-source-verifier`, `web-research-apify:apify-cost-auditor`, `automation-integrations:third-party-auditor` | publicado |
+| `pratica-com-agentes` | Guia obrigatório de prática com agentes (Competente o Suficiente) | boas práticas com ia; boas práticas com agentes; guia do livro; competente o suficiente; regras para agentes de ia; conformidade com o guia… | `agent-practice` · agentes `agent-practice:conformance-auditor`, `agent-practice:oracle-designer`, `agent-practice:claims-verifier` · skills `playbook`, `checar-conformidade`, `especificar-pedido`, `definir-oraculo`, `memoria-do-projeto`, `revisar-codigo-de-ia` | `engineering-lifecycle` · skills `context-engineering`, `test-driven-development`<br>`qa-testing` · agentes `qa-testing:test-auditor` · skills `verification-gate` | `agent-practice:conformance-auditor` | publicado |
 | `quebrar-em-tarefas` | Quebrar a spec em tarefas verticais e verificáveis | quebre em tarefas; faça o plano de implementação; divida isso em tarefas; break this into tasks; plan the implementation; tarefas verticais… | `product-discovery-specs` · agentes `product-discovery-specs:plan-writer` · skills `spec-to-tasks`, `refine-backlog` | `engineering-lifecycle` · skills `planning-and-task-breakdown`<br>`architecture-design` · skills `decomposition`<br>`qa-testing` · skills `test-design` | `product-discovery-specs:spec-reviewer` | publicado |
 | `refinar-ideia` | Refinar uma ideia: divergir, convergir e cortar | refine essa ideia; refine this idea; ideate on; me ajuda a refinar essa ideia; gera variações disso; quais outras abordagens existem… | `engineering-lifecycle` · skills `idea-refine` | `product-discovery-specs` · agentes `product-discovery-specs:decision-recorder`, `product-discovery-specs:feasibility-scout` · skills `run-discovery`, `prioritize-roadmap` | `architecture-design:skeptic-architect` | publicado |
-| `revisao-de-codigo` | Revisão de código antes do merge | revisa esse pr; faz o code review desse diff; posso mergear isso; revisa minhas mudanças antes do merge; dá uma olhada nesse diff; revisão em cinco eixos… | `code-quality-refactoring` · agentes `code-quality-refactoring:code-reviewer` · skills `review-diff` | `engineering-lifecycle` · agentes `engineering-lifecycle:code-reviewer` · skills `code-review-and-quality`<br>`security-appsec` · skills `security-review-diff`<br>`git-workflow-release` · agentes `git-workflow-release:revisor-diff` · skills `criar-pr` | `code-quality-refactoring:finding-validator` | publicado |
+| `revisao-de-codigo` | Revisão de código antes do merge | revisa esse pr; faz o code review desse diff; posso mergear isso; revisa minhas mudanças antes do merge; dá uma olhada nesse diff; revisão em cinco eixos… | `code-quality-refactoring` · agentes `code-quality-refactoring:code-reviewer` · skills `review-diff` | `engineering-lifecycle` · agentes `engineering-lifecycle:code-reviewer` · skills `code-review-and-quality`<br>`security-appsec` · skills `security-review-diff`<br>`git-workflow-release` · agentes `git-workflow-release:revisor-diff` · skills `criar-pr`<br>`agent-practice` · skills `revisar-codigo-de-ia` | `code-quality-refactoring:finding-validator` | publicado |
 | `revisao-por-duvida` | Revisão por dúvida em contexto novo e triagem de achados | revise isso antes de eu confiar; faça uma revisão adversarial; encontre o que pode dar errado nesse plano; questione minhas suposições; dê uma segunda opinião com contexto limpo; prove que esse código está errado… | `engineering-lifecycle` · agentes `engineering-lifecycle:fresh-context-doubter` · skills `doubt-driven-development` | `architecture-design` · agentes `architecture-design:skeptic-architect` · skills `design-review`<br>`security-appsec` · agentes `security-appsec:finding-verifier` | `code-quality-refactoring:finding-validator` | publicado |
 | `roteador-de-fases` | Roteador de fases do ciclo de engenharia | qual skill usar; por onde começo essa tarefa; em que fase do ciclo estou; qual é o próximo passo do ciclo; me guie pelas fases; qual comando usar agora… | `orchestrator` · agentes `orchestrator:demand-router` · skills `playbook` | `engineering-lifecycle` · skills `using-agent-skills`<br>`automation-integrations` · skills `authoring-plugin-skills` | `llm-ai-agents:prompt-reviewer` | publicado |
 | `seguranca-hardening` | Segurança: modelagem de ameaças, endurecimento e fronteiras de aprovação | isso é seguro; revisa a segurança disso; audita as vulnerabilidades; endurece esse endpoint; tem injeção aqui; faça uma modelagem de ameaças… | `security-appsec` · agentes `security-appsec:security-reviewer`, `security-appsec:threat-modeler` · skills `security-review-diff`, `threat-model`, `secrets-supply-chain-review`, `harden-claude-code`, `agent-risk-triage` | `engineering-lifecycle` · agentes `engineering-lifecycle:security-auditor` · skills `security-and-hardening`<br>`backend-api` · skills `api-security-review`<br>`llm-ai-agents` · agentes `llm-ai-agents:agent-security-reviewer` · skills `agent-security-review` | `security-appsec:finding-verifier` | publicado |
@@ -44,6 +48,7 @@ Tags: 29 curadas, 30 automáticas; 59 publicadas, 0 em construção.
 
 | Tag | Conhecimento | Gatilhos (amostra) | Líder | Fundamentos e apoio | Validador | Status |
 |---|---|---|---|---|---|---|
+| `agent-practice` | Guia obrigatório de prática com agentes de IA, destilado do livro Competente o Suficiente (Fabio Akita, 2026)… | boas-praticas-ia; agent-guardrails; competente-o-suficiente; guia-obrigatorio; conformidade; oraculo-externo… | `agent-practice` · agentes `agent-practice:agent-environment-auditor`, `agent-practice:claims-verifier`, `agent-practice:conformance-auditor`, `agent-practice:destructive-ops-guard`, `agent-practice:oracle-designer` · skills `playbook` | — | — | publicado |
 | `architecture-design` | Decisões de arquitetura com humano no comando: ADRs, trade-offs, revisão de desenho, system design, decomposi… | architecture; adr; system-design; c4; ddd; hexagonal… | `architecture-design` · agentes `architecture-design:adr-writer`, `architecture-design:architecture-blueprint`, `architecture-design:architecture-reviewer`, `architecture-design:boundary-mapper`, `architecture-design:skeptic-architect` · skills `playbook` | — | — | publicado |
 | `automation-integrations` | Playbook, skills, agentes e prompts para automação de workflows, webhooks idempotentes, integrações entre API… | automation; integrations; mcp; mcp-server; webhooks; idempotency… | `automation-integrations` · agentes `automation-integrations:automation-architect`, `automation-integrations:integration-reviewer`, `automation-integrations:mcp-security-reviewer`, `automation-integrations:plugin-validator`, `automation-integrations:third-party-auditor` · skills `playbook` | — | — | publicado |
 | `backend-api` | Projete, implemente, revise, teste e depure serviços e APIs (REST, GraphQL, gRPC) com contrato OpenAPI, erros… | backend; api; rest; openapi; graphql; grpc… | `backend-api` · agentes `backend-api:api-contract-reviewer`, `backend-api:api-security-reviewer`, `backend-api:api-test-engineer`, `backend-api:backend-architect`, `backend-api:backend-debugger` · skills `playbook` | — | — | publicado |
@@ -93,6 +98,20 @@ Registra decisões de arquitetura em ADR (contexto, decisão, alternativas com m
 - **Fontes:** `docs/dev-segments/research/engineering-lifecycle/VALIDATED.md`
 - **Notas:** V-29. A convenção do repositório-alvo vence; sem ela, a do brain (docs/adr, MADR) (C-12). adr-write é manual-only e só grava ADR aprovado.
 
+### `avaliacao-de-modelos` — Escolher modelo, ler benchmark ou anúncio e medir custo (publicado)
+
+Teste próprio repetido e às cegas, leitura de benchmark (11 perguntas) e de anúncio (14 perguntas, três colunas), custo com releitura de cache e escolha por faixa, custo, tempo e ferramenta.
+
+- **Gatilhos:** qual modelo usar; comparar modelos; benchmark de llm; ranking de modelos; esse anúncio de ia é verdade; vale a pena trocar de modelo; quanto custa rodar o agente; modelo local; rodar llm em casa; which model should i use; is this ai benchmark legit; llm cost comparison
+
+| Plugin | Papel | Skills | Agentes | Status |
+|---|---|---|---|---|
+| `agent-practice` | lider | `avaliar-modelo` | `claims-verifier` | publicado |
+| `llm-ai-agents` | apoio | `playbook` | — | publicado |
+- **Validadores:** `agent-practice:claims-verifier`
+- **Fontes:** `docs/dev-segments/research/agent-practice/SYNTHESIS.md`, `docs/dev-segments/research/agent-practice/VALIDACAO-COBERTURA.md`
+- **Notas:** Números de modelos são datados e envelhecem; a decisão é humana (MET-05).
+
 ### `barra-de-qualidade` — Barra de qualidade (CONSTRAINTS.md), catraca e guarda de afrouxamento (publicado)
 
 Registra a barra do projeto num contrato versionado (piso, números com comando, métricas em catraca, exceções com dono e prazo) e vigia o diff contra o afrouxamento: supressão nova, teste pulado, limiar baixado.
@@ -139,6 +158,7 @@ Monta o arquivo de regras do agente, decide o que carregar e o que podar (cinco 
 | `technical-writing-docs` | fundamentos | `auditar-claude-md` | — | publicado |
 | `backend-api` | apoio | `backend-claude-md-setup` | — | publicado |
 | `product-discovery-specs` | apoio | `spec-to-tasks` | — | publicado |
+| `agent-practice` | fundamentos | `memoria-do-projeto` | — | publicado |
 - **Validadores:** `technical-writing-docs:revisor-de-instrucoes`
 - **Fontes:** `docs/dev-segments/research/engineering-lifecycle/VALIDATED.md`
 - **Notas:** V-11. instruction-authoring, auditar-claude-md, backend-claude-md-setup e spec-to-tasks são manual-only. 75% e 2.000 linhas são heurísticas. Os cinco campos do handoff podem entrar no roteiro continuar da fábrica.
@@ -270,6 +290,20 @@ Commits atômicos como save points (uma coisa por commit, mensagem com o porquê
 - **Fontes:** `docs/dev-segments/research/engineering-lifecycle/VALIDATED.md`
 - **Notas:** V-24. git reset --hard HEAD só após git status e com o trabalho salvo ou confirmado (C-5); push e tag exigem confirmação. As skills do líder são manual-only. O vínculo com DORA no upstream é crença sem link.
 
+### `kit-seguranca-agentes` — Ambiente seguro para agentes: jaula, permissões, backup (publicado)
+
+Monta ou audita o ambiente do agente pelo kit de sete peças: jaula, snapshots, backup externo testado, permissões em três colunas, nada de produção, memória em arquivos e medidor de uso; injeção de prompt e skills de terceiros.
+
+- **Gatilhos:** sandbox para o agente; modo yolo; dangerously skip permissions; permissões do claude code; o agente apagou meus arquivos; proteger meu computador do agente; posso instalar essa skill; skill de terceiros é segura; backup antes de usar agente; agent sandbox; agent permissions; prompt injection protection
+
+| Plugin | Papel | Skills | Agentes | Status |
+|---|---|---|---|---|
+| `agent-practice` | lider | `kit-seguranca-agente` | `agent-environment-auditor` | publicado |
+| `security-appsec` | apoio | `playbook` | — | publicado |
+- **Validadores:** `agent-practice:agent-environment-auditor`
+- **Fontes:** `docs/dev-segments/research/agent-practice/SYNTHESIS.md`, `docs/dev-segments/research/agent-practice/VALIDACAO-COBERTURA.md`
+- **Notas:** Não instala nem altera settings sem confirmação: entrega proposta e comandos.
+
 ### `lancamento-rollback` — Lançamento em produção: checklist, rollout em estágios e rollback (publicado)
 
 Prepara um lançamento reversível: checklist pré-lançamento em oito grupos, flag como kill switch, rollout em estágios com limiares para avançar, segurar ou reverter, e plano de rollback escrito antes do deploy.
@@ -301,6 +335,21 @@ Instrumenta código novo para que o incidente seja consulta: perguntas do on-cal
 - **Validadores:** `sre-observability:reliability-reviewer`
 - **Fontes:** `docs/dev-segments/research/engineering-lifecycle/VALIDATED.md`
 - **Notas:** V-30. Exemplos do upstream em Node e Prometheus; limiares são exemplos. Nunca logar segredo ou PII.
+
+### `operacao-destrutiva` — Apagar, mover, limpar ou migrar dados com agente (portão G4) (publicado)
+
+Protocolo bloqueante para ação destrutiva feita ou planejada por agente: lista de proteção não vazia e contada, premissas conferidas item a item, inventário independente, copiar-conferir-apagar, revisão por segundo agente e aprovação humana registrada.
+
+- **Gatilhos:** apagar arquivos; limpar a pasta; faxina nos arquivos; excluir dados; liberar espaço em disco; mover arquivos em massa; migrar dados; sincronizar pastas; restaurar backup; rsync --delete; delete files safely; clean up with an agent; data migration plan
+
+| Plugin | Papel | Skills | Agentes | Status |
+|---|---|---|---|---|
+| `agent-practice` | lider | `guardar-destrutivo` | `destructive-ops-guard` | publicado |
+| `database-data-modeling` | apoio | `playbook` | — | publicado |
+| `devops-cloud-infra` | apoio | `playbook` | — | publicado |
+- **Validadores:** `agent-practice:destructive-ops-guard`
+- **Fontes:** `docs/dev-segments/research/agent-practice/SYNTHESIS.md`, `docs/dev-segments/research/agent-practice/VALIDACAO-COBERTURA.md`
+- **Notas:** G4 é bloqueante: sem ele completo nada se apaga. Execução da exclusão só com aprovação do usuário no chat (ORCHESTRATOR §5).
 
 ### `orquestracao-multiagente` — Orquestração de subagentes: padrões e anti-padrões (publicado)
 
@@ -349,6 +398,21 @@ Pesquisar fontes em massa, raspar e extrair dados de sites e redes sociais com A
 - **Fontes:** `docs/dev-segments/research/web-research-apify/VALIDATED.md`, `docs/dev-segments/research/web-research-apify/SYNTHESIS.md`
 - **Notas:** Rota gratuita primeiro: scraping com código próprio ou de página estática fica com automation-integrations:responsible-scraping, sem Apify; Apify só quando a rota gratuita falha (bloqueio, JavaScript, sem API). Sem .mcp.json ativo: a conexão (mcp.apify.com, OAuth) é feita pelo usuário com confirmação. pesquisa-com-orcamento só roda por comando (gasta dinheiro). Despachado como general-purpose, o agente não herda tools: repetir orçamento, ferramentas e regras no prompt (P-21).
 
+### `pratica-com-agentes` — Guia obrigatório de prática com agentes (Competente o Suficiente) (publicado)
+
+Regras obrigatórias para trabalhar com agentes de IA, destiladas do livro Competente o Suficiente (Fabio Akita, 2026): a máquina executa, um verificador externo confere e uma pessoa competente decide. Matriz de contexto, portões G0–G6 e relatório de conformidade. Aplicado em toda invocação pelo ORCHESTRATOR §0.1; esta tag o põe como líder quando o pedido é o próprio tema.
+
+- **Gatilhos:** boas práticas com ia; boas práticas com agentes; guia do livro; competente o suficiente; regras para agentes de ia; conformidade com o guia; o agente disse que terminou, confira; como provar que o agente fez certo; como pedir para a ia; pedido em quatro partes; ai agent best practices; agent guardrails; verify ai output; pratica-completo
+
+| Plugin | Papel | Skills | Agentes | Status |
+|---|---|---|---|---|
+| `agent-practice` | lider | `playbook`, `checar-conformidade`, `especificar-pedido`, `definir-oraculo`, `memoria-do-projeto`, `revisar-codigo-de-ia` | `conformance-auditor`, `oracle-designer`, `claims-verifier` | publicado |
+| `engineering-lifecycle` | apoio | `context-engineering`, `test-driven-development` | — | publicado |
+| `qa-testing` | apoio | `verification-gate` | `test-auditor` | publicado |
+- **Validadores:** `agent-practice:conformance-auditor`
+- **Fontes:** `docs/dev-segments/research/agent-practice/SYNTHESIS.md`, `docs/dev-segments/research/agent-practice/VALIDACAO-COBERTURA.md`
+- **Notas:** Obrigatório em toda invocação (ORCHESTRATOR §0.1), mesmo sem esta tag casar. Nunca amplia permissões; regra humana vira decisão pendente. PRATICA-COMPLETO só por pedido explícito do usuário.
+
 ### `quebrar-em-tarefas` — Quebrar a spec em tarefas verticais e verificáveis (publicado)
 
 Converte a spec aprovada em plano e tarefas pequenas, cada uma com critério de aceite, verificação, dependências e tamanho; checkpoints a cada 2 ou 3 tarefas e paralelismo explícito.
@@ -391,6 +455,7 @@ Revisa a mudança em cinco eixos (correção, legibilidade, arquitetura, seguran
 | `engineering-lifecycle` | fundamentos | `code-review-and-quality` | `code-reviewer` | publicado |
 | `security-appsec` | apoio | `security-review-diff` | — | publicado |
 | `git-workflow-release` | apoio | `criar-pr` | `revisor-diff` | publicado |
+| `agent-practice` | fundamentos | `revisar-codigo-de-ia` | — | publicado |
 - **Validadores:** `code-quality-refactoring:finding-validator`
 - **Fontes:** `docs/dev-segments/research/engineering-lifecycle/VALIDATED.md`
 - **Notas:** V-20. Rótulos divergem entre skill e persona: adotar um conjunto com arquivo:linha (C-8). A mutação manual altera arquivo: fazer em cópia ou worktree (C-15).

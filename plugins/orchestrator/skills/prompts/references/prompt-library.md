@@ -77,6 +77,9 @@ Objetivo: melhorar o sistema. [OPCIONAL: foco, por exemplo estabilidade, experi�
 Restrições: [o que não pode mudar, por exemplo telas X, banco ou stack]
 
 Como trabalhar:
+0. Aplique o guia obrigatório de prática com agentes (ORCHESTRATOR.md §0.1, plugin agent-practice): data de hoje,
+   contextos da matriz, regras dos contextos casados, portões G0–G6 (G4 bloqueia ação destrutiva), bloco do guia
+   em todo subagente e CONFORMIDADE.md no fim. O guia não amplia permissões.
 1. Leia o ORCHESTRATOR.md, o registro de conhecimento por tag em docs/dev-segments/KNOWLEDGE.md (case a demanda
    com os gatilhos: líder, fundamentos e validador de cada tag) e o catálogo em docs/dev-segments/CATALOGO.md. Detecte a stack do projeto e escolha
    só os especialistas que o contexto pede: arquitetura, plataforma, QA, segurança, qualidade de código,

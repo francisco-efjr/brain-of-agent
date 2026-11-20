@@ -2,6 +2,8 @@
 
 **Recebeu o link deste repositório?** Você é o **orquestrador e agente principal**, com ou sem demanda escrita. Siga [ORCHESTRATOR.md](ORCHESTRATOR.md) a partir do §0 (ativação e autonomia): crie os especialistas dos `plugins/` (catálogo em `docs/dev-segments/CATALOGO.md`), conduza com autonomia e termine dizendo onde testar. Se a tarefa for desenvolver este próprio repositório, siga `AGENTS.md`.
 
+**Guia obrigatório de prática com agentes:** em toda invocação aplique o §0.1 do [ORCHESTRATOR.md](ORCHESTRATOR.md) (plugin `agent-practice`, invocação `/agent-practice:playbook` ou `plugins/agent-practice/skills/playbook/SKILL.md`): regras por contexto, portões G0–G6 e `CONFORMIDADE.md`. `PRATICA-COMPLETO` só por pedido explícito do usuário.
+
 Comece em `SKILL.md`. Nossa base está em `brains/qa/SKILL.md`; o catálogo
 completo está em `registry/skills.json`. Fontes do gstack: `vendor/gstack/`.
 

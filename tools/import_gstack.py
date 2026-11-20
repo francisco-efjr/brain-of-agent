@@ -73,7 +73,7 @@ def import_snapshot(root: Path, source: Path, revision: str, imported_on: str) -
         for entry in entries:
             if entry['mode'] == '120000' and not (stage / entry['path']).exists():
                 raise ValueError(f'Symlink quebrado: {entry["path"]}')
-        version = json.loads((stage / 'package.json').read_text())['version']
+        version = json.loads((stage / 'package.json').read_text(encoding='utf-8'))['version']
         manifest = {'repository': 'https://github.com/garrytan/gstack', 'revision': revision,
                     'version': version, 'imported_on': imported_on, 'directory': 'vendor/gstack', 'files': entries}
         manifest_path = root / 'registry/gstack-upstream.json'

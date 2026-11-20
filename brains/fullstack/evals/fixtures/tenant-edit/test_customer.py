@@ -1,6 +1,7 @@
 import sqlite3
 import unittest
 import tempfile
+from contextlib import closing
 from pathlib import Path
 from customer import edit_customer, CustomerNotFound
 
@@ -49,7 +50,7 @@ class CustomerTests(unittest.TestCase):
     def test_persistence_after_reconnect(self):
         with tempfile.TemporaryDirectory() as temp:
             path=Path(temp)/'fixture.sqlite'
-            with sqlite3.connect(path) as db:
+            with closing(sqlite3.connect(path)) as db, db:
                 db.execute('CREATE TABLE customers(id INTEGER PRIMARY KEY, tenant_id TEXT, name TEXT)')
                 db.execute('INSERT INTO customers VALUES (1, ?, ?)',('a','Before'))
             db=sqlite3.connect(path)
@@ -57,7 +58,7 @@ class CustomerTests(unittest.TestCase):
                 edit_customer(db,'a',1,'  Persisted  ')
             finally:
                 db.close()
-            with sqlite3.connect(path) as db:
+            with closing(sqlite3.connect(path)) as db, db:
                 self.assertEqual(db.execute('SELECT name FROM customers WHERE id=1').fetchone(),('Persisted',))
 
     def test_repeated_valid_edit(self):

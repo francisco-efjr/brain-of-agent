@@ -17,8 +17,22 @@ from import_gstack import import_snapshot
 from verify import safe_path, verify_own, verify_snapshot
 
 
+def _symlinks_supported() -> bool:
+    with tempfile.TemporaryDirectory() as temp:
+        try:
+            (Path(temp) / 'link').symlink_to('target')
+        except OSError:
+            return False
+    return True
+
+
+SYMLINKS = _symlinks_supported()
+
+
 class IntegrationTests(unittest.TestCase):
     def setUp(self):
+        if not SYMLINKS:
+            self.skipTest('Sistema sem permissão para criar symlinks (no Windows, ative o Modo de Desenvolvedor)')
         self.temp = tempfile.TemporaryDirectory(prefix='brain-integration-')
         self.addCleanup(self.temp.cleanup)
         self.base = Path(self.temp.name)
