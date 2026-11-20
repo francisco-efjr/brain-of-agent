@@ -1,0 +1,25 @@
+{
+  "_leia": "Copie para %USERPROFILE%\\IA-Operador\\so-config.json e edite. Campos ausentes usam os padrões de so_mcp/config.py.",
+  "pasta_operador": "%USERPROFILE%\\IA-Operador",
+  "powershell": "powershell.exe",
+  "timeout_comando_s": 60,
+  "timeout_confirmacao_s": 120,
+  "plano_validade_min": 30,
+  "saida_max_caracteres": 6000,
+  "pastas_permitidas": [
+    "%USERPROFILE%\\Documents",
+    "%USERPROFILE%\\Desktop",
+    "%USERPROFILE%\\Downloads",
+    "%USERPROFILE%\\IA-Operador"
+  ],
+  "pastas_sistema_extra": [],
+  "pasta_regras": "",
+  "memoria": {
+    "backend": "local",
+    "url": "http://127.0.0.1:49374/mcp",
+    "workspace": "",
+    "project": "",
+    "token_env": "AI_MEMORY_TOKEN",
+    "timeout_s": 10
+  }
+}

@@ -2,9 +2,9 @@
 
 > **O que é.** As regras permanentes (o "core") da IA que roda localmente no PC pessoal do dono deste repositório, montada com OpenJarvis e Ollama. O core é carregado como prompt de sistema em toda execução e define como a IA pensa, decide e age.
 >
-> **O que não é.** Não é plugin e não é lido pelo `ORCHESTRATOR.md`. Nenhum arquivo fora desta pasta depende dela, exceto o teste `tests/test_local_ai_core.py`, que confere se o `CORE.md` está montado.
+> **O que não é.** Não é plugin e não é lido pelo `ORCHESTRATOR.md`. Nenhum arquivo fora desta pasta depende dela, exceto os testes `tests/test_local_ai_core.py` (confere se o `CORE.md` está montado) e `tests/test_so_mcp.py` (servidor do modo SO).
 
-Versão 3.1, 2026-11-19. Cinco temas:
+Versão 3.2, 2026-11-19. Cinco temas e um modo de operação por ferramentas:
 
 | Tema | Para quê | Fontes |
 | --- | --- | --- |
@@ -13,6 +13,19 @@ Versão 3.1, 2026-11-19. Cinco temas:
 | **Memória** | Lembrar preferências, decisões, procedimentos e onde parou, com base no desenho do [ai-memory](https://github.com/akitaonrails/ai-memory) | 41 |
 | **Programação** | Trabalhar nos projetos de código com branch, testes e evidência | 28, mais cerca de 196 itens validados da casa |
 | **Automação** | Tarefas que rodam sozinhas, com ficha aprovada, limites e parada de emergência | 25, mais 63 itens validados da casa |
+| **Modo SO** | A IA age só por um servidor MCP local que aplica as regras em código e pede aprovação numa janela do Windows | 27, mais a base dos temas |
+
+## Dois modos
+
+| | Modo prompt | Modo SO (recomendado para modelo fraco) |
+| --- | --- | --- |
+| Prompt | `CORE.md` (base e temas, de 3.300 a 9.600 tokens) | `so/CORE-SO.md` (curto) e 12 ferramentas, cerca de 4.500 tokens no total |
+| Como age | `shell_exec` com qualquer comando | Catálogo fechado de 19 ações e leitura conferida |
+| Quem aplica as regras | O modelo, se lembrar | O servidor, em código |
+| Aprovação | "sim" no chat; fora do `jarvis chat` o OpenJarvis aprova sozinho | Janela do Windows em R2 e R3, em qualquer modo do OpenJarvis |
+| Instalação | Passos abaixo | [so/INSTALAR-SO.md](so/INSTALAR-SO.md) |
+
+Os dois usam as mesmas classes de risco e a mesma esteira. No modo SO, as regras dos temas viram código e ficam consultáveis por `regras_consultar`.
 
 ## Estrutura
 
@@ -42,11 +55,20 @@ local-ai-core/
 │   ├── REFERENCIA-PROGRAMACAO.md      # 20 seções: bug, fatias, refatoração, testes, git, dependências, Windows
 │   ├── PESQUISA-PROGRAMACAO.md        # 28 fontes diretas e a pesquisa validada da casa
 │   └── evals/CASOS-PROGRAMACAO.md     # 12 casos de teste
-└── automacao/
-    ├── CORE-AUTOMACAO.md              # tema: automação de rotinas
-    ├── REFERENCIA-AUTOMACAO.md        # 12 seções: Agendador, script modelo, idempotência, disjuntor, avisos
-    ├── PESQUISA-AUTOMACAO.md          # 25 fontes diretas e a pesquisa validada da casa
-    └── evals/CASOS-AUTOMACAO.md       # 12 casos de teste
+├── automacao/
+│   ├── CORE-AUTOMACAO.md              # tema: automação de rotinas
+│   ├── REFERENCIA-AUTOMACAO.md        # 12 seções: Agendador, script modelo, idempotência, disjuntor, avisos
+│   ├── PESQUISA-AUTOMACAO.md          # 25 fontes diretas e a pesquisa validada da casa
+│   └── evals/CASOS-AUTOMACAO.md       # 12 casos de teste
+└── so/
+    ├── CORE-SO.md                     # prompt do modo SO: agir só por ferramentas
+    ├── INSTALAR-SO.md                 # instalação no OpenJarvis, memória com ai-memory, parada de emergência
+    ├── REFERENCIA-SO.md               # esteira nas ferramentas, risco por ação, respostas, decisões de projeto
+    ├── PESQUISA-SO.md                 # 27 fontes: MCP, código do OpenJarvis e do ai-memory, Microsoft
+    ├── evals/CASOS-SO.md              # 14 casos de teste
+    ├── config.exemplo.json            # configuração opcional
+    ├── servidor_so.py                 # o servidor MCP (stdio); --autoteste confere tudo no PC
+    └── so_mcp/                        # política, catálogo de ações, planos, janelas, memória, regras, protocolo
 ```
 
 ## Como funciona
@@ -111,7 +133,7 @@ Os passos 1 a 9 são os nove originais; a pesquisa acrescentou o 0 (proporcional
 
 ## O que o core não garante
 
-O core é um pedido ao modelo, não uma trava. Segundo a documentação do OpenJarvis (lida por resumo em 2026-11-19):
+No modo prompt, o core é um pedido ao modelo, não uma trava. O modo SO resolve isso com ferramentas que aplicam as regras e pedem aprovação fora do modelo; veja [so/INSTALAR-SO.md](so/INSTALAR-SO.md). Segundo a documentação do OpenJarvis (lida por resumo em 2026-11-19):
 
 - `enforce_tool_confirmation` é aceito, mas não é aplicado; `shell_exec` só pede confirmação no `jarvis chat` e aprova sozinho no `jarvis ask`, no servidor HTTP e no app desktop.
 - `shell_exec` roda qualquer comando como o seu usuário, sem lista de permitidos e sem sandbox por padrão.

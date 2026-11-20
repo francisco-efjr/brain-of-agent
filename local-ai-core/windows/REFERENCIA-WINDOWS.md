@@ -212,19 +212,25 @@ Ordem recomendada, tudo com admin e em segundo plano com log (W-19, W-20):
 
 ## 23. Variáveis de ambiente e PATH
 
-- [R0] Ler: `[Environment]::GetEnvironmentVariable('Path','User')` e `'Machine'` (W-42)
-- [R1 em User, R2 em Machine] Backup do valor antigo: `[Environment]::GetEnvironmentVariable('Path','User') | Out-File "$W\backups\path-user-$ts.txt"`
-- Acrescentar sem duplicar:
+- [R0] Ler: `[Environment]::GetEnvironmentVariable('Path','User')` e `'Machine'` (W-42). Essa leitura já vem expandida (`%USERPROFILE%` vira o caminho).
+- [R1 em User, R2 em Machine] Backup do valor antigo, sem expandir: `(Get-Item 'HKCU:\Environment').GetValue('Path', '', 'DoNotExpandEnvironmentNames') | Out-File "$W\backups\path-user-$ts.txt"`
+- Acrescentar sem duplicar, mantendo o tipo REG_EXPAND_SZ:
 
 ```powershell
-$a = [Environment]::GetEnvironmentVariable('Path','User')
+$k = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Environment', $true)
+$a = [string]$k.GetValue('Path', '', 'DoNotExpandEnvironmentNames')
 $partes = @($a -split ';' | Where-Object { $_ })
 if ($partes -notcontains '<pasta>') {
-    [Environment]::SetEnvironmentVariable('Path', (($partes + '<pasta>') -join ';'), 'User')
+    $k.SetValue('Path', (($partes + '<pasta>') -join ';'), [Microsoft.Win32.RegistryValueKind]::ExpandString)
 }
+$k.Close()
+# Avisa os programas abertos (WM_SETTINGCHANGE): criar e apagar uma variável pela API do .NET dispara o aviso.
+[Environment]::SetEnvironmentVariable('IA_OPERADOR_AVISO', '1', 'User')
+[Environment]::SetEnvironmentVariable('IA_OPERADOR_AVISO', $null, 'User')
 ```
 
-- Nunca substitua o PATH inteiro. A mudança vale para processos novos: reabra o terminal.
+- Não regrave o PATH com `[Environment]::SetEnvironmentVariable('Path', ...)`. No Windows PowerShell 5.1, essa API grava string como REG_SZ, e o PATH do usuário costuma ser REG_EXPAND_SZ. Somada à leitura expandida, ela troca `%USERPROFILE%\...` por caminhos fixos e muda o tipo. Evidência: o código da API no .NET Framework (`environment.cs` e `registrykey.cs` do referencesource), conferido na pesquisa do modo SO.
+- Nunca substitua o PATH inteiro. A mudança vale para processos novos: reabra o terminal. No modo SO, use a ação `path_usuario_adicionar`.
 
 ## 24. PowerShell: política de execução, modos de linguagem, registro de atividade
 

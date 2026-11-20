@@ -610,6 +610,15 @@ class TestRegrasArquivosLeitura(Base):
         texto, _ = regras.consultar("passagem de bastão", tema="memoria")
         self.assertIn("memoria/", texto)
         self.assertTrue(regras.consultar("   ")[1])
+        self.assertIn("so", regras.temas())
+        texto, _ = regras.consultar("aprovação janela CONFIRMO", tema="so")
+        self.assertIn("so/", texto)
+
+    def test_configuracao_de_exemplo_carrega(self):
+        cfg = config.carregar(PASTA_SO / "config.exemplo.json", ambiente={"USERPROFILE": str(self.tmp)})
+        self.assertEqual(cfg.memoria["backend"], "local")
+        self.assertTrue(str(cfg.pasta_operador).endswith("IA-Operador"))
+        self.assertTrue((PASTA_SO / "CORE-SO.md").is_file())
 
     def test_arquivos(self):
         (self.tmp / "docs" / "a.txt").write_text("linha 1\nsenha: segredo123\nlinha 3\n", encoding="utf-8")
